@@ -26,6 +26,7 @@
 		6673D798295AD4D0000EE869 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6673D79A295AD4D0000EE869 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66D47B6C295AD6520018BAD2 /* PorscheConnect */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PorscheConnect; sourceTree = "<group>"; };
+		66D47B72295AD6CF0018BAD2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +44,7 @@
 		6673D780295AD4CF000EE869 = {
 			isa = PBXGroup;
 			children = (
+				66D47B72295AD6CF0018BAD2 /* README.md */,
 				66D47B6B295AD6520018BAD2 /* Packages */,
 				6673D78B295AD4CF000EE869 /* ElectricSidecar */,
 				6673D78A295AD4CF000EE869 /* Products */,
