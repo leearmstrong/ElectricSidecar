@@ -1,0 +1,7 @@
+public struct PorscheConnect {
+  public private(set) var text = "Hello, World!"
+
+  public init() {
+  }
+}
+

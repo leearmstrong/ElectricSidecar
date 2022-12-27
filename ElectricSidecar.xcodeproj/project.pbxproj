@@ -13,6 +13,7 @@
 		6673D794295AD4CF000EE869 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6673D792295AD4CF000EE869 /* Main.storyboard */; };
 		6673D796295AD4D0000EE869 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6673D795295AD4D0000EE869 /* Assets.xcassets */; };
 		6673D799295AD4D0000EE869 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6673D797295AD4D0000EE869 /* LaunchScreen.storyboard */; };
+		66D47B71295AD65C0018BAD2 /* PorscheConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 66D47B70295AD65C0018BAD2 /* PorscheConnect */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		6673D795295AD4D0000EE869 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6673D798295AD4D0000EE869 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6673D79A295AD4D0000EE869 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66D47B6C295AD6520018BAD2 /* PorscheConnect */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PorscheConnect; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66D47B71295AD65C0018BAD2 /* PorscheConnect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +43,10 @@
 		6673D780295AD4CF000EE869 = {
 			isa = PBXGroup;
 			children = (
+				66D47B6B295AD6520018BAD2 /* Packages */,
 				6673D78B295AD4CF000EE869 /* ElectricSidecar */,
 				6673D78A295AD4CF000EE869 /* Products */,
+				66D47B6F295AD65C0018BAD2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +72,21 @@
 			path = ElectricSidecar;
 			sourceTree = "<group>";
 		};
+		66D47B6B295AD6520018BAD2 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				66D47B6C295AD6520018BAD2 /* PorscheConnect */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		66D47B6F295AD65C0018BAD2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -81,8 +101,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				66D47B6E295AD6580018BAD2 /* PBXTargetDependency */,
 			);
 			name = ElectricSidecar;
+			packageProductDependencies = (
+				66D47B70295AD65C0018BAD2 /* PorscheConnect */,
+			);
 			productName = ElectricSidecar;
 			productReference = 6673D789295AD4CF000EE869 /* ElectricSidecar.app */;
 			productType = "com.apple.product-type.application";
@@ -145,6 +169,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		66D47B6E295AD6580018BAD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 66D47B6D295AD6580018BAD2 /* PorscheConnect */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6673D792295AD4CF000EE869 /* Main.storyboard */ = {
@@ -358,6 +389,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		66D47B6D295AD6580018BAD2 /* PorscheConnect */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PorscheConnect;
+		};
+		66D47B70295AD65C0018BAD2 /* PorscheConnect */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PorscheConnect;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6673D781295AD4CF000EE869 /* Project object */;
 }
