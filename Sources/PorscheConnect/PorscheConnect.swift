@@ -3,60 +3,54 @@ import Foundation
 // MARK: - Enums
 
 public enum Environment: String {
-  case Ireland, Germany, Test
+  case production, test
   
   public var countryCode: String {
     switch self {
-    case .Ireland:
-      return "ie"
-    case .Germany:
+    case .production:
       return "de"
-    case .Test:
+    case .test:
       return "ie"
     }
   }
   
   public var languageCode: String {
     switch self {
-    case .Ireland:
-      return "en"
-    case .Germany:
+    case .production:
       return "de"
-    case .Test:
+    case .test:
       return "en"
     }
   }
   
   public var regionCode: String {
     switch self {
-    case .Ireland:
-      return "ie/en_GB"
-    case .Germany:
+    case .production:
       return "de/de_DE"
-    case .Test:
+    case .test:
       return "ie/en_IE"
     }
   }
 }
 
 public enum Application {
-  case Portal, CarControl
+  case api, carControl
   
   public var clientId: String {
     switch self {
-    case .Portal:
-      return "TZ4Vf5wnKeipJxvatJ60lPHYEzqZ4WNp"
-    case .CarControl:
-      return "gZLSI7ThXFB4d2ld9t8Cx2DBRvGr1zN2"
+    case .api:
+      return "4mPO3OE5Srjb1iaUGWsbqKBvvesya8oA"
+    case .carControl:
+      return "Ux8WmyzsOAGGmvmWnW7GLEjIILHEztAs"
     }
   }
   
   public var redirectURL: URL {
     switch self {
-    case .Portal:
-      return URL(string: "https://my-static02.porsche.com/static/cms/auth.html")!
-    case .CarControl:
-      return URL(string: "https://connect-portal.porsche.com/myservices/auth/auth.html")!
+    case .api:
+      return URL(string: "https://my.porsche.com/core/de/de_DE")!
+    case .carControl:
+      return URL(string: "https://my.porsche.com/myservices/auth/auth.html")!
     }
   }
 }
@@ -78,11 +72,11 @@ public class PorscheConnect {
   let networkClient = NetworkClient()
   let networkRoutes: NetworkRoutes
   let password: String
-  let codeChallenger = CodeChallenger(length: 40)
+  let codeChallenger = CodeChallenger()
   
   // MARK: - Init & configuration
   
-  public init(username: String, password: String, environment: Environment = .Germany) {
+  public init(username: String, password: String, environment: Environment = .production) {
     self.username = username
     self.password = password
     self.environment = environment

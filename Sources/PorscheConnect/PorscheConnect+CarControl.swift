@@ -3,7 +3,7 @@ import Foundation
 public extension PorscheConnect {
   
   func summary(vehicle: Vehicle) async throws -> (summary: Summary?, response: HTTPURLResponse?) {
-    let application: Application = .CarControl
+    let application: Application = .carControl
     
     _ = try await authIfRequired(application: application)
     
@@ -15,7 +15,7 @@ public extension PorscheConnect {
   }
   
   func position(vehicle: Vehicle) async throws -> (position: Position?, response: HTTPURLResponse?) {
-    let application: Application = .CarControl
+    let application: Application = .carControl
     
     _ = try await authIfRequired(application: application)
     
@@ -27,7 +27,7 @@ public extension PorscheConnect {
   }
   
   func capabilities(vehicle: Vehicle) async throws -> (capabilities: Capabilities?, response: HTTPURLResponse?) {
-    let application: Application = .CarControl
+    let application: Application = .carControl
     
     _ = try await authIfRequired(application: application)
 
@@ -39,7 +39,7 @@ public extension PorscheConnect {
   }
   
   func emobility(vehicle: Vehicle, capabilities: Capabilities) async throws -> (emobility: Emobility?, response: HTTPURLResponse?) {
-    let application: Application = .CarControl
+    let application: Application = .carControl
     
     _ = try await authIfRequired(application: application)
     
@@ -48,5 +48,19 @@ public extension PorscheConnect {
 
     let result = try await networkClient.get(Emobility.self, url: networkRoutes.vehicleEmobilityURL(vehicle: vehicle, capabilities: capabilities), headers: headers, jsonKeyDecodingStrategy: .useDefaultKeys)
     return (emobility: result.data, response: result.response)
+  }
+  
+  func flash(vehicle: Vehicle, andHonk honk: Bool = false) async throws -> (remoteCommandAccepted: RemoteCommandAccepted?, response: HTTPURLResponse?) {
+    let application: Application = .carControl
+    
+    _ = try await authIfRequired(application: application)
+    
+    guard let auth = auths[application], let apiKey = auth.apiKey else { throw PorscheConnectError.AuthFailure }
+    let headers = buildHeaders(accessToken: auth.accessToken, apiKey: apiKey, countryCode: environment.countryCode, languageCode: environment.languageCode)
+    let url = honk ? networkRoutes.vehicleHonkAndFlashURL(vehicle: vehicle) : networkRoutes.vehicleFlashURL(vehicle: vehicle)
+    
+    var result = try await networkClient.post(RemoteCommandAccepted.self, url: url, body: kBlankString, headers: headers, jsonKeyDecodingStrategy: .useDefaultKeys)
+    result.data?.remoteCommand = .honkAndFlash
+    return (remoteCommandAccepted: result.data, response: result.response)
   }
 }

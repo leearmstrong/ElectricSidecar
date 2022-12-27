@@ -19,7 +19,7 @@ Absolutely not. These endpoints are a result of reverse engineering Porsche's we
 
 ## CI/CD Status
 
-The library has a comprehensive suite of unit tests that run on GitHub Actions. Currently the test suite is run on a simulated Intel based macOS v12.4.x
+The library has a comprehensive suite of unit tests that run on GitHub Actions. Currently the test suite is run on a Intel based macOS v12.4.x running XCode 14.2.
 
 You can see the current build status of the `main` branch here:
 
@@ -57,12 +57,12 @@ Create an instance of the library:
                                      password: "Duh!")
 ```
 
-Currently the following environments are supported:
+The following environments are supported:
 
-* **Germany** (default)
+* **Production** (default)
 * **Test** (used by the test suite against a mocked server)
 
-A valid [MyPorsche](https://connect-portal.porsche.com) username (email) and password is required to use this library.
+A valid [MyPorsche](https://my.porsche.com) username (email) and password is required to use this library.
 
 
 ### List Vehicles
@@ -87,7 +87,7 @@ try {
   let result = porscheConnect.vehicles()
   if let vehicles = result.vehicles {
     let firstVehicle = vehicles.first!
-    let color: Color = firstVehicle.externalColor
+    let color: Color = firstVehicle.color
   }
 } catch {
   // Handle the error
@@ -154,6 +154,34 @@ try {
 }
 ```
 
+### Honk and Flash
+
+To ask the vehicle to flash its indicators and optionally honk the horn. This call will return a `RemoteCommandAccepted` struct when the request has been accepted. The `andHorn` paramater is optional and defaults to false.
+
+```swift
+try {
+  let result = porscheConnect.flash(vehicle: vehicle, andHorn: true)
+  if let remoteCommandAccepted = result.remoteCommandAccepted, let response = result.response {
+    // Do something with the remote command or raw response
+  }
+} catch {
+  // Handle the error
+}
+```
+
+As Honk and Flash is a remote command that can take time to reach and be executed by the car, you can check the status of the command. You pass in both the vehicle and the response from the `flash()` call above. The `status` is mapped to a strongly typed enum that can be retrieved by accessing the `remoteStatus` calculated property. 
+
+```swift
+try {
+  let result = porscheConnect.checkStatus(vehicle: vehicle, remoteCommand: remoteCommandAccepted)
+  if let remoteCommandStatus = result.remoteCommand, let response = result.response {
+    // Do something with the remote command status or raw response
+  }
+} catch {
+  // Handle the error
+}
+```
+
 # Tests
 
 To run the test suite:
@@ -212,6 +240,8 @@ SUBCOMMANDS:
   show-position
   show-capabilities
   show-emobility
+  flash
+  honk-and-flash
   
   See 'porsche help <subcommand>' for detailed help.
 ```
@@ -257,6 +287,23 @@ $ porsche show-emobility <username> <password> <vin>
 
 Battery Level: 53%; Remaining Range: 180 KM; Charging Status: NOT_CHARGING; Plug Status: DISCONNECTED
 ```
+
+To flash the indicators of a vehicle:
+
+```bash
+$ porsche flash <username> <password> <vin>
+
+Remote command \"Flash\" accepted by Porsche API with ID 123456
+```
+
+To flash and honk the indicators of a vehicle:
+
+```bash
+$ porsche honk-and-flash <username> <password> <vin>
+
+Remote command \"Honk and Flash\" accepted by Porsche API with ID 123456
+```
+
 # Install
 
 ### Package Manager
