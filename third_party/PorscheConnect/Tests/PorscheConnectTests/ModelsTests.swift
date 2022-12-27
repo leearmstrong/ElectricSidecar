@@ -1,17 +1,11 @@
 import XCTest
+import SwiftUI
 @testable import PorscheConnect
 
 final class ModelsTests: XCTestCase {
   
   let porscheAuth = kTestPorschePortalAuth
-  let vehicle = Vehicle(vin: "WP0ZZZY4MSA38703",
-                        modelDescription: "Taycan 4S",
-                        modelType: "Y1ADB1",
-                        modelYear: "2021",
-                        exteriorColorHex: "#47402e",
-                        attributes: nil,
-                        pictures: nil)
-    
+
   // MARK: - Auth tests
   
   func testPorscheAuthConstruction() {
@@ -48,8 +42,21 @@ final class ModelsTests: XCTestCase {
   // MARK: - Vehicle tests
   
   func testVehicleConstructionVariantOne() {
+    let vehicle = Vehicle(vin: "WP0ZZZY4MSA38703",
+                          modelDescription: "Taycan 4S",
+                          modelType: "Y1ADB1",
+                          modelYear: "2021",
+                          exteriorColor: "neptunblau/neptunblau",
+                          exteriorColorHex: "#47402e",
+                          attributes: nil,
+                          pictures: nil)
+    
     XCTAssertNotNil(vehicle)
-    XCTAssertNotNil(vehicle.externalColor)
+    XCTAssertEqual("neptunblau/neptunblau", vehicle.exteriorColor)
+    XCTAssertEqual("#47402e", vehicle.exteriorColorHex)
+    XCTAssertEqual(Color(hex: "#47402e"), vehicle.color)
+    XCTAssertNil(vehicle.attributes)
+    XCTAssertNil(vehicle.pictures)
   }
   
   func testVehicleConstructionVariantTwo() {
@@ -62,6 +69,23 @@ final class ModelsTests: XCTestCase {
     XCTAssertEqual("Taycan 4S", vehicle.modelDescription)
     XCTAssertEqual("Y1ADB1", vehicle.modelType)
     XCTAssertEqual("2021", vehicle.modelYear)
+    XCTAssertNil(vehicle.exteriorColor)
+    XCTAssertNil(vehicle.exteriorColorHex)
+    XCTAssertNil(vehicle.attributes)
+    XCTAssertNil(vehicle.pictures)
+  }
+  
+  func testVehicleConstructionVariantThree() {
+    let vehicle = Vehicle(vin: "VIN12345")
+    
+    XCTAssertEqual("VIN12345", vehicle.vin)
+    XCTAssertEqual(kBlankString, vehicle.modelDescription)
+    XCTAssertEqual(kBlankString, vehicle.modelType)
+    XCTAssertEqual(kBlankString, vehicle.modelYear)
+    XCTAssertNil(vehicle.exteriorColor)
+    XCTAssertNil(vehicle.exteriorColorHex)
+    XCTAssertNil(vehicle.attributes)
+    XCTAssertNil(vehicle.pictures)
   }
   
   func testVehicleDecodingJsonIntoModel() {
@@ -354,6 +378,41 @@ final class ModelsTests: XCTestCase {
     XCTAssertTrue(weekdays.SATURDAY)
   }
   
+  // MARK: - Flash & Honk
+  
+  func testFlashDecodingJsonIntoModel() {
+    let remoteCommandAccepted = buildRemoteCommandAccepted()
+    
+    XCTAssertNotNil(remoteCommandAccepted)
+    XCTAssertEqual("2119999", remoteCommandAccepted.id)
+    XCTAssertEqual(ISO8601DateFormatter().date(from: "2022-12-27T13:19:23Z"), remoteCommandAccepted.lastUpdated)
+  }
+  
+  // MARK: – Remote Command Status
+  
+  func testRemoteCommandStatusInProgress() {
+    let remoteCommandStatus = buildRemoteCommandStatusInProgress()
+    
+    XCTAssertNotNil(remoteCommandStatus)
+    XCTAssertEqual("IN_PROGRESS", remoteCommandStatus.status)
+    XCTAssertEqual(RemoteCommandStatus.RemoteStatus.inProgress, remoteCommandStatus.remoteStatus)
+  }
+  
+  func testRemoteCommandStatusSuccess() {
+    let remoteCommandStatus = buildRemoteCommandStatusInSuccess()
+    
+    XCTAssertNotNil(remoteCommandStatus)
+    XCTAssertEqual("SUCCESS", remoteCommandStatus.status)
+    XCTAssertEqual(RemoteCommandStatus.RemoteStatus.success, remoteCommandStatus.remoteStatus)
+  }
+
+  func testRemoteCommandStatusUnknown() {
+    let remoteCommandStatus = buildRemoteCommandStatusInUnknown()
+
+    XCTAssertNotNil(remoteCommandStatus)
+    XCTAssertNil(remoteCommandStatus.remoteStatus)
+  }
+  
   // MARK: - Private functions
   
   private func buildPosition() -> Position {
@@ -370,5 +429,42 @@ final class ModelsTests: XCTestCase {
     decoder.keyDecodingStrategy = .useDefaultKeys
     
     return try! decoder.decode(Emobility.self, from: kEmobilityNotChargingJson)
+  }
+  
+  private func buildRemoteCommandAccepted() -> RemoteCommandAccepted {
+    let json = "{\"id\" : \"2119999\", \"lastUpdated\" : \"2022-12-27T13:19:23Z\"}".data(using: .utf8)!
+    
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .useDefaultKeys
+    decoder.dateDecodingStrategy = .iso8601
+    
+    return try! decoder.decode(RemoteCommandAccepted.self, from: json)
+  }
+  
+  private func buildRemoteCommandStatusInProgress() -> RemoteCommandStatus {
+    let json = "{\"status\" : \"IN_PROGRESS\"}".data(using: .utf8)!
+    
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .useDefaultKeys
+    
+    return try! decoder.decode(RemoteCommandStatus.self, from: json)
+  }
+  
+  private func buildRemoteCommandStatusInSuccess() -> RemoteCommandStatus {
+    let json = "{\"status\" : \"SUCCESS\"}".data(using: .utf8)!
+    
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .useDefaultKeys
+    
+    return try! decoder.decode(RemoteCommandStatus.self, from: json)
+  }
+
+  private func buildRemoteCommandStatusInUnknown() -> RemoteCommandStatus {
+    let json = "{\"status\" : \"Not Known\"}".data(using: .utf8)!
+
+    let decoder = JSONDecoder()
+    decoder.keyDecodingStrategy = .useDefaultKeys
+
+    return try! decoder.decode(RemoteCommandStatus.self, from: json)
   }
 }
