@@ -9,7 +9,8 @@ struct NetworkRoutes {
 
   var loginAuthURL: URL {
     return URL(
-      string: "\(host("https://login.porsche.com"))/auth/api/v1/\(environment.regionCode)/public/login")!
+      string:
+        "\(host("https://login.porsche.com"))/auth/api/v1/\(environment.regionCode)/public/login")!
   }
 
   var apiAuthURL: URL {
@@ -21,22 +22,26 @@ struct NetworkRoutes {
   }
 
   var vehiclesURL: URL {
-    return URL(string: "\(host("https://api.porsche.com"))/core/api/v3/\(environment.regionCode)/vehicles")!
+    return URL(
+      string: "\(host("https://api.porsche.com"))/core/api/v3/\(environment.regionCode)/vehicles")!
   }
 
   // MARK: - Functions
 
   func vehicleSummaryURL(vehicle: Vehicle) -> URL {
-    return URL(string: "\(host("https://api.porsche.com"))/service-vehicle/vehicle-summary/\(vehicle.vin)")!
+    return URL(
+      string: "\(host("https://api.porsche.com"))/service-vehicle/vehicle-summary/\(vehicle.vin)")!
   }
 
   func vehiclePositionURL(vehicle: Vehicle) -> URL {
     return URL(
-      string: "\(host("https://api.porsche.com"))/service-vehicle/car-finder/\(vehicle.vin)/position")!
+      string:
+        "\(host("https://api.porsche.com"))/service-vehicle/car-finder/\(vehicle.vin)/position")!
   }
 
   func vehicleCapabilitiesURL(vehicle: Vehicle) -> URL {
-    return URL(string: "\(host("https://api.porsche.com"))/service-vehicle/vcs/capabilities/\(vehicle.vin)")!
+    return URL(
+      string: "\(host("https://api.porsche.com"))/service-vehicle/vcs/capabilities/\(vehicle.vin)")!
   }
 
   func vehicleEmobilityURL(vehicle: Vehicle, capabilities: Capabilities) -> URL {
@@ -48,13 +53,15 @@ struct NetworkRoutes {
 
   func vehicleFlashURL(vehicle: Vehicle) -> URL {
     return URL(
-      string: "\(host("https://api.porsche.com"))/service-vehicle/honk-and-flash/\(vehicle.vin)/flash")!
+      string:
+        "\(host("https://api.porsche.com"))/service-vehicle/honk-and-flash/\(vehicle.vin)/flash")!
   }
 
   func vehicleHonkAndFlashURL(vehicle: Vehicle) -> URL {
     return URL(
       string:
-        "\(host("https://api.porsche.com"))/service-vehicle/honk-and-flash/\(vehicle.vin)/honk-and-flash")!
+        "\(host("https://api.porsche.com"))/service-vehicle/honk-and-flash/\(vehicle.vin)/honk-and-flash"
+    )!
   }
 
   func vehicleHonkAndFlashRemoteCommandStatusURL(
@@ -62,16 +69,32 @@ struct NetworkRoutes {
   ) -> URL {
     return URL(
       string:
-        "\(host("https://api.porsche.com"))/service-vehicle/honk-and-flash/\(vehicle.vin)/\(remoteCommand.id)/status"
+        "\(host("https://api.porsche.com"))/service-vehicle/honk-and-flash/\(vehicle.vin)/\(remoteCommand.identifier!)/status"
     )!
   }
 
+  func vehicleToggleDirectChargingURL(
+    vehicle: Vehicle, capabilities: Capabilities, enable: Bool
+  ) -> URL {
+    return URL(
+      string: "\(host("https://api.porsche.com"))/e-mobility/\(environment.regionCode)/\(capabilities.carModel)/\(vehicle.vin)/toggle-direct-charging/\(enable)"
+    )!
+  }
+
+  func vehicleToggleDirectChargingRemoteCommandStatusURL(
+    vehicle: Vehicle, capabilities: Capabilities, remoteCommand: RemoteCommandAccepted
+  ) -> URL {
+    return URL(
+      string: "\(host("https://api.porsche.com"))/e-mobility/\(environment.regionCode)/\(capabilities.carModel)/\(vehicle.vin)/toggle-direct-charging/status/\(remoteCommand.identifier!)"
+    )!
+  }
+
+// MARK: - Private
+
   private func host(_ defaultHost: String) -> String {
-    switch environment {
-    case .production:
-      return defaultHost
-    case .test:
+    if environment == Environment.test {
       return "http://localhost:\(kTestServerPort)"
     }
+    return defaultHost
   }
 }
