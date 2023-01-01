@@ -12,8 +12,13 @@ final class MockNetworkRoutes {
   private static let getPositionPath = "/service-vehicle/car-finder/A1234/position"
   private static let getCapabilitiesPath = "/service-vehicle/vcs/capabilities/A1234"
   private static let getEmobilityPath = "/e-mobility/ie/en_IE/J1/A1234"
+
   private static let getHonkAndFlashRemoteCommandStatusPath =
     "/service-vehicle/honk-and-flash/A1234/999/status"
+  private static let getToggleDirectChargingRemoteCommandStatusPath =
+    "/e-mobility/ie/en_IE/J1/A1234/toggle-direct-charging/status/999"
+  private static let getLockUnlockRemoteCommandStatusPath =
+    "service-vehicle/remote-lock-unlock/A1234/999/status"
 
   private static let postLoginAuthPath = "/auth/api/v1/ie/en_IE/public/login"
   private static let postApiTokenPath = "/as/token.oauth2"
@@ -21,11 +26,15 @@ final class MockNetworkRoutes {
   private static let postHonkAndFlashPath = "/service-vehicle/honk-and-flash/A1234/honk-and-flash"
   private static let postToggleDirectChargingOnPath = "/e-mobility/ie/en_IE/J1/A1234/toggle-direct-charging/true"
   private static let postToggleDirectChargingOffPath = "/e-mobility/ie/en_IE/J1/A1234/toggle-direct-charging/false"
+  private static let postLockPath = "/service-vehicle/remote-lock-unlock/A1234/quick-lock"
+
+  private static let getPostUnockPath = "/service-vehicle/remote-lock-unlock/A1234/security-pin/unlock"
+
 
   // MARK: - Hello World
 
   func mockGetHelloWorldSuccessful(router: Router) {
-    router[MockNetworkRoutes.getHelloWorldPath] = JSONResponse(statusCode: 200) { (req) -> Any in
+    router[MockNetworkRoutes.getHelloWorldPath] = JSONResponse(statusCode: 200) { _ -> Any in
       return self.mockHelloWorldResponse()
     }
   }
@@ -65,7 +74,7 @@ final class MockNetworkRoutes {
   // MARK: - Post Api Token
 
   func mockPostApiTokenSuccessful(router: Router) {
-    router[MockNetworkRoutes.postApiTokenPath] = JSONResponse(statusCode: 200) { (req) -> Any in
+    router[MockNetworkRoutes.postApiTokenPath] = JSONResponse(statusCode: 200) { _ -> Any in
       return self.mockApiTokenResponse()
     }
   }
@@ -78,7 +87,7 @@ final class MockNetworkRoutes {
   // MARK: - Get Vehicles
 
   func mockGetVehiclesSuccessful(router: Router) {
-    router[MockNetworkRoutes.getVehiclesPath] = JSONResponse(statusCode: 200) { (req) -> Any in
+    router[MockNetworkRoutes.getVehiclesPath] = JSONResponse(statusCode: 200) { _ -> Any in
       return self.mockVehiclesResponse()
     }
   }
@@ -91,7 +100,7 @@ final class MockNetworkRoutes {
   // MARK: - Get Summary
 
   func mockGetSummarySuccessful(router: Router) {
-    router[MockNetworkRoutes.getSummaryPath] = JSONResponse(statusCode: 200) { (req) -> Any in
+    router[MockNetworkRoutes.getSummaryPath] = JSONResponse(statusCode: 200) { _ -> Any in
       return self.mockSummaryResponse()
     }
   }
@@ -104,7 +113,7 @@ final class MockNetworkRoutes {
   // MARK: - Get Position
 
   func mockGetPositionSuccessful(router: Router) {
-    router[MockNetworkRoutes.getPositionPath] = JSONResponse(statusCode: 200) { (req) -> Any in
+    router[MockNetworkRoutes.getPositionPath] = JSONResponse(statusCode: 200) { _ -> Any in
       return self.mockPositionResponse()
     }
   }
@@ -117,7 +126,7 @@ final class MockNetworkRoutes {
   // MARK: - Get Capabilities
 
   func mockGetCapabilitiesSuccessful(router: Router) {
-    router[MockNetworkRoutes.getCapabilitiesPath] = JSONResponse(statusCode: 200) { (req) -> Any in
+    router[MockNetworkRoutes.getCapabilitiesPath] = JSONResponse(statusCode: 200) { _ -> Any in
       return self.mockCapabilitiesResponse()
     }
   }
@@ -130,25 +139,25 @@ final class MockNetworkRoutes {
   // MARK: - Get Emobility
 
   func mockGetEmobilityNotChargingSuccessful(router: Router) {
-    router[MockNetworkRoutes.getEmobilityPath] = JSONResponse(statusCode: 200) { (req) -> Any in
+    router[MockNetworkRoutes.getEmobilityPath] = JSONResponse(statusCode: 200) { _ -> Any in
       return self.mockEmobilityResponse(mockedResponse: kEmobilityNotChargingJson)
     }
   }
 
   func mockGetEmobilityACTimerChargingSuccessful(router: Router) {
-    router[MockNetworkRoutes.getEmobilityPath] = JSONResponse(statusCode: 200) { (req) -> Any in
+    router[MockNetworkRoutes.getEmobilityPath] = JSONResponse(statusCode: 200) { _ -> Any in
       return self.mockEmobilityResponse(mockedResponse: kEmobilityACTimerChargingJson)
     }
   }
 
   func mockGetEmobilityACDirectChargingSuccessful(router: Router) {
-    router[MockNetworkRoutes.getEmobilityPath] = JSONResponse(statusCode: 200) { (req) -> Any in
+    router[MockNetworkRoutes.getEmobilityPath] = JSONResponse(statusCode: 200) { _ -> Any in
       return self.mockEmobilityResponse(mockedResponse: kEmobilityACDirectChargingJson)
     }
   }
 
   func mockGetEmobilityDCChargingSuccessful(router: Router) {
-    router[MockNetworkRoutes.getEmobilityPath] = JSONResponse(statusCode: 200) { (req) -> Any in
+    router[MockNetworkRoutes.getEmobilityPath] = JSONResponse(statusCode: 200) { _ -> Any in
       return self.mockEmobilityResponse(mockedResponse: kEmobilityDCChargingJson)
     }
   }
@@ -163,7 +172,7 @@ final class MockNetworkRoutes {
   func mockPostFlashSuccessful(router: Router) {
     router[MockNetworkRoutes.postFlashPath] = JSONResponse(
       statusCode: 200,
-      handler: { (req) -> Any in
+      handler: { _ -> Any in
         return self.mockRemoteCommandAcceptedVariantOne()
       })
   }
@@ -176,7 +185,7 @@ final class MockNetworkRoutes {
   func mockPostHonkAndFlashSuccessful(router: Router) {
     router[MockNetworkRoutes.postHonkAndFlashPath] = JSONResponse(
       statusCode: 200,
-      handler: { (req) -> Any in
+      handler: { _ -> Any in
         return self.mockRemoteCommandAcceptedVariantOne()
       })
   }
@@ -191,7 +200,7 @@ final class MockNetworkRoutes {
   func mockPostToggleDirectChargingOnSuccessful(router: Router) {
     router[MockNetworkRoutes.postToggleDirectChargingOnPath] = JSONResponse(
       statusCode: 200,
-      handler: { (req) -> Any in
+      handler: { _ -> Any in
         return self.mockRemoteCommandAcceptedVariantTwo()
       })
   }
@@ -204,7 +213,7 @@ final class MockNetworkRoutes {
   func mockPostToggleDirectChargingOffSuccessful(router: Router) {
     router[MockNetworkRoutes.postToggleDirectChargingOffPath] = JSONResponse(
       statusCode: 200,
-      handler: { (req) -> Any in
+      handler: { _ -> Any in
         return self.mockRemoteCommandAcceptedVariantTwo()
       })
   }
@@ -214,12 +223,61 @@ final class MockNetworkRoutes {
       statusCode: 400, statusMessage: "bad request")
   }
 
+  // MARK: – Post Lock Vehicle
+
+  func mockPostLockSuccessful(router: Router) {
+    router[MockNetworkRoutes.postLockPath] = JSONResponse(
+      statusCode: 200,
+      handler: { _ -> Any in
+        return self.mockRemoteCommandAcceptedVariantThree()
+      })
+  }
+
+  func mockPostLockFailure(router: Router) {
+    router[MockNetworkRoutes.postLockPath] = DataResponse(
+      statusCode: 400, statusMessage: "bad request")
+  }
+
+  // MARK: – Post Unlock Vehicle
+
+  func mockGetPostUnlockSuccessful(router: Router) {
+    router[MockNetworkRoutes.getPostUnockPath] = JSONResponse(
+      statusCode: 200,
+      handler: { (req) -> Any in
+        guard let method = req["REQUEST_METHOD"] as? String else { return }
+        return method == "GET" ? self.mockUnlockSecurityResponse() : self.mockRemoteCommandAcceptedVariantThree()
+      })
+  }
+
+  func mockGetPostUnlockLockedError(router: Router) {
+    router[MockNetworkRoutes.getPostUnockPath] = JSONResponse(
+      statusCode: 200,
+      handler: { (req) -> Any in
+        guard let method = req["REQUEST_METHOD"] as? String else { return }
+        return method == "GET" ? self.mockUnlockSecurityResponse() : self.mockRemoteCommandAcceptedLockedError()
+      })
+  }
+
+  func mockGetPostUnlockIncorrectPinError(router: Router) {
+    router[MockNetworkRoutes.getPostUnockPath] = JSONResponse(
+      statusCode: 200,
+      handler: { (req) -> Any in
+        guard let method = req["REQUEST_METHOD"] as? String else { return }
+        return method == "GET" ? self.mockUnlockSecurityResponse() : self.mockRemoteCommandAcceptedIncorrectPinError()
+      })
+  }
+
+  func mockGetPostUnlockFailure(router: Router) {
+    router[MockNetworkRoutes.getPostUnockPath] = DataResponse(
+      statusCode: 400, statusMessage: "bad request")
+  }
+
   // MARK: – Remote Command Status
 
   func mockGetHonkAndFlashRemoteCommandStatusInProgress(router: Router) {
     router[MockNetworkRoutes.getHonkAndFlashRemoteCommandStatusPath] = JSONResponse(
       statusCode: 200,
-      handler: { (req) -> Any in
+      handler: { _ -> Any in
         return self.mockRemoteCommandStatusInProgress()
       })
   }
@@ -227,8 +285,64 @@ final class MockNetworkRoutes {
   func mockGetHonkAndFlashRemoteCommandStatusSuccess(router: Router) {
     router[MockNetworkRoutes.getHonkAndFlashRemoteCommandStatusPath] = JSONResponse(
       statusCode: 200,
-      handler: { (req) -> Any in
+      handler: { _ -> Any in
         return self.mockRemoteCommandStatusSuccess()
+      })
+  }
+
+  func mockGetHonkAndFlashRemoteCommandStatusFailure(router: Router) {
+    router[MockNetworkRoutes.getHonkAndFlashRemoteCommandStatusPath] = JSONResponse(
+      statusCode: 200,
+      handler: { _ -> Any in
+        return self.mockRemoteCommandStatusFailure()
+      })
+  }
+
+  func mockGetToggleDirectChargingRemoteCommandStatusInProgress(router: Router) {
+    router[MockNetworkRoutes.getToggleDirectChargingRemoteCommandStatusPath] = JSONResponse(
+      statusCode: 200,
+      handler: { _ -> Any in
+        return self.mockRemoteCommandStatusInProgress()
+      })
+  }
+
+  func mockGetToggleDirectChargingRemoteCommandStatusSuccess(router: Router) {
+    router[MockNetworkRoutes.getToggleDirectChargingRemoteCommandStatusPath] = JSONResponse(
+      statusCode: 200,
+      handler: { _ -> Any in
+        return self.mockRemoteCommandStatusSuccess()
+      })
+  }
+
+  func mockGetToggleDirectChargingRemoteCommandStatusFailure(router: Router) {
+    router[MockNetworkRoutes.getToggleDirectChargingRemoteCommandStatusPath] = JSONResponse(
+      statusCode: 200,
+      handler: { _ -> Any in
+        return self.mockRemoteCommandStatusFailure()
+      })
+  }
+
+  func mockGetLockUnlockRemoteCommandStatusInProgress(router: Router) {
+    router[MockNetworkRoutes.getLockUnlockRemoteCommandStatusPath] = JSONResponse(
+      statusCode: 200,
+      handler: { _ -> Any in
+        return self.mockRemoteCommandStatusInProgress()
+      })
+  }
+
+  func mockGetLockUnlockRemoteCommandStatusSuccess(router: Router) {
+    router[MockNetworkRoutes.getLockUnlockRemoteCommandStatusPath] = JSONResponse(
+      statusCode: 200,
+      handler: { _ -> Any in
+        return self.mockRemoteCommandStatusSuccess()
+      })
+  }
+
+  func mockGetLockUnlockRemoteCommandStatusFailure(router: Router) {
+    router[MockNetworkRoutes.getLockUnlockRemoteCommandStatusPath] = JSONResponse(
+      statusCode: 200,
+      handler: { _ -> Any in
+        return self.mockRemoteCommandStatusFailure()
       })
   }
 
@@ -312,11 +426,34 @@ final class MockNetworkRoutes {
     return ["requestId": "123456789"]
   }
 
+  private func mockRemoteCommandAcceptedVariantThree() -> [String: Any] {
+    return ["requestId": "123456789", "vin": "WP0ZZZY4MSA38703"]
+  }
+
   private func mockRemoteCommandStatusInProgress() -> [String: Any] {
     return ["status": "IN_PROGRESS"]
   }
 
   private func mockRemoteCommandStatusSuccess() -> [String: Any] {
     return ["status": "SUCCESS"]
+  }
+
+  private func mockRemoteCommandStatusFailure() -> [String: Any] {
+    return ["status": "FAILURE", "errorType": "INTERNAL"]
+  }
+
+  private func mockUnlockSecurityResponse() -> [String: Any] {
+    return ["securityToken": "62xuTQXWgJgnCNsqPoWv8emAeFKCMhPWH6mVwp0OaKqT61uuGxptmNVaq4evL",
+            "challenge": "D951A4D79D90EFE70C9F75A100632D756625A326110E921566B3336C32DFAE32"]
+  }
+
+  private func mockRemoteCommandAcceptedLockedError() -> [String: Any?] {
+    return ["pcckErrorKey": "LOCKED_60_MINUTES", "pcckErrorMessage": nil, "pcckErrorCode": nil,
+            "pcckIsBusinessError": true]
+  }
+
+  private func mockRemoteCommandAcceptedIncorrectPinError() -> [String: Any?] {
+    return ["pcckErrorKey": "INCORRECT", "pcckErrorMessage": nil, "pcckErrorCode": nil,
+            "pcckIsBusinessError": false]
   }
 }
