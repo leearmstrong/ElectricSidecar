@@ -72,8 +72,8 @@ To get a list of vehicles associated with your My Porsche account . This call wi
 ```swift
 try {
   let result = porscheConnect.vehicles()
-  if let vehicles = result.vehicles, let response = result.response {
-    // Do something with vehicles or raw response
+  if let vehicles = result.vehicles {
+    // Do something with vehicles
   }
 } catch {
   // Handle the error
@@ -101,8 +101,8 @@ To get a summary for a vehicle. This call will return a `Summary` struct.
 ```swift
 try {
   let result = porscheConnect.summary(vehicle: vehicle)
-  if let summary = result.summary, let response = result.response {
-    // Do something with the summary or raw response
+  if let summary = result.summary {
+    // Do something with the summary
   }
 } catch {
   // Handle the error
@@ -116,8 +116,8 @@ To get last reported position for a vehicle. This call will return a `Position` 
 ```swift
 try {
   let result = porscheConnect.position(vehicle: vehicle)
-  if let position = result.position, let response = result.response {
-    // Do something with the position or raw response
+  if let position = result.position {
+    // Do something with the position
   }
 } catch {
   // Handle the error
@@ -131,8 +131,8 @@ To get capabilities for a vehicle. This call will return a `Capabilities` struct
 ```swift
 try {
   let result = porscheConnect.capabilities(vehicle: vehicle)
-  if let capabilities = result.capabilities, let response = result.response {
-    // Do something with the capabilities or raw response
+  if let capabilities = result.capabilities {
+    // Do something with the capabilities
   }
 } catch {
   // Handle the error
@@ -141,13 +141,13 @@ try {
 
 ### Emobility of a vehicle
 
-If the vehicle is a plug-in hybrid (PHEV) or a battery electric vehicle (BEV) this will return the status and configuration of the e-mobility aspects of the vehicle. This call requires both a vehicle and its matching capabilities. This call will return a `Emobility` struct.
+If the vehicle is a plug-in hybrid (PHEV) or a battery electric vehicle (BEV) this will return the status and configuration of the e-mobility aspects of the vehicle. This call requires both a vehicle and its matching capabilities. This call will return a `Emobility` struct. Passing in a vehicles `Capabilites` is optional – if none is passed in, the library will assume the vehicle is based on the `J1` (Taycan) platform.
 
 ```swift
 try {
   let result = porscheConnect.emobility(vehicle: vehicle, capabilities: capabilities)
-  if let emobility = result.emobility, let response = result.response {
-    // Do something with the emobility or raw response
+  if let emobility = result.emobility {
+    // Do something with the emobility
   }
 } catch {
   // Handle the error
@@ -161,21 +161,127 @@ To ask the vehicle to flash its indicators and optionally honk the horn. This ca
 ```swift
 try {
   let result = porscheConnect.flash(vehicle: vehicle, andHorn: true)
-  if let remoteCommandAccepted = result.remoteCommandAccepted, let response = result.response {
-    // Do something with the remote command or raw response
+  if let remoteCommandAccepted = result.remoteCommandAccepted {
+    // Do something with the remote command
   }
 } catch {
   // Handle the error
 }
 ```
 
-As Honk and Flash is a remote command that can take time to reach and be executed by the car, you can check the status of the command. You pass in both the vehicle and the response from the `flash()` call above. The `status` is mapped to a strongly typed enum that can be retrieved by accessing the `remoteStatus` calculated property. 
+As Honk and Flash is a remote command that can take time to reach and be executed by the car, you can check the status of the command. You pass in both the vehicle and the response from the `flash()` call above. 
+
+The `status` is mapped to a strongly typed enum that can be retrieved by accessing the `remoteStatus` calculated property. 
+
+Passing in a capabilites paramater is not required to determine the status of a Honk and Flash command.
 
 ```swift
 try {
   let result = porscheConnect.checkStatus(vehicle: vehicle, remoteCommand: remoteCommandAccepted)
-  if let remoteCommandStatus = result.remoteCommand, let response = result.response {
-    // Do something with the remote command status or raw response
+  if let remoteCommandStatus = result.remoteCommand {
+    // Do something with the remote command status
+  }
+} catch {
+  // Handle the error
+}
+```
+
+### Toggle Direct Charging
+
+To toggle a battery electric vehicle (BEV) direct charging mode to on or off. This call will return a `RemoteCommandAccepted` struct when the request has been accepted. 
+
+The `enable` paramater is optional and defaults to true. 
+
+Passing in a vehicles `Capabilites` is optional – if none is passed in, the library will assume the vehicle is based on the `J1` (Taycan) platform.
+
+```swift
+try {
+  let result = porscheConnect.toggleDirectCharging(vehicle: vehicle, capabilities: capabilities, enable: false)
+  if let remoteCommandAccepted = result.remoteCommandAccepted {
+    // Do something with the remote command
+  }
+} catch {
+  // Handle the error
+}
+```
+
+As Toggle Direct Charging is a remote command that can take time to reach and be executed by the car, you can check the status of the command. You pass in both the vehicle and the response from the `toggleDirectCharging()` call above. 
+
+The `status` is mapped to a strongly typed enum that can be retrieved by accessing the `remoteStatus` calculated property. 
+
+Passing in a vehicles `Capabilites` is optional – if none is passed in, the library will assume the vehicle is based on the `J1` (Taycan) platform.
+
+```swift
+try {
+  let result = porscheConnect.checkStatus(vehicle: vehicle, capabilities: capabilities, remoteCommand: remoteCommandAccepted)
+  if let remoteCommandStatus = result.remoteCommand {
+    // Do something with the remote command status
+  }
+} catch {
+  // Handle the error
+}
+```
+
+### Lock Vehicle
+
+To ask the vehicle to remote lock. This call will return a `RemoteCommandAccepted` struct when the request has been accepted. 
+
+Make sure that there are no vehicle keys, persons or animals in the vehicle.
+
+```swift
+try {
+  let result = porscheConnect.lock(vehicle: vehicle)
+  if let remoteCommandAccepted = result.remoteCommandAccepted {
+    // Do something with the remote command
+  }
+} catch {
+  // Handle the error
+}
+```
+
+As Lock Vehicle is a remote command that can take time to reach and be executed by the car, you can check the status of the command. You pass in the vehicle, optionally the vehicles capabilities and the response from the `lock()` call above. 
+
+The `status` is mapped to a strongly typed enum that can be retrieved by accessing the `remoteStatus` calculated property. 
+
+Passing in a capabilites paramater is not required to determine the status of a Lock command.
+
+```swift
+try {
+  let result = porscheConnect.checkStatus(vehicle: vehicle, remoteCommand: remoteCommandAccepted)
+  if let remoteCommandStatus = result.remoteCommand {
+    // Do something with the remote command status
+  }
+} catch {
+  // Handle the error
+}
+```
+
+### Unlock Vehicle
+
+To ask the vehicle to remote unlock. As this action impacts the security of the vehicle (by unlocking it), it also requires the users four digit security (PIN) code. This call will return a `RemoteCommandAccepted` struct when the request has been accepted. 
+
+```swift
+try {
+  let result = porscheConnect.unlock(vehicle: vehicle, pin: "1234")
+  if let remoteCommandAccepted = result.remoteCommandAccepted {
+    // Do something with the remote command
+  }
+} catch {
+  // Handle the error
+}
+```
+
+As Unlock Vehicle is a remote command that can take time to reach and be executed by the car, you can check the status of the command. You pass in the vehicle, optionally the vehicles capabilities and the response from the `unlock()` call above. 
+
+The `status` is mapped to a strongly typed enum that can be retrieved by accessing the `remoteStatus` calculated property. 
+
+Passing in a capabilites paramater is not required to determine the status of a Unlock command.
+
+```swift
+try {
+  let result = porscheConnect.checkStatus(vehicle: vehicle, remoteCommand: remoteCommandAccepted)
+  if let remoteCommandStatus = result.remoteCommand {
+    // Do something with the remote command status
   }
 } catch {
   // Handle the error
@@ -213,7 +319,7 @@ cp -f .build/apple/Products/Release/porsche /usr/local/bin
 
 ### Universal binary
 
-If you would like to build a universal binary for both Intel (x86) and Apple (M1) Mac's then run the compiler with:
+If you would like to build a universal binary for both Intel (x86) and Apple (ARC) processors (M-series Mac's, iPhones, iPads, Watches) then run the compiler with:
 
 ```bash
 swift build -c release --arch arm64 --arch x86_64
@@ -242,6 +348,9 @@ SUBCOMMANDS:
   show-emobility
   flash
   honk-and-flash
+  toggle-direct-charging
+  lock
+  unlock
   
   See 'porsche help <subcommand>' for detailed help.
 ```
@@ -303,6 +412,31 @@ $ porsche honk-and-flash <username> <password> <vin>
 
 Remote command \"Honk and Flash\" accepted by Porsche API with ID 123456
 ```
+
+To toggle the direct charging mode of a vehicle:
+
+```bash
+$ porsche toggle-direct-charging <username> <password> <vin> <toggle-direct-charging-on>
+
+Remote command \"Toggle Direct Charging\" accepted by Porsche API with ID 123456
+```
+
+To lock a vehicle:
+
+```bash
+$ porsche lock <username> <password> <vin>
+
+Remote command \"Lock\" accepted by Porsche API with ID 123456
+```
+
+To unlock a vehicle:
+
+```bash
+$ porsche unlock <username> <password> <vin> <pin>
+
+Remote command \"Unlock\" accepted by Porsche API with ID 123456
+```
+
 
 # Install
 

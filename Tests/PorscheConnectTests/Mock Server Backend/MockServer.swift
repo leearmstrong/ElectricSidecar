@@ -4,19 +4,18 @@ import Foundation
 import Network
 
 class MockServer {
-  static let shared = MockServer()
-
-  let router = Router()
   let loop = try! SelectorEventLoop(selector: try! KqueueSelector())
   var server: DefaultHTTPServer!
 
-  private init() {
-    setupMockWebServer()
+  public init(router: Router) {
+    setupMockWebServer(router: router)
   }
 
   // MARK: - Private
 
-  private func setupMockWebServer() {
+  private func setupMockWebServer(router: Router) {
+    introduceDelayIfConfigured()
+
     server = DefaultHTTPServer(eventLoop: loop, port: kTestServerPort, app: router.app)
 
     try! server.start()
@@ -48,5 +47,12 @@ class MockServer {
 
     semaphore.wait()
     print("Mock Web Server at port \(server.port): started")
+  }
+
+  private func introduceDelayIfConfigured() {
+    if let delayServer = ProcessInfo.processInfo.environment["DELAY_MOCK_SERVER_START"] {
+      print("Delaying Mock Server start for \(delayServer) seconds")
+      Thread.sleep(forTimeInterval: (delayServer as NSString).doubleValue)
+    }
   }
 }

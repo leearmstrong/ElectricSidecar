@@ -5,6 +5,22 @@ import Foundation
 public enum PorscheConnectError: Error {
   case AuthFailure
   case NoResult
+  case UnlockChallengeFailure
+  case lockedFor60Minutes
+  case IncorrectPin
+}
+
+// MARK: - Porsche-specific OAuth applications
+
+extension OAuthApplication {
+  static let api = OAuthApplication(
+    clientId: "4mPO3OE5Srjb1iaUGWsbqKBvvesya8oA",
+    redirectURL: URL(string: "https://my.porsche.com/core/de/de_DE")!
+  )
+  static let carControl = OAuthApplication(
+    clientId: "Ux8WmyzsOAGGmvmWnW7GLEjIILHEztAs",
+    redirectURL: URL(string: "https://my.porsche.com/myservices/auth/auth.html")!
+  )
 }
 
 // MARK: - Porsche Connect
@@ -39,20 +55,26 @@ public class PorscheConnect {
     return !auth.expired
   }
 
-  func buildHeaders(
-    accessToken: String, apiKey: String, countryCode: CountryCode, languageCode: LanguageCode
-  )
-    -> [String: String]
-  {
+// MARK: – Internal functions
+
+  internal func performAuthFor(application: OAuthApplication) async throws -> [String: String] {
+    _ = try await authIfRequired(application: application)
+
+    guard let auth = auths[application], let apiKey = auth.apiKey else {
+      throw PorscheConnectError.AuthFailure
+    }
+
     return [
-      "Authorization": "Bearer \(accessToken)",
+      "Authorization": "Bearer \(auth.accessToken)",
       "apikey": apiKey,
-      "x-vrs-url-country": countryCode.rawValue,
-      "x-vrs-url-language": "\(languageCode.rawValue)_\(countryCode.rawValue.uppercased())",
+      "x-vrs-url-country": environment.countryCode.rawValue,
+      "x-vrs-url-language": "\(environment.languageCode.rawValue)_\(environment.countryCode.rawValue.uppercased())",
     ]
   }
 
-  func authIfRequired(application: OAuthApplication) async throws {
+  // MARK: - Private functions
+
+  private func authIfRequired(application: OAuthApplication) async throws {
     if !authorized(application: application) {
       do {
         _ = try await auth(application: application)
