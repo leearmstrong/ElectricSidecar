@@ -16,13 +16,15 @@ let kTestPorschePortalAuth = AuthResponse(
   tokenType: "Bearer",
   expiresIn: 7199)
 
-// MARK: - Helper Functions
+// MARK: - Localization codes
 
-func buildCapabilites() -> Capabilities {
-  let json =
-    "{\"displayParkingBrake\": true, \"needsSPIN\": true, \"hasRDK\": true, \"engineType\": \"BEV\", \"carModel\": \"J1\", \"onlineRemoteUpdateStatus\": {\"editableByUser\": true, \"active\": true }, \"heatingCapabilities\": {\"frontSeatHeatingAvailable\": true, \"rearSeatHeatingAvailable\": false}, \"steeringWheelPosition\": \"RIGHT\", \"hasHonkAndFlash\": true }"
-    .data(using: .utf8)!
-  let decoder = JSONDecoder()
-  decoder.keyDecodingStrategy = .useDefaultKeys
-  return try! decoder.decode(Capabilities.self, from: json)
+enum CountryCode: String {
+  case germany = "de"
+  case ireland = "ie"
+  case unitedStates = "us"
+}
+
+enum LanguageCode: String {
+  case english = "en"
+  case german = "de"
 }
