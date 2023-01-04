@@ -59,7 +59,7 @@ Create an instance of the library:
 
 The following environments are supported:
 
-* **Production** (default)
+* **Germany** (default)
 * **Test** (used by the test suite against a mocked server)
 
 A valid [MyPorsche](https://my.porsche.com) username (email) and password is required to use this library.
@@ -148,6 +148,21 @@ try {
   let result = porscheConnect.emobility(vehicle: vehicle, capabilities: capabilities)
   if let emobility = result.emobility {
     // Do something with the emobility
+  }
+} catch {
+  // Handle the error
+}
+```
+
+### Status of a vehicle
+
+To get the status for a vehicle. This call will return a `Status` struct. This struct has nested `ServiceIntervals`, and `RemainingRanges` structs as appropriate for the vehicle.
+
+```swift
+try {
+  let result = porscheConnect.status(vehicle: vehicle)
+  if let status = result.status {
+    // Do something with the status
   }
 } catch {
   // Handle the error
@@ -355,6 +370,11 @@ SUBCOMMANDS:
   See 'porsche help <subcommand>' for detailed help.
 ```
 
+By default, the CLI tool will attempt to use your system locale for all API requests. This will
+affect the localization of the API responses. If your system locale is not supported, Germany will
+be used instead. You can choose one of the supported locales using the `--locale` flag and passing
+one of the supported locales, such as `de_DE` or `en_US`.
+
 To get a list of all the vehicles associated with your My Porsche account:
 
 ```bash
@@ -377,6 +397,17 @@ To show the current position of a vehicle:
 $ porsche show-position <username> <password> <vin>
 
 Latitude: 53.395367; Longitude: -6.389296; Heading: 68
+```
+
+To show the current status of a vehicle:
+
+```bash
+$ porsche show-status <username> <password> <vin>
+
+Overall lock status: Closed and locked
+Battery level: 73.0%, Mileage: 2,206 kilometers
+Remaining range is 292 kilometers
+Next inspection in 27,842 kilometers or on Dec 10, 2024
 ```
 
 To show the capabilties of a vehicle:

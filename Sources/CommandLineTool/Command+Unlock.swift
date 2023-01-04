@@ -19,7 +19,11 @@ extension Porsche {
     // MARK: - Lifecycle
 
     func run() async throws {
-      let porscheConnect = PorscheConnect(username: options.username, password: options.password)
+      let porscheConnect = PorscheConnect(
+        username: options.username,
+        password: options.password,
+        environment: options.resolvedEnvironment
+      )
       let vehicle = Vehicle(vin: vin)
       await callUnlock(porscheConnect: porscheConnect, vehicle: vehicle, pin: pin)
       dispatchMain()
@@ -41,7 +45,7 @@ extension Porsche {
     }
 
     private func printRemoteCommandAccepted(_ remoteCommandAccepted: RemoteCommandAccepted) {
-      if (remoteCommandAccepted.pcckError != nil) {
+      if (remoteCommandAccepted.pcckErrorKey != nil) {
         printError(remoteCommandAccepted)
       } else {
         print(
@@ -52,7 +56,7 @@ extension Porsche {
     }
 
     private func printError(_ remoteCommandAccepted: RemoteCommandAccepted) {
-      switch remoteCommandAccepted.pcckError {
+      switch remoteCommandAccepted.pcckErrorKey {
       case .lockedFor60Minutes:
         print(
           NSLocalizedString(
