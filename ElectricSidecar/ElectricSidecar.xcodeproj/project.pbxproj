@@ -156,6 +156,7 @@
 			children = (
 				66D1820B2969254F00F0B830 /* Packages */,
 				66D181E02969151500F0B830 /* ElectricSidecar */,
+				663AA2782969427800F0FCBC /* Playgrounds */,
 				66D181F12969151600F0B830 /* UnitTests */,
 				66D181FB2969151600F0B830 /* UITests */,
 				66D181DF2969151500F0B830 /* Products */,
@@ -177,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				663AA2852969476B00F0FCBC /* Complications */,
-				663AA2782969427800F0FCBC /* Playgrounds */,
 				663AA2732969423700F0FCBC /* Models */,
 				66B3DAF42969338300BCA958 /* Stores */,
 				66D182122969278400F0B830 /* AuthFlow */,
