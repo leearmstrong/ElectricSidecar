@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		663AA2752969424300F0FCBC /* Vehicle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2742969424300F0FCBC /* Vehicle+Helpers.swift */; };
+		663AA2772969425900F0FCBC /* Vehicle+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */; };
+		663AA27A2969429500F0FCBC /* TitledTabViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2792969428300F0FCBC /* TitledTabViews.swift */; };
 		66B3DAF62969339300BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
 		66B3DAF72969392000BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
 		66B3DAFA29693B8F00BCA958 /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF929693B8F00BCA958 /* VehicleListView.swift */; };
@@ -40,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		663AA2742969424300F0FCBC /* Vehicle+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Helpers.swift"; sourceTree = "<group>"; };
+		663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+SwiftUI.swift"; sourceTree = "<group>"; };
+		663AA2792969428300F0FCBC /* TitledTabViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledTabViews.swift; sourceTree = "<group>"; };
 		66B3DAF52969339300BCA958 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		66B3DAF929693B8F00BCA958 /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
 		66B3DAFB29693BC500BCA958 /* ModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStore.swift; sourceTree = "<group>"; };
@@ -83,6 +89,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		663AA2732969423700F0FCBC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				663AA2742969424300F0FCBC /* Vehicle+Helpers.swift */,
+				663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		663AA2782969427800F0FCBC /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				663AA2792969428300F0FCBC /* TitledTabViews.swift */,
+			);
+			path = Playgrounds;
+			sourceTree = "<group>";
+		};
 		66B3DAF42969338300BCA958 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +148,8 @@
 		66D181E02969151500F0B830 /* ElectricSidecar */ = {
 			isa = PBXGroup;
 			children = (
+				663AA2782969427800F0FCBC /* Playgrounds */,
+				663AA2732969423700F0FCBC /* Models */,
 				66B3DAF42969338300BCA958 /* Stores */,
 				66D182122969278400F0B830 /* Authentication flow */,
 				66B3DAF829693B6700BCA958 /* Vehicle list */,
@@ -324,8 +349,11 @@
 			files = (
 				66B3DAFA29693B8F00BCA958 /* VehicleListView.swift in Sources */,
 				66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */,
+				663AA27A2969429500F0FCBC /* TitledTabViews.swift in Sources */,
 				66D182142969279000F0B830 /* LoginView.swift in Sources */,
 				66B3DAF62969339300BCA958 /* AuthStore.swift in Sources */,
+				663AA2752969424300F0FCBC /* Vehicle+Helpers.swift in Sources */,
+				663AA2772969425900F0FCBC /* Vehicle+SwiftUI.swift in Sources */,
 				66D181E22969151500F0B830 /* ElectricSidecarApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

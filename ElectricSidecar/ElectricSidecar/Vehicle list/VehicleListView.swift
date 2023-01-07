@@ -19,7 +19,6 @@ struct VehicleListView: View {
       switch loadState {
       case .loadingVehicles:
         ProgressView()
-          .navigationTitle("Loading cars...")
       case  .loaded:
         ContentView(store: store, vehicles: $vehicles)
       case .error(let error):
@@ -55,7 +54,7 @@ private struct VehicleDetailsView: View {
         },
         placeholder: {
           ZStack {
-            Color(UIColor(hex: vehicle.exteriorColorHex!)!)
+            (vehicle.color ?? .gray)
               .aspectRatio(CGSize(width: CGFloat(vehicle.personalizedPhoto!.width),
                                   height: CGFloat(vehicle.personalizedPhoto!.height)),
                            contentMode: .fill)
@@ -163,7 +162,7 @@ private struct VehicleStatusView: View {
             },
             placeholder: {
               ZStack {
-                Color(UIColor(hex: vehicle.exteriorColorHex!)!)
+                (vehicle.color ?? .gray)
                   .aspectRatio(CGSize(width: CGFloat(vehicle.personalizedPhoto!.width),
                                       height: CGFloat(vehicle.personalizedPhoto!.height)),
                                contentMode: .fill)
@@ -279,78 +278,5 @@ private struct ContentView: View {
       }
     }
     .tabViewStyle(.page)
-  }
-}
-
-extension UIColor {
-  public convenience init?(hex: String) {
-    let r, g, b: CGFloat
-
-    if hex.hasPrefix("#") {
-      let start = hex.index(hex.startIndex, offsetBy: 1)
-      let hexColor = String(hex[start...])
-
-      if hexColor.count == 6 {
-        let scanner = Scanner(string: hexColor)
-        var hexNumber: UInt64 = 0
-
-        if scanner.scanHexInt64(&hexNumber) {
-          r = CGFloat((hexNumber & 0xff0000) >> 16) / 255
-          g = CGFloat((hexNumber & 0x00ff00) >> 8) / 255
-          b = CGFloat((hexNumber & 0x0000ff)) / 255
-
-          self.init(red: r, green: g, blue: b, alpha: 1)
-          return
-        }
-      }
-    }
-
-    return nil
-  }
-}
-
-extension Vehicle: Identifiable {
-  public var id: String {
-    return vin
-  }
-}
-
-extension Vehicle {
-  var licensePlate: String? {
-    return attributes?.first(where: { attribute in
-      attribute.name == "licenseplate"
-    })?.value
-  }
-  var personalizedPhoto: VehiclePicture? {
-    return pictures?.first(where: { picture in
-      picture.view == "personalized" && picture.size == 2
-    })
-  }
-  enum Camera: String {
-    case front = "extcam01"
-    case side = "extcam02"
-    case rear = "extcam03"
-    case topAngled = "extcam04"
-    case overhead = "extcam05"
-    case dashboard = "intcam01"
-    case cabin = "intcam02"
-  }
-  func externalCamera(_ camera: Camera, size: Int) -> VehiclePicture? {
-    return pictures?.first(where: { picture in
-      picture.view == camera.rawValue && picture.size == size
-    })
-  }
-}
-
-struct TestTabBehavior_Previews: PreviewProvider {
-  static var previews: some View {
-    NavigationStack {
-      TabView {
-        Color(.red).navigationTitle("Red")
-        Color(.blue).navigationTitle("Blue")
-        Color(.green).navigationTitle("Green")
-      }
-      .tabViewStyle(.page)
-    }
   }
 }
