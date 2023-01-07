@@ -10,6 +10,7 @@
 		663AA2752969424300F0FCBC /* Vehicle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2742969424300F0FCBC /* Vehicle+Helpers.swift */; };
 		663AA2772969425900F0FCBC /* Vehicle+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */; };
 		663AA27A2969429500F0FCBC /* TitledTabViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2792969428300F0FCBC /* TitledTabViews.swift */; };
+		663AA27C2969436600F0FCBC /* VehiclesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA27B2969436600F0FCBC /* VehiclesTabView.swift */; };
 		66B3DAF62969339300BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
 		66B3DAF72969392000BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
 		66B3DAFA29693B8F00BCA958 /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF929693B8F00BCA958 /* VehicleListView.swift */; };
@@ -46,6 +47,7 @@
 		663AA2742969424300F0FCBC /* Vehicle+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Helpers.swift"; sourceTree = "<group>"; };
 		663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+SwiftUI.swift"; sourceTree = "<group>"; };
 		663AA2792969428300F0FCBC /* TitledTabViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledTabViews.swift; sourceTree = "<group>"; };
+		663AA27B2969436600F0FCBC /* VehiclesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesTabView.swift; sourceTree = "<group>"; };
 		66B3DAF52969339300BCA958 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		66B3DAF929693B8F00BCA958 /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
 		66B3DAFB29693BC500BCA958 /* ModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStore.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				66B3DAF929693B8F00BCA958 /* VehicleListView.swift */,
+				663AA27B2969436600F0FCBC /* VehiclesTabView.swift */,
 			);
 			path = "Vehicle list";
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				663AA27C2969436600F0FCBC /* VehiclesTabView.swift in Sources */,
 				66B3DAFA29693B8F00BCA958 /* VehicleListView.swift in Sources */,
 				66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */,
 				663AA27A2969429500F0FCBC /* TitledTabViews.swift in Sources */,

@@ -20,7 +20,7 @@ struct VehicleListView: View {
       case .loadingVehicles:
         ProgressView()
       case  .loaded:
-        ContentView(store: store, vehicles: $vehicles)
+        VehiclesTabView(store: store, vehicles: $vehicles)
       case .error(let error):
         VStack {
           Text("Failed to load vehicles")
@@ -251,7 +251,7 @@ private struct VehicleLocationView: View {
   }
 }
 
-private struct VehicleView: View {
+struct VehicleView: View {
   let store: ModelStore
   @Binding var vehicle: Vehicle
 
@@ -265,18 +265,5 @@ private struct VehicleView: View {
           .padding(EdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 0))
       }
     }
-  }
-}
-
-private struct ContentView: View {
-  let store: ModelStore
-  @Binding var vehicles: [Vehicle]
-  var body: some View {
-    TabView {
-      ForEach($vehicles) { vehicle in
-        VehicleView(store: store, vehicle: vehicle)
-      }
-    }
-    .tabViewStyle(.page)
   }
 }
