@@ -6,30 +6,30 @@ extension URLCache {
 
 @main
 struct ElectricSidecar: App {
-  @State var email: String = ""
-  @State var password: String = ""
+  @AppStorage("email", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
+  var email: String = ""
+  @AppStorage("password", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
+  var password: String = ""
 
   enum AuthState {
+    case launching
     case loggedOut(error: Error?)
     case authenticated
   }
-  @State var authState: AuthState
-
-  init() {
-    if let userAuth = AuthStore.userAuth(), !userAuth.username.isEmpty && !userAuth.password.isEmpty {
-      self.email = userAuth.username
-      self.password = userAuth.password
-      authState = .authenticated
-    } else {
-      self.email = ""
-      self.password = ""
-      authState = .loggedOut(error: nil)
-    }
-  }
+  @State var authState: AuthState = .launching
 
   var body: some Scene {
     WindowGroup {
       switch authState {
+      case .launching:
+        ProgressView()
+          .task {
+            if email.isEmpty || password.isEmpty {
+              authState = .loggedOut(error: nil)
+            } else {
+              authState = .authenticated
+            }
+          }
       case .authenticated:
         GarageView(store: ModelStore(username: email, password: password)) { error in
           authState = .loggedOut(error: error)
@@ -44,7 +44,6 @@ struct ElectricSidecar: App {
               guard !email.isEmpty && !password.isEmpty else {
                 return
               }
-              AuthStore.store(username: email, password: password)
               authState = .authenticated
             }
           }

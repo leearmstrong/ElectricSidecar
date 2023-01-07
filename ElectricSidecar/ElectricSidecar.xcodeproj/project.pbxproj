@@ -15,10 +15,18 @@
 		663AA280296943E400F0FCBC /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA27F296943E400F0FCBC /* VehicleView.swift */; };
 		663AA2822969440500F0FCBC /* VehicleLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2812969440500F0FCBC /* VehicleLocationView.swift */; };
 		663AA2842969475100F0FCBC /* VehicleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2832969475100F0FCBC /* VehicleDetailsView.swift */; };
-		663AA2872969477500F0FCBC /* GaugeComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2862969477500F0FCBC /* GaugeComplicationView.swift */; };
 		663AA2892969479700F0FCBC /* VehicleStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2882969479700F0FCBC /* VehicleStatusView.swift */; };
-		66B3DAF62969339300BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
-		66B3DAF72969392000BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
+		663AA2902969493900F0FCBC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663AA28F2969493900F0FCBC /* WidgetKit.framework */; };
+		663AA2922969493900F0FCBC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663AA2912969493900F0FCBC /* SwiftUI.framework */; };
+		663AA2952969493900F0FCBC /* ESComplications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2942969493900F0FCBC /* ESComplications.swift */; };
+		663AA2982969493A00F0FCBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 663AA2972969493A00F0FCBC /* Assets.xcassets */; };
+		663AA29E2969493A00F0FCBC /* ESComplicationsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 663AA28E2969493900F0FCBC /* ESComplicationsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		663AA2A4296952E800F0FCBC /* VehicleChargeTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2A3296952E800F0FCBC /* VehicleChargeTimelineProvider.swift */; };
+		663AA2B92969551100F0FCBC /* GaugeComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2862969477500F0FCBC /* GaugeComplicationView.swift */; };
+		663AA2BE2969579100F0FCBC /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2BD2969579100F0FCBC /* AppGroup.swift */; };
+		663AA2BF2969579100F0FCBC /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2BD2969579100F0FCBC /* AppGroup.swift */; };
+		663AA2C129695A0000F0FCBC /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAFB29693BC500BCA958 /* ModelStore.swift */; };
+		663AA2C529695A2000F0FCBC /* PorscheConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 663AA2C429695A2000F0FCBC /* PorscheConnect */; };
 		66B3DAFA29693B8F00BCA958 /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF929693B8F00BCA958 /* GarageView.swift */; };
 		66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAFB29693BC500BCA958 /* ModelStore.swift */; };
 		66B3DAFF29693FC900BCA958 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 66B3DAFE29693FC900BCA958 /* CachedAsyncImage */; };
@@ -33,6 +41,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		663AA29C2969493A00F0FCBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66D181D62969151500F0B830 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 663AA28D2969493900F0FCBC;
+			remoteInfo = ESComplicationsExtension;
+		};
 		66D181EF2969151600F0B830 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66D181D62969151500F0B830 /* Project object */;
@@ -49,6 +64,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		663AA2A22969493A00F0FCBC /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				663AA29E2969493A00F0FCBC /* ESComplicationsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		663AA2742969424300F0FCBC /* Vehicle+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Helpers.swift"; sourceTree = "<group>"; };
 		663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+SwiftUI.swift"; sourceTree = "<group>"; };
@@ -60,7 +89,16 @@
 		663AA2832969475100F0FCBC /* VehicleDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailsView.swift; sourceTree = "<group>"; };
 		663AA2862969477500F0FCBC /* GaugeComplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeComplicationView.swift; sourceTree = "<group>"; };
 		663AA2882969479700F0FCBC /* VehicleStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusView.swift; sourceTree = "<group>"; };
-		66B3DAF52969339300BCA958 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		663AA28E2969493900F0FCBC /* ESComplicationsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ESComplicationsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		663AA28F2969493900F0FCBC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		663AA2912969493900F0FCBC /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		663AA2942969493900F0FCBC /* ESComplications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESComplications.swift; sourceTree = "<group>"; };
+		663AA2972969493A00F0FCBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		663AA2992969493A00F0FCBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		663AA2A3296952E800F0FCBC /* VehicleChargeTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleChargeTimelineProvider.swift; sourceTree = "<group>"; };
+		663AA2BA2969568A00F0FCBC /* ElectricSidecar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ElectricSidecar.entitlements; sourceTree = "<group>"; };
+		663AA2BB296956E600F0FCBC /* ESComplicationsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ESComplicationsExtension.entitlements; sourceTree = "<group>"; };
+		663AA2BD2969579100F0FCBC /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		66B3DAF929693B8F00BCA958 /* GarageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
 		66B3DAFB29693BC500BCA958 /* ModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStore.swift; sourceTree = "<group>"; };
 		66D181DE2969151500F0B830 /* ElectricSidecar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +115,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		663AA28B2969493900F0FCBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				663AA2922969493900F0FCBC /* SwiftUI.framework in Frameworks */,
+				663AA2C529695A2000F0FCBC /* PorscheConnect in Frameworks */,
+				663AA2902969493900F0FCBC /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66D181DB2969151500F0B830 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -121,21 +169,33 @@
 			path = Playgrounds;
 			sourceTree = "<group>";
 		};
-		663AA2852969476B00F0FCBC /* Complications */ = {
+		663AA2932969493900F0FCBC /* ESComplications */ = {
+			isa = PBXGroup;
+			children = (
+				663AA2C0296957B100F0FCBC /* Views */,
+				663AA2942969493900F0FCBC /* ESComplications.swift */,
+				663AA2A3296952E800F0FCBC /* VehicleChargeTimelineProvider.swift */,
+				663AA2972969493A00F0FCBC /* Assets.xcassets */,
+				663AA2992969493A00F0FCBC /* Info.plist */,
+			);
+			path = ESComplications;
+			sourceTree = "<group>";
+		};
+		663AA2BC2969577700F0FCBC /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				663AA2BD2969579100F0FCBC /* AppGroup.swift */,
+				66B3DAFB29693BC500BCA958 /* ModelStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		663AA2C0296957B100F0FCBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				663AA2862969477500F0FCBC /* GaugeComplicationView.swift */,
 			);
-			path = Complications;
-			sourceTree = "<group>";
-		};
-		66B3DAF42969338300BCA958 /* Stores */ = {
-			isa = PBXGroup;
-			children = (
-				66B3DAF52969339300BCA958 /* AuthStore.swift */,
-				66B3DAFB29693BC500BCA958 /* ModelStore.swift */,
-			);
-			path = Stores;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		66B3DAF829693B6700BCA958 /* VehicleList */ = {
@@ -154,11 +214,14 @@
 		66D181D52969151500F0B830 = {
 			isa = PBXGroup;
 			children = (
-				66D1820B2969254F00F0B830 /* Packages */,
+				663AA2BB296956E600F0FCBC /* ESComplicationsExtension.entitlements */,
+				663AA2BC2969577700F0FCBC /* Shared */,
 				66D181E02969151500F0B830 /* ElectricSidecar */,
-				663AA2782969427800F0FCBC /* Playgrounds */,
+				663AA2932969493900F0FCBC /* ESComplications */,
 				66D181F12969151600F0B830 /* UnitTests */,
 				66D181FB2969151600F0B830 /* UITests */,
+				663AA2782969427800F0FCBC /* Playgrounds */,
+				66D1820B2969254F00F0B830 /* Packages */,
 				66D181DF2969151500F0B830 /* Products */,
 				66D1820F2969256400F0B830 /* Frameworks */,
 			);
@@ -170,6 +233,7 @@
 				66D181DE2969151500F0B830 /* ElectricSidecar.app */,
 				66D181EE2969151600F0B830 /* UnitTests.xctest */,
 				66D181F82969151600F0B830 /* UITests.xctest */,
+				663AA28E2969493900F0FCBC /* ESComplicationsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,9 +241,8 @@
 		66D181E02969151500F0B830 /* ElectricSidecar */ = {
 			isa = PBXGroup;
 			children = (
-				663AA2852969476B00F0FCBC /* Complications */,
+				663AA2BA2969568A00F0FCBC /* ElectricSidecar.entitlements */,
 				663AA2732969423700F0FCBC /* Models */,
-				66B3DAF42969338300BCA958 /* Stores */,
 				66D182122969278400F0B830 /* AuthFlow */,
 				66B3DAF829693B6700BCA958 /* VehicleList */,
 				66D181E12969151500F0B830 /* ElectricSidecarApp.swift */,
@@ -225,6 +288,8 @@
 		66D1820F2969256400F0B830 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				663AA28F2969493900F0FCBC /* WidgetKit.framework */,
+				663AA2912969493900F0FCBC /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -240,6 +305,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		663AA28D2969493900F0FCBC /* ESComplicationsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 663AA29F2969493A00F0FCBC /* Build configuration list for PBXNativeTarget "ESComplicationsExtension" */;
+			buildPhases = (
+				663AA28A2969493900F0FCBC /* Sources */,
+				663AA28B2969493900F0FCBC /* Frameworks */,
+				663AA28C2969493900F0FCBC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				663AA2C329695A1C00F0FCBC /* PBXTargetDependency */,
+			);
+			name = ESComplicationsExtension;
+			packageProductDependencies = (
+				663AA2C429695A2000F0FCBC /* PorscheConnect */,
+			);
+			productName = ESComplicationsExtension;
+			productReference = 663AA28E2969493900F0FCBC /* ESComplicationsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		66D181DD2969151500F0B830 /* ElectricSidecar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66D182022969151600F0B830 /* Build configuration list for PBXNativeTarget "ElectricSidecar" */;
@@ -247,12 +333,14 @@
 				66D181DA2969151500F0B830 /* Sources */,
 				66D181DB2969151500F0B830 /* Frameworks */,
 				66D181DC2969151500F0B830 /* Resources */,
+				663AA2A22969493A00F0FCBC /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				66B3DB0129693FD100BCA958 /* PBXTargetDependency */,
 				66D1820E2969256000F0B830 /* PBXTargetDependency */,
+				663AA29D2969493A00F0FCBC /* PBXTargetDependency */,
 			);
 			name = ElectricSidecar;
 			packageProductDependencies = (
@@ -309,6 +397,9 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					663AA28D2969493900F0FCBC = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					66D181DD2969151500F0B830 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -341,11 +432,20 @@
 				66D181DD2969151500F0B830 /* ElectricSidecar */,
 				66D181ED2969151600F0B830 /* UnitTests */,
 				66D181F72969151600F0B830 /* UITests */,
+				663AA28D2969493900F0FCBC /* ESComplicationsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		663AA28C2969493900F0FCBC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				663AA2982969493A00F0FCBC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66D181DC2969151500F0B830 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -372,6 +472,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		663AA28A2969493900F0FCBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				663AA2A4296952E800F0FCBC /* VehicleChargeTimelineProvider.swift in Sources */,
+				663AA2C129695A0000F0FCBC /* ModelStore.swift in Sources */,
+				663AA2952969493900F0FCBC /* ESComplications.swift in Sources */,
+				663AA2B92969551100F0FCBC /* GaugeComplicationView.swift in Sources */,
+				663AA2BF2969579100F0FCBC /* AppGroup.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66D181DA2969151500F0B830 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,12 +493,11 @@
 				66B3DAFA29693B8F00BCA958 /* GarageView.swift in Sources */,
 				66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */,
 				663AA280296943E400F0FCBC /* VehicleView.swift in Sources */,
-				663AA2872969477500F0FCBC /* GaugeComplicationView.swift in Sources */,
 				663AA2822969440500F0FCBC /* VehicleLocationView.swift in Sources */,
 				663AA27A2969429500F0FCBC /* TitledTabViews.swift in Sources */,
 				66D182142969279000F0B830 /* LoginView.swift in Sources */,
-				66B3DAF62969339300BCA958 /* AuthStore.swift in Sources */,
 				663AA2752969424300F0FCBC /* Vehicle+Helpers.swift in Sources */,
+				663AA2BE2969579100F0FCBC /* AppGroup.swift in Sources */,
 				663AA2772969425900F0FCBC /* Vehicle+SwiftUI.swift in Sources */,
 				663AA2842969475100F0FCBC /* VehicleDetailsView.swift in Sources */,
 				66D181E22969151500F0B830 /* ElectricSidecarApp.swift in Sources */,
@@ -399,7 +510,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D181F32969151600F0B830 /* UnitTests.swift in Sources */,
-				66B3DAF72969392000BCA958 /* AuthStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +525,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		663AA29D2969493A00F0FCBC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 663AA28D2969493900F0FCBC /* ESComplicationsExtension */;
+			targetProxy = 663AA29C2969493A00F0FCBC /* PBXContainerItemProxy */;
+		};
+		663AA2C329695A1C00F0FCBC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 663AA2C229695A1C00F0FCBC /* PorscheConnect */;
+		};
 		66B3DB0129693FD100BCA958 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 66B3DB0029693FD100BCA958 /* CachedAsyncImage */;
@@ -436,6 +555,67 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		663AA2A02969493A00F0FCBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ESComplicationsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ESComplications/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ESComplications;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = .com.porsche.electricsidecar.complications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		663AA2A12969493A00F0FCBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ESComplicationsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ESComplications/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ESComplications;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = .com.porsche.electricsidecar.complications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		66D182002969151600F0B830 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -550,11 +730,15 @@
 		66D182032969151600F0B830 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ElectricSidecar/ElectricSidecar.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ElectricSidecar/Preview Content\"";
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
@@ -565,8 +749,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = .watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = .com.porsche.electricsidecar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -579,11 +764,15 @@
 		66D182042969151600F0B830 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ElectricSidecar/ElectricSidecar.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ElectricSidecar/Preview Content\"";
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
@@ -594,8 +783,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = .watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = .com.porsche.electricsidecar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -689,6 +879,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		663AA29F2969493A00F0FCBC /* Build configuration list for PBXNativeTarget "ESComplicationsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				663AA2A02969493A00F0FCBC /* Debug */,
+				663AA2A12969493A00F0FCBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		66D181D92969151500F0B830 /* Build configuration list for PBXProject "ElectricSidecar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -739,6 +938,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		663AA2C229695A1C00F0FCBC /* PorscheConnect */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PorscheConnect;
+		};
+		663AA2C429695A2000F0FCBC /* PorscheConnect */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PorscheConnect;
+		};
 		66B3DAFE29693FC900BCA958 /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 66B3DAFD29693FC900BCA958 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
