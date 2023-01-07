@@ -11,6 +11,12 @@
 		663AA2772969425900F0FCBC /* Vehicle+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */; };
 		663AA27A2969429500F0FCBC /* TitledTabViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2792969428300F0FCBC /* TitledTabViews.swift */; };
 		663AA27C2969436600F0FCBC /* VehiclesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA27B2969436600F0FCBC /* VehiclesTabView.swift */; };
+		663AA27E296943C900F0FCBC /* Status+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA27D296943C900F0FCBC /* Status+Helpers.swift */; };
+		663AA280296943E400F0FCBC /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA27F296943E400F0FCBC /* VehicleView.swift */; };
+		663AA2822969440500F0FCBC /* VehicleLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2812969440500F0FCBC /* VehicleLocationView.swift */; };
+		663AA2842969475100F0FCBC /* VehicleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2832969475100F0FCBC /* VehicleDetailsView.swift */; };
+		663AA2872969477500F0FCBC /* GaugeComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2862969477500F0FCBC /* GaugeComplicationView.swift */; };
+		663AA2892969479700F0FCBC /* VehicleStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2882969479700F0FCBC /* VehicleStatusView.swift */; };
 		66B3DAF62969339300BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
 		66B3DAF72969392000BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
 		66B3DAFA29693B8F00BCA958 /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF929693B8F00BCA958 /* VehicleListView.swift */; };
@@ -48,6 +54,12 @@
 		663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+SwiftUI.swift"; sourceTree = "<group>"; };
 		663AA2792969428300F0FCBC /* TitledTabViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledTabViews.swift; sourceTree = "<group>"; };
 		663AA27B2969436600F0FCBC /* VehiclesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesTabView.swift; sourceTree = "<group>"; };
+		663AA27D296943C900F0FCBC /* Status+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Status+Helpers.swift"; sourceTree = "<group>"; };
+		663AA27F296943E400F0FCBC /* VehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
+		663AA2812969440500F0FCBC /* VehicleLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleLocationView.swift; sourceTree = "<group>"; };
+		663AA2832969475100F0FCBC /* VehicleDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailsView.swift; sourceTree = "<group>"; };
+		663AA2862969477500F0FCBC /* GaugeComplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeComplicationView.swift; sourceTree = "<group>"; };
+		663AA2882969479700F0FCBC /* VehicleStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusView.swift; sourceTree = "<group>"; };
 		66B3DAF52969339300BCA958 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
 		66B3DAF929693B8F00BCA958 /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
 		66B3DAFB29693BC500BCA958 /* ModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStore.swift; sourceTree = "<group>"; };
@@ -94,6 +106,7 @@
 		663AA2732969423700F0FCBC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				663AA27D296943C900F0FCBC /* Status+Helpers.swift */,
 				663AA2742969424300F0FCBC /* Vehicle+Helpers.swift */,
 				663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */,
 			);
@@ -108,6 +121,14 @@
 			path = Playgrounds;
 			sourceTree = "<group>";
 		};
+		663AA2852969476B00F0FCBC /* Complications */ = {
+			isa = PBXGroup;
+			children = (
+				663AA2862969477500F0FCBC /* GaugeComplicationView.swift */,
+			);
+			path = Complications;
+			sourceTree = "<group>";
+		};
 		66B3DAF42969338300BCA958 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,13 +138,17 @@
 			path = Stores;
 			sourceTree = "<group>";
 		};
-		66B3DAF829693B6700BCA958 /* Vehicle list */ = {
+		66B3DAF829693B6700BCA958 /* VehicleList */ = {
 			isa = PBXGroup;
 			children = (
-				66B3DAF929693B8F00BCA958 /* VehicleListView.swift */,
 				663AA27B2969436600F0FCBC /* VehiclesTabView.swift */,
+				663AA2832969475100F0FCBC /* VehicleDetailsView.swift */,
+				66B3DAF929693B8F00BCA958 /* VehicleListView.swift */,
+				663AA2812969440500F0FCBC /* VehicleLocationView.swift */,
+				663AA2882969479700F0FCBC /* VehicleStatusView.swift */,
+				663AA27F296943E400F0FCBC /* VehicleView.swift */,
 			);
-			path = "Vehicle list";
+			path = VehicleList;
 			sourceTree = "<group>";
 		};
 		66D181D52969151500F0B830 = {
@@ -151,11 +176,12 @@
 		66D181E02969151500F0B830 /* ElectricSidecar */ = {
 			isa = PBXGroup;
 			children = (
+				663AA2852969476B00F0FCBC /* Complications */,
 				663AA2782969427800F0FCBC /* Playgrounds */,
 				663AA2732969423700F0FCBC /* Models */,
 				66B3DAF42969338300BCA958 /* Stores */,
-				66D182122969278400F0B830 /* Authentication flow */,
-				66B3DAF829693B6700BCA958 /* Vehicle list */,
+				66D182122969278400F0B830 /* AuthFlow */,
+				66B3DAF829693B6700BCA958 /* VehicleList */,
 				66D181E12969151500F0B830 /* ElectricSidecarApp.swift */,
 				66D181E52969151600F0B830 /* Assets.xcassets */,
 				66D181E72969151600F0B830 /* Preview Content */,
@@ -203,12 +229,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		66D182122969278400F0B830 /* Authentication flow */ = {
+		66D182122969278400F0B830 /* AuthFlow */ = {
 			isa = PBXGroup;
 			children = (
 				66D182132969279000F0B830 /* LoginView.swift */,
 			);
-			path = "Authentication flow";
+			path = AuthFlow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,14 +377,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				663AA27C2969436600F0FCBC /* VehiclesTabView.swift in Sources */,
+				663AA2892969479700F0FCBC /* VehicleStatusView.swift in Sources */,
 				66B3DAFA29693B8F00BCA958 /* VehicleListView.swift in Sources */,
 				66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */,
+				663AA280296943E400F0FCBC /* VehicleView.swift in Sources */,
+				663AA2872969477500F0FCBC /* GaugeComplicationView.swift in Sources */,
+				663AA2822969440500F0FCBC /* VehicleLocationView.swift in Sources */,
 				663AA27A2969429500F0FCBC /* TitledTabViews.swift in Sources */,
 				66D182142969279000F0B830 /* LoginView.swift in Sources */,
 				66B3DAF62969339300BCA958 /* AuthStore.swift in Sources */,
 				663AA2752969424300F0FCBC /* Vehicle+Helpers.swift in Sources */,
 				663AA2772969425900F0FCBC /* Vehicle+SwiftUI.swift in Sources */,
+				663AA2842969475100F0FCBC /* VehicleDetailsView.swift in Sources */,
 				66D181E22969151500F0B830 /* ElectricSidecarApp.swift in Sources */,
+				663AA27E296943C900F0FCBC /* Status+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
