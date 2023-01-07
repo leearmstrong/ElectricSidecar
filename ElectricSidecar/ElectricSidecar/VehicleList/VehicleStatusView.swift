@@ -42,24 +42,25 @@ struct VehicleStatusView: View {
             Spacer()
           }
 
-          CachedAsyncImage(
-            url: vehicle.externalCamera(.front, size: 2)!.url,
-            urlCache: .imageCache,
-            content: { image in
-              image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-            },
-            placeholder: {
-              ZStack {
-                (vehicle.color ?? .gray)
-                  .aspectRatio(CGSize(width: CGFloat(vehicle.personalizedPhoto!.width),
-                                      height: CGFloat(vehicle.personalizedPhoto!.height)),
-                               contentMode: .fill)
-                ProgressView()
+          if let camera = vehicle.externalCamera(.front, size: 2) {
+            CachedAsyncImage(
+              url: camera.url,
+              urlCache: .imageCache,
+              content: { image in
+                image
+                  .resizable()
+                  .aspectRatio(contentMode: .fill)
+              },
+              placeholder: {
+                ZStack {
+                  (vehicle.color ?? .gray)
+                    .aspectRatio(CGSize(width: CGFloat(camera.width), height: CGFloat(camera.height)),
+                                 contentMode: .fill)
+                  ProgressView()
+                }
               }
-            }
-          )
+            )
+          }
 
           HStack {
             Spacer()
