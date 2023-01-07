@@ -1,5 +1,9 @@
 import SwiftUI
 
+extension URLCache {
+  static let imageCache = URLCache(memoryCapacity: 20*1024*1024, diskCapacity: 128*1024*1024)
+}
+
 @main
 struct ElectricSidecar: App {
   @State var email: String = ""
@@ -27,7 +31,9 @@ struct ElectricSidecar: App {
     WindowGroup {
       switch authState {
       case .authenticated:
-        Text("Logged in")
+        VehicleListView(store: ModelStore(username: email, password: password)) { error in
+          authState = .loggedOut(error: error)
+        }
       case .loggedOut(let error):
         ScrollView {
           VStack {

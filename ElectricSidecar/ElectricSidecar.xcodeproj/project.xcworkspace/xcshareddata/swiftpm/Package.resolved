@@ -27,6 +27,15 @@
           "revision": "fddd1c00396eed152c45a46bea9f47b98e59301d",
           "version": "1.2.0"
         }
+      },
+      {
+        "package": "swiftui-cached-async-image",
+        "repositoryURL": "https://github.com/lorenzofiamingo/swiftui-cached-async-image",
+        "state": {
+          "branch": "main",
+          "revision": "f94be38411297c71aa8df69c6875127e6d8d7a92",
+          "version": null
+        }
       }
     ]
   },

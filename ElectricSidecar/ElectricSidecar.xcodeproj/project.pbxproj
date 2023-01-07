@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		66B3DAF62969339300BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
 		66B3DAF72969392000BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
+		66B3DAFA29693B8F00BCA958 /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF929693B8F00BCA958 /* VehicleListView.swift */; };
+		66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAFB29693BC500BCA958 /* ModelStore.swift */; };
+		66B3DAFF29693FC900BCA958 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 66B3DAFE29693FC900BCA958 /* CachedAsyncImage */; };
 		66D181E22969151500F0B830 /* ElectricSidecarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D181E12969151500F0B830 /* ElectricSidecarApp.swift */; };
-		66D181E42969151500F0B830 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D181E32969151500F0B830 /* ContentView.swift */; };
 		66D181E62969151600F0B830 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D181E52969151600F0B830 /* Assets.xcassets */; };
 		66D181E92969151600F0B830 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D181E82969151600F0B830 /* Preview Assets.xcassets */; };
 		66D181F32969151600F0B830 /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D181F22969151600F0B830 /* UnitTests.swift */; };
@@ -39,9 +41,10 @@
 
 /* Begin PBXFileReference section */
 		66B3DAF52969339300BCA958 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
+		66B3DAF929693B8F00BCA958 /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
+		66B3DAFB29693BC500BCA958 /* ModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStore.swift; sourceTree = "<group>"; };
 		66D181DE2969151500F0B830 /* ElectricSidecar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D181E12969151500F0B830 /* ElectricSidecarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricSidecarApp.swift; sourceTree = "<group>"; };
-		66D181E32969151500F0B830 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		66D181E52969151600F0B830 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66D181E82969151600F0B830 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		66D181EE2969151600F0B830 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D182112969256400F0B830 /* PorscheConnect in Frameworks */,
+				66B3DAFF29693FC900BCA958 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +83,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		66B3DAF42969338300BCA958 /* Model */ = {
+		66B3DAF42969338300BCA958 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
 				66B3DAF52969339300BCA958 /* AuthStore.swift */,
+				66B3DAFB29693BC500BCA958 /* ModelStore.swift */,
 			);
-			path = Model;
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		66B3DAF829693B6700BCA958 /* Vehicle list */ = {
+			isa = PBXGroup;
+			children = (
+				66B3DAF929693B8F00BCA958 /* VehicleListView.swift */,
+			);
+			path = "Vehicle list";
 			sourceTree = "<group>";
 		};
 		66D181D52969151500F0B830 = {
@@ -112,10 +125,10 @@
 		66D181E02969151500F0B830 /* ElectricSidecar */ = {
 			isa = PBXGroup;
 			children = (
-				66D182122969278400F0B830 /* Authentication */,
-				66B3DAF42969338300BCA958 /* Model */,
+				66B3DAF42969338300BCA958 /* Stores */,
+				66D182122969278400F0B830 /* Authentication flow */,
+				66B3DAF829693B6700BCA958 /* Vehicle list */,
 				66D181E12969151500F0B830 /* ElectricSidecarApp.swift */,
-				66D181E32969151500F0B830 /* ContentView.swift */,
 				66D181E52969151600F0B830 /* Assets.xcassets */,
 				66D181E72969151600F0B830 /* Preview Content */,
 			);
@@ -162,12 +175,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		66D182122969278400F0B830 /* Authentication */ = {
+		66D182122969278400F0B830 /* Authentication flow */ = {
 			isa = PBXGroup;
 			children = (
 				66D182132969279000F0B830 /* LoginView.swift */,
 			);
-			path = Authentication;
+			path = "Authentication flow";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,11 +197,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				66B3DB0129693FD100BCA958 /* PBXTargetDependency */,
 				66D1820E2969256000F0B830 /* PBXTargetDependency */,
 			);
 			name = ElectricSidecar;
 			packageProductDependencies = (
 				66D182102969256400F0B830 /* PorscheConnect */,
+				66B3DAFE29693FC900BCA958 /* CachedAsyncImage */,
 			);
 			productName = "ElectricSidecar Watch App";
 			productReference = 66D181DE2969151500F0B830 /* ElectricSidecar.app */;
@@ -262,6 +277,9 @@
 				Base,
 			);
 			mainGroup = 66D181D52969151500F0B830;
+			packageReferences = (
+				66B3DAFD29693FC900BCA958 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+			);
 			productRefGroup = 66D181DF2969151500F0B830 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -304,9 +322,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B3DAFA29693B8F00BCA958 /* VehicleListView.swift in Sources */,
+				66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */,
 				66D182142969279000F0B830 /* LoginView.swift in Sources */,
 				66B3DAF62969339300BCA958 /* AuthStore.swift in Sources */,
-				66D181E42969151500F0B830 /* ContentView.swift in Sources */,
 				66D181E22969151500F0B830 /* ElectricSidecarApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +351,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		66B3DB0129693FD100BCA958 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 66B3DB0029693FD100BCA958 /* CachedAsyncImage */;
+		};
 		66D181F02969151600F0B830 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 66D181DD2969151500F0B830 /* ElectricSidecar */;
@@ -640,7 +663,28 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		66B3DAFD29693FC900BCA958 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		66B3DAFE29693FC900BCA958 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66B3DAFD29693FC900BCA958 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+		66B3DB0029693FD100BCA958 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66B3DAFD29693FC900BCA958 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
 		66D1820D2969256000F0B830 /* PorscheConnect */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PorscheConnect;
