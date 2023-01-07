@@ -1,7 +1,7 @@
 import PorscheConnect
 import SwiftUI
 
-struct VehicleListView: View {
+struct GarageView: View {
   let store: ModelStore
   let authFailure: (Error) -> Void
 

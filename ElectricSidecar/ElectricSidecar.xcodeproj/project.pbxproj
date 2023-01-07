@@ -19,7 +19,7 @@
 		663AA2892969479700F0FCBC /* VehicleStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2882969479700F0FCBC /* VehicleStatusView.swift */; };
 		66B3DAF62969339300BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
 		66B3DAF72969392000BCA958 /* AuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF52969339300BCA958 /* AuthStore.swift */; };
-		66B3DAFA29693B8F00BCA958 /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF929693B8F00BCA958 /* VehicleListView.swift */; };
+		66B3DAFA29693B8F00BCA958 /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF929693B8F00BCA958 /* GarageView.swift */; };
 		66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAFB29693BC500BCA958 /* ModelStore.swift */; };
 		66B3DAFF29693FC900BCA958 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 66B3DAFE29693FC900BCA958 /* CachedAsyncImage */; };
 		66D181E22969151500F0B830 /* ElectricSidecarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D181E12969151500F0B830 /* ElectricSidecarApp.swift */; };
@@ -61,7 +61,7 @@
 		663AA2862969477500F0FCBC /* GaugeComplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeComplicationView.swift; sourceTree = "<group>"; };
 		663AA2882969479700F0FCBC /* VehicleStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusView.swift; sourceTree = "<group>"; };
 		66B3DAF52969339300BCA958 /* AuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStore.swift; sourceTree = "<group>"; };
-		66B3DAF929693B8F00BCA958 /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
+		66B3DAF929693B8F00BCA958 /* GarageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
 		66B3DAFB29693BC500BCA958 /* ModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStore.swift; sourceTree = "<group>"; };
 		66D181DE2969151500F0B830 /* ElectricSidecar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D181E12969151500F0B830 /* ElectricSidecarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricSidecarApp.swift; sourceTree = "<group>"; };
@@ -141,9 +141,9 @@
 		66B3DAF829693B6700BCA958 /* VehicleList */ = {
 			isa = PBXGroup;
 			children = (
+				66B3DAF929693B8F00BCA958 /* GarageView.swift */,
 				663AA27B2969436600F0FCBC /* VehiclesTabView.swift */,
 				663AA2832969475100F0FCBC /* VehicleDetailsView.swift */,
-				66B3DAF929693B8F00BCA958 /* VehicleListView.swift */,
 				663AA2812969440500F0FCBC /* VehicleLocationView.swift */,
 				663AA2882969479700F0FCBC /* VehicleStatusView.swift */,
 				663AA27F296943E400F0FCBC /* VehicleView.swift */,
@@ -378,7 +378,7 @@
 			files = (
 				663AA27C2969436600F0FCBC /* VehiclesTabView.swift in Sources */,
 				663AA2892969479700F0FCBC /* VehicleStatusView.swift in Sources */,
-				66B3DAFA29693B8F00BCA958 /* VehicleListView.swift in Sources */,
+				66B3DAFA29693B8F00BCA958 /* GarageView.swift in Sources */,
 				66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */,
 				663AA280296943E400F0FCBC /* VehicleView.swift in Sources */,
 				663AA2872969477500F0FCBC /* GaugeComplicationView.swift in Sources */,

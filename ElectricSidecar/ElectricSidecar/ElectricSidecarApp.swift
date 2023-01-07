@@ -31,7 +31,7 @@ struct ElectricSidecar: App {
     WindowGroup {
       switch authState {
       case .authenticated:
-        VehicleListView(store: ModelStore(username: email, password: password)) { error in
+        GarageView(store: ModelStore(username: email, password: password)) { error in
           authState = .loggedOut(error: error)
         }
       case .loggedOut(let error):
