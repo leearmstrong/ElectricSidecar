@@ -15,6 +15,7 @@
 		66D181FD2969151600F0B830 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D181FC2969151600F0B830 /* UITests.swift */; };
 		66D181FF2969151600F0B830 /* UILaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D181FE2969151600F0B830 /* UILaunchTests.swift */; };
 		66D182112969256400F0B830 /* PorscheConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 66D182102969256400F0B830 /* PorscheConnect */; };
+		66D182142969279000F0B830 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D182132969279000F0B830 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		66D181FC2969151600F0B830 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		66D181FE2969151600F0B830 /* UILaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILaunchTests.swift; sourceTree = "<group>"; };
 		66D1820C2969254F00F0B830 /* PorscheConnect */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PorscheConnect; path = ../third_party/PorscheConnect; sourceTree = "<group>"; };
+		66D182132969279000F0B830 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				66D181E12969151500F0B830 /* ElectricSidecarApp.swift */,
 				66D181E32969151500F0B830 /* ContentView.swift */,
+				66D182122969278400F0B830 /* Authentication */,
 				66D181E52969151600F0B830 /* Assets.xcassets */,
 				66D181E72969151600F0B830 /* Preview Content */,
 			);
@@ -145,6 +148,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66D182122969278400F0B830 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				66D182132969279000F0B830 /* LoginView.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66D182142969279000F0B830 /* LoginView.swift in Sources */,
 				66D181E42969151500F0B830 /* ContentView.swift in Sources */,
 				66D181E22969151500F0B830 /* ElectricSidecarApp.swift in Sources */,
 			);
