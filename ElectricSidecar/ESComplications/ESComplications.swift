@@ -18,6 +18,7 @@ struct ESComplications: Widget {
     }
     .configurationDisplayName("Charge")
     .description("Show the remaining charge on your vehicle")
+    .supportedFamilies([.accessoryCircular])
   }
 }
 
