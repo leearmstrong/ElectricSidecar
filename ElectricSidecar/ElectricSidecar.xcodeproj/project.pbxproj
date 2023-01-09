@@ -199,13 +199,11 @@
 		66108D2A296B569000791A7A /* ElectricSidecar */ = {
 			isa = PBXGroup;
 			children = (
+				66108D2B296B569000791A7A /* ElectricSidecarApp.swift */,
 				66108DA2296B58EE00791A7A /* AuthFlow */,
 				66108D9E296B58EE00791A7A /* Models */,
 				66108DA9296B58F700791A7A /* Garage */,
-				66108D8F296B584E00791A7A /* ElectricSidecar.entitlements */,
-				66108D2B296B569000791A7A /* ElectricSidecarApp.swift */,
-				66108D2F296B569100791A7A /* Assets.xcassets */,
-				66108D31296B569100791A7A /* Preview Content */,
+				669BFB5C296BFE37004621D9 /* Resources */,
 			);
 			path = ElectricSidecar;
 			sourceTree = "<group>";
@@ -247,12 +245,10 @@
 		66108D63296B56AF00791A7A /* ESComplications */ = {
 			isa = PBXGroup;
 			children = (
-				66108D90296B585800791A7A /* ESComplicationsExtension.entitlements */,
-				66108D89296B57CB00791A7A /* Views */,
 				66108D64296B56AF00791A7A /* ESComplications.swift */,
 				66108D88296B57CB00791A7A /* VehicleChargeTimelineProvider.swift */,
-				66108D66296B56B000791A7A /* Assets.xcassets */,
-				66108D68296B56B000791A7A /* Info.plist */,
+				66108D89296B57CB00791A7A /* Views */,
+				669BFB5D296BFE59004621D9 /* Resources */,
 			);
 			path = ESComplications;
 			sourceTree = "<group>";
@@ -326,6 +322,26 @@
 				66108DAE296B58F700791A7A /* VehicleDetailsView.swift */,
 			);
 			path = Vehicle;
+			sourceTree = "<group>";
+		};
+		669BFB5C296BFE37004621D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				66108D8F296B584E00791A7A /* ElectricSidecar.entitlements */,
+				66108D2F296B569100791A7A /* Assets.xcassets */,
+				66108D31296B569100791A7A /* Preview Content */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		669BFB5D296BFE59004621D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				66108D90296B585800791A7A /* ESComplicationsExtension.entitlements */,
+				66108D66296B56B000791A7A /* Assets.xcassets */,
+				66108D68296B56B000791A7A /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -729,10 +745,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ElectricSidecar/ElectricSidecar.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ElectricSidecar/Resources/ElectricSidecar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ElectricSidecar/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ElectricSidecar/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -761,10 +777,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ElectricSidecar/ElectricSidecar.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ElectricSidecar/Resources/ElectricSidecar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ElectricSidecar/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ElectricSidecar/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -919,12 +935,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = ESComplications/ESComplicationsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ESComplications/Resources/ESComplicationsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ESComplications/Info.plist;
+				INFOPLIST_FILE = ESComplications/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ESComplications;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -950,12 +966,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = ESComplications/ESComplicationsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ESComplications/Resources/ESComplicationsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ESComplications/Info.plist;
+				INFOPLIST_FILE = ESComplications/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ESComplications;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
