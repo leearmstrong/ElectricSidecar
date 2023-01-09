@@ -7,71 +7,90 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		663AA2752969424300F0FCBC /* Vehicle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2742969424300F0FCBC /* Vehicle+Helpers.swift */; };
-		663AA2772969425900F0FCBC /* Vehicle+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */; };
-		663AA27A2969429500F0FCBC /* TitledTabViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2792969428300F0FCBC /* TitledTabViews.swift */; };
-		663AA27C2969436600F0FCBC /* VehiclesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA27B2969436600F0FCBC /* VehiclesTabView.swift */; };
-		663AA27E296943C900F0FCBC /* Status+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA27D296943C900F0FCBC /* Status+Helpers.swift */; };
-		663AA280296943E400F0FCBC /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA27F296943E400F0FCBC /* VehicleView.swift */; };
-		663AA2822969440500F0FCBC /* VehicleLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2812969440500F0FCBC /* VehicleLocationView.swift */; };
-		663AA2842969475100F0FCBC /* VehicleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2832969475100F0FCBC /* VehicleDetailsView.swift */; };
-		663AA2892969479700F0FCBC /* VehicleStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2882969479700F0FCBC /* VehicleStatusView.swift */; };
-		663AA2902969493900F0FCBC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663AA28F2969493900F0FCBC /* WidgetKit.framework */; };
-		663AA2922969493900F0FCBC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663AA2912969493900F0FCBC /* SwiftUI.framework */; };
-		663AA2952969493900F0FCBC /* ESComplications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2942969493900F0FCBC /* ESComplications.swift */; };
-		663AA2982969493A00F0FCBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 663AA2972969493A00F0FCBC /* Assets.xcassets */; };
-		663AA29E2969493A00F0FCBC /* ESComplicationsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 663AA28E2969493900F0FCBC /* ESComplicationsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		663AA2A4296952E800F0FCBC /* VehicleChargeTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2A3296952E800F0FCBC /* VehicleChargeTimelineProvider.swift */; };
-		663AA2B92969551100F0FCBC /* GaugeComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2862969477500F0FCBC /* GaugeComplicationView.swift */; };
-		663AA2BE2969579100F0FCBC /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2BD2969579100F0FCBC /* AppGroup.swift */; };
-		663AA2BF2969579100F0FCBC /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663AA2BD2969579100F0FCBC /* AppGroup.swift */; };
-		663AA2C129695A0000F0FCBC /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAFB29693BC500BCA958 /* ModelStore.swift */; };
-		663AA2C529695A2000F0FCBC /* PorscheConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 663AA2C429695A2000F0FCBC /* PorscheConnect */; };
-		66B3DAFA29693B8F00BCA958 /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAF929693B8F00BCA958 /* GarageView.swift */; };
-		66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B3DAFB29693BC500BCA958 /* ModelStore.swift */; };
-		66B3DAFF29693FC900BCA958 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 66B3DAFE29693FC900BCA958 /* CachedAsyncImage */; };
-		66D181E22969151500F0B830 /* ElectricSidecarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D181E12969151500F0B830 /* ElectricSidecarApp.swift */; };
-		66D181E62969151600F0B830 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D181E52969151600F0B830 /* Assets.xcassets */; };
-		66D181E92969151600F0B830 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D181E82969151600F0B830 /* Preview Assets.xcassets */; };
-		66D181F32969151600F0B830 /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D181F22969151600F0B830 /* UnitTests.swift */; };
-		66D181FD2969151600F0B830 /* EndToEndUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D181FC2969151600F0B830 /* EndToEndUITests.swift */; };
-		66D181FF2969151600F0B830 /* UILaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D181FE2969151600F0B830 /* UILaunchTests.swift */; };
-		66D182112969256400F0B830 /* PorscheConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 66D182102969256400F0B830 /* PorscheConnect */; };
-		66D182142969279000F0B830 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D182132969279000F0B830 /* LoginView.swift */; };
+		66108D27296B569000791A7A /* ElectricSidecar.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 66108D26296B569000791A7A /* ElectricSidecar.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		66108D2C296B569000791A7A /* ElectricSidecarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D2B296B569000791A7A /* ElectricSidecarApp.swift */; };
+		66108D30296B569100791A7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D2F296B569100791A7A /* Assets.xcassets */; };
+		66108D33296B569100791A7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D32296B569100791A7A /* Preview Assets.xcassets */; };
+		66108D60296B56AF00791A7A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66108D5F296B56AF00791A7A /* WidgetKit.framework */; };
+		66108D62296B56AF00791A7A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66108D61296B56AF00791A7A /* SwiftUI.framework */; };
+		66108D65296B56AF00791A7A /* ESComplications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D64296B56AF00791A7A /* ESComplications.swift */; };
+		66108D67296B56B000791A7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D66296B56B000791A7A /* Assets.xcassets */; };
+		66108D6B296B56B000791A7A /* ESComplicationsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 66108D5D296B56AF00791A7A /* ESComplicationsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		66108D79296B572F00791A7A /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D77296B572F00791A7A /* ModelStore.swift */; };
+		66108D7A296B572F00791A7A /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D77296B572F00791A7A /* ModelStore.swift */; };
+		66108D7B296B572F00791A7A /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D78296B572F00791A7A /* AppGroup.swift */; };
+		66108D7C296B572F00791A7A /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D78296B572F00791A7A /* AppGroup.swift */; };
+		66108D7E296B576000791A7A /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D7D296B576000791A7A /* UnitTests.swift */; };
+		66108D81296B577700791A7A /* UILaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D7F296B577700791A7A /* UILaunchTests.swift */; };
+		66108D82296B577700791A7A /* EndToEndUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D80296B577700791A7A /* EndToEndUITests.swift */; };
+		66108D87296B579800791A7A /* TitledTabViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D86296B579800791A7A /* TitledTabViews.swift */; };
+		66108D95296B58A800791A7A /* PorscheConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 66108D94296B58A800791A7A /* PorscheConnect */; };
+		66108D99296B58AE00791A7A /* PorscheConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 66108D98296B58AE00791A7A /* PorscheConnect */; };
+		66108D9A296B58CF00791A7A /* VehicleChargeTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D88296B57CB00791A7A /* VehicleChargeTimelineProvider.swift */; };
+		66108D9B296B58DB00791A7A /* GaugeComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D8A296B57CB00791A7A /* GaugeComplicationView.swift */; };
+		66108DA5296B58EE00791A7A /* Status+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D9F296B58EE00791A7A /* Status+Helpers.swift */; };
+		66108DA6296B58EE00791A7A /* Vehicle+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DA0296B58EE00791A7A /* Vehicle+SwiftUI.swift */; };
+		66108DA7296B58EE00791A7A /* Vehicle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DA1296B58EE00791A7A /* Vehicle+Helpers.swift */; };
+		66108DA8296B58EE00791A7A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DA3296B58EE00791A7A /* LoginView.swift */; };
+		66108DB0296B58F700791A7A /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAA296B58F700791A7A /* VehicleView.swift */; };
+		66108DB1296B58F700791A7A /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAB296B58F700791A7A /* GarageView.swift */; };
+		66108DB2296B58F700791A7A /* VehiclesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAC296B58F700791A7A /* VehiclesTabView.swift */; };
+		66108DB3296B58F700791A7A /* VehicleLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAD296B58F700791A7A /* VehicleLocationView.swift */; };
+		66108DB4296B58F700791A7A /* VehicleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAE296B58F700791A7A /* VehicleDetailsView.swift */; };
+		66108DB5296B58F700791A7A /* VehicleStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAF296B58F700791A7A /* VehicleStatusView.swift */; };
+		66108DB8296B590F00791A7A /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 66108DB7296B590F00791A7A /* CachedAsyncImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		663AA29C2969493A00F0FCBC /* PBXContainerItemProxy */ = {
+		66108D28296B569000791A7A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 66D181D62969151500F0B830 /* Project object */;
+			containerPortal = 66108D1A296B569000791A7A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 663AA28D2969493900F0FCBC;
+			remoteGlobalIDString = 66108D25296B569000791A7A;
+			remoteInfo = "ElectricSidecar Watch App";
+		};
+		66108D39296B569100791A7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66108D1A296B569000791A7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66108D25296B569000791A7A;
+			remoteInfo = "ElectricSidecar Watch App";
+		};
+		66108D43296B569100791A7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66108D1A296B569000791A7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66108D25296B569000791A7A;
+			remoteInfo = "ElectricSidecar Watch App";
+		};
+		66108D69296B56B000791A7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66108D1A296B569000791A7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66108D5C296B56AF00791A7A;
 			remoteInfo = ESComplicationsExtension;
-		};
-		66D181EF2969151600F0B830 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66D181D62969151500F0B830 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66D181DD2969151500F0B830;
-			remoteInfo = "ElectricSidecar Watch App";
-		};
-		66D181F92969151600F0B830 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66D181D62969151500F0B830 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66D181DD2969151500F0B830;
-			remoteInfo = "ElectricSidecar Watch App";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		663AA2A22969493A00F0FCBC /* Embed Foundation Extensions */ = {
+		66108D4F296B569100791A7A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				66108D27296B569000791A7A /* ElectricSidecar.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66108D6F296B56B000791A7A /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				663AA29E2969493A00F0FCBC /* ESComplicationsExtension.appex in Embed Foundation Extensions */,
+				66108D6B296B56B000791A7A /* ESComplicationsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,341 +98,364 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		663AA2742969424300F0FCBC /* Vehicle+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Helpers.swift"; sourceTree = "<group>"; };
-		663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+SwiftUI.swift"; sourceTree = "<group>"; };
-		663AA2792969428300F0FCBC /* TitledTabViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledTabViews.swift; sourceTree = "<group>"; };
-		663AA27B2969436600F0FCBC /* VehiclesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesTabView.swift; sourceTree = "<group>"; };
-		663AA27D296943C900F0FCBC /* Status+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Status+Helpers.swift"; sourceTree = "<group>"; };
-		663AA27F296943E400F0FCBC /* VehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
-		663AA2812969440500F0FCBC /* VehicleLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleLocationView.swift; sourceTree = "<group>"; };
-		663AA2832969475100F0FCBC /* VehicleDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailsView.swift; sourceTree = "<group>"; };
-		663AA2862969477500F0FCBC /* GaugeComplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeComplicationView.swift; sourceTree = "<group>"; };
-		663AA2882969479700F0FCBC /* VehicleStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusView.swift; sourceTree = "<group>"; };
-		663AA28E2969493900F0FCBC /* ESComplicationsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ESComplicationsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		663AA28F2969493900F0FCBC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		663AA2912969493900F0FCBC /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		663AA2942969493900F0FCBC /* ESComplications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESComplications.swift; sourceTree = "<group>"; };
-		663AA2972969493A00F0FCBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		663AA2992969493A00F0FCBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		663AA2A3296952E800F0FCBC /* VehicleChargeTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleChargeTimelineProvider.swift; sourceTree = "<group>"; };
-		663AA2BA2969568A00F0FCBC /* ElectricSidecar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ElectricSidecar.entitlements; sourceTree = "<group>"; };
-		663AA2BB296956E600F0FCBC /* ESComplicationsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ESComplicationsExtension.entitlements; sourceTree = "<group>"; };
-		663AA2BD2969579100F0FCBC /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
-		66B3DAF929693B8F00BCA958 /* GarageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
-		66B3DAFB29693BC500BCA958 /* ModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStore.swift; sourceTree = "<group>"; };
-		66D181DE2969151500F0B830 /* ElectricSidecar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecar.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		66D181E12969151500F0B830 /* ElectricSidecarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricSidecarApp.swift; sourceTree = "<group>"; };
-		66D181E52969151600F0B830 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		66D181E82969151600F0B830 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		66D181EE2969151600F0B830 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66D181F22969151600F0B830 /* UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
-		66D181F82969151600F0B830 /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66D181FC2969151600F0B830 /* EndToEndUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndToEndUITests.swift; sourceTree = "<group>"; };
-		66D181FE2969151600F0B830 /* UILaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILaunchTests.swift; sourceTree = "<group>"; };
-		66D1820C2969254F00F0B830 /* PorscheConnect */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PorscheConnect; path = ../third_party/PorscheConnect; sourceTree = "<group>"; };
-		66D182132969279000F0B830 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		66108D20296B569000791A7A /* ElectricSidecarHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecarHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66108D26296B569000791A7A /* ElectricSidecar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66108D2B296B569000791A7A /* ElectricSidecarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricSidecarApp.swift; sourceTree = "<group>"; };
+		66108D2F296B569100791A7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		66108D32296B569100791A7A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		66108D38296B569100791A7A /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66108D42296B569100791A7A /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66108D5D296B56AF00791A7A /* ESComplicationsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ESComplicationsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		66108D5F296B56AF00791A7A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		66108D61296B56AF00791A7A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		66108D64296B56AF00791A7A /* ESComplications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESComplications.swift; sourceTree = "<group>"; };
+		66108D66296B56B000791A7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		66108D68296B56B000791A7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66108D77296B572F00791A7A /* ModelStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelStore.swift; sourceTree = "<group>"; };
+		66108D78296B572F00791A7A /* AppGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		66108D7D296B576000791A7A /* UnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
+		66108D7F296B577700791A7A /* UILaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILaunchTests.swift; sourceTree = "<group>"; };
+		66108D80296B577700791A7A /* EndToEndUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndToEndUITests.swift; sourceTree = "<group>"; };
+		66108D86296B579800791A7A /* TitledTabViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitledTabViews.swift; sourceTree = "<group>"; };
+		66108D88296B57CB00791A7A /* VehicleChargeTimelineProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleChargeTimelineProvider.swift; sourceTree = "<group>"; };
+		66108D8A296B57CB00791A7A /* GaugeComplicationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeComplicationView.swift; sourceTree = "<group>"; };
+		66108D8E296B57F800791A7A /* PorscheConnect */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PorscheConnect; path = ../third_party/PorscheConnect; sourceTree = "<group>"; };
+		66108D8F296B584E00791A7A /* ElectricSidecar.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ElectricSidecar.entitlements; sourceTree = "<group>"; };
+		66108D90296B585800791A7A /* ESComplicationsExtension.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ESComplicationsExtension.entitlements; sourceTree = "<group>"; };
+		66108D9F296B58EE00791A7A /* Status+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+Helpers.swift"; sourceTree = "<group>"; };
+		66108DA0296B58EE00791A7A /* Vehicle+SwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vehicle+SwiftUI.swift"; sourceTree = "<group>"; };
+		66108DA1296B58EE00791A7A /* Vehicle+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vehicle+Helpers.swift"; sourceTree = "<group>"; };
+		66108DA3296B58EE00791A7A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		66108DAA296B58F700791A7A /* VehicleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
+		66108DAB296B58F700791A7A /* GarageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
+		66108DAC296B58F700791A7A /* VehiclesTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehiclesTabView.swift; sourceTree = "<group>"; };
+		66108DAD296B58F700791A7A /* VehicleLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocationView.swift; sourceTree = "<group>"; };
+		66108DAE296B58F700791A7A /* VehicleDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleDetailsView.swift; sourceTree = "<group>"; };
+		66108DAF296B58F700791A7A /* VehicleStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleStatusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		663AA28B2969493900F0FCBC /* Frameworks */ = {
+		66108D23296B569000791A7A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				663AA2922969493900F0FCBC /* SwiftUI.framework in Frameworks */,
-				663AA2C529695A2000F0FCBC /* PorscheConnect in Frameworks */,
-				663AA2902969493900F0FCBC /* WidgetKit.framework in Frameworks */,
+				66108D95296B58A800791A7A /* PorscheConnect in Frameworks */,
+				66108DB8296B590F00791A7A /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66D181DB2969151500F0B830 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66D182112969256400F0B830 /* PorscheConnect in Frameworks */,
-				66B3DAFF29693FC900BCA958 /* CachedAsyncImage in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66D181EB2969151600F0B830 /* Frameworks */ = {
+		66108D35296B569100791A7A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66D181F52969151600F0B830 /* Frameworks */ = {
+		66108D3F296B569100791A7A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66108D5A296B56AF00791A7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66108D62296B56AF00791A7A /* SwiftUI.framework in Frameworks */,
+				66108D99296B58AE00791A7A /* PorscheConnect in Frameworks */,
+				66108D60296B56AF00791A7A /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		663AA2732969423700F0FCBC /* Models */ = {
+		66108D19296B569000791A7A = {
 			isa = PBXGroup;
 			children = (
-				663AA27D296943C900F0FCBC /* Status+Helpers.swift */,
-				663AA2742969424300F0FCBC /* Vehicle+Helpers.swift */,
-				663AA2762969425900F0FCBC /* Vehicle+SwiftUI.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		663AA2782969427800F0FCBC /* Playgrounds */ = {
-			isa = PBXGroup;
-			children = (
-				663AA2792969428300F0FCBC /* TitledTabViews.swift */,
-			);
-			path = Playgrounds;
-			sourceTree = "<group>";
-		};
-		663AA2932969493900F0FCBC /* ESComplications */ = {
-			isa = PBXGroup;
-			children = (
-				663AA2BB296956E600F0FCBC /* ESComplicationsExtension.entitlements */,
-				663AA2C0296957B100F0FCBC /* Views */,
-				663AA2942969493900F0FCBC /* ESComplications.swift */,
-				663AA2A3296952E800F0FCBC /* VehicleChargeTimelineProvider.swift */,
-				663AA2972969493A00F0FCBC /* Assets.xcassets */,
-				663AA2992969493A00F0FCBC /* Info.plist */,
-			);
-			path = ESComplications;
-			sourceTree = "<group>";
-		};
-		663AA2BC2969577700F0FCBC /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				663AA2BD2969579100F0FCBC /* AppGroup.swift */,
-				66B3DAFB29693BC500BCA958 /* ModelStore.swift */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		663AA2C0296957B100F0FCBC /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				663AA2862969477500F0FCBC /* GaugeComplicationView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		66B3DAF829693B6700BCA958 /* VehicleList */ = {
-			isa = PBXGroup;
-			children = (
-				66B3DAF929693B8F00BCA958 /* GarageView.swift */,
-				663AA27B2969436600F0FCBC /* VehiclesTabView.swift */,
-				663AA2832969475100F0FCBC /* VehicleDetailsView.swift */,
-				663AA2812969440500F0FCBC /* VehicleLocationView.swift */,
-				663AA2882969479700F0FCBC /* VehicleStatusView.swift */,
-				663AA27F296943E400F0FCBC /* VehicleView.swift */,
-			);
-			path = VehicleList;
-			sourceTree = "<group>";
-		};
-		66D181D52969151500F0B830 = {
-			isa = PBXGroup;
-			children = (
-				663AA2BC2969577700F0FCBC /* Shared */,
-				66D181E02969151500F0B830 /* ElectricSidecar */,
-				663AA2932969493900F0FCBC /* ESComplications */,
-				66D181F12969151600F0B830 /* UnitTests */,
-				66D181FB2969151600F0B830 /* UITests */,
-				663AA2782969427800F0FCBC /* Playgrounds */,
-				66D1820B2969254F00F0B830 /* Packages */,
-				66D181DF2969151500F0B830 /* Products */,
-				66D1820F2969256400F0B830 /* Frameworks */,
+				66108D8D296B57F800791A7A /* Packages */,
+				66108D76296B570C00791A7A /* Shared */,
+				66108D2A296B569000791A7A /* ElectricSidecar */,
+				66108D63296B56AF00791A7A /* ESComplications */,
+				66108D85296B579800791A7A /* Playgrounds */,
+				66108D3B296B569100791A7A /* UnitTests */,
+				66108D45296B569100791A7A /* UITests */,
+				66108D5E296B56AF00791A7A /* Frameworks */,
+				66108D21296B569000791A7A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		66D181DF2969151500F0B830 /* Products */ = {
+		66108D21296B569000791A7A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66D181DE2969151500F0B830 /* ElectricSidecar.app */,
-				66D181EE2969151600F0B830 /* UnitTests.xctest */,
-				66D181F82969151600F0B830 /* UITests.xctest */,
-				663AA28E2969493900F0FCBC /* ESComplicationsExtension.appex */,
+				66108D20296B569000791A7A /* ElectricSidecarHost.app */,
+				66108D26296B569000791A7A /* ElectricSidecar.app */,
+				66108D38296B569100791A7A /* UnitTests.xctest */,
+				66108D42296B569100791A7A /* UITests.xctest */,
+				66108D5D296B56AF00791A7A /* ESComplicationsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		66D181E02969151500F0B830 /* ElectricSidecar */ = {
+		66108D2A296B569000791A7A /* ElectricSidecar */ = {
 			isa = PBXGroup;
 			children = (
-				663AA2BA2969568A00F0FCBC /* ElectricSidecar.entitlements */,
-				663AA2732969423700F0FCBC /* Models */,
-				66D182122969278400F0B830 /* AuthFlow */,
-				66B3DAF829693B6700BCA958 /* VehicleList */,
-				66D181E12969151500F0B830 /* ElectricSidecarApp.swift */,
-				66D181E52969151600F0B830 /* Assets.xcassets */,
-				66D181E72969151600F0B830 /* Preview Content */,
+				66108DA2296B58EE00791A7A /* AuthFlow */,
+				66108D9E296B58EE00791A7A /* Models */,
+				66108DA9296B58F700791A7A /* VehicleList */,
+				66108D8F296B584E00791A7A /* ElectricSidecar.entitlements */,
+				66108D2B296B569000791A7A /* ElectricSidecarApp.swift */,
+				66108D2F296B569100791A7A /* Assets.xcassets */,
+				66108D31296B569100791A7A /* Preview Content */,
 			);
 			path = ElectricSidecar;
 			sourceTree = "<group>";
 		};
-		66D181E72969151600F0B830 /* Preview Content */ = {
+		66108D31296B569100791A7A /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				66D181E82969151600F0B830 /* Preview Assets.xcassets */,
+				66108D32296B569100791A7A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		66D181F12969151600F0B830 /* UnitTests */ = {
+		66108D3B296B569100791A7A /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				66D181F22969151600F0B830 /* UnitTests.swift */,
+				66108D7D296B576000791A7A /* UnitTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
 		};
-		66D181FB2969151600F0B830 /* UITests */ = {
+		66108D45296B569100791A7A /* UITests */ = {
 			isa = PBXGroup;
 			children = (
-				66D181FC2969151600F0B830 /* EndToEndUITests.swift */,
-				66D181FE2969151600F0B830 /* UILaunchTests.swift */,
+				66108D80296B577700791A7A /* EndToEndUITests.swift */,
+				66108D7F296B577700791A7A /* UILaunchTests.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
 		};
-		66D1820B2969254F00F0B830 /* Packages */ = {
+		66108D5E296B56AF00791A7A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				66D1820C2969254F00F0B830 /* PorscheConnect */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
-		66D1820F2969256400F0B830 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				663AA28F2969493900F0FCBC /* WidgetKit.framework */,
-				663AA2912969493900F0FCBC /* SwiftUI.framework */,
+				66108D5F296B56AF00791A7A /* WidgetKit.framework */,
+				66108D61296B56AF00791A7A /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		66D182122969278400F0B830 /* AuthFlow */ = {
+		66108D63296B56AF00791A7A /* ESComplications */ = {
 			isa = PBXGroup;
 			children = (
-				66D182132969279000F0B830 /* LoginView.swift */,
+				66108D90296B585800791A7A /* ESComplicationsExtension.entitlements */,
+				66108D89296B57CB00791A7A /* Views */,
+				66108D64296B56AF00791A7A /* ESComplications.swift */,
+				66108D88296B57CB00791A7A /* VehicleChargeTimelineProvider.swift */,
+				66108D66296B56B000791A7A /* Assets.xcassets */,
+				66108D68296B56B000791A7A /* Info.plist */,
+			);
+			path = ESComplications;
+			sourceTree = "<group>";
+		};
+		66108D76296B570C00791A7A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				66108D78296B572F00791A7A /* AppGroup.swift */,
+				66108D77296B572F00791A7A /* ModelStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		66108D85296B579800791A7A /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				66108D86296B579800791A7A /* TitledTabViews.swift */,
+			);
+			path = Playgrounds;
+			sourceTree = "<group>";
+		};
+		66108D89296B57CB00791A7A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				66108D8A296B57CB00791A7A /* GaugeComplicationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		66108D8D296B57F800791A7A /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				66108D8E296B57F800791A7A /* PorscheConnect */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		66108D9E296B58EE00791A7A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				66108D9F296B58EE00791A7A /* Status+Helpers.swift */,
+				66108DA0296B58EE00791A7A /* Vehicle+SwiftUI.swift */,
+				66108DA1296B58EE00791A7A /* Vehicle+Helpers.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66108DA2296B58EE00791A7A /* AuthFlow */ = {
+			isa = PBXGroup;
+			children = (
+				66108DA3296B58EE00791A7A /* LoginView.swift */,
 			);
 			path = AuthFlow;
+			sourceTree = "<group>";
+		};
+		66108DA9296B58F700791A7A /* VehicleList */ = {
+			isa = PBXGroup;
+			children = (
+				66108DAA296B58F700791A7A /* VehicleView.swift */,
+				66108DAB296B58F700791A7A /* GarageView.swift */,
+				66108DAC296B58F700791A7A /* VehiclesTabView.swift */,
+				66108DAD296B58F700791A7A /* VehicleLocationView.swift */,
+				66108DAE296B58F700791A7A /* VehicleDetailsView.swift */,
+				66108DAF296B58F700791A7A /* VehicleStatusView.swift */,
+			);
+			path = VehicleList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		663AA28D2969493900F0FCBC /* ESComplicationsExtension */ = {
+		66108D1F296B569000791A7A /* ElectricSidecarHost */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 663AA29F2969493A00F0FCBC /* Build configuration list for PBXNativeTarget "ESComplicationsExtension" */;
+			buildConfigurationList = 66108D50296B569100791A7A /* Build configuration list for PBXNativeTarget "ElectricSidecarHost" */;
 			buildPhases = (
-				663AA28A2969493900F0FCBC /* Sources */,
-				663AA28B2969493900F0FCBC /* Frameworks */,
-				663AA28C2969493900F0FCBC /* Resources */,
+				66108D1E296B569000791A7A /* Resources */,
+				66108D4F296B569100791A7A /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				663AA2C329695A1C00F0FCBC /* PBXTargetDependency */,
+				66108D29296B569000791A7A /* PBXTargetDependency */,
 			);
-			name = ESComplicationsExtension;
-			packageProductDependencies = (
-				663AA2C429695A2000F0FCBC /* PorscheConnect */,
-			);
-			productName = ESComplicationsExtension;
-			productReference = 663AA28E2969493900F0FCBC /* ESComplicationsExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
+			name = ElectricSidecarHost;
+			productName = ElectricSidecar;
+			productReference = 66108D20296B569000791A7A /* ElectricSidecarHost.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
 		};
-		66D181DD2969151500F0B830 /* ElectricSidecar */ = {
+		66108D25296B569000791A7A /* ElectricSidecar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66D182022969151600F0B830 /* Build configuration list for PBXNativeTarget "ElectricSidecar" */;
+			buildConfigurationList = 66108D4C296B569100791A7A /* Build configuration list for PBXNativeTarget "ElectricSidecar" */;
 			buildPhases = (
-				66D181DA2969151500F0B830 /* Sources */,
-				66D181DB2969151500F0B830 /* Frameworks */,
-				66D181DC2969151500F0B830 /* Resources */,
-				663AA2A22969493A00F0FCBC /* Embed Foundation Extensions */,
+				66108D22296B569000791A7A /* Sources */,
+				66108D23296B569000791A7A /* Frameworks */,
+				66108D24296B569000791A7A /* Resources */,
+				66108D6F296B56B000791A7A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				66B3DB0129693FD100BCA958 /* PBXTargetDependency */,
-				66D1820E2969256000F0B830 /* PBXTargetDependency */,
-				663AA29D2969493A00F0FCBC /* PBXTargetDependency */,
+				66108DBA296B591900791A7A /* PBXTargetDependency */,
+				66108D93296B58A400791A7A /* PBXTargetDependency */,
+				66108D6A296B56B000791A7A /* PBXTargetDependency */,
 			);
 			name = ElectricSidecar;
 			packageProductDependencies = (
-				66D182102969256400F0B830 /* PorscheConnect */,
-				66B3DAFE29693FC900BCA958 /* CachedAsyncImage */,
+				66108D94296B58A800791A7A /* PorscheConnect */,
+				66108DB7296B590F00791A7A /* CachedAsyncImage */,
 			);
 			productName = "ElectricSidecar Watch App";
-			productReference = 66D181DE2969151500F0B830 /* ElectricSidecar.app */;
+			productReference = 66108D26296B569000791A7A /* ElectricSidecar.app */;
 			productType = "com.apple.product-type.application";
 		};
-		66D181ED2969151600F0B830 /* UnitTests */ = {
+		66108D37296B569100791A7A /* UnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66D182052969151600F0B830 /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildConfigurationList = 66108D53296B569100791A7A /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
-				66D181EA2969151600F0B830 /* Sources */,
-				66D181EB2969151600F0B830 /* Frameworks */,
-				66D181EC2969151600F0B830 /* Resources */,
+				66108D34296B569100791A7A /* Sources */,
+				66108D35296B569100791A7A /* Frameworks */,
+				66108D36296B569100791A7A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				66D181F02969151600F0B830 /* PBXTargetDependency */,
+				66108D3A296B569100791A7A /* PBXTargetDependency */,
 			);
 			name = UnitTests;
 			productName = "ElectricSidecar Watch AppTests";
-			productReference = 66D181EE2969151600F0B830 /* UnitTests.xctest */;
+			productReference = 66108D38296B569100791A7A /* UnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		66D181F72969151600F0B830 /* UITests */ = {
+		66108D41296B569100791A7A /* UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66D182082969151600F0B830 /* Build configuration list for PBXNativeTarget "UITests" */;
+			buildConfigurationList = 66108D56296B569100791A7A /* Build configuration list for PBXNativeTarget "UITests" */;
 			buildPhases = (
-				66D181F42969151600F0B830 /* Sources */,
-				66D181F52969151600F0B830 /* Frameworks */,
-				66D181F62969151600F0B830 /* Resources */,
+				66108D3E296B569100791A7A /* Sources */,
+				66108D3F296B569100791A7A /* Frameworks */,
+				66108D40296B569100791A7A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				66D181FA2969151600F0B830 /* PBXTargetDependency */,
+				66108D44296B569100791A7A /* PBXTargetDependency */,
 			);
 			name = UITests;
 			productName = "ElectricSidecar Watch AppUITests";
-			productReference = 66D181F82969151600F0B830 /* UITests.xctest */;
+			productReference = 66108D42296B569100791A7A /* UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		66108D5C296B56AF00791A7A /* ESComplicationsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66108D6C296B56B000791A7A /* Build configuration list for PBXNativeTarget "ESComplicationsExtension" */;
+			buildPhases = (
+				66108D59296B56AF00791A7A /* Sources */,
+				66108D5A296B56AF00791A7A /* Frameworks */,
+				66108D5B296B56AF00791A7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66108D97296B58AB00791A7A /* PBXTargetDependency */,
+			);
+			name = ESComplicationsExtension;
+			packageProductDependencies = (
+				66108D98296B58AE00791A7A /* PorscheConnect */,
+			);
+			productName = ESComplicationsExtension;
+			productReference = 66108D5D296B56AF00791A7A /* ESComplicationsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		66D181D62969151500F0B830 /* Project object */ = {
+		66108D1A296B569000791A7A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					663AA28D2969493900F0FCBC = {
+					66108D1F296B569000791A7A = {
 						CreatedOnToolsVersion = 14.2;
 					};
-					66D181DD2969151500F0B830 = {
+					66108D25296B569000791A7A = {
 						CreatedOnToolsVersion = 14.2;
 					};
-					66D181ED2969151600F0B830 = {
+					66108D37296B569100791A7A = {
 						CreatedOnToolsVersion = 14.2;
-						TestTargetID = 66D181DD2969151500F0B830;
+						TestTargetID = 66108D25296B569000791A7A;
 					};
-					66D181F72969151600F0B830 = {
+					66108D41296B569100791A7A = {
 						CreatedOnToolsVersion = 14.2;
-						TestTargetID = 66D181DD2969151500F0B830;
+						LastSwiftMigration = 1420;
+						TestTargetID = 66108D25296B569000791A7A;
+					};
+					66108D5C296B56AF00791A7A = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
-			buildConfigurationList = 66D181D92969151500F0B830 /* Build configuration list for PBXProject "ElectricSidecar" */;
+			buildConfigurationList = 66108D1D296B569000791A7A /* Build configuration list for PBXProject "ElectricSidecar" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -421,202 +463,154 @@
 				en,
 				Base,
 			);
-			mainGroup = 66D181D52969151500F0B830;
+			mainGroup = 66108D19296B569000791A7A;
 			packageReferences = (
-				66B3DAFD29693FC900BCA958 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+				66108DB6296B590F00791A7A /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 			);
-			productRefGroup = 66D181DF2969151500F0B830 /* Products */;
+			productRefGroup = 66108D21296B569000791A7A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				66D181DD2969151500F0B830 /* ElectricSidecar */,
-				663AA28D2969493900F0FCBC /* ESComplicationsExtension */,
-				66D181ED2969151600F0B830 /* UnitTests */,
-				66D181F72969151600F0B830 /* UITests */,
+				66108D1F296B569000791A7A /* ElectricSidecarHost */,
+				66108D25296B569000791A7A /* ElectricSidecar */,
+				66108D5C296B56AF00791A7A /* ESComplicationsExtension */,
+				66108D37296B569100791A7A /* UnitTests */,
+				66108D41296B569100791A7A /* UITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		663AA28C2969493900F0FCBC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				663AA2982969493A00F0FCBC /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66D181DC2969151500F0B830 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66D181E92969151600F0B830 /* Preview Assets.xcassets in Resources */,
-				66D181E62969151600F0B830 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66D181EC2969151600F0B830 /* Resources */ = {
+		66108D1E296B569000791A7A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66D181F62969151600F0B830 /* Resources */ = {
+		66108D24296B569000791A7A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66108D33296B569100791A7A /* Preview Assets.xcassets in Resources */,
+				66108D30296B569100791A7A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66108D36296B569100791A7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66108D40296B569100791A7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66108D5B296B56AF00791A7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66108D67296B56B000791A7A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		663AA28A2969493900F0FCBC /* Sources */ = {
+		66108D22296B569000791A7A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				663AA2A4296952E800F0FCBC /* VehicleChargeTimelineProvider.swift in Sources */,
-				663AA2C129695A0000F0FCBC /* ModelStore.swift in Sources */,
-				663AA2952969493900F0FCBC /* ESComplications.swift in Sources */,
-				663AA2B92969551100F0FCBC /* GaugeComplicationView.swift in Sources */,
-				663AA2BF2969579100F0FCBC /* AppGroup.swift in Sources */,
+				66108DA6296B58EE00791A7A /* Vehicle+SwiftUI.swift in Sources */,
+				66108DB0296B58F700791A7A /* VehicleView.swift in Sources */,
+				66108D2C296B569000791A7A /* ElectricSidecarApp.swift in Sources */,
+				66108D7B296B572F00791A7A /* AppGroup.swift in Sources */,
+				66108DB3296B58F700791A7A /* VehicleLocationView.swift in Sources */,
+				66108D87296B579800791A7A /* TitledTabViews.swift in Sources */,
+				66108DB1296B58F700791A7A /* GarageView.swift in Sources */,
+				66108DA7296B58EE00791A7A /* Vehicle+Helpers.swift in Sources */,
+				66108D79296B572F00791A7A /* ModelStore.swift in Sources */,
+				66108DB5296B58F700791A7A /* VehicleStatusView.swift in Sources */,
+				66108DA8296B58EE00791A7A /* LoginView.swift in Sources */,
+				66108DB4296B58F700791A7A /* VehicleDetailsView.swift in Sources */,
+				66108DB2296B58F700791A7A /* VehiclesTabView.swift in Sources */,
+				66108DA5296B58EE00791A7A /* Status+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66D181DA2969151500F0B830 /* Sources */ = {
+		66108D34296B569100791A7A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				663AA27C2969436600F0FCBC /* VehiclesTabView.swift in Sources */,
-				663AA2892969479700F0FCBC /* VehicleStatusView.swift in Sources */,
-				66B3DAFA29693B8F00BCA958 /* GarageView.swift in Sources */,
-				66B3DAFC29693BC500BCA958 /* ModelStore.swift in Sources */,
-				663AA280296943E400F0FCBC /* VehicleView.swift in Sources */,
-				663AA2822969440500F0FCBC /* VehicleLocationView.swift in Sources */,
-				663AA27A2969429500F0FCBC /* TitledTabViews.swift in Sources */,
-				66D182142969279000F0B830 /* LoginView.swift in Sources */,
-				663AA2752969424300F0FCBC /* Vehicle+Helpers.swift in Sources */,
-				663AA2BE2969579100F0FCBC /* AppGroup.swift in Sources */,
-				663AA2772969425900F0FCBC /* Vehicle+SwiftUI.swift in Sources */,
-				663AA2842969475100F0FCBC /* VehicleDetailsView.swift in Sources */,
-				66D181E22969151500F0B830 /* ElectricSidecarApp.swift in Sources */,
-				663AA27E296943C900F0FCBC /* Status+Helpers.swift in Sources */,
+				66108D7E296B576000791A7A /* UnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66D181EA2969151600F0B830 /* Sources */ = {
+		66108D3E296B569100791A7A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66D181F32969151600F0B830 /* UnitTests.swift in Sources */,
+				66108D82296B577700791A7A /* EndToEndUITests.swift in Sources */,
+				66108D81296B577700791A7A /* UILaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66D181F42969151600F0B830 /* Sources */ = {
+		66108D59296B56AF00791A7A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66D181FD2969151600F0B830 /* EndToEndUITests.swift in Sources */,
-				66D181FF2969151600F0B830 /* UILaunchTests.swift in Sources */,
+				66108D9B296B58DB00791A7A /* GaugeComplicationView.swift in Sources */,
+				66108D65296B56AF00791A7A /* ESComplications.swift in Sources */,
+				66108D7C296B572F00791A7A /* AppGroup.swift in Sources */,
+				66108D9A296B58CF00791A7A /* VehicleChargeTimelineProvider.swift in Sources */,
+				66108D7A296B572F00791A7A /* ModelStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		663AA29D2969493A00F0FCBC /* PBXTargetDependency */ = {
+		66108D29296B569000791A7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 663AA28D2969493900F0FCBC /* ESComplicationsExtension */;
-			targetProxy = 663AA29C2969493A00F0FCBC /* PBXContainerItemProxy */;
+			target = 66108D25296B569000791A7A /* ElectricSidecar */;
+			targetProxy = 66108D28296B569000791A7A /* PBXContainerItemProxy */;
 		};
-		663AA2C329695A1C00F0FCBC /* PBXTargetDependency */ = {
+		66108D3A296B569100791A7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 663AA2C229695A1C00F0FCBC /* PorscheConnect */;
+			target = 66108D25296B569000791A7A /* ElectricSidecar */;
+			targetProxy = 66108D39296B569100791A7A /* PBXContainerItemProxy */;
 		};
-		66B3DB0129693FD100BCA958 /* PBXTargetDependency */ = {
+		66108D44296B569100791A7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 66B3DB0029693FD100BCA958 /* CachedAsyncImage */;
+			target = 66108D25296B569000791A7A /* ElectricSidecar */;
+			targetProxy = 66108D43296B569100791A7A /* PBXContainerItemProxy */;
 		};
-		66D181F02969151600F0B830 /* PBXTargetDependency */ = {
+		66108D6A296B56B000791A7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66D181DD2969151500F0B830 /* ElectricSidecar */;
-			targetProxy = 66D181EF2969151600F0B830 /* PBXContainerItemProxy */;
+			target = 66108D5C296B56AF00791A7A /* ESComplicationsExtension */;
+			targetProxy = 66108D69296B56B000791A7A /* PBXContainerItemProxy */;
 		};
-		66D181FA2969151600F0B830 /* PBXTargetDependency */ = {
+		66108D93296B58A400791A7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66D181DD2969151500F0B830 /* ElectricSidecar */;
-			targetProxy = 66D181F92969151600F0B830 /* PBXContainerItemProxy */;
+			productRef = 66108D92296B58A400791A7A /* PorscheConnect */;
 		};
-		66D1820E2969256000F0B830 /* PBXTargetDependency */ = {
+		66108D97296B58AB00791A7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 66D1820D2969256000F0B830 /* PorscheConnect */;
+			productRef = 66108D96296B58AB00791A7A /* PorscheConnect */;
+		};
+		66108DBA296B591900791A7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 66108DB9296B591900791A7A /* CachedAsyncImage */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		663AA2A02969493A00F0FCBC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = ESComplications/ESComplicationsExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZGWD8QJUPK;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ESComplications/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ESComplications;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.porsche.electricsidecar.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-			};
-			name = Debug;
-		};
-		663AA2A12969493A00F0FCBC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = ESComplications/ESComplicationsExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZGWD8QJUPK;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ESComplications/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ESComplications;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.porsche.electricsidecar.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		66D182002969151600F0B830 /* Debug */ = {
+		66108D4A296B569100791A7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -671,11 +665,10 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Debug;
 		};
-		66D182012969151600F0B830 /* Release */ = {
+		66108D4B296B569100791A7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -723,19 +716,16 @@
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
-		66D182032969151600F0B830 /* Debug */ = {
+		66108D4D296B569100791A7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = ElectricSidecar/ElectricSidecar.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ElectricSidecar/Preview Content\"";
@@ -744,17 +734,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.porsche.electricsidecar.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -762,15 +751,13 @@
 			};
 			name = Debug;
 		};
-		66D182042969151600F0B830 /* Release */ = {
+		66108D4E296B569100791A7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = ElectricSidecar/ElectricSidecar.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ElectricSidecar/Preview Content\"";
@@ -779,17 +766,16 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.porsche.electricsidecar.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -798,81 +784,190 @@
 			};
 			name = Release;
 		};
-		66D182062969151600F0B830 /* Debug */ = {
+		66108D51296B569100791A7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		66108D52296B569100791A7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66108D54296B569100791A7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.porsche.ElectricSidecar-Watch-AppTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.featherless.ElectricSidecar-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ElectricSidecar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ElectricSidecar";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ElectricSidecar Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ElectricSidecar Watch App";
 				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Debug;
 		};
-		66D182072969151600F0B830 /* Release */ = {
+		66108D55296B569100791A7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.porsche.ElectricSidecar-Watch-AppTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.featherless.ElectricSidecar-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ElectricSidecar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ElectricSidecar";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ElectricSidecar Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ElectricSidecar Watch App";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
-		66D182092969151600F0B830 /* Debug */ = {
+		66108D57296B569100791A7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.porsche.ElectricSidecar-Watch-AppUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.featherless.ElectricSidecar-Watch-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = ElectricSidecar;
+				TEST_TARGET_NAME = "ElectricSidecar Watch App";
 				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Debug;
 		};
-		66D1820A2969151600F0B830 /* Release */ = {
+		66108D58296B569100791A7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.porsche.ElectricSidecar-Watch-AppUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.featherless.ElectricSidecar-Watch-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = ElectricSidecar;
+				TEST_TARGET_NAME = "ElectricSidecar Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Release;
+		};
+		66108D6D296B56B000791A7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ESComplications/ESComplicationsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ESComplications/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ESComplications;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		66108D6E296B56B000791A7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ESComplications/ESComplicationsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ESComplications/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ESComplications;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
@@ -881,47 +976,56 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		663AA29F2969493A00F0FCBC /* Build configuration list for PBXNativeTarget "ESComplicationsExtension" */ = {
+		66108D1D296B569000791A7A /* Build configuration list for PBXProject "ElectricSidecar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				663AA2A02969493A00F0FCBC /* Debug */,
-				663AA2A12969493A00F0FCBC /* Release */,
+				66108D4A296B569100791A7A /* Debug */,
+				66108D4B296B569100791A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66D181D92969151500F0B830 /* Build configuration list for PBXProject "ElectricSidecar" */ = {
+		66108D4C296B569100791A7A /* Build configuration list for PBXNativeTarget "ElectricSidecar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66D182002969151600F0B830 /* Debug */,
-				66D182012969151600F0B830 /* Release */,
+				66108D4D296B569100791A7A /* Debug */,
+				66108D4E296B569100791A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66D182022969151600F0B830 /* Build configuration list for PBXNativeTarget "ElectricSidecar" */ = {
+		66108D50296B569100791A7A /* Build configuration list for PBXNativeTarget "ElectricSidecarHost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66D182032969151600F0B830 /* Debug */,
-				66D182042969151600F0B830 /* Release */,
+				66108D51296B569100791A7A /* Debug */,
+				66108D52296B569100791A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66D182052969151600F0B830 /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+		66108D53296B569100791A7A /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66D182062969151600F0B830 /* Debug */,
-				66D182072969151600F0B830 /* Release */,
+				66108D54296B569100791A7A /* Debug */,
+				66108D55296B569100791A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66D182082969151600F0B830 /* Build configuration list for PBXNativeTarget "UITests" */ = {
+		66108D56296B569100791A7A /* Build configuration list for PBXNativeTarget "UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66D182092969151600F0B830 /* Debug */,
-				66D1820A2969151600F0B830 /* Release */,
+				66108D57296B569100791A7A /* Debug */,
+				66108D58296B569100791A7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66108D6C296B56B000791A7A /* Build configuration list for PBXNativeTarget "ESComplicationsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66108D6D296B56B000791A7A /* Debug */,
+				66108D6E296B56B000791A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -929,7 +1033,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		66B3DAFD29693FC900BCA958 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+		66108DB6296B590F00791A7A /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
 			requirement = {
@@ -940,33 +1044,33 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		663AA2C229695A1C00F0FCBC /* PorscheConnect */ = {
+		66108D92296B58A400791A7A /* PorscheConnect */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PorscheConnect;
 		};
-		663AA2C429695A2000F0FCBC /* PorscheConnect */ = {
+		66108D94296B58A800791A7A /* PorscheConnect */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PorscheConnect;
 		};
-		66B3DAFE29693FC900BCA958 /* CachedAsyncImage */ = {
+		66108D96296B58AB00791A7A /* PorscheConnect */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 66B3DAFD29693FC900BCA958 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = PorscheConnect;
+		};
+		66108D98296B58AE00791A7A /* PorscheConnect */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PorscheConnect;
+		};
+		66108DB7296B590F00791A7A /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66108DB6296B590F00791A7A /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
 		};
-		66B3DB0029693FD100BCA958 /* CachedAsyncImage */ = {
+		66108DB9296B591900791A7A /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 66B3DAFD29693FC900BCA958 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			package = 66108DB6296B590F00791A7A /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
-		};
-		66D1820D2969256000F0B830 /* PorscheConnect */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PorscheConnect;
-		};
-		66D182102969256400F0B830 /* PorscheConnect */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PorscheConnect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 66D181D62969151500F0B830 /* Project object */;
+	rootObject = 66108D1A296B569000791A7A /* Project object */;
 }
