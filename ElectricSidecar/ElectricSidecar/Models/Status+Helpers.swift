@@ -17,7 +17,7 @@ extension Status {
   /// Returns a human-readable representation of the open/closed state of the vehicle's doors.
   var isClosed: Bool? {
     switch overallLockStatus {
-    case "CLOSED_UNLOCKED":
+    case "CLOSED_UNLOCKED", "CLOSED_LOCKED":
       return true
     default:
       return nil
