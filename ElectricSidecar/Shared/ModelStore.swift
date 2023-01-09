@@ -79,6 +79,29 @@ final class ModelStore: ObservableObject {
     return vehicles
   }
 
+  func capabilities(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Capabilities {
+    return try await get(vehicle: vehicle, cacheKey: "capabilities", ignoreCache: ignoreCache) { vehicle in
+      let response = try await porscheConnect.capabilities(vehicle: vehicle)
+      guard response.response.statusCode == 200,
+            let result = response.capabilities else {
+        fatalError()
+      }
+      return result
+    }
+  }
+
+  func emobility(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Emobility {
+    let capabilities = try await capabilities(for: vehicle, ignoreCache: ignoreCache)
+    return try await get(vehicle: vehicle, cacheKey: "emobility", ignoreCache: ignoreCache) { vehicle in
+      let response = try await porscheConnect.emobility(vehicle: vehicle, capabilities: capabilities)
+      guard response.response.statusCode == 200,
+            let result = response.emobility else {
+        fatalError()
+      }
+      return result
+    }
+  }
+
   func summary(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Summary {
     return try await get(vehicle: vehicle, cacheKey: "summary", ignoreCache: ignoreCache) { vehicle in
       let response = try await porscheConnect.summary(vehicle: vehicle)

@@ -75,12 +75,21 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
+            BlueprintIdentifier = "66108D5C296B56AF00791A7A"
+            BuildableName = "ESComplicationsExtension.appex"
+            BlueprintName = "ESComplicationsExtension"
+            ReferencedContainer = "container:ElectricSidecar.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
             BlueprintIdentifier = "66108D25296B569000791A7A"
             BuildableName = "ElectricSidecar.app"
             BlueprintName = "ElectricSidecar"
             ReferencedContainer = "container:ElectricSidecar.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"

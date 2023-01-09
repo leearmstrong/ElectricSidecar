@@ -8,7 +8,7 @@ struct VehicleStatusView: View {
   enum LoadState {
     case error(error: Error)
     case loading
-    case loaded(status: Status)
+    case loaded(status: Status, emobility: Emobility)
   }
   @State var loadState: LoadState = .loading
   @Binding var vehicle: Vehicle
@@ -20,7 +20,7 @@ struct VehicleStatusView: View {
         VStack(alignment: .leading) {
           ProgressView()
         }
-      case .loaded(let status):
+      case .loaded(let status, let emobility):
         VStack(alignment: .leading) {
           HStack {
             Text(vehicle.licensePlate ?? "\(vehicle.modelDescription) (\(vehicle.modelYear))")
@@ -35,6 +35,9 @@ struct VehicleStatusView: View {
             }
           }
           HStack(spacing: 0) {
+            if emobility.isCharging == true {
+              Text(Image(systemName: "bolt.fill"))
+            }
             Text(statusFormatter.batteryLevel(from: status))
             if let remainingRange = statusFormatter.electricalRange(from: status) {
               Text(", \(remainingRange)")
@@ -81,7 +84,9 @@ struct VehicleStatusView: View {
     }
     .task {
       do {
-        loadState = .loaded(status: try await store.status(for: vehicle))
+        let status = try await store.status(for: vehicle)
+        let emobility = try await store.emobility(for: vehicle)
+        loadState = .loaded(status: status, emobility: emobility)
       } catch {
         loadState = .error(error: error)
       }

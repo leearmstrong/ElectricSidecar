@@ -38,6 +38,7 @@
 		66108DB4296B58F700791A7A /* VehicleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAE296B58F700791A7A /* VehicleDetailsView.swift */; };
 		66108DB5296B58F700791A7A /* VehicleStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAF296B58F700791A7A /* VehicleStatusView.swift */; };
 		66108DB8296B590F00791A7A /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 66108DB7296B590F00791A7A /* CachedAsyncImage */; };
+		669BFB5F296C0942004621D9 /* Emobility+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		66108DAD296B58F700791A7A /* VehicleLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocationView.swift; sourceTree = "<group>"; };
 		66108DAE296B58F700791A7A /* VehicleDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleDetailsView.swift; sourceTree = "<group>"; };
 		66108DAF296B58F700791A7A /* VehicleStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleStatusView.swift; sourceTree = "<group>"; };
+		669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Emobility+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 		66108D9E296B58EE00791A7A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */,
 				66108D9F296B58EE00791A7A /* Status+Helpers.swift */,
 				66108DA0296B58EE00791A7A /* Vehicle+SwiftUI.swift */,
 				66108DA1296B58EE00791A7A /* Vehicle+Helpers.swift */,
@@ -551,6 +554,7 @@
 				66108DB0296B58F700791A7A /* VehicleView.swift in Sources */,
 				66108D2C296B569000791A7A /* ElectricSidecarApp.swift in Sources */,
 				66108D7B296B572F00791A7A /* AppGroup.swift in Sources */,
+				669BFB5F296C0942004621D9 /* Emobility+Helpers.swift in Sources */,
 				66108DB3296B58F700791A7A /* VehicleLocationView.swift in Sources */,
 				66108D87296B579800791A7A /* TitledTabViews.swift in Sources */,
 				66108DB1296B58F700791A7A /* GarageView.swift in Sources */,

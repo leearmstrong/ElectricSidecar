@@ -4,6 +4,7 @@ import WidgetKit
 
 private final class Storage {
   var lastKnownCharge: Double?
+  var lastKnownChargingState: String?
 }
 
 struct ChargeRemainingTimelineProvider: TimelineProvider {
@@ -36,8 +37,10 @@ struct ChargeRemainingTimelineProvider: TimelineProvider {
       let firstVehicle = vehicleList[0]
 
       let status = try await store.status(for: firstVehicle)
+      let emobility = try await store.emobility(for: firstVehicle)
 
       storage.lastKnownCharge = status.batteryLevel.value
+      storage.lastKnownChargingState = emobility.chargingStatus
 
       let entry = Entry(date: Date(), chargeRemaining: status.batteryLevel.value)
       entries.append(entry)
