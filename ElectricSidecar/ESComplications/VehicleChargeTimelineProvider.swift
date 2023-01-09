@@ -4,7 +4,7 @@ import WidgetKit
 
 private final class Storage {
   var lastKnownCharge: Double?
-  var lastKnownChargingState: String?
+  var lastKnownChargingState: Bool?
 }
 
 struct ChargeRemainingTimelineProvider: TimelineProvider {
@@ -14,15 +14,23 @@ struct ChargeRemainingTimelineProvider: TimelineProvider {
   private let storage = Storage()
 
   func placeholder(in context: Context) -> ChargeRemainingTimelineEntry {
-    Entry(date: Date(), chargeRemaining: storage.lastKnownCharge ?? 100)
+    Entry(
+      date: Date(),
+      chargeRemaining: storage.lastKnownCharge ?? 100,
+      isCharging: storage.lastKnownChargingState
+    )
   }
 
   func getSnapshot(in context: Context, completion: @escaping (Entry) -> ()) {
     if context.isPreview {
-      let entry = Entry(date: Date(), chargeRemaining: storage.lastKnownCharge ?? 100)
+      let entry = Entry(
+        date: Date(),
+        chargeRemaining: storage.lastKnownCharge ?? 100,
+        isCharging: storage.lastKnownChargingState
+      )
       completion(entry)
     } else {
-      let entry = Entry(date: Date(), chargeRemaining: 100)
+      let entry = Entry(date: Date(), chargeRemaining: 100, isCharging: false)
       completion(entry)
     }
   }
@@ -40,9 +48,13 @@ struct ChargeRemainingTimelineProvider: TimelineProvider {
       let emobility = try await store.emobility(for: firstVehicle)
 
       storage.lastKnownCharge = status.batteryLevel.value
-      storage.lastKnownChargingState = emobility.chargingStatus
+      storage.lastKnownChargingState = emobility.isCharging
 
-      let entry = Entry(date: Date(), chargeRemaining: status.batteryLevel.value)
+      let entry = Entry(
+        date: Date(),
+        chargeRemaining: status.batteryLevel.value,
+        isCharging: emobility.isCharging
+      )
       entries.append(entry)
 
       let timeline = Timeline(entries: entries, policy: .atEnd)
@@ -54,12 +66,13 @@ struct ChargeRemainingTimelineProvider: TimelineProvider {
 struct ChargeRemainingTimelineEntry: TimelineEntry {
   let date: Date
   let chargeRemaining: Double
+  let isCharging: Bool?
 }
 
 struct VehicleChargeEntryView : View {
   let entry: ChargeRemainingTimelineProvider.Entry
 
   var body: some View {
-    GaugeComplicationView(batteryLevel: entry.chargeRemaining)
+    GaugeComplicationView(batteryLevel: entry.chargeRemaining, isCharging: entry.isCharging)
   }
 }

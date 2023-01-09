@@ -24,7 +24,11 @@ struct ESComplications: Widget {
 
 struct ESComplications_Previews: PreviewProvider {
   static var previews: some View {
-    VehicleChargeEntryView(entry: ChargeRemainingTimelineEntry(date: Date(), chargeRemaining: 100))
+    VehicleChargeEntryView(entry: ChargeRemainingTimelineEntry(
+      date: Date(),
+      chargeRemaining: 100,
+      isCharging: false
+    ))
       .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
   }
 }

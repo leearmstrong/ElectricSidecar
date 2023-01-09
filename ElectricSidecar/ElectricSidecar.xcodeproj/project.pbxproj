@@ -39,6 +39,9 @@
 		66108DB5296B58F700791A7A /* VehicleStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAF296B58F700791A7A /* VehicleStatusView.swift */; };
 		66108DB8296B590F00791A7A /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 66108DB7296B590F00791A7A /* CachedAsyncImage */; };
 		669BFB5F296C0942004621D9 /* Emobility+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */; };
+		66EB7706296C0AB1008BFC27 /* Emobility+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */; };
+		66EB7707296C0AB1008BFC27 /* Status+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D9F296B58EE00791A7A /* Status+Helpers.swift */; };
+		66EB7708296C0AB1008BFC27 /* Vehicle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DA1296B58EE00791A7A /* Vehicle+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,6 +261,7 @@
 		66108D76296B570C00791A7A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				66EB7705296C0A9A008BFC27 /* PorscheConnect+Extensions */,
 				66108D78296B572F00791A7A /* AppGroup.swift */,
 				66108D77296B572F00791A7A /* ModelStore.swift */,
 			);
@@ -291,10 +295,7 @@
 		66108D9E296B58EE00791A7A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */,
-				66108D9F296B58EE00791A7A /* Status+Helpers.swift */,
 				66108DA0296B58EE00791A7A /* Vehicle+SwiftUI.swift */,
-				66108DA1296B58EE00791A7A /* Vehicle+Helpers.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -345,6 +346,16 @@
 				66108D68296B56B000791A7A /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		66EB7705296C0A9A008BFC27 /* PorscheConnect+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */,
+				66108D9F296B58EE00791A7A /* Status+Helpers.swift */,
+				66108DA1296B58EE00791A7A /* Vehicle+Helpers.swift */,
+			);
+			path = "PorscheConnect+Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -588,10 +599,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66EB7707296C0AB1008BFC27 /* Status+Helpers.swift in Sources */,
 				66108D9B296B58DB00791A7A /* GaugeComplicationView.swift in Sources */,
 				66108D65296B56AF00791A7A /* ESComplications.swift in Sources */,
 				66108D7C296B572F00791A7A /* AppGroup.swift in Sources */,
 				66108D9A296B58CF00791A7A /* VehicleChargeTimelineProvider.swift in Sources */,
+				66EB7706296C0AB1008BFC27 /* Emobility+Helpers.swift in Sources */,
+				66EB7708296C0AB1008BFC27 /* Vehicle+Helpers.swift in Sources */,
 				66108D7A296B572F00791A7A /* ModelStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

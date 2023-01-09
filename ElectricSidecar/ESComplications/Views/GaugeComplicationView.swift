@@ -4,12 +4,15 @@ import WidgetKit
 
 struct GaugeComplicationView: View {
   var batteryLevel: Double
+  var isCharging: Bool?
 
   var body: some View {
     Gauge(value: batteryLevel, in: 0...100.0) {
       Text("Charge remaining")
     } currentValueLabel: {
       Image(systemName: "bolt.car")
+        .symbolRenderingMode(.palette)
+        .foregroundStyle(isCharging == true ? .white : .clear, .white)
         .padding(.top, -4)
     } minimumValueLabel: {
       Text("")
