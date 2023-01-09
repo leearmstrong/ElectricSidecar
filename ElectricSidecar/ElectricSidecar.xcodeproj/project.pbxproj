@@ -34,7 +34,6 @@
 		66108DA8296B58EE00791A7A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DA3296B58EE00791A7A /* LoginView.swift */; };
 		66108DB0296B58F700791A7A /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAA296B58F700791A7A /* VehicleView.swift */; };
 		66108DB1296B58F700791A7A /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAB296B58F700791A7A /* GarageView.swift */; };
-		66108DB2296B58F700791A7A /* VehiclesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAC296B58F700791A7A /* VehiclesTabView.swift */; };
 		66108DB3296B58F700791A7A /* VehicleLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAD296B58F700791A7A /* VehicleLocationView.swift */; };
 		66108DB4296B58F700791A7A /* VehicleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAE296B58F700791A7A /* VehicleDetailsView.swift */; };
 		66108DB5296B58F700791A7A /* VehicleStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAF296B58F700791A7A /* VehicleStatusView.swift */; };
@@ -128,7 +127,6 @@
 		66108DA3296B58EE00791A7A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		66108DAA296B58F700791A7A /* VehicleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
 		66108DAB296B58F700791A7A /* GarageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
-		66108DAC296B58F700791A7A /* VehiclesTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehiclesTabView.swift; sourceTree = "<group>"; };
 		66108DAD296B58F700791A7A /* VehicleLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocationView.swift; sourceTree = "<group>"; };
 		66108DAE296B58F700791A7A /* VehicleDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleDetailsView.swift; sourceTree = "<group>"; };
 		66108DAF296B58F700791A7A /* VehicleStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleStatusView.swift; sourceTree = "<group>"; };
@@ -203,7 +201,7 @@
 			children = (
 				66108DA2296B58EE00791A7A /* AuthFlow */,
 				66108D9E296B58EE00791A7A /* Models */,
-				66108DA9296B58F700791A7A /* VehicleList */,
+				66108DA9296B58F700791A7A /* Garage */,
 				66108D8F296B584E00791A7A /* ElectricSidecar.entitlements */,
 				66108D2B296B569000791A7A /* ElectricSidecarApp.swift */,
 				66108D2F296B569100791A7A /* Assets.xcassets */,
@@ -310,17 +308,24 @@
 			path = AuthFlow;
 			sourceTree = "<group>";
 		};
-		66108DA9296B58F700791A7A /* VehicleList */ = {
+		66108DA9296B58F700791A7A /* Garage */ = {
+			isa = PBXGroup;
+			children = (
+				66108DAB296B58F700791A7A /* GarageView.swift */,
+				669BFB5B296BF933004621D9 /* Vehicle */,
+			);
+			path = Garage;
+			sourceTree = "<group>";
+		};
+		669BFB5B296BF933004621D9 /* Vehicle */ = {
 			isa = PBXGroup;
 			children = (
 				66108DAA296B58F700791A7A /* VehicleView.swift */,
-				66108DAB296B58F700791A7A /* GarageView.swift */,
-				66108DAC296B58F700791A7A /* VehiclesTabView.swift */,
+				66108DAF296B58F700791A7A /* VehicleStatusView.swift */,
 				66108DAD296B58F700791A7A /* VehicleLocationView.swift */,
 				66108DAE296B58F700791A7A /* VehicleDetailsView.swift */,
-				66108DAF296B58F700791A7A /* VehicleStatusView.swift */,
 			);
-			path = VehicleList;
+			path = Vehicle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -538,7 +543,6 @@
 				66108DB5296B58F700791A7A /* VehicleStatusView.swift in Sources */,
 				66108DA8296B58EE00791A7A /* LoginView.swift in Sources */,
 				66108DB4296B58F700791A7A /* VehicleDetailsView.swift in Sources */,
-				66108DB2296B58F700791A7A /* VehiclesTabView.swift in Sources */,
 				66108DA5296B58EE00791A7A /* Status+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,7 +18,12 @@ struct GarageView: View {
       case .loadingVehicles:
         ProgressView()
       case  .loaded:
-        VehiclesTabView(store: store, vehicles: $vehicles)
+        TabView {
+          ForEach($vehicles) { vehicle in
+            VehicleView(store: store, vehicle: vehicle)
+          }
+        }
+        .tabViewStyle(.page)
       case .error(let error):
         VStack {
           Text("Failed to load vehicles")
