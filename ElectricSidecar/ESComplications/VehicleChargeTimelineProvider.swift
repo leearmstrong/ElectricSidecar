@@ -44,15 +44,14 @@ struct ChargeRemainingTimelineProvider: TimelineProvider {
       // TODO: Let the user pick this somehow?
       let firstVehicle = vehicleList[0]
 
-      let status = try await store.status(for: firstVehicle)
       let emobility = try await store.emobility(for: firstVehicle)
 
-      storage.lastKnownCharge = status.batteryLevel.value
+      storage.lastKnownCharge = emobility.batteryChargeStatus.stateOfChargeInPercentage
       storage.lastKnownChargingState = emobility.isCharging
 
       let entry = Entry(
         date: Date(),
-        chargeRemaining: status.batteryLevel.value,
+        chargeRemaining: emobility.batteryChargeStatus.stateOfChargeInPercentage,
         isCharging: emobility.isCharging
       )
       entries.append(entry)
