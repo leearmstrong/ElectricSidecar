@@ -11,6 +11,7 @@ final class ModelStore: ObservableObject {
   private let cacheURL: URL
   private let vehiclesURL: URL
   private let cacheTimeout: TimeInterval = 15 * 60
+  private let longCacheTimeout: TimeInterval = 60 * 60 * 24 * 365
 
   init(username: String, password: String) {
     let folderURLs = FileManager.default.urls(
@@ -58,7 +59,7 @@ final class ModelStore: ObservableObject {
     // Try disk cache first, if allowed.
     if !ignoreCache
         && fm.fileExists(atPath: url.path)
-        && fileModificationDate(url: url)! > Date(timeIntervalSinceNow: -cacheTimeout) {
+        && fileModificationDate(url: url)! > Date(timeIntervalSinceNow: -longCacheTimeout) {
       let data = try! Data(contentsOf: url)
       let jsonDecoder = JSONDecoder()
       return try jsonDecoder.decode([Vehicle].self, from: data)
@@ -80,7 +81,12 @@ final class ModelStore: ObservableObject {
   }
 
   func capabilities(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Capabilities {
-    return try await get(vehicle: vehicle, cacheKey: "capabilities", ignoreCache: ignoreCache) { vehicle in
+    return try await get(
+      vehicle: vehicle,
+      cacheKey: "capabilities",
+      timeout: longCacheTimeout,
+      ignoreCache: ignoreCache
+    ) { vehicle in
       let response = try await porscheConnect.capabilities(vehicle: vehicle)
       guard response.response.statusCode == 200,
             let result = response.capabilities else {
@@ -92,7 +98,12 @@ final class ModelStore: ObservableObject {
 
   func emobility(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Emobility {
     let capabilities = try await capabilities(for: vehicle, ignoreCache: ignoreCache)
-    return try await get(vehicle: vehicle, cacheKey: "emobility", ignoreCache: ignoreCache) { vehicle in
+    return try await get(
+      vehicle: vehicle,
+      cacheKey: "emobility",
+      timeout: cacheTimeout,
+      ignoreCache: ignoreCache
+    ) { vehicle in
       let response = try await porscheConnect.emobility(vehicle: vehicle, capabilities: capabilities)
       guard response.response.statusCode == 200,
             let result = response.emobility else {
@@ -103,7 +114,12 @@ final class ModelStore: ObservableObject {
   }
 
   func summary(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Summary {
-    return try await get(vehicle: vehicle, cacheKey: "summary", ignoreCache: ignoreCache) { vehicle in
+    return try await get(
+      vehicle: vehicle,
+      cacheKey: "summary",
+      timeout: cacheTimeout,
+      ignoreCache: ignoreCache
+    ) { vehicle in
       let response = try await porscheConnect.summary(vehicle: vehicle)
       guard response.response.statusCode == 200,
             let result = response.summary else {
@@ -114,7 +130,12 @@ final class ModelStore: ObservableObject {
   }
 
   func position(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Position {
-    return try await get(vehicle: vehicle, cacheKey: "position", ignoreCache: ignoreCache) { vehicle in
+    return try await get(
+      vehicle: vehicle,
+      cacheKey: "position",
+      timeout: cacheTimeout,
+      ignoreCache: ignoreCache
+    ) { vehicle in
       let response = try await porscheConnect.position(vehicle: vehicle)
       guard response.response.statusCode == 200,
             let result = response.position else {
@@ -125,7 +146,12 @@ final class ModelStore: ObservableObject {
   }
 
   func status(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Status {
-    return try await get(vehicle: vehicle, cacheKey: "status", ignoreCache: ignoreCache) { vehicle in
+    return try await get(
+      vehicle: vehicle,
+      cacheKey: "status",
+      timeout: cacheTimeout,
+      ignoreCache: ignoreCache
+    ) { vehicle in
       let response = try await porscheConnect.status(vehicle: vehicle)
       guard response.response.statusCode == 200,
             let result = response.status else {
@@ -138,6 +164,7 @@ final class ModelStore: ObservableObject {
   private func get<T: Codable>(
     vehicle: Vehicle,
     cacheKey: String,
+    timeout: TimeInterval,
     ignoreCache: Bool = false,
     api: (Vehicle) async throws -> T
   ) async throws -> T {
@@ -149,7 +176,7 @@ final class ModelStore: ObservableObject {
     }
     if !ignoreCache
         && fm.fileExists(atPath: url.path)
-        && fileModificationDate(url: url)! > Date(timeIntervalSinceNow: -cacheTimeout) {
+        && fileModificationDate(url: url)! > Date(timeIntervalSinceNow: -timeout) {
       let data = try! Data(contentsOf: url)
       let jsonDecoder = JSONDecoder()
       return try jsonDecoder.decode(T.self, from: data)
