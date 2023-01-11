@@ -79,6 +79,11 @@ struct VehicleStatusView: View {
         VStack(alignment: .leading) {
           Text("Failed to load status")
           Text(error.localizedDescription)
+#if DEBUG
+          Button("Print error") {
+            print(error)
+          }
+#endif
         }
       }
     }

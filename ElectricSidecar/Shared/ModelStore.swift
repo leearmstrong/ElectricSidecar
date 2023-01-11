@@ -4,6 +4,14 @@ import PorscheConnect
 
 private let fm = FileManager.default
 
+extension FileManager {
+  static var sharedContainerURL: URL {
+    return FileManager.default.containerURL(
+      forSecurityApplicationGroupIdentifier: APP_GROUP_IDENTIFIER
+    )!
+  }
+}
+
 final class ModelStore: ObservableObject {
   private let porscheConnect: PorscheConnect
   private let authStorage: AuthStorage
@@ -12,17 +20,17 @@ final class ModelStore: ObservableObject {
   private let vehiclesURL: URL
   private let cacheTimeout: TimeInterval = 15 * 60
   private let longCacheTimeout: TimeInterval = 60 * 60 * 24 * 365
+  private let fileCoordinator: NSFileCoordinator
 
   init(username: String, password: String) {
-    let folderURLs = FileManager.default.urls(
-      for: .cachesDirectory,
-      in: .userDomainMask
-    )
+    fileCoordinator = NSFileCoordinator(filePresenter: nil)
+
+    let baseURL = FileManager.sharedContainerURL
     let hashed = SHA256.hash(data: username.data(using: .utf8)!)
     let hashString = hashed.compactMap { String(format: "%02x", $0) }.joined()
 
     // Root cache directory
-    self.cacheURL = folderURLs[0].appendingPathComponent(".cache").appendingPathComponent(hashString)
+    self.cacheURL = baseURL.appendingPathComponent(".cache").appendingPathComponent(hashString)
     if !fm.fileExists(atPath: cacheURL.path) {
       try! fm.createDirectory(at: cacheURL, withIntermediateDirectories: true)
     }
@@ -57,12 +65,27 @@ final class ModelStore: ObservableObject {
   func vehicleList(ignoreCache: Bool = false) async throws -> [Vehicle] {
     let url = cacheURL.appendingPathComponent("vehicleList")
     // Try disk cache first, if allowed.
-    if !ignoreCache
-        && fm.fileExists(atPath: url.path)
-        && fileModificationDate(url: url)! > Date(timeIntervalSinceNow: -longCacheTimeout) {
-      let data = try! Data(contentsOf: url)
-      let jsonDecoder = JSONDecoder()
-      return try jsonDecoder.decode([Vehicle].self, from: data)
+    if !ignoreCache {
+      let result: [Vehicle]? = try await withCheckedThrowingContinuation { continuation in
+        fileCoordinator.coordinate(readingItemAt: url, error: nil) { url in
+          guard fm.fileExists(atPath: url.path)
+                  && fileModificationDate(url: url)! > Date(timeIntervalSinceNow: -longCacheTimeout) else {
+            continuation.resume(returning: nil)
+            return
+          }
+          do {
+            let data = try Data(contentsOf: url)
+            let jsonDecoder = JSONDecoder()
+            let list = try jsonDecoder.decode([Vehicle].self, from: data)
+            continuation.resume(returning: list)
+          } catch {
+            continuation.resume(throwing: error)
+          }
+        }
+      }
+      if let result = result {
+        return result
+      }
     }
 
     // Fetch data if we don't have it.
@@ -72,10 +95,19 @@ final class ModelStore: ObservableObject {
       fatalError()
     }
 
-    // Cache the response for next time.
-    let jsonEncoder = JSONEncoder()
-    let data = try jsonEncoder.encode(vehicles)
-    try data.write(to: url)
+    _ = try await withCheckedThrowingContinuation { continuation in
+      fileCoordinator.coordinate(writingItemAt: url, error: nil) { url in
+        do {
+          // Cache the response for next time.
+          let jsonEncoder = JSONEncoder()
+          let data = try jsonEncoder.encode(vehicles)
+          try data.write(to: url)
+          continuation.resume(with: .success(0))
+        } catch {
+          continuation.resume(with: .failure(error))
+        }
+      }
+    }
 
     return vehicles
   }
@@ -174,21 +206,45 @@ final class ModelStore: ObservableObject {
     if !fm.fileExists(atPath: vehicleURL.path) {
       try fm.createDirectory(at: vehicleURL, withIntermediateDirectories: true)
     }
-    if !ignoreCache
-        && fm.fileExists(atPath: url.path)
-        && fileModificationDate(url: url)! > Date(timeIntervalSinceNow: -timeout) {
-      let data = try! Data(contentsOf: url)
-      let jsonDecoder = JSONDecoder()
-      return try jsonDecoder.decode(T.self, from: data)
+    if !ignoreCache {
+      let result: T? = try await withCheckedThrowingContinuation { continuation in
+        fileCoordinator.coordinate(readingItemAt: url, error: nil) { url in
+          guard fm.fileExists(atPath: url.path)
+                  && fileModificationDate(url: url)! > Date(timeIntervalSinceNow: -timeout) else {
+            continuation.resume(returning: nil)
+            return
+          }
+          do {
+            let data = try Data(contentsOf: url)
+            let jsonDecoder = JSONDecoder()
+            let result = try jsonDecoder.decode(T.self, from: data)
+            continuation.resume(returning: result)
+          } catch {
+            continuation.resume(throwing: error)
+          }
+        }
+      }
+      if let result = result {
+        return result
+      }
     }
 
     // Fetch data if we don't have it.
     let result = try await api(vehicle)
 
-    // Cache the response for next time.
-    let jsonEncoder = JSONEncoder()
-    let data = try jsonEncoder.encode(result)
-    try data.write(to: url)
+    _ = try await withCheckedThrowingContinuation { continuation in
+      fileCoordinator.coordinate(writingItemAt: url, error: nil) { url in
+        do {
+          // Cache the response for next time.
+          let jsonEncoder = JSONEncoder()
+          let data = try jsonEncoder.encode(result)
+          try data.write(to: url)
+          continuation.resume(with: .success(0))
+        } catch {
+          continuation.resume(with: .failure(error))
+        }
+      }
+    }
 
     return result
   }
