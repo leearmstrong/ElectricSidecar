@@ -15,16 +15,14 @@ extension FileManager {
 final class ModelStore: ObservableObject {
   private let porscheConnect: PorscheConnect
   private let authStorage: AuthStorage
+  private let cacheCoordinator = CodableCacheCoordinator()
 
   private let cacheURL: URL
   private let vehiclesURL: URL
   private let cacheTimeout: TimeInterval = 15 * 60
   private let longCacheTimeout: TimeInterval = 60 * 60 * 24 * 365
-  private let fileCoordinator: NSFileCoordinator
 
   init(username: String, password: String) {
-    fileCoordinator = NSFileCoordinator(filePresenter: nil)
-
     let baseURL = FileManager.sharedContainerURL
     let hashed = SHA256.hash(data: username.data(using: .utf8)!)
     let hashString = hashed.compactMap { String(format: "%02x", $0) }.joined()
@@ -40,7 +38,7 @@ final class ModelStore: ObservableObject {
     if !fm.fileExists(atPath: authTokensURL.path) {
       try! fm.createDirectory(at: authTokensURL, withIntermediateDirectories: true)
     }
-    self.authStorage = AuthStorage(authTokensURL: authTokensURL)
+    self.authStorage = AuthStorage(authTokensURL: authTokensURL, fileCoordinator: cacheCoordinator)
 
     // Vehicle data
     self.vehiclesURL = self.cacheURL.appendingPathComponent("vehicles")
@@ -53,39 +51,12 @@ final class ModelStore: ObservableObject {
     )
   }
 
-  private func fileModificationDate(url: URL) -> Date? {
-    do {
-      let attr = try FileManager.default.attributesOfItem(atPath: url.path)
-      return attr[FileAttributeKey.modificationDate] as? Date
-    } catch {
-      return nil
-    }
-  }
-
   func vehicleList(ignoreCache: Bool = false) async throws -> [Vehicle] {
     let url = cacheURL.appendingPathComponent("vehicleList")
     // Try disk cache first, if allowed.
-    if !ignoreCache {
-      let result: [Vehicle]? = try await withCheckedThrowingContinuation { continuation in
-        fileCoordinator.coordinate(readingItemAt: url, error: nil) { url in
-          guard fm.fileExists(atPath: url.path)
-                  && fileModificationDate(url: url)! > Date(timeIntervalSinceNow: -longCacheTimeout) else {
-            continuation.resume(returning: nil)
-            return
-          }
-          do {
-            let data = try Data(contentsOf: url)
-            let jsonDecoder = JSONDecoder()
-            let list = try jsonDecoder.decode([Vehicle].self, from: data)
-            continuation.resume(returning: list)
-          } catch {
-            continuation.resume(throwing: error)
-          }
-        }
-      }
-      if let result = result {
-        return result
-      }
+    if !ignoreCache,
+       let result: [Vehicle] = try cacheCoordinator.decode(url: url, timeout: longCacheTimeout) {
+      return result
     }
 
     // Fetch data if we don't have it.
@@ -95,19 +66,7 @@ final class ModelStore: ObservableObject {
       fatalError()
     }
 
-    _ = try await withCheckedThrowingContinuation { continuation in
-      fileCoordinator.coordinate(writingItemAt: url, error: nil) { url in
-        do {
-          // Cache the response for next time.
-          let jsonEncoder = JSONEncoder()
-          let data = try jsonEncoder.encode(vehicles)
-          try data.write(to: url)
-          continuation.resume(with: .success(0))
-        } catch {
-          continuation.resume(with: .failure(error))
-        }
-      }
-    }
+    try cacheCoordinator.encode(url: url, object: vehicles)
 
     return vehicles
   }
@@ -206,45 +165,15 @@ final class ModelStore: ObservableObject {
     if !fm.fileExists(atPath: vehicleURL.path) {
       try fm.createDirectory(at: vehicleURL, withIntermediateDirectories: true)
     }
-    if !ignoreCache {
-      let result: T? = try await withCheckedThrowingContinuation { continuation in
-        fileCoordinator.coordinate(readingItemAt: url, error: nil) { url in
-          guard fm.fileExists(atPath: url.path)
-                  && fileModificationDate(url: url)! > Date(timeIntervalSinceNow: -timeout) else {
-            continuation.resume(returning: nil)
-            return
-          }
-          do {
-            let data = try Data(contentsOf: url)
-            let jsonDecoder = JSONDecoder()
-            let result = try jsonDecoder.decode(T.self, from: data)
-            continuation.resume(returning: result)
-          } catch {
-            continuation.resume(throwing: error)
-          }
-        }
-      }
-      if let result = result {
-        return result
-      }
+    if !ignoreCache,
+       let result: T = try cacheCoordinator.decode(url: url, timeout: timeout) {
+      return result
     }
 
     // Fetch data if we don't have it.
     let result = try await api(vehicle)
 
-    _ = try await withCheckedThrowingContinuation { continuation in
-      fileCoordinator.coordinate(writingItemAt: url, error: nil) { url in
-        do {
-          // Cache the response for next time.
-          let jsonEncoder = JSONEncoder()
-          let data = try jsonEncoder.encode(result)
-          try data.write(to: url)
-          continuation.resume(with: .success(0))
-        } catch {
-          continuation.resume(with: .failure(error))
-        }
-      }
-    }
+    try cacheCoordinator.encode(url: url, object: result)
 
     return result
   }
@@ -260,16 +189,15 @@ final class ModelStore: ObservableObject {
 private final class AuthStorage: AuthStoring {
   private var authTokens: [String: OAuthToken] = [:]
   private let authTokensURL: URL
-  init(authTokensURL: URL) {
+  private let cacheCoordinator: CodableCacheCoordinator
+  init(authTokensURL: URL, fileCoordinator: CodableCacheCoordinator) {
     self.authTokensURL = authTokensURL
+    self.cacheCoordinator = fileCoordinator
   }
 
   func storeAuthentication(token: OAuthToken?, for key: String) {
-    // Write the token to disk
-    let encoder = JSONEncoder()
-    let data = try! encoder.encode(token)
-    try! data.write(to: authTokenUrl(key: key))
-
+    let url = authTokenUrl(key: key)
+    try! cacheCoordinator.encode(url: url, object: token)
     authTokens[key] = token
   }
 
@@ -279,15 +207,10 @@ private final class AuthStorage: AuthStoring {
       return token
     }
 
-    // Fall-back to reading from disk.
-    let jsonDecoder = JSONDecoder()
-    let apiURL = authTokenUrl(key: key)
-    if fm.fileExists(atPath: apiURL.path) {
-      if let data = try? Data(contentsOf: apiURL),
-         let token = try? jsonDecoder.decode(OAuthToken.self, from: data) {
-        authTokens[key] = token
-        return token
-      }
+    let url = authTokenUrl(key: key)
+    if let result: OAuthToken = try! cacheCoordinator.decode(url: url) {
+      authTokens[key] = result
+      return result
     }
 
     // No token able to be loaded from memory or disk.
