@@ -55,7 +55,7 @@ final class ModelStore: ObservableObject {
     let url = cacheURL.appendingPathComponent("vehicleList")
     // Try disk cache first, if allowed.
     if !ignoreCache,
-       let result: [Vehicle] = try cacheCoordinator.decode(url: url, timeout: longCacheTimeout) {
+       let result: [Vehicle] = try cacheCoordinator.decode(url: url, timeout: cacheTimeout) {
       return result
     }
 
