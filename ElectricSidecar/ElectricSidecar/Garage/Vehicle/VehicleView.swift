@@ -53,29 +53,11 @@ struct VehicleView: View {
         }
 
         if isRefreshing {
-          HStack(alignment: .top) {
-            VStack {
-              Image(systemName: "info.circle")
-              ProgressView()
-                .opacity(statusRefreshing ? 1 : 0)
-                .animation(.linear, value: statusRefreshing)
-            }
-            .frame(maxWidth: .infinity)
-            VStack {
-              Image(systemName: "bolt.car")
-              ProgressView()
-                .opacity(emobilityRefreshing ? 1 : 0)
-                .animation(.linear, value: emobilityRefreshing)
-            }
-            .frame(maxWidth: .infinity)
-            VStack {
-              Image(systemName: "location")
-              ProgressView()
-                .opacity(positionRefreshing ? 1 : 0)
-                .animation(.linear, value: positionRefreshing)
-            }
-            .frame(maxWidth: .infinity)
-          }
+          RefreshStatusView(
+            statusRefreshing: statusRefreshing,
+            emobilityRefreshing: emobilityRefreshing,
+            positionRefreshing: positionRefreshing
+          )
           .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
         } else {
           Button("refresh") {
