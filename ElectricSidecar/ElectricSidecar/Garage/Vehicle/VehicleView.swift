@@ -7,7 +7,9 @@ import SwiftUI
 struct VehicleView: View {
   let vehicle: UIModel.Vehicle
   @State var status: UIModel.Vehicle.Status?
+  @State var emobility: UIModel.Vehicle.Emobility?
   let statusPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>
+  let emobilityPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>
   let refresh: () async throws -> Void
 
   @State private var isRefreshing = false
@@ -15,7 +17,7 @@ struct VehicleView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading) {
-        VehicleStatusView(vehicle: vehicle, status: $status)
+        VehicleStatusView(vehicle: vehicle, status: $status, emobility: $emobility)
 //        VehicleLocationView(store: store, vehicle: vehicle)
 //          .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
 //
@@ -63,9 +65,9 @@ struct VehicleView: View {
     }
     .onReceive(statusPublisher
       .receive(on: RunLoop.main)
-    ) { status in
+    ) { result in
       // TODO: This enum can probably just be a struct with both an optional value and optional error.
-      switch status {
+      switch result {
       case .loading:
         self.status = nil
       case .loaded(let status):
@@ -74,6 +76,22 @@ struct VehicleView: View {
         self.status = status
       case .error(_, let lastKnown):
         self.status = lastKnown
+        // TODO: Show the error state somehow.
+      }
+    }
+    .onReceive(emobilityPublisher
+      .receive(on: RunLoop.main)
+    ) { result in
+      // TODO: This enum can probably just be a struct with both an optional value and optional error.
+      switch result {
+      case .loading:
+        self.emobility = nil
+      case .loaded(let emobility):
+        self.emobility = emobility
+      case .refreshing(let status):
+        self.emobility = emobility
+      case .error(_, let lastKnown):
+        self.emobility = lastKnown
         // TODO: Show the error state somehow.
       }
     }

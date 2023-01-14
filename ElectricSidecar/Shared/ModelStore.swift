@@ -78,8 +78,18 @@ final class ModelStore: ObservableObject {
   func refresh(vin: String) async throws {
     // TODO: Keep an in-memory cache of the last-known status.
     do {
-      let output = try await self.status(for: vin)
-      self.statusSubjects[vin]?.send(.loaded(UIModel.Vehicle.Status(isLocked: output.isLocked, isClosed: output.isClosed)))
+      async let status = try self.status(for: vin)
+      async let emobility = try self.emobility(for: vin)
+
+      let statusFormatter = StatusFormatter()
+      try await self.statusSubjects[vin]?.send(.loaded(UIModel.Vehicle.Status(
+        isLocked: status.isLocked,
+        isClosed: status.isClosed,
+        batteryLevel: statusFormatter.batteryLevel(from: status),
+        electricalRange: statusFormatter.electricalRange(from: status),
+        mileage: statusFormatter.mileage(from: status)
+      )))
+      try await self.emobilitySubjects[vin]?.send(.loaded(UIModel.Vehicle.Emobility(isCharging: emobility.isCharging)))
     } catch {
       statusSubjects[vin]?.send(.error(error: error, lastKnown: nil))
     }
@@ -92,6 +102,23 @@ final class ModelStore: ObservableObject {
     }
     let publisher = PassthroughSubject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>()
     statusSubjects[vin] = publisher
+
+    publisher.send(.loading)
+    Task {
+      // Kick off the initial load.
+      try await refresh(vin: vin)
+    }
+
+    return publisher.eraseToAnyPublisher()
+  }
+
+  private var emobilitySubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>] = [:]
+  func emobilityPublisher(for vin: String) -> AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never> {
+    if let publisher = emobilitySubjects[vin] {
+      return publisher.eraseToAnyPublisher()
+    }
+    let publisher = PassthroughSubject<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>()
+    emobilitySubjects[vin] = publisher
 
     publisher.send(.loading)
     Task {
