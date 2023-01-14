@@ -41,6 +41,8 @@
 		6618E352296FDE5900F370BB /* CodableCacheCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618E351296FDE5900F370BB /* CodableCacheCoordinator.swift */; };
 		6618E353296FDE5900F370BB /* CodableCacheCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618E351296FDE5900F370BB /* CodableCacheCoordinator.swift */; };
 		669BFB5F296C0942004621D9 /* Emobility+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */; };
+		66CA7DA1296FE95D00090ADD /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CA7DA0296FE95D00090ADD /* VehicleModel.swift */; };
+		66CA7DA2296FE95D00090ADD /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CA7DA0296FE95D00090ADD /* VehicleModel.swift */; };
 		66EB7706296C0AB1008BFC27 /* Emobility+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */; };
 		66EB7707296C0AB1008BFC27 /* Status+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D9F296B58EE00791A7A /* Status+Helpers.swift */; };
 		66EB7708296C0AB1008BFC27 /* Vehicle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DA1296B58EE00791A7A /* Vehicle+Helpers.swift */; };
@@ -138,6 +140,7 @@
 		66108DAF296B58F700791A7A /* VehicleStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleStatusView.swift; sourceTree = "<group>"; };
 		6618E351296FDE5900F370BB /* CodableCacheCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableCacheCoordinator.swift; sourceTree = "<group>"; };
 		669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Emobility+Helpers.swift"; sourceTree = "<group>"; };
+		66CA7DA0296FE95D00090ADD /* VehicleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +270,7 @@
 				66EB7705296C0A9A008BFC27 /* PorscheConnect+Extensions */,
 				66108D78296B572F00791A7A /* AppGroup.swift */,
 				66108D77296B572F00791A7A /* ModelStore.swift */,
+				66CA7DA0296FE95D00090ADD /* VehicleModel.swift */,
 				6618E351296FDE5900F370BB /* CodableCacheCoordinator.swift */,
 			);
 			path = Shared;
@@ -579,6 +583,7 @@
 				66108DB5296B58F700791A7A /* VehicleStatusView.swift in Sources */,
 				66108DA8296B58EE00791A7A /* LoginView.swift in Sources */,
 				66108DB4296B58F700791A7A /* VehicleDetailsView.swift in Sources */,
+				66CA7DA1296FE95D00090ADD /* VehicleModel.swift in Sources */,
 				66108DA5296B58EE00791A7A /* Status+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,6 +615,7 @@
 				6618E353296FDE5900F370BB /* CodableCacheCoordinator.swift in Sources */,
 				66108D7C296B572F00791A7A /* AppGroup.swift in Sources */,
 				66108D9A296B58CF00791A7A /* VehicleChargeTimelineProvider.swift in Sources */,
+				66CA7DA2296FE95D00090ADD /* VehicleModel.swift in Sources */,
 				66EB7706296C0AB1008BFC27 /* Emobility+Helpers.swift in Sources */,
 				66EB7708296C0AB1008BFC27 /* Vehicle+Helpers.swift in Sources */,
 				66108D7A296B572F00791A7A /* ModelStore.swift in Sources */,

@@ -4,16 +4,15 @@ import PorscheConnect
 import SwiftUI
 
 struct VehicleView: View {
-  let store: ModelStore
-  @Binding var vehicle: Vehicle
+  let vehicle: VehicleModel
 
   var body: some View {
     ScrollView {
       VStack(alignment: .leading) {
-        VehicleStatusView(store: store, vehicle: $vehicle)
-        VehicleLocationView(store: store, vehicle: $vehicle)
-          .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
-
+        VehicleStatusView(vehicle: vehicle)
+//        VehicleLocationView(store: store, vehicle: vehicle)
+//          .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+//
         if let camera = vehicle.personalizedPhoto {
           CachedAsyncImage(
             url: camera.url,

@@ -14,7 +14,7 @@ struct ElectricSidecar: App {
   enum AuthState {
     case launching
     case loggedOut(error: Error?)
-    case authenticated
+    case authenticated(store: ModelStore)
   }
   @State var authState: AuthState = .launching
 
@@ -27,11 +27,15 @@ struct ElectricSidecar: App {
             if email.isEmpty || password.isEmpty {
               authState = .loggedOut(error: nil)
             } else {
-              authState = .authenticated
+              let store = ModelStore(username: email, password: password)
+              Task {
+                try await store.load()
+              }
+              authState = .authenticated(store: store)
             }
           }
-      case .authenticated:
-        GarageView(store: ModelStore(username: email, password: password)) { error in
+      case .authenticated(let store):
+        GarageView(store: store) { error in
           authState = .loggedOut(error: error)
         }
       case .loggedOut(let error):
@@ -44,7 +48,11 @@ struct ElectricSidecar: App {
               guard !email.isEmpty && !password.isEmpty else {
                 return
               }
-              authState = .authenticated
+              let store = ModelStore(username: email, password: password)
+              Task {
+                try await store.load()
+              }
+              authState = .authenticated(store: store)
             }
           }
         }

@@ -1,3 +1,4 @@
+import Combine
 import CryptoKit
 import Foundation
 import PorscheConnect
@@ -21,6 +22,8 @@ final class ModelStore: ObservableObject {
   private let vehiclesURL: URL
   private let cacheTimeout: TimeInterval = 15 * 60
   private let longCacheTimeout: TimeInterval = 60 * 60 * 24 * 365
+
+  @Published var vehicles: [VehicleModel]?
 
   init(username: String, password: String) {
     let baseURL = FileManager.sharedContainerURL
@@ -49,6 +52,35 @@ final class ModelStore: ObservableObject {
       environment: Environment(locale: .current)!,
       authStorage: authStorage
     )
+  }
+
+  func load() async throws {
+    let vehicles = try await vehicleList()
+
+    let vehicleModels = vehicles.map { vehicle in
+      let statusPublisher = Future<VehicleModel.VehicleStatus, Error> { promise in
+        Task {
+          do {
+            let output = try await self.status(for: vehicle)
+            promise(.success(VehicleModel.VehicleStatus(status: output)))
+          } catch {
+            promise(.failure(error))
+          }
+        }
+      }.eraseToAnyPublisher()
+      return VehicleModel(
+        vin: vehicle.vin,
+        licensePlate: vehicle.licensePlate,
+        modelDescription: vehicle.modelDescription,
+        modelYear: vehicle.modelYear,
+        color: vehicle.color,
+        personalizedPhoto: vehicle.personalizedPhoto,
+        statusPublisher: statusPublisher
+      )
+    }
+    await MainActor.run {
+      self.vehicles = vehicleModels
+    }
   }
 
   func vehicleList(ignoreCache: Bool = false) async throws -> [Vehicle] {
