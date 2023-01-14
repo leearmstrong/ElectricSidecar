@@ -1,10 +1,18 @@
 import Foundation
 
 extension UIModel {
-  enum Refreshable<T> {
-    case loading
-    case refreshing(lastKnown: T?)
-    case loaded(T)
-    case error(error: Error, lastKnown: T?)
+  struct Refreshable<T> {
+    let value: T?
+    let error: Error?
+
+    static var loading: Self {
+      Refreshable(value: nil, error: nil)
+    }
+    static func loaded(_ value: T) -> Self {
+      return Refreshable(value: value, error: nil)
+    }
+    static func error(_ error: Error) -> Self {
+      return Refreshable(value: nil, error: error)
+    }
   }
 }

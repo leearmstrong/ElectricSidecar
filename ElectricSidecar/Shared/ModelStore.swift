@@ -98,7 +98,7 @@ final class ModelStore: ObservableObject {
             mileage: statusFormatter.mileage(from: status)
           )))
         } catch {
-          self.statusSubjects[vin]?.send(.error(error: error, lastKnown: nil))
+          self.statusSubjects[vin]?.send(.error(error))
         }
       }
       taskGroup.addTask {
@@ -108,7 +108,7 @@ final class ModelStore: ObservableObject {
             isCharging: emobility.isCharging
           )))
         } catch {
-          self.emobilitySubjects[vin]?.send(.error(error: error, lastKnown: nil))
+          self.emobilitySubjects[vin]?.send(.error(error))
         }
       }
       taskGroup.addTask {
@@ -124,7 +124,7 @@ final class ModelStore: ObservableObject {
             coordinateRegion: coordinateRegion
           )))
         } catch {
-          self.positionSubjects[vin]?.send(.error(error: error, lastKnown: nil))
+          self.positionSubjects[vin]?.send(.error(error))
         }
       }
     })

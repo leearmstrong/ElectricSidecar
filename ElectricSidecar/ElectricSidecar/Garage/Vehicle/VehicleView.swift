@@ -6,13 +6,22 @@ import SwiftUI
 
 struct VehicleView: View {
   let vehicle: UIModel.Vehicle
-  @State var status: UIModel.Vehicle.Status?
-  @State var emobility: UIModel.Vehicle.Emobility?
-  @State var position: UIModel.Vehicle.Position?
+
   let statusPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>
   let emobilityPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>
   let positionPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>
   let refresh: () async throws -> Void
+
+  @State var status: UIModel.Vehicle.Status?
+  @State var emobility: UIModel.Vehicle.Emobility?
+  @State var position: UIModel.Vehicle.Position?
+  @State var statusError: Error?
+  @State var emobilityError: Error?
+  @State var positionError: Error?
+
+  @State var statusRefreshing: Bool = false
+  @State var emobilityRefreshing: Bool = false
+  @State var positionRefreshing: Bool = false
 
   @State private var isRefreshing = false
 
@@ -44,14 +53,43 @@ struct VehicleView: View {
         }
 
         if isRefreshing {
-          ProgressView()
-            .padding()
+          HStack(alignment: .top) {
+            VStack {
+              Image(systemName: "info.circle")
+              ProgressView()
+                .opacity(statusRefreshing ? 1 : 0)
+                .animation(.linear, value: statusRefreshing)
+            }
+            .frame(maxWidth: .infinity)
+            VStack {
+              Image(systemName: "bolt.car")
+              ProgressView()
+                .opacity(emobilityRefreshing ? 1 : 0)
+                .animation(.linear, value: emobilityRefreshing)
+            }
+            .frame(maxWidth: .infinity)
+            VStack {
+              Image(systemName: "location")
+              ProgressView()
+                .opacity(positionRefreshing ? 1 : 0)
+                .animation(.linear, value: positionRefreshing)
+            }
+            .frame(maxWidth: .infinity)
+          }
+          .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
         } else {
           Button("refresh") {
-            isRefreshing = true
+            withAnimation {
+              isRefreshing = true
+              statusRefreshing = true
+              emobilityRefreshing = true
+              positionRefreshing = true
+            }
             Task {
               try await refresh()
-              isRefreshing = false
+              withAnimation {
+                isRefreshing = false
+              }
             }
           }
           .padding()
@@ -62,55 +100,32 @@ struct VehicleView: View {
           modelYear: vehicle.modelYear,
           vin: vehicle.vin
         )
+
+        if let statusError {
+          Text(statusError.localizedDescription)
+        }
+        if let emobilityError {
+          Text(emobilityError.localizedDescription)
+        }
+        if let positionError {
+          Text(positionError.localizedDescription)
+        }
       }
     }
-    .onReceive(statusPublisher
-      .receive(on: RunLoop.main)
-    ) { result in
-      // TODO: This enum can probably just be a struct with both an optional value and optional error.
-      switch result {
-      case .loading:
-        self.status = nil
-      case .loaded(let status):
-        self.status = status
-      case .refreshing(let status):
-        self.status = status
-      case .error(_, let lastKnown):
-        self.status = lastKnown
-        // TODO: Show the error state somehow.
-      }
+    .onReceive(statusPublisher.receive(on: RunLoop.main)) { result in
+      status = result.value
+      statusError = result.error
+      statusRefreshing = false
     }
-    .onReceive(emobilityPublisher
-      .receive(on: RunLoop.main)
-    ) { result in
-      // TODO: This enum can probably just be a struct with both an optional value and optional error.
-      switch result {
-      case .loading:
-        self.emobility = nil
-      case .loaded(let emobility):
-        self.emobility = emobility
-      case .refreshing(let emobility):
-        self.emobility = emobility
-      case .error(_, let lastKnown):
-        self.emobility = lastKnown
-        // TODO: Show the error state somehow.
-      }
+    .onReceive(emobilityPublisher.receive(on: RunLoop.main)) { result in
+      emobility = result.value
+      emobilityError = result.error
+      emobilityRefreshing = false
     }
-    .onReceive(positionPublisher
-      .receive(on: RunLoop.main)
-    ) { result in
-      // TODO: This enum can probably just be a struct with both an optional value and optional error.
-      switch result {
-      case .loading:
-        self.emobility = nil
-      case .loaded(let position):
-        self.position = position
-      case .refreshing(let position):
-        self.position = position
-      case .error(_, let lastKnown):
-        self.position = lastKnown
-        // TODO: Show the error state somehow.
-      }
+    .onReceive(positionPublisher.receive(on: RunLoop.main)) { result in
+      position = result.value
+      positionError = result.error
+      positionRefreshing = false
     }
   }
 }
