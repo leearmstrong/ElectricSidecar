@@ -20,7 +20,6 @@ struct VehicleView: View {
         VehicleStatusView(vehicle: vehicle, status: $status, emobility: $emobility)
 //        VehicleLocationView(store: store, vehicle: vehicle)
 //          .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
-//
 
         if let camera = vehicle.personalizedPhoto {
           CachedAsyncImage(
@@ -88,7 +87,7 @@ struct VehicleView: View {
         self.emobility = nil
       case .loaded(let emobility):
         self.emobility = emobility
-      case .refreshing(let status):
+      case .refreshing(let emobility):
         self.emobility = emobility
       case .error(_, let lastKnown):
         self.emobility = lastKnown

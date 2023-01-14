@@ -66,7 +66,8 @@ final class ModelStore: ObservableObject {
         modelDescription: vehicle.modelDescription,
         modelYear: vehicle.modelYear,
         color: vehicle.color,
-        personalizedPhoto: vehicle.personalizedPhoto
+        personalizedPhoto: vehicle.personalizedPhoto,
+        externalPhoto: vehicle.externalCamera(.front, size: 2)
       )
     }
 

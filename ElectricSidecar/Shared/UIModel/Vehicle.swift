@@ -14,7 +14,8 @@ extension UIModel {
       modelDescription: String,
       modelYear: String,
       color: Color? = nil,
-      personalizedPhoto: Picture? = nil
+      personalizedPhoto: Picture? = nil,
+      externalPhoto: Picture? = nil
     ) {
       self.vin = vin
       self.licensePlate = licensePlate
@@ -22,6 +23,7 @@ extension UIModel {
       self.modelYear = modelYear
       self.color = color
       self.personalizedPhoto = personalizedPhoto
+      self.externalPhoto = externalPhoto
     }
 
     var id: String { vin }
@@ -32,5 +34,6 @@ extension UIModel {
     let modelYear: String
     let color: Color?
     let personalizedPhoto: Picture?
+    let externalPhoto: Picture?
   }
 }
