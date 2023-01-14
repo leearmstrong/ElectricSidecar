@@ -76,25 +76,29 @@ final class ModelStore: ObservableObject {
   }
 
   func refresh(vin: String) async throws {
+    // TODO: Keep an in-memory cache of the last-known status.
     do {
       let output = try await self.status(for: vin)
-      self.statusSubjects[vin]?.send(UIModel.Vehicle.Status(isLocked: output.isLocked, isClosed: output.isClosed))
+      self.statusSubjects[vin]?.send(.loaded(UIModel.Vehicle.Status(isLocked: output.isLocked, isClosed: output.isClosed)))
     } catch {
-      statusSubjects[vin]?.send(.init(error: error))
+      statusSubjects[vin]?.send(.error(error: error, lastKnown: nil))
     }
   }
 
-  private var statusSubjects: [String: any Subject<UIModel.Vehicle.Status, Error>] = [:]
-  func statusPublisher(for vin: String) -> AnyPublisher<UIModel.Vehicle.Status, Error> {
+  private var statusSubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>] = [:]
+  func statusPublisher(for vin: String) -> AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never> {
     if let publisher = statusSubjects[vin] {
       return publisher.eraseToAnyPublisher()
     }
-    let publisher = PassthroughSubject<UIModel.Vehicle.Status, Error>()
+    let publisher = PassthroughSubject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>()
     statusSubjects[vin] = publisher
+
+    publisher.send(.loading)
     Task {
       // Kick off the initial load.
       try await refresh(vin: vin)
     }
+
     return publisher.eraseToAnyPublisher()
   }
 

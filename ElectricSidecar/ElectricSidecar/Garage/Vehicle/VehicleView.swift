@@ -7,7 +7,7 @@ import SwiftUI
 struct VehicleView: View {
   let vehicle: UIModel.Vehicle
   @State var status: UIModel.Vehicle.Status?
-  let statusPublisher: AnyPublisher<UIModel.Vehicle.Status, Error>
+  let statusPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>
   let refresh: () async throws -> Void
 
   @State private var isRefreshing = false
@@ -63,12 +63,19 @@ struct VehicleView: View {
     }
     .onReceive(statusPublisher
       .receive(on: RunLoop.main)
-      .catch({ error in
-        // TODO: Handle this as an enum type somehow so that we don't have to create a dummy status.
-        return Just(UIModel.Vehicle.Status(error: error))
-      })
     ) { status in
-      self.status = status
+      // TODO: This enum can probably just be a struct with both an optional value and optional error.
+      switch status {
+      case .loading:
+        self.status = nil
+      case .loaded(let status):
+        self.status = status
+      case .refreshing(let status):
+        self.status = status
+      case .error(_, let lastKnown):
+        self.status = lastKnown
+        // TODO: Show the error state somehow.
+      }
     }
   }
 }
