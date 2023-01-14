@@ -2,9 +2,9 @@ import Foundation
 import SwiftUI
 
 struct RefreshStatusView: View {
-  @State var statusRefreshing: Bool = false
-  @State var emobilityRefreshing: Bool = false
-  @State var positionRefreshing: Bool = false
+  @Binding var statusRefreshing: Bool
+  @Binding var emobilityRefreshing: Bool
+  @Binding var positionRefreshing: Bool
 
   var body: some View {
     HStack(alignment: .top) {
@@ -36,9 +36,9 @@ struct RefreshStatusView: View {
 struct RefreshStatusView_Previews: PreviewProvider {
   static var previews: some View {
     RefreshStatusView(
-      statusRefreshing: true,
-      emobilityRefreshing: true,
-      positionRefreshing: true
+      statusRefreshing: .constant(true),
+      emobilityRefreshing: .constant(true),
+      positionRefreshing: .constant(true)
     )
     .previewDevice("Apple Watch Series 8 (45mm)")
     .previewDisplayName("Series 8 45mm")

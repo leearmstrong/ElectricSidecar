@@ -54,9 +54,9 @@ struct VehicleView: View {
 
         if isRefreshing {
           RefreshStatusView(
-            statusRefreshing: statusRefreshing,
-            emobilityRefreshing: emobilityRefreshing,
-            positionRefreshing: positionRefreshing
+            statusRefreshing: $statusRefreshing,
+            emobilityRefreshing: $emobilityRefreshing,
+            positionRefreshing: $positionRefreshing
           )
           .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
         } else {
