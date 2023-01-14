@@ -20,13 +20,7 @@ struct VehicleStatusView: View {
             .font(.title2)
           Spacer()
           if let status {
-            if let isLocked = status.isLocked {
-              Image(systemName: isLocked ? "lock" : "lock.open")
-                .font(.body)
-            }
-            if let isClosed = status.isClosed {
-              Image(systemName: isClosed ? "door.left.hand.closed" : "door.left.hand.open")
-            }
+            DoorStatusView(isLocked: status.isLocked, isClosed: status.isClosed)
           } else {
             ProgressView()
               .frame(maxWidth: 30)

@@ -10,7 +10,6 @@ private final class Storage {
 struct ChargeRemainingTimelineProvider: TimelineProvider {
   typealias Entry = ChargeRemainingTimelineEntry
 
-  let store: ModelStore
   private let storage = Storage()
 
   func placeholder(in context: Context) -> ChargeRemainingTimelineEntry {
