@@ -5,9 +5,9 @@ import PorscheConnect
 import SwiftUI
 
 struct VehicleView: View {
-  let vehicle: VehicleModel
-  @State var status: VehicleStatus?
-  let statusPublisher: AnyPublisher<VehicleStatus, Error>
+  let vehicle: UIModel.Vehicle
+  @State var status: UIModel.Vehicle.Status?
+  let statusPublisher: AnyPublisher<UIModel.Vehicle.Status, Error>
   let refresh: () async throws -> Void
 
   @State private var isRefreshing = false
@@ -65,7 +65,7 @@ struct VehicleView: View {
       .receive(on: RunLoop.main)
       .catch({ error in
         // TODO: Handle this as an enum type somehow so that we don't have to create a dummy status.
-        return Just(VehicleStatus(error: error))
+        return Just(UIModel.Vehicle.Status(error: error))
       })
     ) { status in
       self.status = status

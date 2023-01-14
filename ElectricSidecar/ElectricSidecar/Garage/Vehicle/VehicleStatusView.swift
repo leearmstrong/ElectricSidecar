@@ -5,8 +5,8 @@ import PorscheConnect
 import SwiftUI
 
 struct VehicleStatusView: View {
-  let vehicle: VehicleModel
-  @Binding var status: VehicleStatus?
+  let vehicle: UIModel.Vehicle
+  @Binding var status: UIModel.Vehicle.Status?
 
   let statusFormatter = StatusFormatter()
   var cancellables = Set<AnyCancellable>()
@@ -79,7 +79,7 @@ struct VehicleStatusView: View {
 struct VehicleStatusView_Loading_Previews: PreviewProvider {
   static var previews: some View {
     VehicleStatusView(
-      vehicle: VehicleModel(
+      vehicle: UIModel.Vehicle(
         vin: "ABC",
         modelDescription: "Taycan",
         modelYear: "2022"
@@ -90,7 +90,7 @@ struct VehicleStatusView_Loading_Previews: PreviewProvider {
     .previewDisplayName("Loading / No license")
 
     VehicleStatusView(
-      vehicle: VehicleModel(
+      vehicle: UIModel.Vehicle(
         vin: "ABC",
         licensePlate: "Journey",
         modelDescription: "Taycan",
@@ -102,7 +102,7 @@ struct VehicleStatusView_Loading_Previews: PreviewProvider {
     .previewDisplayName("Loading / Short license")
 
     VehicleStatusView(
-      vehicle: VehicleModel(
+      vehicle: UIModel.Vehicle(
         vin: "ABC",
         licensePlate: "Journey of the featherless",
         modelDescription: "Taycan",
@@ -118,36 +118,36 @@ struct VehicleStatusView_Loading_Previews: PreviewProvider {
 struct VehicleStatusView_Loaded_Previews: PreviewProvider {
   static var previews: some View {
     VehicleStatusView(
-      vehicle: VehicleModel(
+      vehicle: UIModel.Vehicle(
         vin: "ABC",
         modelDescription: "Taycan",
         modelYear: "2022"
       ),
-      status: .constant(VehicleStatus(isLocked: true, isClosed: true))
+      status: .constant(UIModel.Vehicle.Status(isLocked: true, isClosed: true))
     )
     .previewDevice("Apple Watch Series 8 (45mm)")
     .previewDisplayName("Loaded / No license")
 
     VehicleStatusView(
-      vehicle: VehicleModel(
+      vehicle: UIModel.Vehicle(
         vin: "ABC",
         licensePlate: "Journey",
         modelDescription: "Taycan",
         modelYear: "2022"
       ),
-      status: .constant(VehicleStatus(isLocked: true, isClosed: true))
+      status: .constant(UIModel.Vehicle.Status(isLocked: true, isClosed: true))
     )
     .previewDevice("Apple Watch Series 8 (45mm)")
     .previewDisplayName("Loaded / Short license")
 
     VehicleStatusView(
-      vehicle: VehicleModel(
+      vehicle: UIModel.Vehicle(
         vin: "ABC",
         licensePlate: "Journey of the featherless",
         modelDescription: "Taycan",
         modelYear: "2022"
       ),
-      status: .constant(VehicleStatus(isLocked: true, isClosed: true))
+      status: .constant(UIModel.Vehicle.Status(isLocked: true, isClosed: true))
     )
     .previewDevice("Apple Watch Series 8 (45mm)")
     .previewDisplayName("Loaded / Long license")

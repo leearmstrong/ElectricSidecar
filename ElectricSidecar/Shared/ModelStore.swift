@@ -23,7 +23,7 @@ final class ModelStore: ObservableObject {
   private let cacheTimeout: TimeInterval = 15 * 60
   private let longCacheTimeout: TimeInterval = 60 * 60 * 24 * 365
 
-  @Published var vehicles: [VehicleModel]?
+  @Published var vehicles: [UIModel.Vehicle]?
 
   init(username: String, password: String) {
     let baseURL = FileManager.sharedContainerURL
@@ -60,7 +60,7 @@ final class ModelStore: ObservableObject {
     let vehicles = try await vehicleList()
 
     let vehicleModels = vehicles.map { vehicle in
-      return VehicleModel(
+      return UIModel.Vehicle(
         vin: vehicle.vin,
         licensePlate: vehicle.licensePlate,
         modelDescription: vehicle.modelDescription,
@@ -78,18 +78,18 @@ final class ModelStore: ObservableObject {
   func refresh(vin: String) async throws {
     do {
       let output = try await self.status(for: vin)
-      self.statusSubjects[vin]?.send(VehicleStatus(isLocked: output.isLocked, isClosed: output.isClosed))
+      self.statusSubjects[vin]?.send(UIModel.Vehicle.Status(isLocked: output.isLocked, isClosed: output.isClosed))
     } catch {
       statusSubjects[vin]?.send(.init(error: error))
     }
   }
 
-  private var statusSubjects: [String: any Subject<VehicleStatus, Error>] = [:]
-  func statusPublisher(for vin: String) -> AnyPublisher<VehicleStatus, Error> {
+  private var statusSubjects: [String: any Subject<UIModel.Vehicle.Status, Error>] = [:]
+  func statusPublisher(for vin: String) -> AnyPublisher<UIModel.Vehicle.Status, Error> {
     if let publisher = statusSubjects[vin] {
       return publisher.eraseToAnyPublisher()
     }
-    let publisher = PassthroughSubject<VehicleStatus, Error>()
+    let publisher = PassthroughSubject<UIModel.Vehicle.Status, Error>()
     statusSubjects[vin] = publisher
     Task {
       // Kick off the initial load.
