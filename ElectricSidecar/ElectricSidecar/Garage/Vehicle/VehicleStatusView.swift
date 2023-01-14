@@ -75,7 +75,7 @@ struct VehicleStatusView: View {
             Image(systemName: "arrow.down")
             Spacer()
           }
-          Text("Mileage: \(status.mileage))")
+          Text("Mileage: \(status.mileage)")
             .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
         }
       }

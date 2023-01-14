@@ -78,7 +78,7 @@ final class ModelStore: ObservableObject {
   }
 
   private var refreshState: [String: Bool] = [:]
-  func refresh(vin: String) async throws {
+  func refresh(vin: String, ignoreCache: Bool = false) async throws {
     if refreshState[vin] == true {
       return  // Already refreshing.
     }
@@ -88,7 +88,7 @@ final class ModelStore: ObservableObject {
     await withTaskGroup(of: Void.self, body: { taskGroup in
       taskGroup.addTask {
         do {
-          let status = try await self.status(for: vin)
+          let status = try await self.status(for: vin, ignoreCache: ignoreCache)
           let statusFormatter = StatusFormatter()
           self.statusSubjects[vin]!.send(.loaded(UIModel.Vehicle.Status(
             isLocked: status.isLocked,
@@ -103,7 +103,7 @@ final class ModelStore: ObservableObject {
       }
       taskGroup.addTask {
         do {
-          let emobility = try await self.emobility(for: vin)
+          let emobility = try await self.emobility(for: vin, ignoreCache: ignoreCache)
           self.emobilitySubjects[vin]!.send(.loaded(UIModel.Vehicle.Emobility(
             isCharging: emobility.isCharging
           )))
@@ -113,7 +113,7 @@ final class ModelStore: ObservableObject {
       }
       taskGroup.addTask {
         do {
-          let position = try await self.position(for: vin)
+          let position = try await self.position(for: vin, ignoreCache: ignoreCache)
           let coordinateRegion = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: position.carCoordinate.latitude,
                                            longitude: position.carCoordinate.longitude),

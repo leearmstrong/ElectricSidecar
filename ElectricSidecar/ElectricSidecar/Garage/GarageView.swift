@@ -23,7 +23,7 @@ struct GarageView: View {
               emobilityPublisher: store.emobilityPublisher(for: vehicle.vin),
               positionPublisher: store.positionPublisher(for: vehicle.vin)
             ) {
-              try await store.refresh(vin: vehicle.vin)
+              try await store.refresh(vin: vehicle.vin, ignoreCache: true)
             }
           }
         }
