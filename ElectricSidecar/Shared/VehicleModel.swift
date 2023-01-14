@@ -33,6 +33,13 @@ struct VehicleModel: Identifiable {
 struct VehicleStatus {
   let isLocked: Bool?
   let isClosed: Bool?
+
+  init(isLocked: Bool? = nil, isClosed: Bool? = nil) {
+    self.isLocked = isLocked
+    self.isClosed = isClosed
+    self.error = nil
+  }
+
   init(status: Status) {
     self.isLocked = status.isLocked
     self.isClosed = status.isClosed

@@ -5,15 +5,11 @@ import PorscheConnect
 import SwiftUI
 
 struct VehicleStatusView: View {
-  init(vehicle: VehicleModel) {
-    self.vehicle = vehicle
-  }
-
   let vehicle: VehicleModel
-  private let statusFormatter = StatusFormatter()
-  private var cancellables = Set<AnyCancellable>()
+  @Binding var status: VehicleStatus?
 
-  @State var status: VehicleModel.VehicleStatus?
+  let statusFormatter = StatusFormatter()
+  var cancellables = Set<AnyCancellable>()
 
   var body: some View {
     ZStack {
@@ -22,12 +18,17 @@ struct VehicleStatusView: View {
           Text(vehicle.licensePlate ?? "\(vehicle.modelDescription) (\(vehicle.modelYear))")
             .font(.title2)
           Spacer()
-          if let isLocked = status?.isLocked {
-            Image(systemName: isLocked ? "lock" : "lock.open")
-              .font(.body)
-          }
-          if let isClosed = status?.isClosed {
-            Image(systemName: isClosed ? "door.left.hand.closed" : "door.left.hand.open")
+          if let status = status {
+            if let isLocked = status.isLocked {
+              Image(systemName: isLocked ? "lock" : "lock.open")
+                .font(.body)
+            }
+            if let isClosed = status.isClosed {
+              Image(systemName: isClosed ? "door.left.hand.closed" : "door.left.hand.open")
+            }
+          } else {
+            ProgressView()
+              .frame(maxWidth: 30)
           }
         }
 //        HStack(spacing: 0) {
@@ -72,5 +73,83 @@ struct VehicleStatusView: View {
 //          .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
       }
     }
+  }
+}
+
+struct VehicleStatusView_Loading_Previews: PreviewProvider {
+  static var previews: some View {
+    VehicleStatusView(
+      vehicle: VehicleModel(
+        vin: "ABC",
+        modelDescription: "Taycan",
+        modelYear: "2022"
+      ),
+      status: .constant(nil)
+    )
+    .previewDevice("Apple Watch Series 8 (45mm)")
+    .previewDisplayName("Loading / No license")
+
+    VehicleStatusView(
+      vehicle: VehicleModel(
+        vin: "ABC",
+        licensePlate: "Journey",
+        modelDescription: "Taycan",
+        modelYear: "2022"
+      ),
+      status: .constant(nil)
+    )
+    .previewDevice("Apple Watch Series 8 (45mm)")
+    .previewDisplayName("Loading / Short license")
+
+    VehicleStatusView(
+      vehicle: VehicleModel(
+        vin: "ABC",
+        licensePlate: "Journey of the featherless",
+        modelDescription: "Taycan",
+        modelYear: "2022"
+      ),
+      status: .constant(nil)
+    )
+    .previewDevice("Apple Watch Series 8 (45mm)")
+    .previewDisplayName("Loading / Long license")
+  }
+}
+
+struct VehicleStatusView_Loaded_Previews: PreviewProvider {
+  static var previews: some View {
+    VehicleStatusView(
+      vehicle: VehicleModel(
+        vin: "ABC",
+        modelDescription: "Taycan",
+        modelYear: "2022"
+      ),
+      status: .constant(VehicleStatus(isLocked: true, isClosed: true))
+    )
+    .previewDevice("Apple Watch Series 8 (45mm)")
+    .previewDisplayName("Loaded / No license")
+
+    VehicleStatusView(
+      vehicle: VehicleModel(
+        vin: "ABC",
+        licensePlate: "Journey",
+        modelDescription: "Taycan",
+        modelYear: "2022"
+      ),
+      status: .constant(VehicleStatus(isLocked: true, isClosed: true))
+    )
+    .previewDevice("Apple Watch Series 8 (45mm)")
+    .previewDisplayName("Loaded / Short license")
+
+    VehicleStatusView(
+      vehicle: VehicleModel(
+        vin: "ABC",
+        licensePlate: "Journey of the featherless",
+        modelDescription: "Taycan",
+        modelYear: "2022"
+      ),
+      status: .constant(VehicleStatus(isLocked: true, isClosed: true))
+    )
+    .previewDevice("Apple Watch Series 8 (45mm)")
+    .previewDisplayName("Loaded / Long license")
   }
 }

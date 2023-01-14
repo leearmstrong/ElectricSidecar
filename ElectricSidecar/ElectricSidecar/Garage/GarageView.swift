@@ -17,7 +17,7 @@ struct GarageView: View {
       if let vehicles = store.vehicles {
         TabView {
           ForEach(vehicles) { vehicle in
-            VehicleView(vehicle: vehicle)
+            VehicleView(vehicle: vehicle, statusPublisher: store.statusPublisher(for: vehicle.vin))
           }
         }
         .tabViewStyle(.page)

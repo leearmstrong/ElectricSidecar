@@ -54,6 +54,8 @@ final class ModelStore: ObservableObject {
     )
   }
 
+  // MARK: - Combine-based cache warming
+
   func load() async throws {
     let vehicles = try await vehicleList()
 
@@ -68,20 +70,25 @@ final class ModelStore: ObservableObject {
       )
     }
 
-    let statusPublisher = Future<VehicleModel.VehicleStatus, Error> { promise in
+    await MainActor.run {
+      self.vehicles = vehicleModels
+    }
+  }
+
+  func statusPublisher(for vin: String) -> AnyPublisher<VehicleStatus, Error> {
+    return Future<VehicleStatus, Error> { promise in
       Task {
         do {
-          let output = try await self.status(for: vehicle)
-          promise(.success(VehicleModel.VehicleStatus(status: output)))
+          let output = try await self.status(for: vin)
+          promise(.success(VehicleStatus(status: output)))
         } catch {
           promise(.failure(error))
         }
       }
     }.eraseToAnyPublisher()
-    await MainActor.run {
-      self.vehicles = vehicleModels
-    }
   }
+
+  // MARK: - API invocations
 
   func vehicleList(ignoreCache: Bool = false) async throws -> [Vehicle] {
     let url = cacheURL.appendingPathComponent("vehicleList")
@@ -168,7 +175,7 @@ final class ModelStore: ObservableObject {
     }
   }
 
-  func status(for vin: String, ignoreCache: Bool = false) async throws -> Status {
+  func status(for vin: String, ignoreCache: Bool = true) async throws -> Status {
     return try await get(
       vin: vin,
       cacheKey: "status",
