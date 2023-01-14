@@ -2,6 +2,7 @@ import PorscheConnect
 import SwiftUI
 
 struct GarageView: View {
+  @SwiftUI.Environment(\.scenePhase) var scenePhase
   @StateObject var store: ModelStore
   let authFailure: (Error) -> Void
 
@@ -10,6 +11,8 @@ struct GarageView: View {
     case loadingVehicles
     case loaded
   }
+
+  @State var lastRefresh: Date = .now
 
   @State var loadState: LoadState = .loadingVehicles
   var body: some View {
@@ -24,12 +27,25 @@ struct GarageView: View {
               positionPublisher: store.positionPublisher(for: vehicle.vin)
             ) {
               try await store.refresh(vin: vehicle.vin, ignoreCache: true)
+              lastRefresh = .now
             }
           }
         }
         .tabViewStyle(.page)
       } else {
         ProgressView()
+      }
+    }
+    .onChange(of: scenePhase) { newPhase in
+      if newPhase == .active,
+         let vehicles = store.vehicles,
+         lastRefresh < .now.addingTimeInterval(-15 * 60) {
+        Task {
+          for vehicle in vehicles {
+            try await store.refresh(vin: vehicle.vin, ignoreCache: true)
+          }
+          lastRefresh = .now
+        }
       }
     }
   }
