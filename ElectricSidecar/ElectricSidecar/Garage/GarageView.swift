@@ -10,6 +10,7 @@ struct GarageView: View {
     case loadingVehicles
     case loaded
   }
+
   @State var loadState: LoadState = .loadingVehicles
   var body: some View {
     NavigationStack {

@@ -58,26 +58,26 @@ final class ModelStore: ObservableObject {
     let vehicles = try await vehicleList()
 
     let vehicleModels = vehicles.map { vehicle in
-      let statusPublisher = Future<VehicleModel.VehicleStatus, Error> { promise in
-        Task {
-          do {
-            let output = try await self.status(for: vehicle)
-            promise(.success(VehicleModel.VehicleStatus(status: output)))
-          } catch {
-            promise(.failure(error))
-          }
-        }
-      }.eraseToAnyPublisher()
       return VehicleModel(
         vin: vehicle.vin,
         licensePlate: vehicle.licensePlate,
         modelDescription: vehicle.modelDescription,
         modelYear: vehicle.modelYear,
         color: vehicle.color,
-        personalizedPhoto: vehicle.personalizedPhoto,
-        statusPublisher: statusPublisher
+        personalizedPhoto: vehicle.personalizedPhoto
       )
     }
+
+    let statusPublisher = Future<VehicleModel.VehicleStatus, Error> { promise in
+      Task {
+        do {
+          let output = try await self.status(for: vehicle)
+          promise(.success(VehicleModel.VehicleStatus(status: output)))
+        } catch {
+          promise(.failure(error))
+        }
+      }
+    }.eraseToAnyPublisher()
     await MainActor.run {
       self.vehicles = vehicleModels
     }

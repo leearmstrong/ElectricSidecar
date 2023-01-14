@@ -40,5 +40,14 @@ struct VehicleView: View {
         )
       }
     }
+    .onReceive(vehicle.statusPublisher
+      .receive(on: RunLoop.main)
+      .catch({ error in
+        // TODO: Handle this as an enum type somehow so that we don't have to create a dummy status.
+        return Just(VehicleModel.VehicleStatus(error: error))
+      })
+    ) { status in
+      self.status = status
+    }
   }
 }

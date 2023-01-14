@@ -10,8 +10,7 @@ struct VehicleModel: Identifiable {
     modelDescription: String,
     modelYear: String,
     color: Color? = nil,
-    personalizedPhoto: Vehicle.VehiclePicture? = nil,
-    statusPublisher: AnyPublisher<VehicleModel.VehicleStatus, Error>
+    personalizedPhoto: Vehicle.VehiclePicture? = nil
   ) {
     self.vin = vin
     self.licensePlate = licensePlate
@@ -19,7 +18,6 @@ struct VehicleModel: Identifiable {
     self.modelYear = modelYear
     self.color = color
     self.personalizedPhoto = personalizedPhoto
-    self.statusPublisher = statusPublisher
   }
 
   var id: String { vin }
@@ -30,22 +28,21 @@ struct VehicleModel: Identifiable {
   let modelYear: String
   let color: Color?
   let personalizedPhoto: Vehicle.VehiclePicture?
+}
 
-  struct VehicleStatus {
-    let isLocked: Bool?
-    let isClosed: Bool?
-    init(status: Status) {
-      self.isLocked = status.isLocked
-      self.isClosed = status.isClosed
-      self.error = nil
-    }
-
-    let error: Error?
-    init(error: Error) {
-      self.isLocked = nil
-      self.isClosed = nil
-      self.error = error
-    }
+struct VehicleStatus {
+  let isLocked: Bool?
+  let isClosed: Bool?
+  init(status: Status) {
+    self.isLocked = status.isLocked
+    self.isClosed = status.isClosed
+    self.error = nil
   }
-  let statusPublisher: AnyPublisher<VehicleStatus, Error>
+
+  let error: Error?
+  init(error: Error) {
+    self.isLocked = nil
+    self.isClosed = nil
+    self.error = error
+  }
 }
