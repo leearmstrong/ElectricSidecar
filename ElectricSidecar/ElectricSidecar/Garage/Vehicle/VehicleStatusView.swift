@@ -89,8 +89,8 @@ struct VehicleStatusView: View {
     }
     .task {
       do {
-        let status = try await store.status(for: vehicle)
-        let emobility = try await store.emobility(for: vehicle)
+        let status = try await store.status(for: vehicle.vin)
+        let emobility = try await store.emobility(for: vehicle.vin)
         loadState = .loaded(status: status, emobility: emobility)
       } catch {
         loadState = .error(error: error)

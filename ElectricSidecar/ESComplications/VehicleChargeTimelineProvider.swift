@@ -44,7 +44,7 @@ struct ChargeRemainingTimelineProvider: TimelineProvider {
       // TODO: Let the user pick this somehow?
       let firstVehicle = vehicleList[0]
 
-      let emobility = try await store.emobility(for: firstVehicle)
+      let emobility = try await store.emobility(for: firstVehicle.vin)
 
       storage.lastKnownCharge = emobility.batteryChargeStatus.stateOfChargeInPercentage
       storage.lastKnownChargingState = emobility.isCharging

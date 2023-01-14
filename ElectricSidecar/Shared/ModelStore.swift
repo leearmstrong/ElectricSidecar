@@ -71,14 +71,14 @@ final class ModelStore: ObservableObject {
     return vehicles
   }
 
-  func capabilities(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Capabilities {
+  func capabilities(for vin: String, ignoreCache: Bool = false) async throws -> Capabilities {
     return try await get(
-      vehicle: vehicle,
+      vin: vin,
       cacheKey: "capabilities",
       timeout: longCacheTimeout,
       ignoreCache: ignoreCache
-    ) { vehicle in
-      let response = try await porscheConnect.capabilities(vehicle: vehicle)
+    ) {
+      let response = try await porscheConnect.capabilities(vin: vin)
       guard response.response.statusCode == 200,
             let result = response.capabilities else {
         fatalError()
@@ -87,15 +87,15 @@ final class ModelStore: ObservableObject {
     }
   }
 
-  func emobility(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Emobility {
-    let capabilities = try await capabilities(for: vehicle, ignoreCache: ignoreCache)
+  func emobility(for vin: String, ignoreCache: Bool = false) async throws -> Emobility {
+    let capabilities = try await capabilities(for: vin, ignoreCache: ignoreCache)
     return try await get(
-      vehicle: vehicle,
+      vin: vin,
       cacheKey: "emobility",
       timeout: cacheTimeout,
       ignoreCache: ignoreCache
-    ) { vehicle in
-      let response = try await porscheConnect.emobility(vehicle: vehicle, capabilities: capabilities)
+    ) {
+      let response = try await porscheConnect.emobility(vin: vin, capabilities: capabilities)
       guard response.response.statusCode == 200,
             let result = response.emobility else {
         fatalError()
@@ -104,14 +104,14 @@ final class ModelStore: ObservableObject {
     }
   }
 
-  func summary(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Summary {
+  func summary(for vin: String, ignoreCache: Bool = false) async throws -> Summary {
     return try await get(
-      vehicle: vehicle,
+      vin: vin,
       cacheKey: "summary",
       timeout: cacheTimeout,
       ignoreCache: ignoreCache
-    ) { vehicle in
-      let response = try await porscheConnect.summary(vehicle: vehicle)
+    ) {
+      let response = try await porscheConnect.summary(vin: vin)
       guard response.response.statusCode == 200,
             let result = response.summary else {
         fatalError()
@@ -120,14 +120,14 @@ final class ModelStore: ObservableObject {
     }
   }
 
-  func position(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Position {
+  func position(for vin: String, ignoreCache: Bool = false) async throws -> Position {
     return try await get(
-      vehicle: vehicle,
+      vin: vin,
       cacheKey: "position",
       timeout: cacheTimeout,
       ignoreCache: ignoreCache
-    ) { vehicle in
-      let response = try await porscheConnect.position(vehicle: vehicle)
+    ) {
+      let response = try await porscheConnect.position(vin: vin)
       guard response.response.statusCode == 200,
             let result = response.position else {
         fatalError()
@@ -136,14 +136,14 @@ final class ModelStore: ObservableObject {
     }
   }
 
-  func status(for vehicle: Vehicle, ignoreCache: Bool = false) async throws -> Status {
+  func status(for vin: String, ignoreCache: Bool = false) async throws -> Status {
     return try await get(
-      vehicle: vehicle,
+      vin: vin,
       cacheKey: "status",
       timeout: cacheTimeout,
       ignoreCache: ignoreCache
-    ) { vehicle in
-      let response = try await porscheConnect.status(vehicle: vehicle)
+    ) {
+      let response = try await porscheConnect.status(vin: vin)
       guard response.response.statusCode == 200,
             let result = response.status else {
         fatalError()
@@ -153,14 +153,14 @@ final class ModelStore: ObservableObject {
   }
 
   private func get<T: Codable>(
-    vehicle: Vehicle,
+    vin: String,
     cacheKey: String,
     timeout: TimeInterval,
     ignoreCache: Bool = false,
-    api: (Vehicle) async throws -> T
+    api: () async throws -> T
   ) async throws -> T {
     // Try disk cache first.
-    let vehicleURL = vehiclesURL.appendingPathComponent(vehicle.vin)
+    let vehicleURL = vehiclesURL.appendingPathComponent(vin)
     let url = vehicleURL.appendingPathComponent(cacheKey)
     if !fm.fileExists(atPath: vehicleURL.path) {
       try fm.createDirectory(at: vehicleURL, withIntermediateDirectories: true)
@@ -171,15 +171,15 @@ final class ModelStore: ObservableObject {
     }
 
     // Fetch data if we don't have it.
-    let result = try await api(vehicle)
+    let result = try await api()
 
     try cacheCoordinator.encode(url: url, object: result)
 
     return result
   }
 
-  func flash(vehicle: Vehicle) async throws {
-    let response = try await porscheConnect.flash(vehicle: vehicle)
+  func flash(vin: String) async throws {
+    let response = try await porscheConnect.flash(vin: vin)
     guard response.response.statusCode == 200 else {
       fatalError()
     }

@@ -41,7 +41,7 @@ struct VehicleLocationView: View {
     }
     .task {
       do {
-        let position = try await store.position(for: vehicle)
+        let position = try await store.position(for: vehicle.vin)
         let region = MKCoordinateRegion(
           center: CLLocationCoordinate2D(latitude: position.carCoordinate.latitude,
                                          longitude: position.carCoordinate.longitude),
