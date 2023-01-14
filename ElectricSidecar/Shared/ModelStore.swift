@@ -1,6 +1,7 @@
 import Combine
 import CryptoKit
 import Foundation
+import MapKit
 import PorscheConnect
 
 private let fm = FileManager.default
@@ -76,24 +77,58 @@ final class ModelStore: ObservableObject {
     }
   }
 
+  private var refreshState: [String: Bool] = [:]
   func refresh(vin: String) async throws {
-    // TODO: Keep an in-memory cache of the last-known status.
-    do {
-      async let status = try self.status(for: vin)
-      async let emobility = try self.emobility(for: vin)
-
-      let statusFormatter = StatusFormatter()
-      try await self.statusSubjects[vin]?.send(.loaded(UIModel.Vehicle.Status(
-        isLocked: status.isLocked,
-        isClosed: status.isClosed,
-        batteryLevel: statusFormatter.batteryLevel(from: status),
-        electricalRange: statusFormatter.electricalRange(from: status),
-        mileage: statusFormatter.mileage(from: status)
-      )))
-      try await self.emobilitySubjects[vin]?.send(.loaded(UIModel.Vehicle.Emobility(isCharging: emobility.isCharging)))
-    } catch {
-      statusSubjects[vin]?.send(.error(error: error, lastKnown: nil))
+    if refreshState[vin] == true {
+      return  // Already refreshing.
     }
+    refreshState[vin] = true
+
+    // TODO: Keep an in-memory cache of the last-known status.
+    await withTaskGroup(of: Void.self, body: { taskGroup in
+      taskGroup.addTask {
+        do {
+          let status = try await self.status(for: vin)
+          let statusFormatter = StatusFormatter()
+          self.statusSubjects[vin]!.send(.loaded(UIModel.Vehicle.Status(
+            isLocked: status.isLocked,
+            isClosed: status.isClosed,
+            batteryLevel: statusFormatter.batteryLevel(from: status),
+            electricalRange: statusFormatter.electricalRange(from: status),
+            mileage: statusFormatter.mileage(from: status)
+          )))
+        } catch {
+          self.statusSubjects[vin]?.send(.error(error: error, lastKnown: nil))
+        }
+      }
+      taskGroup.addTask {
+        do {
+          let emobility = try await self.emobility(for: vin)
+          self.emobilitySubjects[vin]!.send(.loaded(UIModel.Vehicle.Emobility(
+            isCharging: emobility.isCharging
+          )))
+        } catch {
+          self.emobilitySubjects[vin]?.send(.error(error: error, lastKnown: nil))
+        }
+      }
+      taskGroup.addTask {
+        do {
+          let position = try await self.position(for: vin)
+          let coordinateRegion = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: position.carCoordinate.latitude,
+                                           longitude: position.carCoordinate.longitude),
+            latitudinalMeters: 200,
+            longitudinalMeters: 200
+          )
+          self.positionSubjects[vin]!.send(.loaded(UIModel.Vehicle.Position(
+            coordinateRegion: coordinateRegion
+          )))
+        } catch {
+          self.positionSubjects[vin]?.send(.error(error: error, lastKnown: nil))
+        }
+      }
+    })
+    refreshState[vin] = false
   }
 
   private var statusSubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>] = [:]
@@ -101,7 +136,7 @@ final class ModelStore: ObservableObject {
     if let publisher = statusSubjects[vin] {
       return publisher.eraseToAnyPublisher()
     }
-    let publisher = PassthroughSubject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>()
+    let publisher = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>(.loading)
     statusSubjects[vin] = publisher
 
     publisher.send(.loading)
@@ -118,8 +153,25 @@ final class ModelStore: ObservableObject {
     if let publisher = emobilitySubjects[vin] {
       return publisher.eraseToAnyPublisher()
     }
-    let publisher = PassthroughSubject<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>()
+    let publisher = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>(.loading)
     emobilitySubjects[vin] = publisher
+
+    publisher.send(.loading)
+    Task {
+      // Kick off the initial load.
+      try await refresh(vin: vin)
+    }
+
+    return publisher.eraseToAnyPublisher()
+  }
+
+  private var positionSubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>] = [:]
+  func positionPublisher(for vin: String) -> AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never> {
+    if let publisher = positionSubjects[vin] {
+      return publisher.eraseToAnyPublisher()
+    }
+    let publisher = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>(.loading)
+    positionSubjects[vin] = publisher
 
     publisher.send(.loading)
     Task {
@@ -217,7 +269,7 @@ final class ModelStore: ObservableObject {
     }
   }
 
-  func status(for vin: String, ignoreCache: Bool = true) async throws -> Status {
+  func status(for vin: String, ignoreCache: Bool = false) async throws -> Status {
     return try await get(
       vin: vin,
       cacheKey: "status",

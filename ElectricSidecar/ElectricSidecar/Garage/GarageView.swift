@@ -20,7 +20,8 @@ struct GarageView: View {
             VehicleView(
               vehicle: vehicle,
               statusPublisher: store.statusPublisher(for: vehicle.vin),
-              emobilityPublisher: store.emobilityPublisher(for: vehicle.vin)
+              emobilityPublisher: store.emobilityPublisher(for: vehicle.vin),
+              positionPublisher: store.positionPublisher(for: vehicle.vin)
             ) {
               try await store.refresh(vin: vehicle.vin)
             }

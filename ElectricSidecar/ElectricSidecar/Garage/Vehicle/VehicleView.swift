@@ -8,8 +8,10 @@ struct VehicleView: View {
   let vehicle: UIModel.Vehicle
   @State var status: UIModel.Vehicle.Status?
   @State var emobility: UIModel.Vehicle.Emobility?
+  @State var position: UIModel.Vehicle.Position?
   let statusPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>
   let emobilityPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>
+  let positionPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>
   let refresh: () async throws -> Void
 
   @State private var isRefreshing = false
@@ -18,8 +20,8 @@ struct VehicleView: View {
     ScrollView {
       VStack(alignment: .leading) {
         VehicleStatusView(vehicle: vehicle, status: $status, emobility: $emobility)
-//        VehicleLocationView(store: store, vehicle: vehicle)
-//          .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+        VehicleLocationView(position: $position)
+          .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
 
         if let camera = vehicle.personalizedPhoto {
           CachedAsyncImage(
@@ -91,6 +93,22 @@ struct VehicleView: View {
         self.emobility = emobility
       case .error(_, let lastKnown):
         self.emobility = lastKnown
+        // TODO: Show the error state somehow.
+      }
+    }
+    .onReceive(positionPublisher
+      .receive(on: RunLoop.main)
+    ) { result in
+      // TODO: This enum can probably just be a struct with both an optional value and optional error.
+      switch result {
+      case .loading:
+        self.emobility = nil
+      case .loaded(let position):
+        self.position = position
+      case .refreshing(let position):
+        self.position = position
+      case .error(_, let lastKnown):
+        self.position = lastKnown
         // TODO: Show the error state somehow.
       }
     }
