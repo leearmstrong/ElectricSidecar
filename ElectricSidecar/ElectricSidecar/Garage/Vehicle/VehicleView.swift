@@ -1,4 +1,5 @@
 import CachedAsyncImage
+import ClockKit
 import Combine
 import Foundation
 import PorscheConnect
@@ -69,6 +70,14 @@ struct VehicleView: View {
             }
             Task {
               try await refresh()
+
+              let server = CLKComplicationServer.sharedInstance()
+              if let complications = server.activeComplications {
+                for complication in complications {
+                  server.reloadTimeline(for: complication)
+                }
+              }
+
               withAnimation {
                 isRefreshing = false
               }

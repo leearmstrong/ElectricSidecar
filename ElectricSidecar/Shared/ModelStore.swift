@@ -139,7 +139,6 @@ final class ModelStore: ObservableObject {
     let publisher = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>(.loading)
     statusSubjects[vin] = publisher
 
-    publisher.send(.loading)
     Task {
       // Kick off the initial load.
       try await refresh(vin: vin)
@@ -156,7 +155,6 @@ final class ModelStore: ObservableObject {
     let publisher = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>(.loading)
     emobilitySubjects[vin] = publisher
 
-    publisher.send(.loading)
     Task {
       // Kick off the initial load.
       try await refresh(vin: vin)
@@ -173,7 +171,6 @@ final class ModelStore: ObservableObject {
     let publisher = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>(.loading)
     positionSubjects[vin] = publisher
 
-    publisher.send(.loading)
     Task {
       // Kick off the initial load.
       try await refresh(vin: vin)
