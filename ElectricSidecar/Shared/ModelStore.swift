@@ -75,17 +75,27 @@ final class ModelStore: ObservableObject {
     }
   }
 
+  func refresh(vin: String) async throws {
+    do {
+      let output = try await self.status(for: vin)
+      self.statusSubjects[vin]?.send(VehicleStatus(isLocked: output.isLocked, isClosed: output.isClosed))
+    } catch {
+      statusSubjects[vin]?.send(.init(error: error))
+    }
+  }
+
+  private var statusSubjects: [String: any Subject<VehicleStatus, Error>] = [:]
   func statusPublisher(for vin: String) -> AnyPublisher<VehicleStatus, Error> {
-    return Future<VehicleStatus, Error> { promise in
-      Task {
-        do {
-          let output = try await self.status(for: vin)
-          promise(.success(VehicleStatus(status: output)))
-        } catch {
-          promise(.failure(error))
-        }
-      }
-    }.eraseToAnyPublisher()
+    if let publisher = statusSubjects[vin] {
+      return publisher.eraseToAnyPublisher()
+    }
+    let publisher = PassthroughSubject<VehicleStatus, Error>()
+    statusSubjects[vin] = publisher
+    Task {
+      // Kick off the initial load.
+      try await refresh(vin: vin)
+    }
+    return publisher.eraseToAnyPublisher()
   }
 
   // MARK: - API invocations

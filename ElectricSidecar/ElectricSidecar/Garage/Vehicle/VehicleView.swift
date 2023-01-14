@@ -8,6 +8,9 @@ struct VehicleView: View {
   let vehicle: VehicleModel
   @State var status: VehicleStatus?
   let statusPublisher: AnyPublisher<VehicleStatus, Error>
+  let refresh: () async throws -> Void
+
+  @State private var isRefreshing = false
 
   var body: some View {
     ScrollView {
@@ -16,6 +19,7 @@ struct VehicleView: View {
 //        VehicleLocationView(store: store, vehicle: vehicle)
 //          .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
 //
+
         if let camera = vehicle.personalizedPhoto {
           CachedAsyncImage(
             url: camera.url,
@@ -34,6 +38,20 @@ struct VehicleView: View {
               }
             }
           )
+        }
+
+        if isRefreshing {
+          ProgressView()
+            .padding()
+        } else {
+          Button("refresh") {
+            isRefreshing = true
+            Task {
+              try await refresh()
+              isRefreshing = false
+            }
+          }
+          .padding()
         }
 
         VehicleDetailsView(

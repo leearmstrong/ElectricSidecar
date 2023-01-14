@@ -29,27 +29,3 @@ struct VehicleModel: Identifiable {
   let color: Color?
   let personalizedPhoto: Vehicle.VehiclePicture?
 }
-
-struct VehicleStatus {
-  let isLocked: Bool?
-  let isClosed: Bool?
-
-  init(isLocked: Bool? = nil, isClosed: Bool? = nil) {
-    self.isLocked = isLocked
-    self.isClosed = isClosed
-    self.error = nil
-  }
-
-  init(status: Status) {
-    self.isLocked = status.isLocked
-    self.isClosed = status.isClosed
-    self.error = nil
-  }
-
-  let error: Error?
-  init(error: Error) {
-    self.isLocked = nil
-    self.isClosed = nil
-    self.error = error
-  }
-}
