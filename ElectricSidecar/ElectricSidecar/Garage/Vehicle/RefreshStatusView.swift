@@ -16,7 +16,7 @@ struct RefreshStatusView: View {
       }
       .frame(maxWidth: .infinity)
       VStack {
-        Image(systemName: "bolt.car")
+        Image("taycan.charge")
         ProgressView()
           .opacity(emobilityRefreshing ? 1 : 0)
           .animation(.linear, value: emobilityRefreshing)
