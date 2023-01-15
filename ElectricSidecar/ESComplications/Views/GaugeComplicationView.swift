@@ -15,9 +15,7 @@ struct GaugeComplicationView: View {
       Gauge(value: batteryLevel, in: 0...100.0) {
         Text("Charge remaining")
       } currentValueLabel: {
-        Image(systemName: "bolt.car")
-          .symbolRenderingMode(.palette)
-          .foregroundStyle(isCharging == true ? .white : .clear, .white)
+        Image(isCharging == true ? "taycan.charge" : "taycan")
           .padding(.top, -4)
       } minimumValueLabel: {
         Text("")
