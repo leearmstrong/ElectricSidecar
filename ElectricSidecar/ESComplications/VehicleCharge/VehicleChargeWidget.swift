@@ -11,7 +11,7 @@ struct VehicleChargeWidget: Widget {
       }
       .configurationDisplayName("Charge")
       .description("Show the remaining charge on your vehicle")
-      .supportedFamilies([.accessoryCircular])
+      .supportedFamilies([.accessoryCircular, .accessoryCorner])
   }
 }
 

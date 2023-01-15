@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66108D27296B569000791A7A /* ElectricSidecar.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 66108D26296B569000791A7A /* ElectricSidecar.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		66108D27296B569000791A7A /* DElectricSidecar.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 66108D26296B569000791A7A /* DElectricSidecar.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		66108D2C296B569000791A7A /* ElectricSidecarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D2B296B569000791A7A /* ElectricSidecarApp.swift */; };
 		66108D30296B569100791A7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D2F296B569100791A7A /* Assets.xcassets */; };
 		66108D33296B569100791A7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D32296B569100791A7A /* Preview Assets.xcassets */; };
@@ -102,7 +102,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				66108D27296B569000791A7A /* ElectricSidecar.app in Embed Watch Content */,
+				66108D27296B569000791A7A /* DElectricSidecar.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,7 +122,7 @@
 
 /* Begin PBXFileReference section */
 		66108D20296B569000791A7A /* ElectricSidecarHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecarHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		66108D26296B569000791A7A /* ElectricSidecar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66108D26296B569000791A7A /* DElectricSidecar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DElectricSidecar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66108D2B296B569000791A7A /* ElectricSidecarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricSidecarApp.swift; sourceTree = "<group>"; };
 		66108D2F296B569100791A7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66108D32296B569100791A7A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				66108D20296B569000791A7A /* ElectricSidecarHost.app */,
-				66108D26296B569000791A7A /* ElectricSidecar.app */,
+				66108D26296B569000791A7A /* DElectricSidecar.app */,
 				66108D38296B569100791A7A /* UnitTests.xctest */,
 				66108D42296B569100791A7A /* UITests.xctest */,
 				66108D5D296B56AF00791A7A /* ESComplicationsExtension.appex */,
@@ -468,7 +468,7 @@
 				66108DB7296B590F00791A7A /* CachedAsyncImage */,
 			);
 			productName = "ElectricSidecar Watch App";
-			productReference = 66108D26296B569000791A7A /* ElectricSidecar.app */;
+			productReference = 66108D26296B569000791A7A /* DElectricSidecar.app */;
 			productType = "com.apple.product-type.application";
 		};
 		66108D37296B569100791A7A /* UnitTests */ = {
@@ -858,7 +858,7 @@
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
+				INFOPLIST_KEY_CFBundleDisplayName = DElectricSidecar;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -867,7 +867,7 @@
 				);
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "D$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
