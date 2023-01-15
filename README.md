@@ -23,7 +23,7 @@ An unofficial Apple Watch app for the Porsche Taycan.
 
 ## How to get it
 
-If you would like to join the TestFlight, email jverkoey@gmail.com
+If you would like to join the TestFlight, email jverkoey@gmail.com or join our Discord at: https://discord.gg/hPeqFkmaDb
 
 ## How to use it
 
@@ -31,5 +31,3 @@ Once installed, log in with your Porsche credentials. These credentials will sta
 and only be used with the Porsche APIs for the purposes of authentication.
 
 ## Community
-
-Join our Discord at: https://discord.gg/hPeqFkmaDb
