@@ -7,6 +7,7 @@ struct GaugeComplicationView: View {
   var isCharging: Bool?
 
   @Environment(\.widgetFamily) var family
+  @Environment(\.widgetRenderingMode) var widgetRenderingMode
 
   var body: some View {
     switch family {
@@ -49,6 +50,21 @@ struct GaugeComplicationView: View {
         .tint(batteryColor)
         .gaugeStyle(LinearGaugeStyle(tint: Gradient(colors: [.red, .orange, .yellow, .green])))
       }
+    case .accessoryInline:
+      // Note: inline accessories only support one Text and/or Image element. Any additional
+      // elements will be ignored.
+      HStack {
+        if widgetRenderingMode == .fullColor {
+          Image(systemName: "bolt.car")
+            .symbolRenderingMode(.palette)
+            .foregroundStyle(isCharging == true ? .white : .clear, .white)
+        } else {
+          // Non-full-color rendering modes don't support palette rendering, so we need to use
+          // an alternate glyph instead.
+          Image(systemName: isCharging == true ? "bolt.car" : "car")
+        }
+        Text(Self.formatted(chargeRemaining: batteryLevel * 0.01))
+      }
     default:
       Text("Unsupported")
     }
@@ -77,11 +93,17 @@ struct GaugeComplicationView: View {
 
 struct GaugeComplicationView_Previews: PreviewProvider {
   static var previews: some View {
-    GaugeComplicationView(batteryLevel: 100)
+    GaugeComplicationView(batteryLevel: 100, isCharging: true)
       .previewContext(WidgetPreviewContext(family: .accessoryCircular))
       .previewDisplayName("Circular")
     GaugeComplicationView(batteryLevel: 20, isCharging: true)
       .previewContext(WidgetPreviewContext(family: .accessoryCorner))
       .previewDisplayName("Corner")
+    GaugeComplicationView(batteryLevel: 20, isCharging: false)
+      .previewContext(WidgetPreviewContext(family: .accessoryInline))
+      .previewDisplayName("Inline")
+    GaugeComplicationView(batteryLevel: 20, isCharging: true)
+      .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+      .previewDisplayName("Rectangular")
   }
 }
