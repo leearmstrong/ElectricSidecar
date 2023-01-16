@@ -38,6 +38,8 @@
 		66108DB4296B58F700791A7A /* VehicleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAE296B58F700791A7A /* VehicleDetailsView.swift */; };
 		66108DB5296B58F700791A7A /* VehicleStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DAF296B58F700791A7A /* VehicleStatusView.swift */; };
 		66108DB8296B590F00791A7A /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 66108DB7296B590F00791A7A /* CachedAsyncImage */; };
+		661197A029750EE800D92637 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6611979F29750EE800D92637 /* Shared.xcassets */; };
+		661197A129750EE800D92637 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6611979F29750EE800D92637 /* Shared.xcassets */; };
 		6618E352296FDE5900F370BB /* CodableCacheCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618E351296FDE5900F370BB /* CodableCacheCoordinator.swift */; };
 		6618E353296FDE5900F370BB /* CodableCacheCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6618E351296FDE5900F370BB /* CodableCacheCoordinator.swift */; };
 		661C3F4A29725D0900A4CC90 /* Vehicle+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661C3F4929725D0900A4CC90 /* Vehicle+Status.swift */; };
@@ -154,6 +156,7 @@
 		66108DAD296B58F700791A7A /* VehicleLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocationView.swift; sourceTree = "<group>"; };
 		66108DAE296B58F700791A7A /* VehicleDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleDetailsView.swift; sourceTree = "<group>"; };
 		66108DAF296B58F700791A7A /* VehicleStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleStatusView.swift; sourceTree = "<group>"; };
+		6611979F29750EE800D92637 /* Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Shared.xcassets; sourceTree = "<group>"; };
 		6618E351296FDE5900F370BB /* CodableCacheCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableCacheCoordinator.swift; sourceTree = "<group>"; };
 		661C3F4929725D0900A4CC90 /* Vehicle+Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Status.swift"; sourceTree = "<group>"; };
 		661C3F4D2972641500A4CC90 /* UIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIModel.swift; sourceTree = "<group>"; };
@@ -300,6 +303,7 @@
 				661C3F4C29725D2800A4CC90 /* UIModel */,
 				6618E351296FDE5900F370BB /* CodableCacheCoordinator.swift */,
 				665EDD6329729BDF0012CD3A /* DoorStatusView.swift */,
+				6611979F29750EE800D92637 /* Shared.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -597,6 +601,7 @@
 			files = (
 				66108D33296B569100791A7A /* Preview Assets.xcassets in Resources */,
 				66108D30296B569100791A7A /* Assets.xcassets in Resources */,
+				661197A029750EE800D92637 /* Shared.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +623,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661197A129750EE800D92637 /* Shared.xcassets in Resources */,
 				66108D67296B56B000791A7A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
