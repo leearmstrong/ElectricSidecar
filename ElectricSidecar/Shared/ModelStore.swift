@@ -50,7 +50,7 @@ final class ModelStore: ObservableObject {
     porscheConnect = PorscheConnect(
       username: username,
       password: password,
-      environment: Environment(locale: .current)!,
+      environment: Environment(locale: SupportedLocale.default)!,
       authStorage: authStorage
     )
   }
