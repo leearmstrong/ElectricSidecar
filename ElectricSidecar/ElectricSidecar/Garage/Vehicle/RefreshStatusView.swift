@@ -44,3 +44,14 @@ struct RefreshStatusView_Previews: PreviewProvider {
     .previewDisplayName("Series 8 45mm")
   }
 }
+
+struct Image_Previews: PreviewProvider {
+  static var previews: some View {
+    Image("taycan.charge")
+      .symbolRenderingMode(.palette)
+      .foregroundStyle(.orange, .blue, .green)
+      .font(.largeTitle)
+    .previewDevice("Apple Watch Series 8 (45mm)")
+    .previewDisplayName("Series 8 45mm")
+  }
+}
