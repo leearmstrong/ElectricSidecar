@@ -16,6 +16,7 @@ struct GaugeComplicationView: View {
         Text("Charge remaining")
       } currentValueLabel: {
         Image(isCharging == true ? "taycan.charge" : "taycan")
+          .fontWeight(.regular)
           .padding(.top, -4)
       } minimumValueLabel: {
         Text("")
@@ -25,14 +26,10 @@ struct GaugeComplicationView: View {
       .gaugeStyle(CircularGaugeStyle(tint: Gradient(colors: [.red, .orange, .yellow, .green])))
     case .accessoryCorner:
       HStack(spacing: 0) {
-        Image(systemName: "bolt.car")
-          .symbolRenderingMode(.palette)
-          .foregroundStyle(.clear, .white)
-          .font(.title.bold())
-        if isCharging == true {
-          Text(Image(systemName: "bolt.fill"))
-            .font(.title.bold())
-        }
+        Image(isCharging == true ? "taycan.charge" : "taycan")
+          .font(.system(size: 26))
+          .fontWeight(.regular)
+          .foregroundColor(batteryColor)
       }
       .widgetLabel {
         Gauge(value: batteryLevel, in: 0...100.0) {
