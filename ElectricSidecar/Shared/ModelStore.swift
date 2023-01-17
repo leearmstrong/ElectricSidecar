@@ -105,7 +105,7 @@ final class ModelStore: ObservableObject {
           self.logger.info("Refreshing status for \(vin, privacy: .private(mask: .hash))")
           let status = try await self.status(for: vin, ignoreCache: ignoreCache)
           let statusFormatter = StatusFormatter()
-          self.statusSubjects[vin]!.send(.loaded(UIModel.Vehicle.Status(
+          self.statusSubject(for: vin).send(.loaded(UIModel.Vehicle.Status(
             isLocked: status.isLocked,
             isClosed: status.isClosed,
             batteryLevel: statusFormatter.batteryLevel(from: status),
@@ -121,7 +121,7 @@ final class ModelStore: ObservableObject {
         do {
           self.logger.info("Refreshing emobility for \(vin, privacy: .private(mask: .hash))")
           let emobility = try await self.emobility(for: vin, ignoreCache: ignoreCache)
-          self.emobilitySubjects[vin]!.send(.loaded(UIModel.Vehicle.Emobility(
+          self.emobilitySubject(for: vin).send(.loaded(UIModel.Vehicle.Emobility(
             isCharging: emobility.isCharging
           )))
         } catch {
@@ -139,7 +139,7 @@ final class ModelStore: ObservableObject {
             latitudinalMeters: 200,
             longitudinalMeters: 200
           )
-          self.positionSubjects[vin]!.send(.loaded(UIModel.Vehicle.Position(
+          self.positionSubject(for: vin).send(.loaded(UIModel.Vehicle.Position(
             coordinateRegion: coordinateRegion
           )))
         } catch {
@@ -152,51 +152,42 @@ final class ModelStore: ObservableObject {
   }
 
   private var statusSubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>] = [:]
+  private func statusSubject(for vin: String) -> any Subject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never> {
+    if let subject = statusSubjects[vin] {
+      return subject
+    }
+    let subject = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>(.loading)
+    statusSubjects[vin] = subject
+    return subject
+  }
   func statusPublisher(for vin: String) -> AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never> {
-    if let publisher = statusSubjects[vin] {
-      return publisher.eraseToAnyPublisher()
-    }
-    let publisher = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>(.loading)
-    statusSubjects[vin] = publisher
-
-    Task {
-      // Kick off the initial load.
-      try await refresh(vin: vin)
-    }
-
-    return publisher.eraseToAnyPublisher()
+    return statusSubject(for: vin).eraseToAnyPublisher()
   }
 
   private var emobilitySubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>] = [:]
+  private func emobilitySubject(for vin: String) -> any Subject<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never> {
+    if let subject = emobilitySubjects[vin] {
+      return subject
+    }
+    let subject = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>(.loading)
+    emobilitySubjects[vin] = subject
+    return subject
+  }
   func emobilityPublisher(for vin: String) -> AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never> {
-    if let publisher = emobilitySubjects[vin] {
-      return publisher.eraseToAnyPublisher()
-    }
-    let publisher = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>(.loading)
-    emobilitySubjects[vin] = publisher
-
-    Task {
-      // Kick off the initial load.
-      try await refresh(vin: vin)
-    }
-
-    return publisher.eraseToAnyPublisher()
+    return emobilitySubject(for: vin).eraseToAnyPublisher()
   }
 
   private var positionSubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>] = [:]
+  private func positionSubject(for vin: String) -> any Subject<UIModel.Refreshable<UIModel.Vehicle.Position>, Never> {
+    if let subject = positionSubjects[vin] {
+      return subject
+    }
+    let subject = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>(.loading)
+    positionSubjects[vin] = subject
+    return subject
+  }
   func positionPublisher(for vin: String) -> AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never> {
-    if let publisher = positionSubjects[vin] {
-      return publisher.eraseToAnyPublisher()
-    }
-    let publisher = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>(.loading)
-    positionSubjects[vin] = publisher
-
-    Task {
-      // Kick off the initial load.
-      try await refresh(vin: vin)
-    }
-
-    return publisher.eraseToAnyPublisher()
+    return positionSubject(for: vin).eraseToAnyPublisher()
   }
 
   // MARK: - API invocations

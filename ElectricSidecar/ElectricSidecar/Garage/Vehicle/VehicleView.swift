@@ -11,7 +11,7 @@ struct VehicleView: View {
   let statusPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>
   let emobilityPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>
   let positionPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>
-  let refresh: () async throws -> Void
+  let refresh: (Bool) async throws -> Void
 
   @State var status: UIModel.Vehicle.Status?
   @State var emobility: UIModel.Vehicle.Emobility?
@@ -69,7 +69,7 @@ struct VehicleView: View {
               positionRefreshing = true
             }
             Task {
-              try await refresh()
+              try await refresh(true)
 
               let server = CLKComplicationServer.sharedInstance()
               if let complications = server.activeComplications {
@@ -103,20 +103,42 @@ struct VehicleView: View {
         }
       }
     }
+    .onAppear {
+      isRefreshing = true
+      statusRefreshing = true
+      emobilityRefreshing = true
+      positionRefreshing = true
+      Task {
+        try await refresh(false)
+
+        withAnimation {
+          isRefreshing = false
+        }
+      }
+    }
     .onReceive(statusPublisher.receive(on: RunLoop.main)) { result in
       status = result.value
       statusError = result.error
-      statusRefreshing = false
+
+      if result.value != nil || result.error != nil {
+        statusRefreshing = false
+      }
     }
     .onReceive(emobilityPublisher.receive(on: RunLoop.main)) { result in
       emobility = result.value
       emobilityError = result.error
-      emobilityRefreshing = false
+
+      if result.value != nil || result.error != nil {
+        emobilityRefreshing = false
+      }
     }
     .onReceive(positionPublisher.receive(on: RunLoop.main)) { result in
       position = result.value
       positionError = result.error
-      positionRefreshing = false
+
+      if result.value != nil || result.error != nil {
+        positionRefreshing = false
+      }
     }
   }
 }
