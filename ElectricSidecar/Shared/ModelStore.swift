@@ -336,8 +336,21 @@ final class ModelStore: ObservableObject {
   }
 }
 
-private final class AuthStorage: AuthStoring {
+/// This actor type ensures that all storage/retrieval of auth tokens happens in a thread-safe manner.
+private actor AuthStoreActor {
   private var authTokens: [String: OAuthToken] = [:]
+
+  func storeAuthentication(token: OAuthToken?, for key: String) {
+    authTokens[key] = token
+  }
+
+  func authentication(for key: String) async -> OAuthToken? {
+    return authTokens[key]
+  }
+}
+
+private final class AuthStorage: AuthStoring {
+  private let actor = AuthStoreActor()
   private let authTokensURL: URL
   private let cacheCoordinator: CodableCacheCoordinator
   init(authTokensURL: URL, fileCoordinator: CodableCacheCoordinator) {
@@ -345,22 +358,22 @@ private final class AuthStorage: AuthStoring {
     self.cacheCoordinator = fileCoordinator
   }
 
-  func storeAuthentication(token: OAuthToken?, for key: String) {
+  func storeAuthentication(token: OAuthToken?, for key: String) async throws {
     let url = authTokenUrl(key: key)
-    try! cacheCoordinator.encode(url: url, object: token)
-    authTokens[key] = token
+    try cacheCoordinator.encode(url: url, object: token)
+    await actor.storeAuthentication(token: token, for: key)
   }
 
-  func authentication(for key: String) -> OAuthToken? {
+  func authentication(for key: String) async -> OAuthToken? {
     // Prioritize in-memory tokens.
-    if let token = authTokens[key] {
+    if let token = await actor.authentication(for: key) {
       return token
     }
 
     let url = authTokenUrl(key: key)
-    if let result: OAuthToken = try! cacheCoordinator.decode(url: url) {
-      authTokens[key] = result
-      return result
+    if let token: OAuthToken = try! cacheCoordinator.decode(url: url) {
+      await actor.storeAuthentication(token: token, for: key)
+      return token
     }
 
     // No token able to be loaded from memory or disk.

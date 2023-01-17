@@ -36,6 +36,15 @@
           "revision": "f94be38411297c71aa8df69c6875127e6d8d7a92",
           "version": null
         }
+      },
+      {
+        "package": "XCTAsync",
+        "repositoryURL": "https://github.com/mochidev/XCTAsync.git",
+        "state": {
+          "branch": null,
+          "revision": "4d4be0947d74feb387fb7af8ef53f69e78232a7b",
+          "version": "1.0.1"
+        }
       }
     ]
   },
