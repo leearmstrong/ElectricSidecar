@@ -3,6 +3,7 @@ import CryptoKit
 import Foundation
 import MapKit
 import PorscheConnect
+import os
 
 private let fm = FileManager.default
 
@@ -19,6 +20,7 @@ final class ModelStore: ObservableObject {
   private let authStorage: AuthStorage
   private let cacheCoordinator = CodableCacheCoordinator()
 
+  private let logger = Logger(subsystem: "com.featherless.electricsidecar.logging", category: "network")
   private let cacheURL: URL
   private let vehiclesURL: URL
   private let cacheTimeout: TimeInterval = 15 * 60
@@ -58,8 +60,16 @@ final class ModelStore: ObservableObject {
   // MARK: - Combine-based cache warming
 
   func load() async throws {
-    let vehicles = try await vehicleList()
+    logger.info("Initial load")
+    let vehicles: [Vehicle]
+    do {
+      vehicles = try await vehicleList()
+    } catch {
+      logger.error("Failed initial load with error: \(error, privacy: .public)")
+      throw error
+    }
 
+    logger.debug("Loaded \(vehicles.count, privacy: .public) vehicles")
     let vehicleModels = vehicles.map { vehicle in
       return UIModel.Vehicle(
         vin: vehicle.vin,
@@ -73,21 +83,26 @@ final class ModelStore: ObservableObject {
     }
 
     await MainActor.run {
+      logger.log(level: .debug, "Vehicles provided to model")
       self.vehicles = vehicleModels
     }
   }
 
   private var refreshState: [String: Bool] = [:]
   func refresh(vin: String, ignoreCache: Bool = false) async throws {
+    logger.info("Refresh state attempt for \(vin, privacy: .private(mask: .hash))")
     if refreshState[vin] == true {
       return  // Already refreshing.
     }
     refreshState[vin] = true
 
+    logger.info("Starting refresh task group for \(vin, privacy: .private(mask: .hash))")
+
     // TODO: Keep an in-memory cache of the last-known status.
     await withTaskGroup(of: Void.self, body: { taskGroup in
       taskGroup.addTask {
         do {
+          self.logger.info("Refreshing status for \(vin, privacy: .private(mask: .hash))")
           let status = try await self.status(for: vin, ignoreCache: ignoreCache)
           let statusFormatter = StatusFormatter()
           self.statusSubjects[vin]!.send(.loaded(UIModel.Vehicle.Status(
@@ -98,21 +113,25 @@ final class ModelStore: ObservableObject {
             mileage: statusFormatter.mileage(from: status)
           )))
         } catch {
+          self.logger.error("Status failed \(error, privacy: .public)")
           self.statusSubjects[vin]?.send(.error(error))
         }
       }
       taskGroup.addTask {
         do {
+          self.logger.info("Refreshing emobility for \(vin, privacy: .private(mask: .hash))")
           let emobility = try await self.emobility(for: vin, ignoreCache: ignoreCache)
           self.emobilitySubjects[vin]!.send(.loaded(UIModel.Vehicle.Emobility(
             isCharging: emobility.isCharging
           )))
         } catch {
+          self.logger.error("Status failed \(error, privacy: .public)")
           self.emobilitySubjects[vin]?.send(.error(error))
         }
       }
       taskGroup.addTask {
         do {
+          self.logger.info("Refreshing position for \(vin, privacy: .private(mask: .hash))")
           let position = try await self.position(for: vin, ignoreCache: ignoreCache)
           let coordinateRegion = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: position.carCoordinate.latitude,
@@ -124,6 +143,7 @@ final class ModelStore: ObservableObject {
             coordinateRegion: coordinateRegion
           )))
         } catch {
+          self.logger.error("Status failed \(error, privacy: .public)")
           self.positionSubjects[vin]?.send(.error(error))
         }
       }

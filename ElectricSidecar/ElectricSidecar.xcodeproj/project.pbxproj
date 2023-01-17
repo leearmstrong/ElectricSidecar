@@ -297,12 +297,13 @@
 		66108D76296B570C00791A7A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				66C17ACB297655CC00F5F281 /* Logger */,
 				66EB7705296C0A9A008BFC27 /* PorscheConnect+Extensions */,
+				66C17ACA2976555F00F5F281 /* Views */,
+				661C3F4C29725D2800A4CC90 /* UIModel */,
 				66108D78296B572F00791A7A /* AppGroup.swift */,
 				66108D77296B572F00791A7A /* ModelStore.swift */,
-				661C3F4C29725D2800A4CC90 /* UIModel */,
 				6618E351296FDE5900F370BB /* CodableCacheCoordinator.swift */,
-				665EDD6329729BDF0012CD3A /* DoorStatusView.swift */,
 				6611979F29750EE800D92637 /* Shared.xcassets */,
 			);
 			path = Shared;
@@ -418,6 +419,21 @@
 				66108D68296B56B000791A7A /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		66C17ACA2976555F00F5F281 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				665EDD6329729BDF0012CD3A /* DoorStatusView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		66C17ACB297655CC00F5F281 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 		66EB7705296C0A9A008BFC27 /* PorscheConnect+Extensions */ = {
@@ -877,6 +893,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 9.1;
@@ -909,6 +926,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
