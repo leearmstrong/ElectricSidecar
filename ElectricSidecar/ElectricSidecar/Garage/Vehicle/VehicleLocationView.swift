@@ -14,6 +14,7 @@ struct VehicleLocationView: View {
     if let position {
       Map(
         coordinateRegion: .constant(position.coordinateRegion),
+        interactionModes: [],
         showsUserLocation: true,
         annotationItems: [
           VehicleLocation(coordinate: position.coordinateRegion.center)
@@ -21,8 +22,13 @@ struct VehicleLocationView: View {
       ) { item in
         MapMarker(coordinate: item.coordinate, tint: .red)
       }
-      .allowsHitTesting(false)
       .aspectRatio(CGSize(width: 2, height: 1), contentMode: .fill)
+      .onTapGesture {
+        let placemark = MKPlacemark(coordinate: position.coordinateRegion.center, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "Car location"
+        mapItem.openInMaps(launchOptions: nil)
+      }
     } else {
       ProgressView()
     }
