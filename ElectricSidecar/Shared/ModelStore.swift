@@ -15,12 +15,13 @@ extension FileManager {
   }
 }
 
+public let logger = Logger(subsystem: LOGGER_SUBSYSTEM, category: "network")
+
 final class ModelStore: ObservableObject {
   private let porscheConnect: PorscheConnect
   private let authStorage: AuthStorage
   private let cacheCoordinator = CodableCacheCoordinator()
 
-  private let logger = Logger(subsystem: "com.featherless.electricsidecar.logging", category: "network")
   private let cacheURL: URL
   private let vehiclesURL: URL
   private let cacheTimeout: TimeInterval = 15 * 60
@@ -102,7 +103,7 @@ final class ModelStore: ObservableObject {
     await withTaskGroup(of: Void.self, body: { taskGroup in
       taskGroup.addTask {
         do {
-          self.logger.info("Refreshing status for \(vin, privacy: .private(mask: .hash))")
+          logger.info("Refreshing status for \(vin, privacy: .private(mask: .hash))")
           let status = try await self.status(for: vin, ignoreCache: ignoreCache)
           let statusFormatter = StatusFormatter()
           self.statusSubject(for: vin).send(.loaded(UIModel.Vehicle.Status(
@@ -112,26 +113,28 @@ final class ModelStore: ObservableObject {
             electricalRange: statusFormatter.electricalRange(from: status),
             mileage: statusFormatter.mileage(from: status)
           )))
+          logger.info("Finished refreshing status for \(vin, privacy: .private(mask: .hash))")
         } catch {
-          self.logger.error("Status failed \(error, privacy: .public)")
+          logger.error("Status failed \(error, privacy: .public)")
           self.statusSubjects[vin]?.send(.error(error))
         }
       }
       taskGroup.addTask {
         do {
-          self.logger.info("Refreshing emobility for \(vin, privacy: .private(mask: .hash))")
+          logger.info("Refreshing emobility for \(vin, privacy: .private(mask: .hash))")
           let emobility = try await self.emobility(for: vin, ignoreCache: ignoreCache)
           self.emobilitySubject(for: vin).send(.loaded(UIModel.Vehicle.Emobility(
             isCharging: emobility.isCharging
           )))
+          logger.info("Finished refreshing emobility for \(vin, privacy: .private(mask: .hash))")
         } catch {
-          self.logger.error("Status failed \(error, privacy: .public)")
+          logger.error("Status failed \(error, privacy: .public)")
           self.emobilitySubjects[vin]?.send(.error(error))
         }
       }
       taskGroup.addTask {
         do {
-          self.logger.info("Refreshing position for \(vin, privacy: .private(mask: .hash))")
+          logger.info("Refreshing position for \(vin, privacy: .private(mask: .hash))")
           let position = try await self.position(for: vin, ignoreCache: ignoreCache)
           let coordinateRegion = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: position.carCoordinate.latitude,
@@ -142,12 +145,14 @@ final class ModelStore: ObservableObject {
           self.positionSubject(for: vin).send(.loaded(UIModel.Vehicle.Position(
             coordinateRegion: coordinateRegion
           )))
+          logger.info("Finished refreshing position for \(vin, privacy: .private(mask: .hash))")
         } catch {
-          self.logger.error("Status failed \(error, privacy: .public)")
+          logger.error("Status failed \(error, privacy: .public)")
           self.positionSubjects[vin]?.send(.error(error))
         }
       }
     })
+    logger.info("Finished refreshing \(vin, privacy: .private(mask: .hash))")
     refreshState[vin] = false
   }
 

@@ -58,6 +58,9 @@
 		665EDD6229729A070012CD3A /* VehicleStatusTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD6129729A070012CD3A /* VehicleStatusTimelineProvider.swift */; };
 		665EDD6429729BDF0012CD3A /* DoorStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD6329729BDF0012CD3A /* DoorStatusView.swift */; };
 		665EDD6529729BDF0012CD3A /* DoorStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD6329729BDF0012CD3A /* DoorStatusView.swift */; };
+		668EB957297910E200304EA5 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB956297910E200304EA5 /* LogsView.swift */; };
+		668EB9592979119B00304EA5 /* LoggerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB9582979119B00304EA5 /* LoggerContext.swift */; };
+		668EB95A2979119B00304EA5 /* LoggerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB9582979119B00304EA5 /* LoggerContext.swift */; };
 		669BFB5F296C0942004621D9 /* Emobility+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */; };
 		66CA7DA1296FE95D00090ADD /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CA7DA0296FE95D00090ADD /* Vehicle.swift */; };
 		66CA7DA2296FE95D00090ADD /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CA7DA0296FE95D00090ADD /* Vehicle.swift */; };
@@ -168,6 +171,8 @@
 		665EDD5F297297D30012CD3A /* VehicleStatusWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusWidget.swift; sourceTree = "<group>"; };
 		665EDD6129729A070012CD3A /* VehicleStatusTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusTimelineProvider.swift; sourceTree = "<group>"; };
 		665EDD6329729BDF0012CD3A /* DoorStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorStatusView.swift; sourceTree = "<group>"; };
+		668EB956297910E200304EA5 /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
+		668EB9582979119B00304EA5 /* LoggerContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerContext.swift; sourceTree = "<group>"; };
 		669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Emobility+Helpers.swift"; sourceTree = "<group>"; };
 		66CA7DA0296FE95D00090ADD /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -241,6 +246,7 @@
 			children = (
 				66108D2B296B569000791A7A /* ElectricSidecarApp.swift */,
 				66108DA2296B58EE00791A7A /* AuthFlow */,
+				668EB955297910D800304EA5 /* Debugging */,
 				66108D9E296B58EE00791A7A /* Models */,
 				66108DA9296B58F700791A7A /* Garage */,
 				669BFB5C296BFE37004621D9 /* Resources */,
@@ -389,6 +395,14 @@
 			path = VehicleStatus;
 			sourceTree = "<group>";
 		};
+		668EB955297910D800304EA5 /* Debugging */ = {
+			isa = PBXGroup;
+			children = (
+				668EB956297910E200304EA5 /* LogsView.swift */,
+			);
+			path = Debugging;
+			sourceTree = "<group>";
+		};
 		669BFB5B296BF933004621D9 /* Vehicle */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +446,7 @@
 		66C17ACB297655CC00F5F281 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
+				668EB9582979119B00304EA5 /* LoggerContext.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -652,6 +667,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6618E352296FDE5900F370BB /* CodableCacheCoordinator.swift in Sources */,
+				668EB957297910E200304EA5 /* LogsView.swift in Sources */,
 				66108DA6296B58EE00791A7A /* Vehicle+SwiftUI.swift in Sources */,
 				66108DB0296B58F700791A7A /* VehicleView.swift in Sources */,
 				661C3F4E2972641500A4CC90 /* UIModel.swift in Sources */,
@@ -670,6 +686,7 @@
 				66108D79296B572F00791A7A /* ModelStore.swift in Sources */,
 				66108DB5296B58F700791A7A /* VehicleStatusView.swift in Sources */,
 				661C3F572972770800A4CC90 /* Vehicle+Position.swift in Sources */,
+				668EB9592979119B00304EA5 /* LoggerContext.swift in Sources */,
 				66108DA8296B58EE00791A7A /* LoginView.swift in Sources */,
 				66108DB4296B58F700791A7A /* VehicleDetailsView.swift in Sources */,
 				66CA7DA1296FE95D00090ADD /* Vehicle.swift in Sources */,
@@ -713,6 +730,7 @@
 				661C3F4B29725D0900A4CC90 /* Vehicle+Status.swift in Sources */,
 				665EDD6529729BDF0012CD3A /* DoorStatusView.swift in Sources */,
 				661C3F55297270FC00A4CC90 /* Vehicle+Emobility.swift in Sources */,
+				668EB95A2979119B00304EA5 /* LoggerContext.swift in Sources */,
 				66EB7706296C0AB1008BFC27 /* Emobility+Helpers.swift in Sources */,
 				665EDD5C2972973F0012CD3A /* ESComplications.swift in Sources */,
 				66EB7708296C0AB1008BFC27 /* Vehicle+Helpers.swift in Sources */,

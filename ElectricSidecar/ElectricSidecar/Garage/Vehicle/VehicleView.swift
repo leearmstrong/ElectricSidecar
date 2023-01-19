@@ -2,8 +2,10 @@ import CachedAsyncImage
 import ClockKit
 import Combine
 import Foundation
+import OSLog
 import PorscheConnect
 import SwiftUI
+import WidgetKit
 
 struct VehicleView: View {
   let vehicle: UIModel.Vehicle
@@ -11,7 +13,7 @@ struct VehicleView: View {
   let statusPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>
   let emobilityPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>
   let positionPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>
-  let refresh: (Bool) async throws -> Void
+  let refreshCallback: (Bool) async throws -> Void
 
   @State var status: UIModel.Vehicle.Status?
   @State var emobility: UIModel.Vehicle.Emobility?
@@ -69,14 +71,7 @@ struct VehicleView: View {
               positionRefreshing = true
             }
             Task {
-              try await refresh(true)
-
-              let server = CLKComplicationServer.sharedInstance()
-              if let complications = server.activeComplications {
-                for complication in complications {
-                  server.reloadTimeline(for: complication)
-                }
-              }
+              try await refresh(ignoreCache: true)
 
               withAnimation {
                 isRefreshing = false
@@ -109,7 +104,7 @@ struct VehicleView: View {
       emobilityRefreshing = true
       positionRefreshing = true
       Task {
-        try await refresh(false)
+        try await refresh(ignoreCache: false)
 
         withAnimation {
           isRefreshing = false
@@ -140,5 +135,12 @@ struct VehicleView: View {
         positionRefreshing = false
       }
     }
+  }
+
+  private func refresh(ignoreCache: Bool) async throws {
+    try await refreshCallback(ignoreCache)
+
+    logger.info("Refreshing all widget timelines")
+    WidgetCenter.shared.reloadAllTimelines()
   }
 }

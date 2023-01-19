@@ -30,6 +30,7 @@ struct GarageView: View {
               lastRefresh = .now
             }
           }
+          LogsView()
         }
         .tabViewStyle(.page)
       } else {
