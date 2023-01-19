@@ -1,4 +1,5 @@
 import PorscheConnect
+import OSLog
 import SwiftUI
 
 struct GarageView: View {
@@ -13,6 +14,7 @@ struct GarageView: View {
   }
 
   @State var lastRefresh: Date = .now
+  @State var isLogReadingEnabled: Bool = false
 
   @State var loadState: LoadState = .loadingVehicles
   var body: some View {
@@ -30,7 +32,9 @@ struct GarageView: View {
               lastRefresh = .now
             }
           }
-          LogsView()
+          if isLogReadingEnabled {
+            LogsView()
+          }
         }
         .tabViewStyle(.page)
       } else {
@@ -49,5 +53,23 @@ struct GarageView: View {
         }
       }
     }
+    .task(priority: .background) {
+      do {
+        isLogReadingEnabled = try checkIfLogReadingIsEnabled()
+      } catch {
+        isLogReadingEnabled = false
+      }
+    }
+  }
+
+  func checkIfLogReadingIsEnabled() throws -> Bool {
+    let subsystem = "group.com.featherless.electricsidecar.testlogger"
+    let testLogger = Logger(subsystem: subsystem, category: "test")
+    testLogger.error("test")
+    let startTime = Date(timeIntervalSinceNow: -5)
+    let logStore = try OSLogStore(scope: .currentProcessIdentifier)
+    let predicate = NSPredicate(format: "subsystem == %@", argumentArray: [subsystem])
+    let position = logStore.position(date: startTime)
+    return try logStore.getEntries(at: position, matching: predicate).makeIterator().next() != nil
   }
 }
