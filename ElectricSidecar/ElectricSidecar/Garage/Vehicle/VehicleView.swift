@@ -32,7 +32,10 @@ struct VehicleView: View {
     ScrollView {
       VStack(alignment: .leading) {
         VehicleStatusView(vehicle: vehicle, status: $status, emobility: $emobility)
-        VehicleLocationView(position: $position)
+        VehicleLocationView(
+          vehicleName: vehicle.licensePlate ?? vehicle.modelDescription,
+          position: $position
+        )
           .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
 
         if let camera = vehicle.personalizedPhoto {

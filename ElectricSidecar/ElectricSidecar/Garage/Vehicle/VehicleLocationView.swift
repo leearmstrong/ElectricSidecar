@@ -9,6 +9,7 @@ private struct VehicleLocation: Identifiable {
 }
 
 struct VehicleLocationView: View {
+  var vehicleName: String
   @Binding var position: UIModel.Vehicle.Position?
   var body: some View {
     if let position {
@@ -26,7 +27,7 @@ struct VehicleLocationView: View {
       .onTapGesture {
         let placemark = MKPlacemark(coordinate: position.coordinateRegion.center, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = "Car location"
+        mapItem.name = vehicleName
         mapItem.openInMaps(launchOptions: nil)
       }
     } else {
@@ -39,7 +40,7 @@ struct VehicleLocationView: View {
 // is intentionally just checking the nil state.
 struct VehicleLocationView_Previews: PreviewProvider {
   static var previews: some View {
-    VehicleLocationView(position: .constant(nil))
+    VehicleLocationView(vehicleName: "Taycan", position: .constant(nil))
     .previewDevice("Apple Watch Series 8 (45mm)")
     .previewDisplayName("Series 8 45mm")
   }
