@@ -13,6 +13,10 @@ struct VehicleLocationView: View {
   @Binding var position: UIModel.Vehicle.Position?
   var body: some View {
     if let position {
+      Text("Location")
+        .font(.title3)
+        .padding(.top, 12)
+        .padding(.bottom, 0)
       Map(
         coordinateRegion: .constant(position.coordinateRegion),
         interactionModes: [],

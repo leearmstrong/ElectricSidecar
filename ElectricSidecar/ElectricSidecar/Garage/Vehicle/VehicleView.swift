@@ -30,32 +30,20 @@ struct VehicleView: View {
 
   var body: some View {
     ScrollView {
-      VStack(alignment: .leading) {
-        VehicleStatusView(vehicle: vehicle, status: $status, emobility: $emobility)
-        VehicleLocationView(
-          vehicleName: vehicle.licensePlate ?? vehicle.modelDescription,
-          position: $position
-        )
-          .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+      VStack(alignment: .center) {
 
-        if let camera = vehicle.personalizedPhoto {
-          CachedAsyncImage(
-            url: camera.url,
-            urlCache: .imageCache,
-            content: { image in
-              image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-            },
-            placeholder: {
-              ZStack {
-                (vehicle.color ?? .gray)
-                  .aspectRatio(CGSize(width: CGFloat(camera.width), height: CGFloat(camera.height)),
-                               contentMode: .fill)
-                ProgressView()
-              }
-            }
-          )
+        ChargeView(status: $status, emobility: $emobility)
+          .padding(.top, 8)
+
+        if let electricalRange = status?.electricalRange {
+          Text(electricalRange)
+            .padding(.bottom, 4)
+        }
+        if let status {
+          DoorStatusView(isLocked: status.isLocked, isClosed: status.isClosed)
+            .padding(.bottom, 4)
+        } else {
+          ProgressView()
         }
 
         if isRefreshing {
@@ -64,9 +52,9 @@ struct VehicleView: View {
             emobilityRefreshing: $emobilityRefreshing,
             positionRefreshing: $positionRefreshing
           )
-          .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
+          .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
         } else {
-          Button("refresh") {
+          Button("Refresh") {
             withAnimation {
               isRefreshing = true
               statusRefreshing = true
@@ -74,44 +62,76 @@ struct VehicleView: View {
               positionRefreshing = true
             }
             Task {
-              try await refresh(ignoreCache: true)
-
-              withAnimation {
-                isRefreshing = false
+              defer {
+                withAnimation {
+                  statusRefreshing = false
+                  emobilityRefreshing = false
+                  positionRefreshing = false
+                  isRefreshing = false
+                }
               }
+              try await refresh(ignoreCache: true)
             }
           }
-          .padding()
         }
 
-        VehicleDetailsView(
-          modelDescription: vehicle.modelDescription,
-          modelYear: vehicle.modelYear,
-          vin: vehicle.vin
+        NavigationLink {
+          VehicleDetailsView(
+            status: $status,
+            modelDescription: vehicle.modelDescription,
+            modelYear: vehicle.modelYear,
+            vin: vehicle.vin
+          )
+          .navigationTitle("Details")
+        } label: {
+          NavigationLinkContentView(imageSystemName: "info.circle", title: "More details")
+        }
+        NavigationLink {
+          VehiclePhotosView(vehicle: vehicle)
+            .navigationTitle("Photos")
+        } label: {
+          NavigationLinkContentView(imageSystemName: "photo.on.rectangle.angled", title: "Photos")
+        }
+
+        VehicleLocationView(
+          vehicleName: vehicle.licensePlate ?? vehicle.modelDescription,
+          position: $position
         )
+        .padding(.zero)
 
-        if let statusError {
-          Text(statusError.localizedDescription)
-        }
-        if let emobilityError {
-          Text(emobilityError.localizedDescription)
-        }
-        if let positionError {
-          Text(positionError.localizedDescription)
+        if statusError != nil || emobilityError != nil || positionError != nil {
+          NavigationLink {
+            if let statusError {
+              Text(statusError.localizedDescription)
+            }
+            if let emobilityError {
+              Text(emobilityError.localizedDescription)
+            }
+            if let positionError {
+              Text(positionError.localizedDescription)
+            }
+          } label: {
+            NavigationLinkContentView(imageSystemName: "exclamationmark.triangle", title: "Errors")
+          }
         }
       }
     }
+    .navigationTitle(vehicle.licensePlate ?? "\(vehicle.modelDescription) (\(vehicle.modelYear))")
     .onAppear {
       isRefreshing = true
       statusRefreshing = true
       emobilityRefreshing = true
       positionRefreshing = true
       Task {
-        try await refresh(ignoreCache: false)
-
-        withAnimation {
-          isRefreshing = false
+        defer {
+          withAnimation {
+            statusRefreshing = false
+            emobilityRefreshing = false
+            positionRefreshing = false
+            isRefreshing = false
+          }
         }
+        try await refresh(ignoreCache: false)
       }
     }
     .onReceive(statusPublisher.receive(on: RunLoop.main)) { result in
@@ -138,6 +158,14 @@ struct VehicleView: View {
         positionRefreshing = false
       }
     }
+  }
+
+  static func formatted(chargeRemaining: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.locale = Locale.current
+    formatter.numberStyle = .percent
+    formatter.maximumFractionDigits = 0
+    return formatter.string(from: chargeRemaining as NSNumber)!
   }
 
   private func refresh(ignoreCache: Bool) async throws {

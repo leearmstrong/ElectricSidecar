@@ -6,6 +6,12 @@ import SwiftUI
 // TODO: Make a UIModel representation of this type
 typealias Picture = Vehicle.VehiclePicture
 
+extension Picture: Identifiable {
+  public var id: String {
+    return url.absoluteString
+  }
+}
+
 extension UIModel {
   struct Vehicle: Identifiable {
     public init(
@@ -15,7 +21,7 @@ extension UIModel {
       modelYear: String,
       color: Color? = nil,
       personalizedPhoto: Picture? = nil,
-      externalPhoto: Picture? = nil
+      externalPhotos: [Picture]? = nil
     ) {
       self.vin = vin
       self.licensePlate = licensePlate
@@ -23,7 +29,7 @@ extension UIModel {
       self.modelYear = modelYear
       self.color = color
       self.personalizedPhoto = personalizedPhoto
-      self.externalPhoto = externalPhoto
+      self.externalPhotos = externalPhotos ?? []
     }
 
     var id: String { vin }
@@ -34,6 +40,6 @@ extension UIModel {
     let modelYear: String
     let color: Color?
     let personalizedPhoto: Picture?
-    let externalPhoto: Picture?
+    let externalPhotos: [Picture]
   }
 }

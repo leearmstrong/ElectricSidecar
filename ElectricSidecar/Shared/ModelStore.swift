@@ -79,7 +79,7 @@ final class ModelStore: ObservableObject {
         modelYear: vehicle.modelYear,
         color: vehicle.color,
         personalizedPhoto: vehicle.personalizedPhoto,
-        externalPhoto: vehicle.externalCamera(.front, size: 2)
+        externalPhotos: vehicle.pictures ?? []
       )
     }
 
@@ -109,7 +109,8 @@ final class ModelStore: ObservableObject {
           self.statusSubject(for: vin).send(.loaded(UIModel.Vehicle.Status(
             isLocked: status.isLocked,
             isClosed: status.isClosed,
-            batteryLevel: statusFormatter.batteryLevel(from: status),
+            batteryLevel: status.batteryLevel.value,
+            batteryLevelFormatted: statusFormatter.batteryLevel(from: status),
             electricalRange: statusFormatter.electricalRange(from: status),
             mileage: statusFormatter.mileage(from: status)
           )))

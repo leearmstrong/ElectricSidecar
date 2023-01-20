@@ -13,65 +13,14 @@ struct VehicleStatusView: View {
   var cancellables = Set<AnyCancellable>()
 
   var body: some View {
-    ZStack {
-      VStack(alignment: .leading) {
-        HStack {
-          Text(vehicle.licensePlate ?? "\(vehicle.modelDescription) (\(vehicle.modelYear))")
-            .font(.title2)
-          Spacer()
-          if let status {
-            DoorStatusView(isLocked: status.isLocked, isClosed: status.isClosed)
-          } else {
-            ProgressView()
-              .frame(maxWidth: 30)
-          }
+    HStack(spacing: 0) {
+      if let status {
+        if let electricalRange = status.electricalRange {
+          Text(", \(electricalRange)")
         }
-        HStack(spacing: 0) {
-          if let emobility, let status {
-            if emobility.isCharging == true {
-              Text(Image(systemName: "bolt.fill"))
-            }
-            Text(status.batteryLevel)
-            if let electricalRange = status.electricalRange {
-              Text(", \(electricalRange)")
-            }
-            Spacer()
-          } else {
-            ProgressView()
-          }
-        }
-
-        if let camera = vehicle.externalPhoto {
-          CachedAsyncImage(
-            url: camera.url,
-            urlCache: .imageCache,
-            content: { image in
-              image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-            },
-            placeholder: {
-              ZStack {
-                (vehicle.color ?? .gray)
-                  .aspectRatio(CGSize(width: CGFloat(camera.width), height: CGFloat(camera.height)),
-                               contentMode: .fill)
-                ProgressView()
-              }
-            }
-          )
-        }
-
-        if let status {
-          HStack {
-            Spacer()
-            Image(systemName: "arrow.down")
-            Text("More info")
-            Image(systemName: "arrow.down")
-            Spacer()
-          }
-          Text("Mileage: \(status.mileage)")
-            .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
-        }
+        Spacer()
+      } else {
+        ProgressView()
       }
     }
   }
@@ -123,7 +72,8 @@ struct VehicleStatusView_Loaded_Previews: PreviewProvider {
   static let status = UIModel.Vehicle.Status(
     isLocked: true,
     isClosed: true,
-    batteryLevel: "100%",
+    batteryLevel: 100,
+    batteryLevelFormatted: "100%",
     electricalRange: "100 miles",
     mileage: "100 miles"
   )

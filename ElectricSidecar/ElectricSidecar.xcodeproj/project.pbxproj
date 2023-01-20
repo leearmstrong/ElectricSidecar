@@ -58,9 +58,12 @@
 		665EDD6229729A070012CD3A /* VehicleStatusTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD6129729A070012CD3A /* VehicleStatusTimelineProvider.swift */; };
 		665EDD6429729BDF0012CD3A /* DoorStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD6329729BDF0012CD3A /* DoorStatusView.swift */; };
 		665EDD6529729BDF0012CD3A /* DoorStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD6329729BDF0012CD3A /* DoorStatusView.swift */; };
+		6680E719297A60D10019843A /* ChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680E718297A60D10019843A /* ChargeView.swift */; };
 		668EB957297910E200304EA5 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB956297910E200304EA5 /* LogsView.swift */; };
 		668EB9592979119B00304EA5 /* LoggerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB9582979119B00304EA5 /* LoggerContext.swift */; };
 		668EB95A2979119B00304EA5 /* LoggerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB9582979119B00304EA5 /* LoggerContext.swift */; };
+		668EB95C29792E8100304EA5 /* VehiclePhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB95B29792E8100304EA5 /* VehiclePhotosView.swift */; };
+		668EB95F2979326E00304EA5 /* NavigationLinkContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB95E2979326E00304EA5 /* NavigationLinkContentView.swift */; };
 		669BFB5F296C0942004621D9 /* Emobility+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */; };
 		66CA7DA1296FE95D00090ADD /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CA7DA0296FE95D00090ADD /* Vehicle.swift */; };
 		66CA7DA2296FE95D00090ADD /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CA7DA0296FE95D00090ADD /* Vehicle.swift */; };
@@ -171,8 +174,11 @@
 		665EDD5F297297D30012CD3A /* VehicleStatusWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusWidget.swift; sourceTree = "<group>"; };
 		665EDD6129729A070012CD3A /* VehicleStatusTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusTimelineProvider.swift; sourceTree = "<group>"; };
 		665EDD6329729BDF0012CD3A /* DoorStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorStatusView.swift; sourceTree = "<group>"; };
+		6680E718297A60D10019843A /* ChargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeView.swift; sourceTree = "<group>"; };
 		668EB956297910E200304EA5 /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
 		668EB9582979119B00304EA5 /* LoggerContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerContext.swift; sourceTree = "<group>"; };
+		668EB95B29792E8100304EA5 /* VehiclePhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePhotosView.swift; sourceTree = "<group>"; };
+		668EB95E2979326E00304EA5 /* NavigationLinkContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkContentView.swift; sourceTree = "<group>"; };
 		669BFB5E296C0942004621D9 /* Emobility+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Emobility+Helpers.swift"; sourceTree = "<group>"; };
 		66CA7DA0296FE95D00090ADD /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,6 +255,7 @@
 				668EB955297910D800304EA5 /* Debugging */,
 				66108D9E296B58EE00791A7A /* Models */,
 				66108DA9296B58F700791A7A /* Garage */,
+				668EB95D2979326500304EA5 /* Views */,
 				669BFB5C296BFE37004621D9 /* Resources */,
 			);
 			path = ElectricSidecar;
@@ -403,14 +410,24 @@
 			path = Debugging;
 			sourceTree = "<group>";
 		};
+		668EB95D2979326500304EA5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6680E718297A60D10019843A /* ChargeView.swift */,
+				665EDD59297289C40012CD3A /* RefreshStatusView.swift */,
+				668EB95E2979326E00304EA5 /* NavigationLinkContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		669BFB5B296BF933004621D9 /* Vehicle */ = {
 			isa = PBXGroup;
 			children = (
 				66108DAA296B58F700791A7A /* VehicleView.swift */,
-				665EDD59297289C40012CD3A /* RefreshStatusView.swift */,
 				66108DAF296B58F700791A7A /* VehicleStatusView.swift */,
 				66108DAD296B58F700791A7A /* VehicleLocationView.swift */,
 				66108DAE296B58F700791A7A /* VehicleDetailsView.swift */,
+				668EB95B29792E8100304EA5 /* VehiclePhotosView.swift */,
 			);
 			path = Vehicle;
 			sourceTree = "<group>";
@@ -668,11 +685,13 @@
 			files = (
 				6618E352296FDE5900F370BB /* CodableCacheCoordinator.swift in Sources */,
 				668EB957297910E200304EA5 /* LogsView.swift in Sources */,
+				668EB95C29792E8100304EA5 /* VehiclePhotosView.swift in Sources */,
 				66108DA6296B58EE00791A7A /* Vehicle+SwiftUI.swift in Sources */,
 				66108DB0296B58F700791A7A /* VehicleView.swift in Sources */,
 				661C3F4E2972641500A4CC90 /* UIModel.swift in Sources */,
 				661C3F54297270FC00A4CC90 /* Vehicle+Emobility.swift in Sources */,
 				66108D2C296B569000791A7A /* ElectricSidecarApp.swift in Sources */,
+				6680E719297A60D10019843A /* ChargeView.swift in Sources */,
 				66108D7B296B572F00791A7A /* AppGroup.swift in Sources */,
 				669BFB5F296C0942004621D9 /* Emobility+Helpers.swift in Sources */,
 				66108DB3296B58F700791A7A /* VehicleLocationView.swift in Sources */,
@@ -689,6 +708,7 @@
 				668EB9592979119B00304EA5 /* LoggerContext.swift in Sources */,
 				66108DA8296B58EE00791A7A /* LoginView.swift in Sources */,
 				66108DB4296B58F700791A7A /* VehicleDetailsView.swift in Sources */,
+				668EB95F2979326E00304EA5 /* NavigationLinkContentView.swift in Sources */,
 				66CA7DA1296FE95D00090ADD /* Vehicle.swift in Sources */,
 				66108DA5296B58EE00791A7A /* Status+Helpers.swift in Sources */,
 			);
