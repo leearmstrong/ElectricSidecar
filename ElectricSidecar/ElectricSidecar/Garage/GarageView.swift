@@ -30,6 +30,15 @@ struct GarageView: View {
             ) { ignoreCache in
               try await store.refresh(vin: vehicle.vin, ignoreCache: ignoreCache)
               lastRefresh = .now
+            } lockCallback: {
+              try await store.lock(vin: vehicle.vin)
+
+              // Wait until the vehicle's had a chance to lock itself.
+              try await Task.sleep(nanoseconds: UInt64(12 * Double(NSEC_PER_SEC)))
+
+              await store.refreshStatus(for: vehicle.vin, ignoreCache: true)
+            } unlockCallback: {
+              print("Unlock the car...")
             }
           }
           if isLogReadingEnabled {

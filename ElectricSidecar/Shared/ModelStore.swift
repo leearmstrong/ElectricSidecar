@@ -89,6 +89,26 @@ final class ModelStore: ObservableObject {
     }
   }
 
+  func refreshStatus(for vin: String, ignoreCache: Bool = false) async {
+    do {
+      logger.info("Refreshing status for \(vin, privacy: .private(mask: .hash))")
+      let status = try await self.status(for: vin, ignoreCache: ignoreCache)
+      let statusFormatter = StatusFormatter()
+      self.statusSubject(for: vin).send(.loaded(UIModel.Vehicle.Status(
+        isLocked: status.isLocked,
+        isClosed: status.isClosed,
+        batteryLevel: status.batteryLevel.value,
+        batteryLevelFormatted: statusFormatter.batteryLevel(from: status),
+        electricalRange: statusFormatter.electricalRange(from: status),
+        mileage: statusFormatter.mileage(from: status)
+      )))
+      logger.info("Finished refreshing status for \(vin, privacy: .private(mask: .hash))")
+    } catch {
+      logger.error("Status failed \(error, privacy: .public)")
+      self.statusSubjects[vin]?.send(.error(error))
+    }
+  }
+
   private var refreshState: [String: Bool] = [:]
   func refresh(vin: String, ignoreCache: Bool = false) async throws {
     logger.info("Refresh state attempt for \(vin, privacy: .private(mask: .hash))")
@@ -96,29 +116,16 @@ final class ModelStore: ObservableObject {
       return  // Already refreshing.
     }
     refreshState[vin] = true
+    defer {
+      refreshState[vin] = false
+    }
 
     logger.info("Starting refresh task group for \(vin, privacy: .private(mask: .hash))")
 
     // TODO: Keep an in-memory cache of the last-known status.
     await withTaskGroup(of: Void.self, body: { taskGroup in
       taskGroup.addTask {
-        do {
-          logger.info("Refreshing status for \(vin, privacy: .private(mask: .hash))")
-          let status = try await self.status(for: vin, ignoreCache: ignoreCache)
-          let statusFormatter = StatusFormatter()
-          self.statusSubject(for: vin).send(.loaded(UIModel.Vehicle.Status(
-            isLocked: status.isLocked,
-            isClosed: status.isClosed,
-            batteryLevel: status.batteryLevel.value,
-            batteryLevelFormatted: statusFormatter.batteryLevel(from: status),
-            electricalRange: statusFormatter.electricalRange(from: status),
-            mileage: statusFormatter.mileage(from: status)
-          )))
-          logger.info("Finished refreshing status for \(vin, privacy: .private(mask: .hash))")
-        } catch {
-          logger.error("Status failed \(error, privacy: .public)")
-          self.statusSubjects[vin]?.send(.error(error))
-        }
+        await self.refreshStatus(for: vin, ignoreCache: ignoreCache)
       }
       taskGroup.addTask {
         do {
@@ -154,7 +161,6 @@ final class ModelStore: ObservableObject {
       }
     })
     logger.info("Finished refreshing \(vin, privacy: .private(mask: .hash))")
-    refreshState[vin] = false
   }
 
   private var statusSubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>] = [:]
@@ -296,6 +302,17 @@ final class ModelStore: ObservableObject {
         fatalError()
       }
       return result
+    }
+  }
+
+  // MARK: - Actions
+
+  func lock(vin: String) async throws {
+    let response = try await porscheConnect.lock(vin: vin)
+    guard response.response.statusCode < 300 else {
+      logger.error("Failed to lock the car: \(response.response)")
+      // TODO: Throw an error here.
+      return
     }
   }
 

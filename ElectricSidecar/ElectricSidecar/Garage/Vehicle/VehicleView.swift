@@ -13,7 +13,11 @@ struct VehicleView: View {
   let statusPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>
   let emobilityPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>
   let positionPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>
+
+
   let refreshCallback: (Bool) async throws -> Void
+  let lockCallback: () async throws -> Void
+  let unlockCallback: () async throws -> Void
 
   @State var status: UIModel.Vehicle.Status?
   @State var emobility: UIModel.Vehicle.Emobility?
@@ -27,6 +31,7 @@ struct VehicleView: View {
   @State var positionRefreshing: Bool = false
 
   @State private var isRefreshing = false
+  @State private var isChangingLockState = false
 
   var body: some View {
     ScrollView {
@@ -34,28 +39,59 @@ struct VehicleView: View {
 
         HStack {
           ZStack {
-            if let electricalRange = status?.electricalRange {
-              Text(electricalRange)
-                .padding(.bottom, 4)
-            }
-          }
-          .frame(maxWidth: .infinity, maxHeight: .infinity)
-          ChargeView(status: $status, emobility: $emobility)
-            .padding(.top, 8)
-          ZStack {
-            if let isLocked = status?.isLocked {
+            if !isChangingLockState {
               Button {
-                print("Toggling lock status")
+                Task {
+                  logger.info("Unlocking \(vehicle.vin, privacy: .private)")
+                  isChangingLockState = true
+                  defer {
+                    isChangingLockState = false
+                  }
+                  try await unlockCallback()
+                }
               } label: {
-                Image(systemName: isLocked ? "lock" : "lock.open")
+                Image(systemName: "lock.open")
                   .frame(maxWidth: .infinity, maxHeight: .infinity)
               }
               .buttonStyle(.plain)
+            } else {
+              ProgressView()
+            }
+          }
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+          ChargeView(status: $status, emobility: $emobility)
+            .padding(.top, 8)
+
+          ZStack {
+            if !isChangingLockState {
+              Button {
+                Task {
+                  logger.info("Locking \(vehicle.vin, privacy: .private)")
+                  isChangingLockState = true
+                  defer {
+                    isChangingLockState = false
+                  }
+                  try await lockCallback()
+                }
+              } label: {
+                Image(systemName: "lock")
+                  .frame(maxWidth: .infinity, maxHeight: .infinity)
+              }
+              .buttonStyle(.plain)
+            } else {
+              ProgressView()
             }
           }
           .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .padding(.bottom, 32)
+        if let electricalRange = status?.electricalRange {
+          Text(electricalRange)
+            .font(.footnote)
+            .padding(.top, -10)
+        }
+
+        Spacer(minLength: 32)
 
         if isRefreshing {
           RefreshStatusView(
