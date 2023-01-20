@@ -32,19 +32,30 @@ struct VehicleView: View {
     ScrollView {
       VStack(alignment: .center) {
 
-        ChargeView(status: $status, emobility: $emobility)
-          .padding(.top, 8)
-
-        if let electricalRange = status?.electricalRange {
-          Text(electricalRange)
-            .padding(.bottom, 4)
+        HStack {
+          ZStack {
+            if let electricalRange = status?.electricalRange {
+              Text(electricalRange)
+                .padding(.bottom, 4)
+            }
+          }
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          ChargeView(status: $status, emobility: $emobility)
+            .padding(.top, 8)
+          ZStack {
+            if let isLocked = status?.isLocked {
+              Button {
+                print("Toggling lock status")
+              } label: {
+                Image(systemName: isLocked ? "lock" : "lock.open")
+                  .frame(maxWidth: .infinity, maxHeight: .infinity)
+              }
+              .buttonStyle(.plain)
+            }
+          }
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        if let status {
-          DoorStatusView(isLocked: status.isLocked, isClosed: status.isClosed)
-            .padding(.bottom, 4)
-        } else {
-          ProgressView()
-        }
+        .padding(.bottom, 32)
 
         if isRefreshing {
           RefreshStatusView(

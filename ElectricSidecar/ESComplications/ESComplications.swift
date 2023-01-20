@@ -17,6 +17,5 @@ struct ESComplications: WidgetBundle {
   @WidgetBundleBuilder
   var body: some Widget {
     VehicleChargeWidget()
-    VehicleStatusWidget()
   }
 }

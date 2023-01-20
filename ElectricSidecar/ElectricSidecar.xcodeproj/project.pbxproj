@@ -54,10 +54,6 @@
 		661C3F582972770800A4CC90 /* Vehicle+Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661C3F562972770800A4CC90 /* Vehicle+Position.swift */; };
 		665EDD5A297289C40012CD3A /* RefreshStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD59297289C40012CD3A /* RefreshStatusView.swift */; };
 		665EDD5C2972973F0012CD3A /* ESComplications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD5B2972973F0012CD3A /* ESComplications.swift */; };
-		665EDD60297297D30012CD3A /* VehicleStatusWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD5F297297D30012CD3A /* VehicleStatusWidget.swift */; };
-		665EDD6229729A070012CD3A /* VehicleStatusTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD6129729A070012CD3A /* VehicleStatusTimelineProvider.swift */; };
-		665EDD6429729BDF0012CD3A /* DoorStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD6329729BDF0012CD3A /* DoorStatusView.swift */; };
-		665EDD6529729BDF0012CD3A /* DoorStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD6329729BDF0012CD3A /* DoorStatusView.swift */; };
 		6680E719297A60D10019843A /* ChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680E718297A60D10019843A /* ChargeView.swift */; };
 		668EB957297910E200304EA5 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB956297910E200304EA5 /* LogsView.swift */; };
 		668EB9592979119B00304EA5 /* LoggerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB9582979119B00304EA5 /* LoggerContext.swift */; };
@@ -171,9 +167,6 @@
 		661C3F562972770800A4CC90 /* Vehicle+Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Position.swift"; sourceTree = "<group>"; };
 		665EDD59297289C40012CD3A /* RefreshStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshStatusView.swift; sourceTree = "<group>"; };
 		665EDD5B2972973F0012CD3A /* ESComplications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESComplications.swift; sourceTree = "<group>"; };
-		665EDD5F297297D30012CD3A /* VehicleStatusWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusWidget.swift; sourceTree = "<group>"; };
-		665EDD6129729A070012CD3A /* VehicleStatusTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleStatusTimelineProvider.swift; sourceTree = "<group>"; };
-		665EDD6329729BDF0012CD3A /* DoorStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorStatusView.swift; sourceTree = "<group>"; };
 		6680E718297A60D10019843A /* ChargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeView.swift; sourceTree = "<group>"; };
 		668EB956297910E200304EA5 /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
 		668EB9582979119B00304EA5 /* LoggerContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerContext.swift; sourceTree = "<group>"; };
@@ -300,7 +293,6 @@
 			children = (
 				665EDD5B2972973F0012CD3A /* ESComplications.swift */,
 				665EDD5D2972979C0012CD3A /* VehicleCharge */,
-				665EDD5E297297C60012CD3A /* VehicleStatus */,
 				66108D89296B57CB00791A7A /* Views */,
 				669BFB5D296BFE59004621D9 /* Resources */,
 			);
@@ -312,7 +304,6 @@
 			children = (
 				66C17ACB297655CC00F5F281 /* Logger */,
 				66EB7705296C0A9A008BFC27 /* PorscheConnect+Extensions */,
-				66C17ACA2976555F00F5F281 /* Views */,
 				661C3F4C29725D2800A4CC90 /* UIModel */,
 				66108D78296B572F00791A7A /* AppGroup.swift */,
 				66108D77296B572F00791A7A /* ModelStore.swift */,
@@ -393,15 +384,6 @@
 			path = VehicleCharge;
 			sourceTree = "<group>";
 		};
-		665EDD5E297297C60012CD3A /* VehicleStatus */ = {
-			isa = PBXGroup;
-			children = (
-				665EDD5F297297D30012CD3A /* VehicleStatusWidget.swift */,
-				665EDD6129729A070012CD3A /* VehicleStatusTimelineProvider.swift */,
-			);
-			path = VehicleStatus;
-			sourceTree = "<group>";
-		};
 		668EB955297910D800304EA5 /* Debugging */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,14 +432,6 @@
 				66108D68296B56B000791A7A /* Info.plist */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		66C17ACA2976555F00F5F281 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				665EDD6329729BDF0012CD3A /* DoorStatusView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		66C17ACB297655CC00F5F281 /* Logger */ = {
@@ -700,7 +674,6 @@
 				66108DB1296B58F700791A7A /* GarageView.swift in Sources */,
 				66108DA7296B58EE00791A7A /* Vehicle+Helpers.swift in Sources */,
 				665EDD5A297289C40012CD3A /* RefreshStatusView.swift in Sources */,
-				665EDD6429729BDF0012CD3A /* DoorStatusView.swift in Sources */,
 				661C3F5129726E9100A4CC90 /* Refreshable.swift in Sources */,
 				66108D79296B572F00791A7A /* ModelStore.swift in Sources */,
 				66108DB5296B58F700791A7A /* VehicleStatusView.swift in Sources */,
@@ -741,14 +714,11 @@
 				661C3F5229726E9100A4CC90 /* Refreshable.swift in Sources */,
 				661C3F4F2972641500A4CC90 /* UIModel.swift in Sources */,
 				6618E353296FDE5900F370BB /* CodableCacheCoordinator.swift in Sources */,
-				665EDD6229729A070012CD3A /* VehicleStatusTimelineProvider.swift in Sources */,
 				66108D7C296B572F00791A7A /* AppGroup.swift in Sources */,
 				661C3F582972770800A4CC90 /* Vehicle+Position.swift in Sources */,
 				66108D9A296B58CF00791A7A /* VehicleChargeTimelineProvider.swift in Sources */,
 				66CA7DA2296FE95D00090ADD /* Vehicle.swift in Sources */,
-				665EDD60297297D30012CD3A /* VehicleStatusWidget.swift in Sources */,
 				661C3F4B29725D0900A4CC90 /* Vehicle+Status.swift in Sources */,
-				665EDD6529729BDF0012CD3A /* DoorStatusView.swift in Sources */,
 				661C3F55297270FC00A4CC90 /* Vehicle+Emobility.swift in Sources */,
 				668EB95A2979119B00304EA5 /* LoggerContext.swift in Sources */,
 				66EB7706296C0AB1008BFC27 /* Emobility+Helpers.swift in Sources */,
