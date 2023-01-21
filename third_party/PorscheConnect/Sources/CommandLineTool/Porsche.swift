@@ -2,6 +2,12 @@ import ArgumentParser
 import Foundation
 import PorscheConnect
 
+// MARK: Extensions
+
+// Allow SupportedLocale to be used as a command line option.
+extension SupportedLocale: ExpressibleByArgument {
+}
+
 // MARK: - Main
 
 // Allow SupportedLocale to be used as a command line option.
@@ -16,7 +22,7 @@ struct Porsche: AsyncParsableCommand {
     version: "0.1.19",
     subcommands: [
       ListVehicles.self, ShowSummary.self, ShowPosition.self, ShowCapabilities.self,
-      ShowEmobility.self, ShowStatus.self, Flash.self, HonkAndFlash.self, ToggleDirectCharging.self,
+      ShowEmobility.self, ShowStatus.self, ShowTrips.self, Flash.self, HonkAndFlash.self, ToggleDirectCharging.self,
       Lock.self, Unlock.self,
     ])
 
