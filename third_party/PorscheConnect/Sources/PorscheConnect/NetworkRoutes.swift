@@ -129,7 +129,21 @@ struct NetworkRoutes {
         "\(host("https://api.porsche.com"))/service-vehicle/remote-lock-unlock/\(vin)/\(remoteCommand.identifier!)/status"
     )!
   }
-
+  
+  func vehicleShortTermTripsURL(vin: String) -> URL {
+    return URL(
+      string:
+        "\(host("https://api.porsche.com"))/service-vehicle/\(environment.regionCode)/trips/\(vin)/SHORT_TERM"
+    )!
+  }
+  
+  func vehicleLongTermTripsURL(vin: String) -> URL {
+    return URL(
+      string:
+        "\(host("https://api.porsche.com"))/service-vehicle/\(environment.regionCode)/trips/\(vin)/LONG_TERM"
+    )!
+  }
+  
   // MARK: - Private
 
   private func host(_ defaultHost: String) -> String {
