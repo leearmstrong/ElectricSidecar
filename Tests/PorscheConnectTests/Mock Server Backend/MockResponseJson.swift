@@ -331,7 +331,7 @@ let kEmobilityACDirectChargingJson = """
     },
     \"errorInfo\": []
   }
-
+  
   """.data(using: .utf8)!
 
 // MARK: E-Mobility - DC Charging
@@ -444,3 +444,264 @@ let kEmobilityDCChargingJson = """
     \"errorInfo\": []
   }
   """.data(using: .utf8)!
+
+// MARK: Long Term Trips
+
+let kLongTermTripsInMetricJson = """
+  [{
+  \"type\" : \"LONG_TERM\",
+  \"id\" : 1158728093,
+  \"averageSpeed\" : {
+    \"value\" : 39,
+    \"unit\" : \"KMH\",
+    \"valueInKmh\" : 39,
+    \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KMH\",
+    \"unitTranslationKeyV2\" : \"TC.UNIT.KMH\"
+  },
+  \"averageFuelConsumption\" : {
+    \"value\" : 0,
+    \"unit\" : \"LITERS_PER_100_KM\",
+    \"valueInLitersPer100Km\" : 0,
+    \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_LITERS_PER_100_KM\",
+    \"unitTranslationKeyV2\" : \"TC.UNIT.LITERS_PER_100_KM\"
+  },
+  \"tripMileage\" : {
+    \"value\" : 1448,
+    \"unit\" : \"KILOMETERS\",
+    \"originalValue\" : 1448,
+    \"originalUnit\" : \"KILOMETERS\",
+    \"valueInKilometers\" : 1448,
+    \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KILOMETER\",
+    \"unitTranslationKeyV2\" : \"TC.UNIT.KILOMETER\"
+  },
+  \"travelTime\" : 2279,
+  \"startMileage\" : {
+    \"value\" : -1,
+    \"unit\" : \"KILOMETERS\",
+    \"originalValue\" : -1,
+    \"originalUnit\" : \"KILOMETERS\",
+    \"valueInKilometers\" : -1,
+    \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KILOMETER\",
+    \"unitTranslationKeyV2\" : \"TC.UNIT.KILOMETER\"
+  },
+  \"endMileage\" : {
+    \"value\" : 1448,
+    \"unit\" : \"KILOMETERS\",
+    \"originalValue\" : 1448,
+    \"originalUnit\" : \"KILOMETERS\",
+    \"valueInKilometers\" : 1448,
+    \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KILOMETER\",
+    \"unitTranslationKeyV2\" : \"TC.UNIT.KILOMETER\"
+  },
+  \"timestamp\" : \"2023-01-17T20:10:14Z\",
+  \"zeroEmissionDistance\" : {
+    \"value\" : 1448,
+    \"unit\" : \"KILOMETERS\",
+    \"originalValue\" : 1448,
+    \"originalUnit\" : \"KILOMETERS\",
+    \"valueInKilometers\" : 1448,
+    \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KILOMETER\",
+    \"unitTranslationKeyV2\" : \"TC.UNIT.KILOMETER\"
+  },
+  \"averageElectricEngineConsumption\" : {
+    \"value\" : 29.9,
+    \"unit\" : \"KWH_PER_100KM\",
+    \"valueKwhPer100Km\" : 29.9,
+    \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KWH_PER_100KM\",
+    \"unitTranslationKeyV2\" : \"TC.UNIT.KWH_PER_100KM\"
+  }
+  }]
+  """.data(using: .utf8)!
+
+// MARK: Short Term Trips
+
+let kShortTermTripsInMetricJson = """
+  [{
+    \"type\" : \"SHORT_TERM\",
+    \"id\" : 1162572771,
+    \"averageSpeed\" : {
+      \"value\" : 11,
+      \"unit\" : \"KMH\",
+      \"valueInKmh\" : 11,
+      \"unitTranslationKeyV2\" : \"TC.UNIT.KMH\",
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KMH\"
+    },
+    \"averageFuelConsumption\" : {
+      \"value\" : 0,
+      \"unit\" : \"LITERS_PER_100_KM\",
+      \"valueInLitersPer100Km\" : 0,
+      \"unitTranslationKeyV2\" : \"TC.UNIT.LITERS_PER_100_KM\",
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_LITERS_PER_100_KM\"
+    },
+    \"tripMileage\" : {
+      \"value\" : 6,
+      \"unit\" : \"KILOMETERS\",
+      \"originalValue\" : 6,
+      \"originalUnit\" : \"KILOMETERS\",
+      \"valueInKilometers\" : 6,
+      \"unitTranslationKeyV2\" : \"TC.UNIT.KILOMETER\",
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KILOMETER\"
+    },
+    \"travelTime\" : 31,
+    \"startMileage\" : {
+      \"value\" : 1442,
+      \"unit\" : \"KILOMETERS\",
+      \"originalValue\" : 1442,
+      \"originalUnit\" : \"KILOMETERS\",
+      \"valueInKilometers\" : 1442,
+      \"unitTranslationKeyV2\" : \"TC.UNIT.KILOMETER\",
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KILOMETER\"
+    },
+    \"endMileage\" : {
+      \"value\" : 1448,
+      \"unit\" : \"KILOMETERS\",
+      \"originalValue\" : 1448,
+      \"originalUnit\" : \"KILOMETERS\",
+      \"valueInKilometers\" : 1448,
+      \"unitTranslationKeyV2\" : \"TC.UNIT.KILOMETER\",
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KILOMETER\"
+    },
+    \"timestamp\" : \"2023-01-17T20:10:14Z\",
+    \"zeroEmissionDistance\" : {
+      \"value\" : 6,
+      \"unit\" : \"KILOMETERS\",
+      \"originalValue\" : 6,
+      \"originalUnit\" : \"KILOMETERS\",
+      \"valueInKilometers\" : 6,
+      \"unitTranslationKeyV2\" : \"TC.UNIT.KILOMETER\",
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KILOMETER\"
+    },
+    \"averageElectricEngineConsumption\" : {
+      \"value\" : 39.6,
+      \"unit\" : \"KWH_PER_100KM\",
+      \"valueKwhPer100Km\" : 39.6,
+      \"unitTranslationKeyV2\" : \"TC.UNIT.KWH_PER_100KM\",
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KWH_PER_100KM\"
+    }
+  }]
+  """.data(using: .utf8)!
+
+let kShortTermTripsInImperialJson = """
+  [{
+    \"type\" : \"SHORT_TERM\",
+    \"id\" : 1162658714,
+    \"averageSpeed\" : {
+      \"value\" : 44.11735,
+      \"unit\" : \"MPH\",
+      \"valueInKmh\" : 70.99999,
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_MPH\",
+      \"unitTranslationKeyV2\" : \"TC.UNIT.MPH\"
+    },
+    \"averageFuelConsumption\" : {
+      \"value\" : 0,
+      \"unit\" : \"MILES_PER_GALLON_US\",
+      \"valueInLitersPer100Km\" : 0,
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_MILES_PER_GALLON_US\",
+      \"unitTranslationKeyV2\" : \"TC.UNIT.MILES_PER_GALLON_US\"
+    },
+    \"tripMileage\" : {
+      \"value\" : 17.39839,
+      \"unit\" : \"MILES\",
+      \"originalValue\" : 28,
+      \"originalUnit\" : \"KILOMETERS\",
+      \"valueInKilometers\" : 28,
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_MILES\",
+      \"unitTranslationKeyV2\" : \"TC.UNIT.MILES\"
+    },
+    \"travelTime\" : 24,
+    \"startMileage\" : {
+      \"value\" : 14781.8,
+      \"unit\" : \"MILES\",
+      \"originalValue\" : 23789,
+      \"originalUnit\" : \"KILOMETERS\",
+      \"valueInKilometers\" : 23789,
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_MILES\",
+      \"unitTranslationKeyV2\" : \"TC.UNIT.MILES\"
+    },
+    \"endMileage\" : {
+      \"value\" : 14799.2,
+      \"unit\" : \"MILES\",
+      \"originalValue\" : 23817,
+      \"originalUnit\" : \"KILOMETERS\",
+      \"valueInKilometers\" : 23817,
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_MILES\",
+      \"unitTranslationKeyV2\" : \"TC.UNIT.MILES\"
+    },
+    \"timestamp\" : \"2023-01-17T20:58:58Z\",
+    \"zeroEmissionDistance\" : {
+      \"value\" : 17.39839,
+      \"unit\" : \"MILES\",
+      \"originalValue\" : 28,
+      \"originalUnit\" : \"KILOMETERS\",
+      \"valueInKilometers\" : 28,
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_MILES\",
+      \"unitTranslationKeyV2\" : \"TC.UNIT.MILES\"
+    },
+    \"averageElectricEngineConsumption\" : {
+      \"value\" : 0.3250875,
+      \"unit\" : \"KWH_PER_MILE\",
+      \"valueKwhPer100Km\" : 20.2,
+      \"unitTranslationKey\" : \"GRAY_SLICE_UNIT_KWH_PER_MILE\",
+      \"unitTranslationKeyV2\" : \"TC.UNIT.KWH_PER_MILE\"
+    }
+  }]
+  """.data(using: .utf8)!
+
+
+let kMaintenanceItemsJson = """
+{
+  \"data\" : [ {
+    \"id\" : \"0003\",
+    \"description\" : {
+      \"shortName\" : \"Service\",
+      \"longName\" : null,
+      \"criticalityText\" : \"No service is due at the moment.\",
+      \"notificationText\" : null
+    },
+    \"criticality\" : 1,
+    \"remainingLifeTimeInDays\" : null,
+    \"remainingLifeTimePercentage\" : null,
+    \"remainingLifeTimeInKm\" : null,
+    \"values\" : {
+      \"modelName\" : \"Service-Intervall\",
+      \"odometerLastReset\" : \"0\",
+      \"modelVisibilityState\" : \"visible\",
+      \"WarnID100\" : \"0\",
+      \"modelId\" : \"0003\",
+      \"modelState\" : \"active\",
+      \"criticality\" : \"1\",
+      \"timestampLastReset\" : \"1999-11-30T00:00:00\",
+      \"WarnID99\" : \"0\",
+      \"source\" : \"Vehicle\",
+      \"event\" : \"CYCLIC\"
+    }
+  }, {
+    \"id\" : \"0005\",
+    \"description\" : {
+      \"shortName\" : \"Brake pads\",
+      \"longName\" : \"Changing the brake pads\",
+      \"criticalityText\" : \"No service is due at the moment.\",
+      \"notificationText\" : null
+    },
+    \"criticality\" : 1,
+    \"remainingLifeTimeInDays\" : null,
+    \"remainingLifeTimePercentage\" : null,
+    \"remainingLifeTimeInKm\" : null,
+    \"values\" : {
+      \"modelName\" : \"Service Bremse\",
+      \"odometerLastReset\" : \"0\",
+      \"modelVisibilityState\" : \"visible\",
+      \"modelId\" : \"0005\",
+      \"modelState\" : \"active\",
+      \"criticality\" : \"1\",
+      \"timestampLastReset\" : \"2022-12-08T17:20:05\",
+      \"source\" : \"Vehicle\",
+      \"event\" : \"CYCLIC\",
+      \"WarnID26\" : \"0\"
+    }
+  }],
+  \"serviceAccess\" : {
+    \"access\" : true
+  }
+}
+""".data(using: .utf8)!

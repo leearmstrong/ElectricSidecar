@@ -13,6 +13,8 @@ final class MockNetworkRoutes {
   private static let getCapabilitiesPath = "/service-vehicle/vcs/capabilities/A1234"
   private static let getStatusPath = "/vehicle-data/ie/en_IE/status/A1234"
   private static let getEmobilityPath = "/e-mobility/ie/en_IE/J1/A1234"
+  private static let getShortTermTripsPath = "/service-vehicle/ie/en_IE/trips/A1234/SHORT_TERM"
+  private static let getLongTermTripsPath = "/service-vehicle/ie/en_IE/trips/A1234/LONG_TERM"
 
   private static let getHonkAndFlashRemoteCommandStatusPath =
     "/service-vehicle/honk-and-flash/A1234/999/status"
@@ -290,6 +292,32 @@ final class MockNetworkRoutes {
 
   func mockGetPostUnlockFailure(router: Router) {
     router[MockNetworkRoutes.getPostUnockPath] = DataResponse(
+      statusCode: 400, statusMessage: "bad request")
+  }
+
+  // MARK: – Short Term Trips
+
+  func mockGetShortTermTripsSuccessful(router: Router) {
+    router[MockNetworkRoutes.getShortTermTripsPath] = JSONResponse(statusCode: 200) { _ -> Any in
+      return self.mockShortTermTripResponse(mockedResponse: kShortTermTripsInMetricJson)
+    }
+  }
+  
+  func mockGetShortTermTripsFailure(router: Router) {
+    router[MockNetworkRoutes.getShortTermTripsPath] = DataResponse(
+      statusCode: 400, statusMessage: "bad request")
+  }
+  
+  // MARK: – Long Term Trips
+
+  func mockGetLongTermTripsSuccessful(router: Router) {
+    router[MockNetworkRoutes.getLongTermTripsPath] = JSONResponse(statusCode: 200) { _ -> Any in
+      return self.mockShortTermTripResponse(mockedResponse: kLongTermTripsInMetricJson)
+    }
+  }
+  
+  func mockGetLongTermTripsFailure(router: Router) {
+    router[MockNetworkRoutes.getLongTermTripsPath] = DataResponse(
       statusCode: 400, statusMessage: "bad request")
   }
 
@@ -571,5 +599,9 @@ final class MockNetworkRoutes {
       "pcckErrorKey": "INCORRECT", "pcckErrorMessage": nil, "pcckErrorCode": nil,
       "pcckIsBusinessError": false,
     ]
+  }
+  
+  private func mockShortTermTripResponse(mockedResponse: Data) -> [[String: Any]] {
+    return try! (JSONSerialization.jsonObject(with: mockedResponse, options: []) as! [[String: Any]])
   }
 }
