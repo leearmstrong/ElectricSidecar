@@ -2,12 +2,6 @@ import ArgumentParser
 import Foundation
 import PorscheConnect
 
-// MARK: Extensions
-
-// Allow SupportedLocale to be used as a command line option.
-extension SupportedLocale: ExpressibleByArgument {
-}
-
 // MARK: - Main
 
 // Allow SupportedLocale to be used as a command line option.
