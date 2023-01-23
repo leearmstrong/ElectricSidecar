@@ -68,15 +68,79 @@ struct ChargeRemainingTimelineEntry: TimelineEntry {
 }
 
 struct VehicleChargeEntryView : View {
+  @Environment(\.widgetFamily) var family
+  @Environment(\.widgetRenderingMode) var widgetRenderingMode
+
   let entry: ChargeRemainingTimelineProvider.Entry
 
   var body: some View {
-    ChargeView(
-      batteryLevel: entry.chargeRemaining,
-      isCharging: entry.isCharging,
-      lineWidth: 4
-    )
-    .padding(2)
+
+    switch family {
+    case .accessoryCircular:
+      ChargeView(
+        batteryLevel: entry.chargeRemaining,
+        isCharging: entry.isCharging,
+        lineWidth: 4
+      )
+      .padding(2)
+    case .accessoryCorner:
+      HStack(spacing: 0) {
+        Image(entry.isCharging == true ? "taycan.charge" : "taycan")
+          .font(.system(size: 26))
+          .fontWeight(.regular)
+      }
+      .widgetLabel {
+        Gauge(value: entry.chargeRemaining, in: 0...100.0) {
+          Text("")
+        } currentValueLabel: {
+          Text("")
+        } minimumValueLabel: {
+          Text("")
+        } maximumValueLabel: {
+          Text(Self.formatted(chargeRemaining: entry.chargeRemaining * 0.01))
+            .foregroundColor(batteryColor)
+        }
+        .tint(batteryColor)
+        .gaugeStyle(LinearGaugeStyle(tint: Gradient(colors: [.red, .orange, .yellow, .green])))
+      }
+    case .accessoryInline:
+      // Note: inline accessories only support one Text and/or Image element. Any additional
+      // elements will be ignored.
+      HStack {
+        if widgetRenderingMode == .fullColor {
+          Image(systemName: "bolt.car")
+            .symbolRenderingMode(.palette)
+            .foregroundStyle(entry.isCharging == true ? .white : .clear, .white)
+        } else {
+          // Non-full-color rendering modes don't support palette rendering, so we need to use
+          // an alternate glyph instead.
+          Image(systemName: entry.isCharging == true ? "bolt.car" : "car")
+        }
+        Text(Self.formatted(chargeRemaining: entry.chargeRemaining * 0.01))
+      }
+    default:
+      Text("Unsupported")
+    }
+  }
+
+  var batteryColor: Color {
+    if entry.chargeRemaining >= 80 {
+      return .green
+    } else if entry.chargeRemaining >= 50 {
+      return .yellow
+    } else if entry.chargeRemaining > 20 {
+      return .orange
+    } else {
+      return .red
+    }
+  }
+
+  static func formatted(chargeRemaining: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.locale = Locale.current
+    formatter.numberStyle = .percent
+    formatter.maximumFractionDigits = 0
+    return formatter.string(from: chargeRemaining as NSNumber)!
   }
 }
 
@@ -84,7 +148,7 @@ struct VehicleChargeWidget_Previews: PreviewProvider {
   static var previews: some View {
     VehicleChargeEntryView(entry: ChargeRemainingTimelineEntry(
       date: Date(),
-      chargeRemaining: 10,
+      chargeRemaining: 20,
       isCharging: true
     ))
     .previewContext(WidgetPreviewContext(family: .accessoryCircular))

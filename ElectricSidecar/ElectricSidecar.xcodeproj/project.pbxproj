@@ -29,7 +29,6 @@
 		66108D95296B58A800791A7A /* PorscheConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 66108D94296B58A800791A7A /* PorscheConnect */; };
 		66108D99296B58AE00791A7A /* PorscheConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 66108D98296B58AE00791A7A /* PorscheConnect */; };
 		66108D9A296B58CF00791A7A /* VehicleChargeTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D88296B57CB00791A7A /* VehicleChargeTimelineProvider.swift */; };
-		66108D9B296B58DB00791A7A /* GaugeComplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D8A296B57CB00791A7A /* GaugeComplicationView.swift */; };
 		66108DA5296B58EE00791A7A /* Status+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D9F296B58EE00791A7A /* Status+Helpers.swift */; };
 		66108DA6296B58EE00791A7A /* Vehicle+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DA0296B58EE00791A7A /* Vehicle+SwiftUI.swift */; };
 		66108DA7296B58EE00791A7A /* Vehicle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108DA1296B58EE00791A7A /* Vehicle+Helpers.swift */; };
@@ -147,7 +146,6 @@
 		66108D80296B577700791A7A /* EndToEndUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndToEndUITests.swift; sourceTree = "<group>"; };
 		66108D86296B579800791A7A /* TitledTabViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitledTabViews.swift; sourceTree = "<group>"; };
 		66108D88296B57CB00791A7A /* VehicleChargeTimelineProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleChargeTimelineProvider.swift; sourceTree = "<group>"; };
-		66108D8A296B57CB00791A7A /* GaugeComplicationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeComplicationView.swift; sourceTree = "<group>"; };
 		66108D8E296B57F800791A7A /* PorscheConnect */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PorscheConnect; path = ../third_party/PorscheConnect; sourceTree = "<group>"; };
 		66108D8F296B584E00791A7A /* ElectricSidecar.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ElectricSidecar.entitlements; sourceTree = "<group>"; };
 		66108D90296B585800791A7A /* ESComplicationsExtension.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ESComplicationsExtension.entitlements; sourceTree = "<group>"; };
@@ -302,7 +300,6 @@
 			children = (
 				665EDD5B2972973F0012CD3A /* ESComplications.swift */,
 				665EDD5D2972979C0012CD3A /* VehicleCharge */,
-				66108D89296B57CB00791A7A /* Views */,
 				669BFB5D296BFE59004621D9 /* Resources */,
 			);
 			path = ESComplications;
@@ -329,14 +326,6 @@
 				66108D86296B579800791A7A /* TitledTabViews.swift */,
 			);
 			path = Playgrounds;
-			sourceTree = "<group>";
-		};
-		66108D89296B57CB00791A7A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				66108D8A296B57CB00791A7A /* GaugeComplicationView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		66108D8D296B57F800791A7A /* Packages */ = {
@@ -718,7 +707,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66EB7707296C0AB1008BFC27 /* Status+Helpers.swift in Sources */,
-				66108D9B296B58DB00791A7A /* GaugeComplicationView.swift in Sources */,
 				66108D65296B56AF00791A7A /* VehicleChargeWidget.swift in Sources */,
 				661C3F5229726E9100A4CC90 /* Refreshable.swift in Sources */,
 				661C3F4F2972641500A4CC90 /* UIModel.swift in Sources */,
