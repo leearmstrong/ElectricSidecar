@@ -8,29 +8,32 @@ import SwiftUI
 import WidgetKit
 
 struct VehicleView: View {
+  @SwiftUI.Environment(\.scenePhase) var scenePhase
+
   let vehicle: UIModel.Vehicle
 
   let statusPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>
   let emobilityPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>
   let positionPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>
 
+  @State var lastRefresh: Date = .now
   let refreshCallback: (Bool) async throws -> Void
   let lockCallback: () async throws -> Doors.DoorStatus?
   let unlockCallback: () async throws -> Void
 
-  @State var status: UIModel.Vehicle.Status?
-  @State var emobility: UIModel.Vehicle.Emobility?
-  @State var position: UIModel.Vehicle.Position?
-  @State var statusError: Error?
-  @State var emobilityError: Error?
-  @State var positionError: Error?
+  @MainActor @State var status: UIModel.Vehicle.Status?
+  @MainActor @State var emobility: UIModel.Vehicle.Emobility?
+  @MainActor @State var position: UIModel.Vehicle.Position?
+  @MainActor @State var statusError: Error?
+  @MainActor @State var emobilityError: Error?
+  @MainActor @State var positionError: Error?
 
-  @State var statusRefreshing: Bool = false
-  @State var emobilityRefreshing: Bool = false
-  @State var positionRefreshing: Bool = false
+  @MainActor @State var statusRefreshing: Bool = false
+  @MainActor @State var emobilityRefreshing: Bool = false
+  @MainActor @State var positionRefreshing: Bool = false
 
-  @State private var isRefreshing = false
-  @State private var isChangingLockState = false
+  @MainActor @State private var isRefreshing = false
+  @MainActor @State private var isChangingLockState = false
 
   var body: some View {
     ScrollView {
@@ -45,7 +48,11 @@ struct VehicleView: View {
                   logger.info("Unlocking \(vehicle.vin, privacy: .private)")
                   isChangingLockState = true
                   defer {
-                    isChangingLockState = false
+                    Task {
+                      await MainActor.run {
+                        isChangingLockState = false
+                      }
+                    }
                   }
                   try await unlockCallback()
                 }
@@ -71,7 +78,11 @@ struct VehicleView: View {
                   logger.info("Locking \(vehicle.vin, privacy: .private)")
                   isChangingLockState = true
                   defer {
-                    isChangingLockState = false
+                    Task {
+                      await MainActor.run {
+                        isChangingLockState = false
+                      }
+                    }
                   }
                   if let doorStatus = try await lockCallback() {
                     switch doorStatus {
@@ -115,21 +126,7 @@ struct VehicleView: View {
           .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
         } else {
           Button("Refresh") {
-            withAnimation {
-              isRefreshing = true
-              statusRefreshing = true
-              emobilityRefreshing = true
-              positionRefreshing = true
-            }
             Task {
-              defer {
-                withAnimation {
-                  statusRefreshing = false
-                  emobilityRefreshing = false
-                  positionRefreshing = false
-                  isRefreshing = false
-                }
-              }
               try await refresh(ignoreCache: true)
             }
           }
@@ -177,20 +174,15 @@ struct VehicleView: View {
       }
     }
     .navigationTitle(vehicle.licensePlate ?? "\(vehicle.modelDescription) (\(vehicle.modelYear))")
-    .onAppear {
-      isRefreshing = true
-      statusRefreshing = true
-      emobilityRefreshing = true
-      positionRefreshing = true
-      Task {
-        defer {
-          withAnimation {
-            statusRefreshing = false
-            emobilityRefreshing = false
-            positionRefreshing = false
-            isRefreshing = false
-          }
+    .onChange(of: scenePhase) { newPhase in
+      if newPhase == .active, lastRefresh < .now.addingTimeInterval(-15 * 60) {
+        Task {
+          try await refresh(ignoreCache: true)
         }
+      }
+    }
+    .onAppear {
+      Task {
         try await refresh(ignoreCache: false)
       }
     }
@@ -228,10 +220,30 @@ struct VehicleView: View {
     return formatter.string(from: chargeRemaining as NSNumber)!
   }
 
+  @MainActor
   private func refresh(ignoreCache: Bool) async throws {
-    try await refreshCallback(ignoreCache)
+    isRefreshing = true
+    statusRefreshing = true
+    emobilityRefreshing = true
+    positionRefreshing = true
 
-    logger.info("Refreshing all widget timelines")
-    WidgetCenter.shared.reloadAllTimelines()
+    Task {
+      defer {
+        Task {
+          await MainActor.run {
+            withAnimation {
+              statusRefreshing = false
+              emobilityRefreshing = false
+              positionRefreshing = false
+              isRefreshing = false
+            }
+            logger.info("Refreshing all widget timelines")
+            WidgetCenter.shared.reloadAllTimelines()
+          }
+        }
+      }
+      try await refreshCallback(ignoreCache)
+      lastRefresh = .now
+    }
   }
 }
