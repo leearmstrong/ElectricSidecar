@@ -14,14 +14,3 @@ struct VehicleChargeWidget: Widget {
       .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
   }
 }
-
-struct VehicleChargeWidget_Previews: PreviewProvider {
-  static var previews: some View {
-    VehicleChargeEntryView(entry: ChargeRemainingTimelineEntry(
-      date: Date(),
-      chargeRemaining: 100,
-      isCharging: false
-    ))
-    .previewContext(WidgetPreviewContext(family: .accessoryCircular))
-  }
-}

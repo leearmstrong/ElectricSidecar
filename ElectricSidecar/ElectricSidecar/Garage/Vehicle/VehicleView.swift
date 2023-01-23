@@ -67,8 +67,13 @@ struct VehicleView: View {
           }
           .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-          ChargeView(status: $status, emobility: $emobility)
-            .padding(.top, 8)
+          ChargeView(
+            batteryLevel: status?.batteryLevel,
+            isCharging: emobility?.isCharging,
+            allowsAnimation: true
+          )
+          .frame(width: 65, height: 65)
+          .padding(.top, 8)
 
           // Lock
           ZStack {

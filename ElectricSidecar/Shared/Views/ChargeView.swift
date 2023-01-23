@@ -1,11 +1,10 @@
 import Foundation
 import SwiftUI
 
-
 private struct ChargeCircleView: View {
   let scale: Double
   let color: Color
-  private let lineWidth: Double = 6
+  let lineWidth: Double
   private let orientation: Angle = .degrees(135)
   private let fillRatio: Double = 0.75
 
@@ -18,17 +17,20 @@ private struct ChargeCircleView: View {
 }
 
 struct ChargeView: View {
-  @Binding var status: UIModel.Vehicle.Status?
-  @Binding var emobility: UIModel.Vehicle.Emobility?
+  @Environment(\.widgetRenderingMode) var renderingMode
 
-  @State var pulseIsOn: Bool = false
+  var batteryLevel: Double?
+  var isCharging: Bool?
 
-  private let lineWidth: Double = 6
+  var allowsAnimation = false
+  @State var pulseIsOn = true
+
+  var lineWidth: Double = 6
   private let orientation: Angle = .degrees(135)
   private let fillRatio: Double = 0.75
 
   var chargeColor: Color? {
-    guard let batteryLevel = status?.batteryLevel else {
+    guard let batteryLevel else {
       return nil
     }
     if batteryLevel <= 15 {
@@ -45,37 +47,59 @@ struct ChargeView: View {
 
   var body: some View {
     ZStack {
-      if let emobility, let status, let chargeColor {
-        ChargeCircleView(scale: 1, color: chargeColor.opacity(0.2))
-        if emobility.isCharging == true {
-          ChargeCircleView(
-            scale: status.batteryLevel * 0.01,
-            color: pulseIsOn ? chargeColor : chargeColor.opacity(0.5)
-          )
-          .animation(.easeInOut(duration: 1.25).repeatForever(autoreverses: true), value: pulseIsOn)
-          .onAppear {
-            pulseIsOn = true
+      if let batteryLevel, let batteryLevelFormatted, let isCharging, let chargeColor {
+        // Gutter
+        ChargeCircleView(
+          scale: 1,
+          color: chargeColor.opacity(0.2),
+          lineWidth: lineWidth
+        )
+
+        // Fill
+        ChargeCircleView(
+          scale: batteryLevel * 0.01,
+          color: pulseIsOn ? chargeColor : chargeColor.opacity(0.5),
+          lineWidth: lineWidth
+        )
+        .animation(.easeInOut(duration: 1.25).repeatForever(autoreverses: true), value: pulseIsOn)
+        .onAppear {
+          guard allowsAnimation, isCharging else {
+            return
           }
-        } else {
-          ChargeCircleView(scale: status.batteryLevel * 0.01, color: .green)
+          pulseIsOn = false
         }
+        .widgetAccentable(true)
 
         VStack {
-          Image(emobility.isCharging == true ? "taycan.charge" : "taycan")
+          Image(isCharging == true ? "taycan.charge" : "taycan")
             .font(.title2)
             .padding(.top, 10)
-          Text(status.batteryLevelFormatted)
+          Text(batteryLevelFormatted)
             .font(.footnote)
         }
       } else {
-        ChargeCircleView(scale: 1, color: .gray)
+        ChargeCircleView(
+          scale: 1,
+          color: .gray,
+          lineWidth: lineWidth
+        )
         Image("taycan")
           .foregroundColor(.gray)
           .font(.title2)
           .padding(.top, -4)
       }
     }
-    .frame(width: 65, height: 65)
+  }
+
+  var batteryLevelFormatted: String? {
+    guard let batteryLevel else {
+      return nil
+    }
+    let formatter = NumberFormatter()
+    formatter.locale = .current
+    formatter.numberStyle = .percent
+    formatter.maximumFractionDigits = 0
+    return formatter.string(from: batteryLevel * 0.01 as NSNumber)!
   }
 }
 
@@ -95,8 +119,8 @@ struct ChargeView_Previews: PreviewProvider {
     HStack {
       Spacer()
       ChargeView(
-        status: .constant(Self.status),
-        emobility: .constant(Self.emobility)
+        batteryLevel: 20,
+        isCharging: true
       )
       Spacer()
     }

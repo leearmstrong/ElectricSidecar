@@ -71,6 +71,22 @@ struct VehicleChargeEntryView : View {
   let entry: ChargeRemainingTimelineProvider.Entry
 
   var body: some View {
-    GaugeComplicationView(batteryLevel: entry.chargeRemaining, isCharging: entry.isCharging)
+    ChargeView(
+      batteryLevel: entry.chargeRemaining,
+      isCharging: entry.isCharging,
+      lineWidth: 4
+    )
+    .padding(2)
+  }
+}
+
+struct VehicleChargeWidget_Previews: PreviewProvider {
+  static var previews: some View {
+    VehicleChargeEntryView(entry: ChargeRemainingTimelineEntry(
+      date: Date(),
+      chargeRemaining: 10,
+      isCharging: true
+    ))
+    .previewContext(WidgetPreviewContext(family: .accessoryCircular))
   }
 }
