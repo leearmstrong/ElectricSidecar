@@ -31,12 +31,29 @@ struct GarageView: View {
               try await store.refresh(vin: vehicle.vin, ignoreCache: ignoreCache)
               lastRefresh = .now
             } lockCallback: {
-              try await store.lock(vin: vehicle.vin)
+              guard let commandToken = try await store.lock(vin: vehicle.vin) else {
+                return nil
+              }
 
-              // Wait until the vehicle's had a chance to lock itself.
-              try await Task.sleep(nanoseconds: UInt64(12 * Double(NSEC_PER_SEC)))
+              var lastStatus = try await store.checkStatus(
+                vin: vehicle.vin,
+                remoteCommand: commandToken
+              )?.remoteStatus
+              while lastStatus == .inProgress {
+                // Avoid excessive API calls.
+                try await Task.sleep(nanoseconds: UInt64(0.5 * Double(NSEC_PER_SEC)))
 
-              await store.refreshStatus(for: vehicle.vin, ignoreCache: true)
+                lastStatus = try await store.checkStatus(
+                  vin: vehicle.vin,
+                  remoteCommand: commandToken
+                )?.remoteStatus
+              }
+
+              if let lastActions = try await store.lockUnlockLastActions(vin: vehicle.vin) {
+                return lastActions.doors.overallLockStatus
+              } else {
+                return nil
+              }
             } unlockCallback: {
               print("Unlock the car...")
             }

@@ -307,13 +307,34 @@ final class ModelStore: ObservableObject {
 
   // MARK: - Actions
 
-  func lock(vin: String) async throws {
+  func lock(vin: String) async throws -> RemoteCommandAccepted? {
     let response = try await porscheConnect.lock(vin: vin)
     guard response.response.statusCode < 300 else {
       logger.error("Failed to lock the car: \(response.response)")
       // TODO: Throw an error here.
-      return
+      return nil
     }
+    return response.remoteCommandAccepted
+  }
+
+  func checkStatus(vin: String, remoteCommand: RemoteCommandAccepted) async throws -> RemoteCommandStatus? {
+    let response = try await porscheConnect.checkStatus(vin: vin, remoteCommand: remoteCommand)
+    guard response.response!.statusCode < 300 else {
+      logger.error("Failed to lock the car: \(response.response)")
+      // TODO: Throw an error here.
+      return nil
+    }
+    return response.status
+  }
+
+  func lockUnlockLastActions(vin: String) async throws -> LockUnlockLastActions? {
+    let response = try await porscheConnect.lockUnlockLastActions(vin: vin)
+    guard response.response.statusCode < 300 else {
+      logger.error("Failed to lock the car: \(response.response)")
+      // TODO: Throw an error here.
+      return nil
+    }
+    return response.lastActions
   }
 
   private func get<T: Codable>(

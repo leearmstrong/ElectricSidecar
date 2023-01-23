@@ -14,9 +14,8 @@ struct VehicleView: View {
   let emobilityPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>
   let positionPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>
 
-
   let refreshCallback: (Bool) async throws -> Void
-  let lockCallback: () async throws -> Void
+  let lockCallback: () async throws -> Doors.DoorStatus?
   let unlockCallback: () async throws -> Void
 
   @State var status: UIModel.Vehicle.Status?
@@ -38,6 +37,7 @@ struct VehicleView: View {
       VStack(alignment: .center) {
 
         HStack {
+          // Unlock
           ZStack {
             if !isChangingLockState {
               Button {
@@ -63,6 +63,7 @@ struct VehicleView: View {
           ChargeView(status: $status, emobility: $emobility)
             .padding(.top, 8)
 
+          // Lock
           ZStack {
             if !isChangingLockState {
               Button {
@@ -72,7 +73,19 @@ struct VehicleView: View {
                   defer {
                     isChangingLockState = false
                   }
-                  try await lockCallback()
+                  if let doorStatus = try await lockCallback() {
+                    switch doorStatus {
+                    case .closedAndLocked:
+                      status?.isLocked = true
+                      status?.isClosed = true
+                    case .closedAndUnlocked:
+                      status?.isLocked = false
+                      status?.isClosed = true
+                    case .openAndUnlocked:
+                      status?.isLocked = false
+                      status?.isClosed = false
+                    }
+                  }
                 }
               } label: {
                 Image(systemName: "lock")
