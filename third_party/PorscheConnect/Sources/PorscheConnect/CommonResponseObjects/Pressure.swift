@@ -6,7 +6,7 @@ public struct Pressure: Codable {
   }
 
   public let value: Double
-  public let unit: Unit
+  public let unit: Unit?
   public let valueInBar: Double
   public let unitTranslationKey: String
   public let unitTranslationKeyV2: String
