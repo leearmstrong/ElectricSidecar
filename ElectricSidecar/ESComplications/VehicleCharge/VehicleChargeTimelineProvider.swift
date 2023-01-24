@@ -79,7 +79,7 @@ struct VehicleChargeEntryView : View {
     case .accessoryCircular:
       ChargeView(
         batteryLevel: entry.chargeRemaining,
-        isCharging: entry.isCharging,
+        isCharging: entry.isCharging == true,
         lineWidth: 4
       )
       .padding(2)

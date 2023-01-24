@@ -132,7 +132,7 @@ final class ModelStore: ObservableObject {
           logger.info("Refreshing emobility for \(vin, privacy: .private(mask: .hash))")
           let emobility = try await self.emobility(for: vin, ignoreCache: ignoreCache)
           self.emobilitySubject(for: vin).send(.loaded(UIModel.Vehicle.Emobility(
-            isCharging: emobility.isCharging
+            isCharging: emobility.isCharging == true
           )))
           logger.info("Finished refreshing emobility for \(vin, privacy: .private(mask: .hash))")
         } catch {
