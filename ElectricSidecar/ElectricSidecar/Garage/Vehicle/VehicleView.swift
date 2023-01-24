@@ -15,26 +15,22 @@ struct VehicleView: View {
   let statusPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>
   let emobilityPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Emobility>, Never>
   let positionPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never>
-  let doorPublisher: AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Doors>, Never>
 
   @State var lastRefresh: Date = .now
   let refreshCallback: (Bool) async throws -> Void
-  let lockCallback: () async throws -> UIModel.Vehicle.Doors?
+  let lockCallback: () async throws -> Void
   let unlockCallback: () async throws -> Void
 
   @MainActor @State var status: UIModel.Vehicle.Status?
   @MainActor @State var emobility: UIModel.Vehicle.Emobility?
   @MainActor @State var position: UIModel.Vehicle.Position?
-  @MainActor @State var doors: UIModel.Vehicle.Doors?
   @MainActor @State var statusError: Error?
   @MainActor @State var emobilityError: Error?
   @MainActor @State var positionError: Error?
-  @MainActor @State var doorsError: Error?
 
   @MainActor @State var statusRefreshing: Bool = false
   @MainActor @State var emobilityRefreshing: Bool = false
   @MainActor @State var positionRefreshing: Bool = false
-  @MainActor @State var doorsRefreshing: Bool = false
 
   @MainActor @State private var isRefreshing = false
   @MainActor @State private var isChangingLockState = false
@@ -81,7 +77,7 @@ struct VehicleView: View {
 
         Spacer(minLength: 8)
 
-        VehicleClosedStatusView(doors: $doors)
+        VehicleClosedStatusView(doors: status?.doors)
 
         Spacer(minLength: 32)
 
@@ -89,8 +85,7 @@ struct VehicleView: View {
           RefreshStatusView(
             statusRefreshing: $statusRefreshing,
             emobilityRefreshing: $emobilityRefreshing,
-            positionRefreshing: $positionRefreshing,
-            doorsRefreshing: $doorsRefreshing
+            positionRefreshing: $positionRefreshing
           )
           .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
         } else {
@@ -173,14 +168,6 @@ struct VehicleView: View {
         positionRefreshing = false
       }
     }
-    .onReceive(doorPublisher.receive(on: RunLoop.main)) { result in
-      doors = result.value
-      doorsError = result.error
-
-      if result.value != nil || result.error != nil {
-        doorsRefreshing = false
-      }
-    }
   }
 
   static func formatted(chargeRemaining: Double) -> String {
@@ -219,7 +206,7 @@ struct VehicleView: View {
           }
         }
       }
-      doors = try await lockCallback()
+      try await lockCallback()
     }
   }
 
@@ -229,7 +216,6 @@ struct VehicleView: View {
     statusRefreshing = true
     emobilityRefreshing = true
     positionRefreshing = true
-    doorsRefreshing = true
 
     Task {
       defer {
@@ -239,7 +225,6 @@ struct VehicleView: View {
               statusRefreshing = false
               emobilityRefreshing = false
               positionRefreshing = false
-              doorsRefreshing = false
               isRefreshing = false
             }
             logger.info("Refreshing all widget timelines")

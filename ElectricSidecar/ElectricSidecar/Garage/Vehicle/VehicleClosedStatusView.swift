@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 struct VehicleClosedStatusView: View {
-  @Binding var doors: UIModel.Vehicle.Doors?
+  var doors: UIModel.Vehicle.Doors?
 
   var body: some View {
     HStack {
@@ -53,7 +53,7 @@ struct VehicleClosedStatusView: View {
 
 struct VehicleClosedStatusView_Previews: PreviewProvider {
   static var previews: some View {
-    VehicleClosedStatusView(doors: .constant(UIModel.Vehicle.Doors(
+    VehicleClosedStatusView(doors: UIModel.Vehicle.Doors(
       frontLeft: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
       frontRight: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
       backLeft: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
@@ -61,7 +61,7 @@ struct VehicleClosedStatusView_Previews: PreviewProvider {
       frontTrunk: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: true),
       backTrunk: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
       overallLockStatus: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: true)
-    )))
+    ))
     .previewDevice("Apple Watch Series 8 (45mm)")
     .previewDisplayName("Loading / No license")
   }

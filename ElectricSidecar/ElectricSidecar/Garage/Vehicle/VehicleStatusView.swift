@@ -9,7 +9,6 @@ struct VehicleStatusView: View {
   @Binding var status: UIModel.Vehicle.Status?
   @Binding var emobility: UIModel.Vehicle.Emobility?
 
-  let statusFormatter = StatusFormatter()
   var cancellables = Set<AnyCancellable>()
 
   var body: some View {
@@ -73,7 +72,16 @@ struct VehicleStatusView_Loaded_Previews: PreviewProvider {
     batteryLevel: 100,
     batteryLevelFormatted: "100%",
     electricalRange: "100 miles",
-    mileage: "100 miles"
+    mileage: "100 miles",
+    doors: UIModel.Vehicle.Doors(
+      frontLeft: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
+      frontRight: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
+      backLeft: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
+      backRight: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: true),
+      frontTrunk: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: true),
+      backTrunk: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
+      overallLockStatus: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: true)
+    )
   )
   static let emobility = UIModel.Vehicle.Emobility(
     isCharging: true

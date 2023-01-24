@@ -24,13 +24,12 @@ struct GarageView: View {
               vehicle: vehicle,
               statusPublisher: store.statusPublisher(for: vehicle.vin),
               emobilityPublisher: store.emobilityPublisher(for: vehicle.vin),
-              positionPublisher: store.positionPublisher(for: vehicle.vin),
-              doorPublisher: store.doorPublisher(for: vehicle.vin)
+              positionPublisher: store.positionPublisher(for: vehicle.vin)
             ) { ignoreCache in
               try await store.refresh(vin: vehicle.vin, ignoreCache: ignoreCache)
             } lockCallback: {
               guard let commandToken = try await store.lock(vin: vehicle.vin) else {
-                return nil
+                return
               }
 
               var lastStatus = try await store.checkStatus(
@@ -47,16 +46,7 @@ struct GarageView: View {
                 )?.remoteStatus
               }
 
-              let lastActions = try await store.lockUnlockLastActions(vin: vehicle.vin, ignoreCache: true)
-              return UIModel.Vehicle.Doors(
-                frontLeft: lastActions.doors.frontLeft.uiModel,
-                frontRight: lastActions.doors.frontRight.uiModel,
-                backLeft: lastActions.doors.backLeft.uiModel,
-                backRight: lastActions.doors.backRight.uiModel,
-                frontTrunk: lastActions.doors.frontTrunk.uiModel,
-                backTrunk: lastActions.doors.backTrunk.uiModel,
-                overallLockStatus: lastActions.doors.overallLockStatus.uiModel
-              )
+              await store.refreshStatus(for: vehicle.vin)
             } unlockCallback: {
               print("Unlock the car...")
             }

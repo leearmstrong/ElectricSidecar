@@ -93,37 +93,33 @@ final class ModelStore: ObservableObject {
     do {
       logger.info("Refreshing status for \(vin, privacy: .private(mask: .hash))")
       let status = try await self.status(for: vin, ignoreCache: ignoreCache)
-      let statusFormatter = StatusFormatter()
+      let genericValueFormatter = GenericValueFormatter()
+      let distanceFormatter = DistanceFormatter()
+      let electricalRange: String?
+      if let distance = status.remainingRanges.electricalRange.distance {
+        electricalRange = distanceFormatter.string(from: distance)
+      } else {
+        electricalRange = nil
+      }
       self.statusSubject(for: vin).send(.loaded(UIModel.Vehicle.Status(
         batteryLevel: status.batteryLevel.value,
-        batteryLevelFormatted: statusFormatter.batteryLevel(from: status),
-        electricalRange: statusFormatter.electricalRange(from: status),
-        mileage: statusFormatter.mileage(from: status)
+        batteryLevelFormatted: genericValueFormatter.string(from: status.batteryLevel, scalar: 0.01),
+        electricalRange: electricalRange,
+        mileage: distanceFormatter.string(from: status.mileage),
+        doors: UIModel.Vehicle.Doors(
+          frontLeft: status.doors.frontLeft.uiModel,
+          frontRight: status.doors.frontRight.uiModel,
+          backLeft: status.doors.backLeft.uiModel,
+          backRight: status.doors.backRight.uiModel,
+          frontTrunk: status.doors.frontTrunk.uiModel,
+          backTrunk: status.doors.backTrunk.uiModel,
+          overallLockStatus: status.doors.overallLockStatus.uiModel
+        )
       )))
       logger.info("Finished refreshing status for \(vin, privacy: .private(mask: .hash))")
     } catch {
       logger.error("Status failed \(error, privacy: .public)")
       self.statusSubjects[vin]?.send(.error(error))
-    }
-  }
-
-  func refreshDoors(for vin: String, ignoreCache: Bool = false) async {
-    do {
-      logger.info("Refreshing doors for \(vin, privacy: .private(mask: .hash))")
-      let result = try await self.lockUnlockLastActions(vin: vin, ignoreCache: ignoreCache)
-      self.doorSubject(for: vin).send(.loaded(UIModel.Vehicle.Doors(
-        frontLeft: result.doors.frontLeft.uiModel,
-        frontRight: result.doors.frontRight.uiModel,
-        backLeft: result.doors.backLeft.uiModel,
-        backRight: result.doors.backRight.uiModel,
-        frontTrunk: result.doors.frontTrunk.uiModel,
-        backTrunk: result.doors.backTrunk.uiModel,
-        overallLockStatus: result.doors.overallLockStatus.uiModel
-      )))
-      logger.info("Finished refreshing doors for \(vin, privacy: .private(mask: .hash))")
-    } catch {
-      logger.error("Status failed \(error, privacy: .public)")
-      self.doorSubjects[vin]?.send(.error(error))
     }
   }
 
@@ -144,9 +140,6 @@ final class ModelStore: ObservableObject {
     await withTaskGroup(of: Void.self, body: { taskGroup in
       taskGroup.addTask {
         await self.refreshStatus(for: vin, ignoreCache: ignoreCache)
-      }
-      taskGroup.addTask {
-        await self.refreshDoors(for: vin, ignoreCache: ignoreCache)
       }
       taskGroup.addTask {
         do {
@@ -221,19 +214,6 @@ final class ModelStore: ObservableObject {
   }
   func positionPublisher(for vin: String) -> AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Position>, Never> {
     return positionSubject(for: vin).eraseToAnyPublisher()
-  }
-
-  private var doorSubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Doors>, Never>] = [:]
-  private func doorSubject(for vin: String) -> any Subject<UIModel.Refreshable<UIModel.Vehicle.Doors>, Never> {
-    if let subject = doorSubjects[vin] {
-      return subject
-    }
-    let subject = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Doors>, Never>(.loading)
-    doorSubjects[vin] = subject
-    return subject
-  }
-  func doorPublisher(for vin: String) -> AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Doors>, Never> {
-    return doorSubject(for: vin).eraseToAnyPublisher()
   }
 
   // MARK: - API invocations
@@ -323,16 +303,16 @@ final class ModelStore: ObservableObject {
     }
   }
 
-  func status(for vin: String, ignoreCache: Bool = false) async throws -> Status {
+  func status(for vin: String, ignoreCache: Bool = false) async throws -> Stored {
     return try await get(
       vin: vin,
-      cacheKey: "status",
+      cacheKey: "stored",
       timeout: cacheTimeout,
       ignoreCache: ignoreCache
     ) {
-      let response = try await porscheConnect.status(vin: vin)
+      let response = try await porscheConnect.stored(vin: vin)
       guard response.response.statusCode < 300,
-            let result = response.status else {
+            let result = response.stored else {
         fatalError()
       }
       return result

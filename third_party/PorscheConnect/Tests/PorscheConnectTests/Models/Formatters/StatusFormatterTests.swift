@@ -59,7 +59,7 @@ final class StatusFormatterTests: XCTestCase {
 
 private let templateStatus = Status(
   vin: "abc123",
-  batteryLevel: Status.GenericValue(
+  batteryLevel: GenericValue(
     value: 12,
     unit: "PERCENT",
     unitTranslationKey: "GRAY_SLICE_UNIT_PERCENT",
@@ -73,9 +73,9 @@ private let templateStatus = Status(
     unitTranslationKey: "GRAY_SLICE_UNIT_KILOMETER",
     unitTranslationKeyV2: "TC.UNIT.KILOMETER"),
   overallLockStatus: "CLOSED_LOCKED",
-  serviceIntervals: Status.ServiceIntervals(
-    oilService: Status.ServiceIntervals.OilService(),
-    inspection: Status.ServiceIntervals.Inspection(
+  serviceIntervals: ServiceIntervals(
+    oilService: ServiceIntervals.OilService(),
+    inspection: ServiceIntervals.Inspection(
       distance: Distance(
         value: -27842,
         unit: .kilometers,
@@ -85,7 +85,7 @@ private let templateStatus = Status(
         unitTranslationKey: "GRAY_SLICE_UNIT_KILOMETER",
         unitTranslationKeyV2: "TC.UNIT.KILOMETER"
       ),
-      time: Status.GenericValue(
+      time: GenericValue(
         value: -710,
         unit: "DAYS",
         unitTranslationKey: "GRAY_SLICE_UNIT_DAY",
@@ -93,12 +93,13 @@ private let templateStatus = Status(
       )
     )
   ),
-  remainingRanges: Status.RemainingRanges(
-    conventionalRange: Status.RemainingRanges.Range(
+  remainingRanges: RemainingRanges(
+    conventionalRange: RemainingRanges.Range(
       distance: nil,
-      engineType: "UNSUPPORTED"
+      engineType: "UNSUPPORTED",
+      isPrimary: false
     ),
-    electricalRange: Status.RemainingRanges.Range(
+    electricalRange: RemainingRanges.Range(
       distance: Distance(
         value: 294,
         unit: .kilometers,
@@ -108,7 +109,8 @@ private let templateStatus = Status(
         unitTranslationKey: "GRAY_SLICE_UNIT_KILOMETER",
         unitTranslationKeyV2: "TC.UNIT.KILOMETER"
       ),
-      engineType: "ELECTRIC"
+      engineType: "ELECTRIC",
+      isPrimary: true
     )
   )
 )

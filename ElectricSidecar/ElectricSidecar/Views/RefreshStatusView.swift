@@ -5,7 +5,6 @@ struct RefreshStatusView: View {
   @Binding var statusRefreshing: Bool
   @Binding var emobilityRefreshing: Bool
   @Binding var positionRefreshing: Bool
-  @Binding var doorsRefreshing: Bool
 
   var body: some View {
     HStack(alignment: .top) {
@@ -30,13 +29,6 @@ struct RefreshStatusView: View {
           .animation(.linear, value: positionRefreshing)
       }
       .frame(maxWidth: .infinity)
-      VStack {
-        Image(systemName: "car.top.door.front.left.and.front.right.and.rear.left.and.rear.right.open")
-        ProgressView()
-          .opacity(doorsRefreshing ? 1 : 0)
-          .animation(.linear, value: doorsRefreshing)
-      }
-      .frame(maxWidth: .infinity)
     }
   }
 }
@@ -46,8 +38,7 @@ struct RefreshStatusView_Previews: PreviewProvider {
     RefreshStatusView(
       statusRefreshing: .constant(true),
       emobilityRefreshing: .constant(true),
-      positionRefreshing: .constant(true),
-      doorsRefreshing: .constant(true)
+      positionRefreshing: .constant(true)
     )
     .previewDevice("Apple Watch Series 8 (45mm)")
     .previewDisplayName("Series 8 45mm")

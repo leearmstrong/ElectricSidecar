@@ -6,5 +6,6 @@ extension UIModel.Vehicle {
     let batteryLevelFormatted: String
     let electricalRange: String?
     let mileage: String
+    let doors: UIModel.Vehicle.Doors
   }
 }

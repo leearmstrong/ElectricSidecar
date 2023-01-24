@@ -25,7 +25,16 @@ struct VehicleDetailsView_Previews: PreviewProvider {
     batteryLevel: 100,
     batteryLevelFormatted: "100%",
     electricalRange: "100 miles",
-    mileage: "100 miles"
+    mileage: "100 miles",
+    doors: UIModel.Vehicle.Doors(
+      frontLeft: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
+      frontRight: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
+      backLeft: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
+      backRight: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: true),
+      frontTrunk: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: true),
+      backTrunk: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: false),
+      overallLockStatus: UIModel.Vehicle.Doors.Status(isLocked: true, isOpen: true)
+    )
   )
   static var previews: some View {
     VehicleDetailsView(
