@@ -40,15 +40,17 @@ struct VehicleView: View {
       VStack(alignment: .center) {
 
         HStack {
-          ZStack {
-            if !isChangingLockState {
-              Button { unlock() } label: { Image(systemName: "lock.open") }
-                .font(.title3)
-            } else {
-              ProgressView()
-            }
-          }
-          .padding(.trailing)
+          Spacer()
+            .frame(maxWidth: .infinity)
+//          ZStack {
+//            if !isChangingLockState {
+//              Button { unlock() } label: { Image(systemName: "lock.open") }
+//                .font(.title3)
+//            } else {
+//              ProgressView()
+//            }
+//          }
+//          .padding(.trailing)
 
           VStack {
             ChargeView(
