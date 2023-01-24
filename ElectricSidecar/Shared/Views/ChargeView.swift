@@ -105,8 +105,6 @@ struct ChargeView: View {
 
 struct ChargeView_Previews: PreviewProvider {
   static let status = UIModel.Vehicle.Status(
-    isLocked: true,
-    isClosed: true,
     batteryLevel: 70,
     batteryLevelFormatted: "20%",
     electricalRange: "100 miles",

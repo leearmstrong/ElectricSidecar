@@ -95,8 +95,6 @@ final class ModelStore: ObservableObject {
       let status = try await self.status(for: vin, ignoreCache: ignoreCache)
       let statusFormatter = StatusFormatter()
       self.statusSubject(for: vin).send(.loaded(UIModel.Vehicle.Status(
-        isLocked: status.isLocked,
-        isClosed: status.isClosed,
         batteryLevel: status.batteryLevel.value,
         batteryLevelFormatted: statusFormatter.batteryLevel(from: status),
         electricalRange: statusFormatter.electricalRange(from: status),
@@ -106,6 +104,26 @@ final class ModelStore: ObservableObject {
     } catch {
       logger.error("Status failed \(error, privacy: .public)")
       self.statusSubjects[vin]?.send(.error(error))
+    }
+  }
+
+  func refreshDoors(for vin: String, ignoreCache: Bool = false) async {
+    do {
+      logger.info("Refreshing doors for \(vin, privacy: .private(mask: .hash))")
+      let result = try await self.lockUnlockLastActions(vin: vin, ignoreCache: ignoreCache)
+      self.doorSubject(for: vin).send(.loaded(UIModel.Vehicle.Doors(
+        frontLeft: result.doors.frontLeft.uiModel,
+        frontRight: result.doors.frontRight.uiModel,
+        backLeft: result.doors.backLeft.uiModel,
+        backRight: result.doors.backRight.uiModel,
+        frontTrunk: result.doors.frontTrunk.uiModel,
+        backTrunk: result.doors.backTrunk.uiModel,
+        overallLockStatus: result.doors.overallLockStatus.uiModel
+      )))
+      logger.info("Finished refreshing doors for \(vin, privacy: .private(mask: .hash))")
+    } catch {
+      logger.error("Status failed \(error, privacy: .public)")
+      self.doorSubjects[vin]?.send(.error(error))
     }
   }
 
@@ -126,6 +144,9 @@ final class ModelStore: ObservableObject {
     await withTaskGroup(of: Void.self, body: { taskGroup in
       taskGroup.addTask {
         await self.refreshStatus(for: vin, ignoreCache: ignoreCache)
+      }
+      taskGroup.addTask {
+        await self.refreshDoors(for: vin, ignoreCache: ignoreCache)
       }
       taskGroup.addTask {
         do {
@@ -202,6 +223,19 @@ final class ModelStore: ObservableObject {
     return positionSubject(for: vin).eraseToAnyPublisher()
   }
 
+  private var doorSubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Doors>, Never>] = [:]
+  private func doorSubject(for vin: String) -> any Subject<UIModel.Refreshable<UIModel.Vehicle.Doors>, Never> {
+    if let subject = doorSubjects[vin] {
+      return subject
+    }
+    let subject = CurrentValueSubject<UIModel.Refreshable<UIModel.Vehicle.Doors>, Never>(.loading)
+    doorSubjects[vin] = subject
+    return subject
+  }
+  func doorPublisher(for vin: String) -> AnyPublisher<UIModel.Refreshable<UIModel.Vehicle.Doors>, Never> {
+    return doorSubject(for: vin).eraseToAnyPublisher()
+  }
+
   // MARK: - API invocations
 
   func vehicleList(ignoreCache: Bool = false) async throws -> [Vehicle] {
@@ -214,7 +248,7 @@ final class ModelStore: ObservableObject {
 
     // Fetch data if we don't have it.
     let response = try await porscheConnect.vehicles()
-    guard response.response.statusCode == 200,
+    guard response.response.statusCode < 300,
           let vehicles = response.vehicles else {
       fatalError()
     }
@@ -232,7 +266,7 @@ final class ModelStore: ObservableObject {
       ignoreCache: ignoreCache
     ) {
       let response = try await porscheConnect.capabilities(vin: vin)
-      guard response.response.statusCode == 200,
+      guard response.response.statusCode < 300,
             let result = response.capabilities else {
         fatalError()
       }
@@ -249,7 +283,7 @@ final class ModelStore: ObservableObject {
       ignoreCache: ignoreCache
     ) {
       let response = try await porscheConnect.emobility(vin: vin, capabilities: capabilities)
-      guard response.response.statusCode == 200,
+      guard response.response.statusCode < 300,
             let result = response.emobility else {
         fatalError()
       }
@@ -265,7 +299,7 @@ final class ModelStore: ObservableObject {
       ignoreCache: ignoreCache
     ) {
       let response = try await porscheConnect.summary(vin: vin)
-      guard response.response.statusCode == 200,
+      guard response.response.statusCode < 300,
             let result = response.summary else {
         fatalError()
       }
@@ -281,7 +315,7 @@ final class ModelStore: ObservableObject {
       ignoreCache: ignoreCache
     ) {
       let response = try await porscheConnect.position(vin: vin)
-      guard response.response.statusCode == 200,
+      guard response.response.statusCode < 300,
             let result = response.position else {
         fatalError()
       }
@@ -297,8 +331,24 @@ final class ModelStore: ObservableObject {
       ignoreCache: ignoreCache
     ) {
       let response = try await porscheConnect.status(vin: vin)
-      guard response.response.statusCode == 200,
+      guard response.response.statusCode < 300,
             let result = response.status else {
+        fatalError()
+      }
+      return result
+    }
+  }
+
+  func lockUnlockLastActions(vin: String, ignoreCache: Bool = false) async throws -> LockUnlockLastActions {
+    return try await get(
+      vin: vin,
+      cacheKey: "lock-unlock-last-actions",
+      timeout: cacheTimeout,
+      ignoreCache: ignoreCache
+    ) {
+      let response = try await porscheConnect.lockUnlockLastActions(vin: vin)
+      guard response.response.statusCode < 300,
+            let result = response.lastActions else {
         fatalError()
       }
       return result
@@ -325,16 +375,6 @@ final class ModelStore: ObservableObject {
       return nil
     }
     return response.status
-  }
-
-  func lockUnlockLastActions(vin: String) async throws -> LockUnlockLastActions? {
-    let response = try await porscheConnect.lockUnlockLastActions(vin: vin)
-    guard response.response.statusCode < 300 else {
-      logger.error("Failed to lock the car: \(response.response)")
-      // TODO: Throw an error here.
-      return nil
-    }
-    return response.lastActions
   }
 
   private func get<T: Codable>(

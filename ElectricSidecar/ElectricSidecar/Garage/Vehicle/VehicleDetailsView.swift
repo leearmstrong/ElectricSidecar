@@ -22,8 +22,6 @@ struct VehicleDetailsView: View {
 
 struct VehicleDetailsView_Previews: PreviewProvider {
   static let status = UIModel.Vehicle.Status(
-    isLocked: true,
-    isClosed: true,
     batteryLevel: 100,
     batteryLevelFormatted: "100%",
     electricalRange: "100 miles",
