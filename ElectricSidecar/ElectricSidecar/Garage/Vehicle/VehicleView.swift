@@ -40,26 +40,9 @@ struct VehicleView: View {
       VStack(alignment: .center) {
 
         HStack {
-          // Unlock
           ZStack {
             if !isChangingLockState {
-              Button {
-                Task {
-                  logger.info("Unlocking \(vehicle.vin, privacy: .private)")
-                  isChangingLockState = true
-                  defer {
-                    Task {
-                      await MainActor.run {
-                        isChangingLockState = false
-                      }
-                    }
-                  }
-                  try await unlockCallback()
-                }
-              } label: {
-                Image(systemName: "lock.open")
-                  .frame(maxWidth: .infinity, maxHeight: .infinity)
-              }
+              Button { unlock() } label: { Image(systemName: "lock.open") }
               .buttonStyle(.plain)
             } else {
               ProgressView()
@@ -67,57 +50,29 @@ struct VehicleView: View {
           }
           .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-          ChargeView(
-            batteryLevel: status?.batteryLevel,
-            isCharging: emobility?.isCharging,
-            allowsAnimation: true
-          )
-          .frame(width: 65, height: 65)
-          .padding(.top, 8)
+          VStack {
+            ChargeView(
+              batteryLevel: status?.batteryLevel,
+              isCharging: emobility?.isCharging,
+              allowsAnimation: true
+            )
+            .padding(.top, 8)
+            if let electricalRange = status?.electricalRange {
+              Text(electricalRange)
+                .font(.footnote)
+                .padding(.top, -10)
+            }
+          }
 
-          // Lock
           ZStack {
             if !isChangingLockState {
-              Button {
-                Task {
-                  logger.info("Locking \(vehicle.vin, privacy: .private)")
-                  isChangingLockState = true
-                  defer {
-                    Task {
-                      await MainActor.run {
-                        isChangingLockState = false
-                      }
-                    }
-                  }
-                  if let doorStatus = try await lockCallback() {
-                    switch doorStatus {
-                    case .closedAndLocked:
-                      status?.isLocked = true
-                      status?.isClosed = true
-                    case .closedAndUnlocked:
-                      status?.isLocked = false
-                      status?.isClosed = true
-                    case .openAndUnlocked:
-                      status?.isLocked = false
-                      status?.isClosed = false
-                    }
-                  }
-                }
-              } label: {
-                Image(systemName: "lock")
-                  .frame(maxWidth: .infinity, maxHeight: .infinity)
-              }
+              Button { lock() } label: { Image(systemName: "lock") }
               .buttonStyle(.plain)
             } else {
               ProgressView()
             }
           }
           .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        if let electricalRange = status?.electricalRange {
-          Text(electricalRange)
-            .font(.footnote)
-            .padding(.top, -10)
         }
 
         Spacer(minLength: 32)
@@ -138,6 +93,15 @@ struct VehicleView: View {
         }
 
         NavigationLink {
+          VehicleLocationView(
+            vehicleName: vehicle.licensePlate ?? vehicle.modelDescription,
+            position: $position
+          )
+          .navigationTitle("Location")
+        } label: {
+          NavigationLinkContentView(imageSystemName: "location", title: "Location")
+        }
+        NavigationLink {
           VehicleDetailsView(
             status: $status,
             modelDescription: vehicle.modelDescription,
@@ -155,30 +119,15 @@ struct VehicleView: View {
           NavigationLinkContentView(imageSystemName: "photo.on.rectangle.angled", title: "Photos")
         }
 
-        VehicleLocationView(
-          vehicleName: vehicle.licensePlate ?? vehicle.modelDescription,
-          position: $position
-        )
-        .padding(.zero)
-
         if statusError != nil || emobilityError != nil || positionError != nil {
           NavigationLink {
-            if let statusError {
-              Text(statusError.localizedDescription)
-            }
-            if let emobilityError {
-              Text(emobilityError.localizedDescription)
-            }
-            if let positionError {
-              Text(positionError.localizedDescription)
-            }
+            VehicleErrorView(statusError: $statusError, emobilityError: $emobilityError, positionError: $positionError)
           } label: {
             NavigationLinkContentView(imageSystemName: "exclamationmark.triangle", title: "Errors")
           }
         }
       }
     }
-    .navigationTitle(vehicle.licensePlate ?? "\(vehicle.modelDescription) (\(vehicle.modelYear))")
     .onChange(of: scenePhase) { newPhase in
       if newPhase == .active, lastRefresh < .now.addingTimeInterval(-15 * 60) {
         Task {
@@ -223,6 +172,50 @@ struct VehicleView: View {
     formatter.numberStyle = .percent
     formatter.maximumFractionDigits = 0
     return formatter.string(from: chargeRemaining as NSNumber)!
+  }
+
+  @MainActor
+  private func unlock() {
+    Task {
+      logger.info("Unlocking \(vehicle.vin, privacy: .private)")
+      isChangingLockState = true
+      defer {
+        Task {
+          await MainActor.run {
+            isChangingLockState = false
+          }
+        }
+      }
+      try await unlockCallback()
+    }
+  }
+
+  @MainActor
+  private func lock() {
+    Task {
+      logger.info("Locking \(vehicle.vin, privacy: .private)")
+      isChangingLockState = true
+      defer {
+        Task {
+          await MainActor.run {
+            isChangingLockState = false
+          }
+        }
+      }
+      if let doorStatus = try await lockCallback() {
+        switch doorStatus {
+        case .closedAndLocked:
+          status?.isLocked = true
+          status?.isClosed = true
+        case .closedAndUnlocked:
+          status?.isLocked = false
+          status?.isClosed = true
+        case .openAndUnlocked:
+          status?.isLocked = false
+          status?.isClosed = false
+        }
+      }
+    }
   }
 
   @MainActor

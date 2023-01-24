@@ -54,6 +54,7 @@ struct GarageView: View {
             } unlockCallback: {
               print("Unlock the car...")
             }
+            .navigationTitle(vehicle.licensePlate ?? "\(vehicle.modelDescription) (\(vehicle.modelYear))")
           }
           if isLogReadingEnabled {
             LogsView()
