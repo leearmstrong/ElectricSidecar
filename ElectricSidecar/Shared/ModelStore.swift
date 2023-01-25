@@ -93,7 +93,6 @@ final class ModelStore: ObservableObject {
     do {
       logger.info("Refreshing status for \(vin, privacy: .private(mask: .hash))")
       let status = try await self.status(for: vin, ignoreCache: ignoreCache)
-      let genericValueFormatter = GenericValueFormatter()
       let distanceFormatter = DistanceFormatter()
       let electricalRange: String?
       if let distance = status.remainingRanges.electricalRange.distance {
@@ -103,7 +102,6 @@ final class ModelStore: ObservableObject {
       }
       self.statusSubject(for: vin).send(.loaded(UIModel.Vehicle.Status(
         batteryLevel: status.batteryLevel.value,
-        batteryLevelFormatted: genericValueFormatter.string(from: status.batteryLevel, scalar: 0.01),
         electricalRange: electricalRange,
         mileage: distanceFormatter.string(from: status.mileage),
         doors: UIModel.Vehicle.Doors(

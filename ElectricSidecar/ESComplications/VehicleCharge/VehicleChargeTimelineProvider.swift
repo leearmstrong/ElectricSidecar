@@ -97,7 +97,7 @@ struct VehicleChargeEntryView : View {
         } minimumValueLabel: {
           Text("")
         } maximumValueLabel: {
-          Text(Self.formatted(chargeRemaining: entry.chargeRemaining * 0.01))
+          Text(Self.formatted(chargeRemaining: entry.chargeRemaining))
             .foregroundColor(batteryColor)
         }
         .tint(batteryColor)
@@ -116,7 +116,7 @@ struct VehicleChargeEntryView : View {
           // an alternate glyph instead.
           Image(systemName: entry.isCharging == true ? "bolt.car" : "car")
         }
-        Text(Self.formatted(chargeRemaining: entry.chargeRemaining * 0.01))
+        Text(Self.formatted(chargeRemaining: entry.chargeRemaining))
       }
     default:
       Text("Unsupported")
@@ -136,11 +136,7 @@ struct VehicleChargeEntryView : View {
   }
 
   static func formatted(chargeRemaining: Double) -> String {
-    let formatter = NumberFormatter()
-    formatter.locale = Locale.current
-    formatter.numberStyle = .percent
-    formatter.maximumFractionDigits = 0
-    return formatter.string(from: chargeRemaining as NSNumber)!
+    return String(format: "%.0f%%", chargeRemaining)
   }
 }
 

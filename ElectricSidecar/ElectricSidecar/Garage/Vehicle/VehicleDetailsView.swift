@@ -23,7 +23,6 @@ struct VehicleDetailsView: View {
 struct VehicleDetailsView_Previews: PreviewProvider {
   static let status = UIModel.Vehicle.Status(
     batteryLevel: 100,
-    batteryLevelFormatted: "100%",
     electricalRange: "100 miles",
     mileage: "100 miles",
     doors: UIModel.Vehicle.Doors(

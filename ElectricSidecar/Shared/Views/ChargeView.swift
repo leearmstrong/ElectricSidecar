@@ -95,18 +95,13 @@ struct ChargeView: View {
     guard let batteryLevel else {
       return nil
     }
-    let formatter = NumberFormatter()
-    formatter.locale = .current
-    formatter.numberStyle = .percent
-    formatter.maximumFractionDigits = 0
-    return formatter.string(from: batteryLevel * 0.01 as NSNumber)!
+    return String(format: "%.0f%%", batteryLevel)
   }
 }
 
 struct ChargeView_Previews: PreviewProvider {
   static let status = UIModel.Vehicle.Status(
     batteryLevel: 70,
-    batteryLevelFormatted: "20%",
     electricalRange: "100 miles",
     mileage: "100 miles",
     doors: UIModel.Vehicle.Doors(
