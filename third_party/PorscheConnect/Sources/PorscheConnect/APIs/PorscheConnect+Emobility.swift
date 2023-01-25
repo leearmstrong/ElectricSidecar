@@ -113,7 +113,7 @@ public struct Emobility: Codable {
     /// Can be any of:
     /// - `OFF`
     public let climatisationState: String
-    public let remainingClimatisationTime: String?  // TBD when set
+    public let remainingClimatisationTime: Int?  // TBD when set
     public let targetTemperature: String?
     /// Can be any of:
     /// - `false`
