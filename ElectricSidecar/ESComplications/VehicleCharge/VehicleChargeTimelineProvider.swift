@@ -86,7 +86,7 @@ struct VehicleChargeEntryView : View {
     case .accessoryCorner:
       HStack(spacing: 0) {
         Image(entry.isCharging == true ? "taycan.charge" : "taycan")
-          .font(.system(size: 26))
+          .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 23 : 26))
           .fontWeight(.regular)
       }
       .widgetLabel {
@@ -97,7 +97,7 @@ struct VehicleChargeEntryView : View {
         } minimumValueLabel: {
           Text("")
         } maximumValueLabel: {
-          Text(Self.formatted(chargeRemaining: entry.chargeRemaining))
+          Text(entry.chargeRemaining < 100 ? Self.formatted(chargeRemaining: entry.chargeRemaining) : "100")
             .foregroundColor(batteryColor)
         }
         .tint(batteryColor)
@@ -144,9 +144,10 @@ struct VehicleChargeWidget_Previews: PreviewProvider {
   static var previews: some View {
     VehicleChargeEntryView(entry: ChargeRemainingTimelineEntry(
       date: Date(),
-      chargeRemaining: 20,
+      chargeRemaining: 100,
       isCharging: true
     ))
+    .previewDevice("Apple Watch Series 8 (45mm)")
     .previewContext(WidgetPreviewContext(family: .accessoryCircular))
   }
 }
