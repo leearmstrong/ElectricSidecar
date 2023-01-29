@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "66108D5C296B56AF00791A7A"
-               BuildableName = "ESComplicationsExtension.appex"
-               BlueprintName = "ESComplicationsExtension"
+               BuildableName = "Widgets.appex"
+               BlueprintName = "Widgets"
                ReferencedContainer = "container:ElectricSidecar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "66108D25296B569000791A7A"
-               BuildableName = "ElectricSidecar.app"
-               BlueprintName = "ElectricSidecar"
+               BuildableName = "Watch.app"
+               BlueprintName = "Watch"
                ReferencedContainer = "container:ElectricSidecar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -76,8 +76,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66108D5C296B56AF00791A7A"
-            BuildableName = "ESComplicationsExtension.appex"
-            BlueprintName = "ESComplicationsExtension"
+            BuildableName = "Widgets.appex"
+            BlueprintName = "Widgets"
             ReferencedContainer = "container:ElectricSidecar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -85,8 +85,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66108D25296B569000791A7A"
-            BuildableName = "ElectricSidecar.app"
-            BlueprintName = "ElectricSidecar"
+            BuildableName = "Watch.app"
+            BlueprintName = "Watch"
             ReferencedContainer = "container:ElectricSidecar.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -119,8 +119,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66108D5C296B56AF00791A7A"
-            BuildableName = "ESComplicationsExtension.appex"
-            BlueprintName = "ESComplicationsExtension"
+            BuildableName = "Widgets.appex"
+            BlueprintName = "Widgets"
             ReferencedContainer = "container:ElectricSidecar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

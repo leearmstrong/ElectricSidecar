@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		660E7609297E593A00EEF434 /* ChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660E7608297E593A00EEF434 /* ChargeView.swift */; };
 		660E760A297E593A00EEF434 /* ChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660E7608297E593A00EEF434 /* ChargeView.swift */; };
-		66108D27296B569000791A7A /* ElectricSidecar.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 66108D26296B569000791A7A /* ElectricSidecar.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		66108D2C296B569000791A7A /* ElectricSidecarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D2B296B569000791A7A /* ElectricSidecarApp.swift */; };
 		66108D30296B569100791A7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D2F296B569100791A7A /* Assets.xcassets */; };
 		66108D33296B569100791A7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D32296B569100791A7A /* Preview Assets.xcassets */; };
@@ -17,7 +16,7 @@
 		66108D62296B56AF00791A7A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66108D61296B56AF00791A7A /* SwiftUI.framework */; };
 		66108D65296B56AF00791A7A /* VehicleChargeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D64296B56AF00791A7A /* VehicleChargeWidget.swift */; };
 		66108D67296B56B000791A7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D66296B56B000791A7A /* Assets.xcassets */; };
-		66108D6B296B56B000791A7A /* ESComplicationsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 66108D5D296B56AF00791A7A /* ESComplicationsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		66108D6B296B56B000791A7A /* Widgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 66108D5D296B56AF00791A7A /* Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		66108D79296B572F00791A7A /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D77296B572F00791A7A /* ModelStore.swift */; };
 		66108D7A296B572F00791A7A /* ModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D77296B572F00791A7A /* ModelStore.swift */; };
 		66108D7B296B572F00791A7A /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D78296B572F00791A7A /* AppGroup.swift */; };
@@ -63,6 +62,15 @@
 		668B8616298659D400C60DE8 /* VehicleRangeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B8614298659D400C60DE8 /* VehicleRangeWidget.swift */; };
 		668B861829865BE900C60DE8 /* RadialProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B861729865BE900C60DE8 /* RadialProgressView.swift */; };
 		668B861929865BE900C60DE8 /* RadialProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B861729865BE900C60DE8 /* RadialProgressView.swift */; };
+		668B86552986F2A700C60DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B86542986F2A700C60DE8 /* AppDelegate.swift */; };
+		668B86572986F2A700C60DE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B86562986F2A700C60DE8 /* SceneDelegate.swift */; };
+		668B86592986F2A700C60DE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B86582986F2A700C60DE8 /* ViewController.swift */; };
+		668B865E2986F2A800C60DE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 668B865D2986F2A800C60DE8 /* Assets.xcassets */; };
+		668B86612986F2A800C60DE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 668B865F2986F2A800C60DE8 /* LaunchScreen.storyboard */; };
+		668B866C2986F2A900C60DE8 /* ESConfiguratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B866B2986F2A900C60DE8 /* ESConfiguratorTests.swift */; };
+		668B86762986F2AA00C60DE8 /* ESConfiguratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B86752986F2AA00C60DE8 /* ESConfiguratorUITests.swift */; };
+		668B86782986F2AA00C60DE8 /* ESConfiguratorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B86772986F2AA00C60DE8 /* ESConfiguratorUITestsLaunchTests.swift */; };
+		668B86852986F35000C60DE8 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 66108D26296B569000791A7A /* Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		668EB957297910E200304EA5 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB956297910E200304EA5 /* LogsView.swift */; };
 		668EB9592979119B00304EA5 /* LoggerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB9582979119B00304EA5 /* LoggerContext.swift */; };
 		668EB95A2979119B00304EA5 /* LoggerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB9582979119B00304EA5 /* LoggerContext.swift */; };
@@ -77,13 +85,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		66108D28296B569000791A7A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66108D1A296B569000791A7A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66108D25296B569000791A7A;
-			remoteInfo = "ElectricSidecar Watch App";
-		};
 		66108D39296B569100791A7A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66108D1A296B569000791A7A /* Project object */;
@@ -105,43 +106,63 @@
 			remoteGlobalIDString = 66108D5C296B56AF00791A7A;
 			remoteInfo = ESComplicationsExtension;
 		};
+		668B86682986F2A800C60DE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66108D1A296B569000791A7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 668B86512986F2A600C60DE8;
+			remoteInfo = ESConfigurator;
+		};
+		668B86722986F2AA00C60DE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66108D1A296B569000791A7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 668B86512986F2A600C60DE8;
+			remoteInfo = ESConfigurator;
+		};
+		668B86822986F32200C60DE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66108D1A296B569000791A7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66108D25296B569000791A7A;
+			remoteInfo = ElectricSidecar;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		66108D4F296B569100791A7A /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				66108D27296B569000791A7A /* ElectricSidecar.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		66108D6F296B56B000791A7A /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				66108D6B296B56B000791A7A /* ESComplicationsExtension.appex in Embed Foundation Extensions */,
+				66108D6B296B56B000791A7A /* Widgets.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		668B86842986F33500C60DE8 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				668B86852986F35000C60DE8 /* Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		660E7608297E593A00EEF434 /* ChargeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeView.swift; sourceTree = "<group>"; };
-		66108D20296B569000791A7A /* ElectricSidecarHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecarHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		66108D26296B569000791A7A /* ElectricSidecar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66108D26296B569000791A7A /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66108D2B296B569000791A7A /* ElectricSidecarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricSidecarApp.swift; sourceTree = "<group>"; };
 		66108D2F296B569100791A7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66108D32296B569100791A7A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		66108D38296B569100791A7A /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66108D42296B569100791A7A /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66108D5D296B56AF00791A7A /* ESComplicationsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ESComplicationsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		66108D5D296B56AF00791A7A /* Widgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		66108D5F296B56AF00791A7A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		66108D61296B56AF00791A7A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		66108D64296B56AF00791A7A /* VehicleChargeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleChargeWidget.swift; sourceTree = "<group>"; };
@@ -181,6 +202,19 @@
 		668B8613298659D400C60DE8 /* VehicleRangeTimelineProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleRangeTimelineProvider.swift; sourceTree = "<group>"; };
 		668B8614298659D400C60DE8 /* VehicleRangeWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleRangeWidget.swift; sourceTree = "<group>"; };
 		668B861729865BE900C60DE8 /* RadialProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialProgressView.swift; sourceTree = "<group>"; };
+		668B86522986F2A700C60DE8 /* Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		668B86542986F2A700C60DE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		668B86562986F2A700C60DE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		668B86582986F2A700C60DE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		668B865D2986F2A800C60DE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		668B86602986F2A800C60DE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		668B86622986F2A800C60DE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		668B86672986F2A800C60DE8 /* ESConfiguratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ESConfiguratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		668B866B2986F2A900C60DE8 /* ESConfiguratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESConfiguratorTests.swift; sourceTree = "<group>"; };
+		668B86712986F2A900C60DE8 /* ESConfiguratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ESConfiguratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		668B86752986F2AA00C60DE8 /* ESConfiguratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESConfiguratorUITests.swift; sourceTree = "<group>"; };
+		668B86772986F2AA00C60DE8 /* ESConfiguratorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESConfiguratorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		668B86CE2986F5F300C60DE8 /* Phone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Phone.entitlements; sourceTree = "<group>"; };
 		668EB956297910E200304EA5 /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
 		668EB9582979119B00304EA5 /* LoggerContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerContext.swift; sourceTree = "<group>"; };
 		668EB95B29792E8100304EA5 /* VehiclePhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePhotosView.swift; sourceTree = "<group>"; };
@@ -223,6 +257,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		668B864F2986F2A600C60DE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		668B86642986F2A800C60DE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		668B866E2986F2A900C60DE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -238,14 +293,13 @@
 		66108D19296B569000791A7A = {
 			isa = PBXGroup;
 			children = (
-				66108D8D296B57F800791A7A /* Packages */,
+				668B86532986F2A700C60DE8 /* Phone */,
+				66108D2A296B569000791A7A /* Watch */,
+				66108D63296B56AF00791A7A /* Widgets */,
 				66108D76296B570C00791A7A /* Shared */,
-				66108D2A296B569000791A7A /* ElectricSidecar */,
-				66108D63296B56AF00791A7A /* ESComplications */,
+				668B86862986F38400C60DE8 /* Tests */,
 				66108D85296B579800791A7A /* Playgrounds */,
-				66108D3B296B569100791A7A /* UnitTests */,
-				66108D45296B569100791A7A /* UITests */,
-				66108D5E296B56AF00791A7A /* Frameworks */,
+				66108D8D296B57F800791A7A /* Packages */,
 				66108D21296B569000791A7A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -253,16 +307,18 @@
 		66108D21296B569000791A7A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66108D20296B569000791A7A /* ElectricSidecarHost.app */,
-				66108D26296B569000791A7A /* ElectricSidecar.app */,
+				66108D26296B569000791A7A /* Watch.app */,
 				66108D38296B569100791A7A /* UnitTests.xctest */,
 				66108D42296B569100791A7A /* UITests.xctest */,
-				66108D5D296B56AF00791A7A /* ESComplicationsExtension.appex */,
+				66108D5D296B56AF00791A7A /* Widgets.appex */,
+				668B86522986F2A700C60DE8 /* Phone.app */,
+				668B86672986F2A800C60DE8 /* ESConfiguratorTests.xctest */,
+				668B86712986F2A900C60DE8 /* ESConfiguratorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		66108D2A296B569000791A7A /* ElectricSidecar */ = {
+		66108D2A296B569000791A7A /* Watch */ = {
 			isa = PBXGroup;
 			children = (
 				66108D2B296B569000791A7A /* ElectricSidecarApp.swift */,
@@ -273,7 +329,7 @@
 				668EB95D2979326500304EA5 /* Views */,
 				669BFB5C296BFE37004621D9 /* Resources */,
 			);
-			path = ElectricSidecar;
+			path = Watch;
 			sourceTree = "<group>";
 		};
 		66108D31296B569100791A7A /* Preview Content */ = {
@@ -310,7 +366,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		66108D63296B56AF00791A7A /* ESComplications */ = {
+		66108D63296B56AF00791A7A /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
 				665EDD5B2972973F0012CD3A /* ESComplications.swift */,
@@ -318,7 +374,7 @@
 				668B8612298659D400C60DE8 /* VehicleRange */,
 				669BFB5D296BFE59004621D9 /* Resources */,
 			);
-			path = ESComplications;
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		66108D76296B570C00791A7A /* Shared */ = {
@@ -347,6 +403,7 @@
 		66108D8D296B57F800791A7A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				66108D5E296B56AF00791A7A /* Frameworks */,
 				66108D8E296B57F800791A7A /* PorscheConnect */,
 			);
 			name = Packages;
@@ -407,6 +464,48 @@
 				668B8614298659D400C60DE8 /* VehicleRangeWidget.swift */,
 			);
 			path = VehicleRange;
+			sourceTree = "<group>";
+		};
+		668B86532986F2A700C60DE8 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				668B86CE2986F5F300C60DE8 /* Phone.entitlements */,
+				668B86542986F2A700C60DE8 /* AppDelegate.swift */,
+				668B86562986F2A700C60DE8 /* SceneDelegate.swift */,
+				668B86582986F2A700C60DE8 /* ViewController.swift */,
+				668B865D2986F2A800C60DE8 /* Assets.xcassets */,
+				668B865F2986F2A800C60DE8 /* LaunchScreen.storyboard */,
+				668B86622986F2A800C60DE8 /* Info.plist */,
+			);
+			path = Phone;
+			sourceTree = "<group>";
+		};
+		668B866A2986F2A900C60DE8 /* ESConfiguratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				668B866B2986F2A900C60DE8 /* ESConfiguratorTests.swift */,
+			);
+			path = ESConfiguratorTests;
+			sourceTree = "<group>";
+		};
+		668B86742986F2AA00C60DE8 /* ESConfiguratorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				668B86752986F2AA00C60DE8 /* ESConfiguratorUITests.swift */,
+				668B86772986F2AA00C60DE8 /* ESConfiguratorUITestsLaunchTests.swift */,
+			);
+			path = ESConfiguratorUITests;
+			sourceTree = "<group>";
+		};
+		668B86862986F38400C60DE8 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				66108D3B296B569100791A7A /* UnitTests */,
+				66108D45296B569100791A7A /* UITests */,
+				668B866A2986F2A900C60DE8 /* ESConfiguratorTests */,
+				668B86742986F2AA00C60DE8 /* ESConfiguratorUITests */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 		668EB955297910D800304EA5 /* Debugging */ = {
@@ -481,26 +580,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		66108D1F296B569000791A7A /* ElectricSidecarHost */ = {
+		66108D25296B569000791A7A /* Watch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66108D50296B569100791A7A /* Build configuration list for PBXNativeTarget "ElectricSidecarHost" */;
-			buildPhases = (
-				66108D1E296B569000791A7A /* Resources */,
-				66108D4F296B569100791A7A /* Embed Watch Content */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66108D29296B569000791A7A /* PBXTargetDependency */,
-			);
-			name = ElectricSidecarHost;
-			productName = ElectricSidecar;
-			productReference = 66108D20296B569000791A7A /* ElectricSidecarHost.app */;
-			productType = "com.apple.product-type.application.watchapp2-container";
-		};
-		66108D25296B569000791A7A /* ElectricSidecar */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66108D4C296B569100791A7A /* Build configuration list for PBXNativeTarget "ElectricSidecar" */;
+			buildConfigurationList = 66108D4C296B569100791A7A /* Build configuration list for PBXNativeTarget "Watch" */;
 			buildPhases = (
 				66108D22296B569000791A7A /* Sources */,
 				66108D23296B569000791A7A /* Frameworks */,
@@ -514,13 +596,13 @@
 				66108D93296B58A400791A7A /* PBXTargetDependency */,
 				66108D6A296B56B000791A7A /* PBXTargetDependency */,
 			);
-			name = ElectricSidecar;
+			name = Watch;
 			packageProductDependencies = (
 				66108D94296B58A800791A7A /* PorscheConnect */,
 				66108DB7296B590F00791A7A /* CachedAsyncImage */,
 			);
 			productName = "ElectricSidecar Watch App";
-			productReference = 66108D26296B569000791A7A /* ElectricSidecar.app */;
+			productReference = 66108D26296B569000791A7A /* Watch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		66108D37296B569100791A7A /* UnitTests */ = {
@@ -559,9 +641,9 @@
 			productReference = 66108D42296B569100791A7A /* UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		66108D5C296B56AF00791A7A /* ESComplicationsExtension */ = {
+		66108D5C296B56AF00791A7A /* Widgets */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66108D6C296B56B000791A7A /* Build configuration list for PBXNativeTarget "ESComplicationsExtension" */;
+			buildConfigurationList = 66108D6C296B56B000791A7A /* Build configuration list for PBXNativeTarget "Widgets" */;
 			buildPhases = (
 				66108D59296B56AF00791A7A /* Sources */,
 				66108D5A296B56AF00791A7A /* Frameworks */,
@@ -572,13 +654,68 @@
 			dependencies = (
 				66108D97296B58AB00791A7A /* PBXTargetDependency */,
 			);
-			name = ESComplicationsExtension;
+			name = Widgets;
 			packageProductDependencies = (
 				66108D98296B58AE00791A7A /* PorscheConnect */,
 			);
 			productName = ESComplicationsExtension;
-			productReference = 66108D5D296B56AF00791A7A /* ESComplicationsExtension.appex */;
+			productReference = 66108D5D296B56AF00791A7A /* Widgets.appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		668B86512986F2A600C60DE8 /* Phone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 668B867F2986F2AA00C60DE8 /* Build configuration list for PBXNativeTarget "Phone" */;
+			buildPhases = (
+				668B864E2986F2A600C60DE8 /* Sources */,
+				668B864F2986F2A600C60DE8 /* Frameworks */,
+				668B86502986F2A600C60DE8 /* Resources */,
+				668B86842986F33500C60DE8 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				668B86832986F32200C60DE8 /* PBXTargetDependency */,
+			);
+			name = Phone;
+			productName = ESConfigurator;
+			productReference = 668B86522986F2A700C60DE8 /* Phone.app */;
+			productType = "com.apple.product-type.application";
+		};
+		668B86662986F2A800C60DE8 /* ESConfiguratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 668B86802986F2AA00C60DE8 /* Build configuration list for PBXNativeTarget "ESConfiguratorTests" */;
+			buildPhases = (
+				668B86632986F2A800C60DE8 /* Sources */,
+				668B86642986F2A800C60DE8 /* Frameworks */,
+				668B86652986F2A800C60DE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				668B86692986F2A800C60DE8 /* PBXTargetDependency */,
+			);
+			name = ESConfiguratorTests;
+			productName = ESConfiguratorTests;
+			productReference = 668B86672986F2A800C60DE8 /* ESConfiguratorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		668B86702986F2A900C60DE8 /* ESConfiguratorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 668B86812986F2AA00C60DE8 /* Build configuration list for PBXNativeTarget "ESConfiguratorUITests" */;
+			buildPhases = (
+				668B866D2986F2A900C60DE8 /* Sources */,
+				668B866E2986F2A900C60DE8 /* Frameworks */,
+				668B866F2986F2A900C60DE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				668B86732986F2AA00C60DE8 /* PBXTargetDependency */,
+			);
+			name = ESConfiguratorUITests;
+			productName = ESConfiguratorUITests;
+			productReference = 668B86712986F2A900C60DE8 /* ESConfiguratorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -590,9 +727,6 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					66108D1F296B569000791A7A = {
-						CreatedOnToolsVersion = 14.2;
-					};
 					66108D25296B569000791A7A = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -607,6 +741,17 @@
 					};
 					66108D5C296B56AF00791A7A = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					668B86512986F2A600C60DE8 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					668B86662986F2A800C60DE8 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 668B86512986F2A600C60DE8;
+					};
+					668B86702986F2A900C60DE8 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 668B86512986F2A600C60DE8;
 					};
 				};
 			};
@@ -626,23 +771,18 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				66108D1F296B569000791A7A /* ElectricSidecarHost */,
-				66108D25296B569000791A7A /* ElectricSidecar */,
-				66108D5C296B56AF00791A7A /* ESComplicationsExtension */,
+				668B86512986F2A600C60DE8 /* Phone */,
+				66108D25296B569000791A7A /* Watch */,
+				66108D5C296B56AF00791A7A /* Widgets */,
 				66108D37296B569100791A7A /* UnitTests */,
 				66108D41296B569100791A7A /* UITests */,
+				668B86662986F2A800C60DE8 /* ESConfiguratorTests */,
+				668B86702986F2A900C60DE8 /* ESConfiguratorUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		66108D1E296B569000791A7A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		66108D24296B569000791A7A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -673,6 +813,29 @@
 			files = (
 				661197A129750EE800D92637 /* Shared.xcassets in Resources */,
 				66108D67296B56B000791A7A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		668B86502986F2A600C60DE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				668B86612986F2A800C60DE8 /* LaunchScreen.storyboard in Resources */,
+				668B865E2986F2A800C60DE8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		668B86652986F2A800C60DE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		668B866F2986F2A900C60DE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,27 +925,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		668B864E2986F2A600C60DE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				668B86592986F2A700C60DE8 /* ViewController.swift in Sources */,
+				668B86552986F2A700C60DE8 /* AppDelegate.swift in Sources */,
+				668B86572986F2A700C60DE8 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		668B86632986F2A800C60DE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				668B866C2986F2A900C60DE8 /* ESConfiguratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		668B866D2986F2A900C60DE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				668B86762986F2AA00C60DE8 /* ESConfiguratorUITests.swift in Sources */,
+				668B86782986F2AA00C60DE8 /* ESConfiguratorUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		66108D29296B569000791A7A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 66108D25296B569000791A7A /* ElectricSidecar */;
-			targetProxy = 66108D28296B569000791A7A /* PBXContainerItemProxy */;
-		};
 		66108D3A296B569100791A7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66108D25296B569000791A7A /* ElectricSidecar */;
+			target = 66108D25296B569000791A7A /* Watch */;
 			targetProxy = 66108D39296B569100791A7A /* PBXContainerItemProxy */;
 		};
 		66108D44296B569100791A7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66108D25296B569000791A7A /* ElectricSidecar */;
+			target = 66108D25296B569000791A7A /* Watch */;
 			targetProxy = 66108D43296B569100791A7A /* PBXContainerItemProxy */;
 		};
 		66108D6A296B56B000791A7A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66108D5C296B56AF00791A7A /* ESComplicationsExtension */;
+			target = 66108D5C296B56AF00791A7A /* Widgets */;
 			targetProxy = 66108D69296B56B000791A7A /* PBXContainerItemProxy */;
 		};
 		66108D93296B58A400791A7A /* PBXTargetDependency */ = {
@@ -797,7 +982,33 @@
 			isa = PBXTargetDependency;
 			productRef = 66108DB9296B591900791A7A /* CachedAsyncImage */;
 		};
+		668B86692986F2A800C60DE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 668B86512986F2A600C60DE8 /* Phone */;
+			targetProxy = 668B86682986F2A800C60DE8 /* PBXContainerItemProxy */;
+		};
+		668B86732986F2AA00C60DE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 668B86512986F2A600C60DE8 /* Phone */;
+			targetProxy = 668B86722986F2AA00C60DE8 /* PBXContainerItemProxy */;
+		};
+		668B86832986F32200C60DE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66108D25296B569000791A7A /* Watch */;
+			targetProxy = 668B86822986F32200C60DE8 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		668B865F2986F2A800C60DE8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				668B86602986F2A800C60DE8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		66108D4A296B569100791A7A /* Debug */ = {
@@ -915,16 +1126,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ElectricSidecar/Resources/ElectricSidecar.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Watch/Resources/ElectricSidecar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ElectricSidecar/Resources/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Watch/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKWatchOnly = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.featherless.apps.electricsidecar;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -947,16 +1158,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ElectricSidecar/Resources/ElectricSidecar.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Watch/Resources/ElectricSidecar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ElectricSidecar/Resources/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Watch/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKWatchOnly = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.featherless.apps.electricsidecar;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -971,39 +1182,6 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 9.1;
-			};
-			name = Release;
-		};
-		66108D51296B569100791A7A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZGWD8QJUPK;
-				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		66108D52296B569100791A7A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZGWD8QJUPK;
-				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1105,12 +1283,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = ESComplications/Resources/ESComplicationsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/ESComplicationsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ESComplications/Resources/Info.plist;
+				INFOPLIST_FILE = Widgets/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ESComplications;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1136,12 +1314,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = ESComplications/Resources/ESComplicationsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/ESComplicationsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ESComplications/Resources/Info.plist;
+				INFOPLIST_FILE = Widgets/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ESComplications;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1163,6 +1341,153 @@
 			};
 			name = Release;
 		};
+		668B86792986F2AA00C60DE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Phone/Phone.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Phone/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		668B867A2986F2AA00C60DE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Phone/Phone.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Phone/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ElectricSidecar;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.apps.electricsidecar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		668B867B2986F2AA00C60DE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.ESConfiguratorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ESConfigurator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ESConfigurator";
+			};
+			name = Debug;
+		};
+		668B867C2986F2AA00C60DE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.ESConfiguratorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ESConfigurator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ESConfigurator";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		668B867D2986F2AA00C60DE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.ESConfiguratorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ESConfigurator;
+			};
+			name = Debug;
+		};
+		668B867E2986F2AA00C60DE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGWD8QJUPK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.featherless.ESConfiguratorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ESConfigurator;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1175,20 +1500,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66108D4C296B569100791A7A /* Build configuration list for PBXNativeTarget "ElectricSidecar" */ = {
+		66108D4C296B569100791A7A /* Build configuration list for PBXNativeTarget "Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66108D4D296B569100791A7A /* Debug */,
 				66108D4E296B569100791A7A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66108D50296B569100791A7A /* Build configuration list for PBXNativeTarget "ElectricSidecarHost" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66108D51296B569100791A7A /* Debug */,
-				66108D52296B569100791A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1211,11 +1527,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66108D6C296B56B000791A7A /* Build configuration list for PBXNativeTarget "ESComplicationsExtension" */ = {
+		66108D6C296B56B000791A7A /* Build configuration list for PBXNativeTarget "Widgets" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66108D6D296B56B000791A7A /* Debug */,
 				66108D6E296B56B000791A7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		668B867F2986F2AA00C60DE8 /* Build configuration list for PBXNativeTarget "Phone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				668B86792986F2AA00C60DE8 /* Debug */,
+				668B867A2986F2AA00C60DE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		668B86802986F2AA00C60DE8 /* Build configuration list for PBXNativeTarget "ESConfiguratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				668B867B2986F2AA00C60DE8 /* Debug */,
+				668B867C2986F2AA00C60DE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		668B86812986F2AA00C60DE8 /* Build configuration list for PBXNativeTarget "ESConfiguratorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				668B867D2986F2AA00C60DE8 /* Debug */,
+				668B867E2986F2AA00C60DE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

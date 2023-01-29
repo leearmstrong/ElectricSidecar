@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "66108D25296B569000791A7A"
-               BuildableName = "ElectricSidecar.app"
-               BlueprintName = "ElectricSidecar"
-               ReferencedContainer = "container:ElectricSidecar.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "66108D1F296B569000791A7A"
-               BuildableName = "ElectricSidecarHost.app"
-               BlueprintName = "ElectricSidecarHost"
+               BlueprintIdentifier = "668B86512986F2A600C60DE8"
+               BuildableName = "Phone.app"
+               BlueprintName = "Phone"
                ReferencedContainer = "container:ElectricSidecar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +33,9 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "66108D37296B569100791A7A"
-               BuildableName = "UnitTests.xctest"
-               BlueprintName = "UnitTests"
+               BlueprintIdentifier = "668B86702986F2A900C60DE8"
+               BuildableName = "ESConfiguratorUITests.xctest"
+               BlueprintName = "ESConfiguratorUITests"
                ReferencedContainer = "container:ElectricSidecar.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -58,9 +44,9 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "66108D41296B569100791A7A"
-               BuildableName = "UITests.xctest"
-               BlueprintName = "UITests"
+               BlueprintIdentifier = "668B86662986F2A800C60DE8"
+               BuildableName = "ESConfiguratorTests.xctest"
+               BlueprintName = "ESConfiguratorTests"
                ReferencedContainer = "container:ElectricSidecar.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -80,9 +66,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "66108D25296B569000791A7A"
-            BuildableName = "ElectricSidecar.app"
-            BlueprintName = "ElectricSidecar"
+            BlueprintIdentifier = "668B86512986F2A600C60DE8"
+            BuildableName = "Phone.app"
+            BlueprintName = "Phone"
             ReferencedContainer = "container:ElectricSidecar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -97,9 +83,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "66108D25296B569000791A7A"
-            BuildableName = "ElectricSidecar.app"
-            BlueprintName = "ElectricSidecar"
+            BlueprintIdentifier = "668B86512986F2A600C60DE8"
+            BuildableName = "Phone.app"
+            BlueprintName = "Phone"
             ReferencedContainer = "container:ElectricSidecar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
