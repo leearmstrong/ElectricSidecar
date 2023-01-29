@@ -24,6 +24,7 @@ final class ModelStore: ObservableObject {
 
   private let cacheURL: URL
   private let vehiclesURL: URL
+  private let vehicleCacheTimeout: TimeInterval = 60 * 60 * 24
   private let cacheTimeout: TimeInterval = 15 * 60
   private let longCacheTimeout: TimeInterval = 60 * 60 * 24 * 365
 
@@ -220,7 +221,7 @@ final class ModelStore: ObservableObject {
     let url = cacheURL.appendingPathComponent("vehicleList")
     // Try disk cache first, if allowed.
     if !ignoreCache,
-       let result: [Vehicle] = try cacheCoordinator.decode(url: url, timeout: cacheTimeout) {
+       let result: [Vehicle] = try cacheCoordinator.decode(url: url, timeout: vehicleCacheTimeout) {
       return result
     }
 
