@@ -28,9 +28,9 @@ private struct WidgetView : View {
       ChargeView(
         batteryLevel: entry.chargeRemaining,
         isCharging: entry.isCharging == true,
-        lineWidth: 4
+        lineWidth: 5
       )
-      .padding(2)
+      .padding(2.5)
     case .accessoryCorner:
       if let chargeRemaining = entry.chargeRemaining {
         HStack(spacing: 0) {
