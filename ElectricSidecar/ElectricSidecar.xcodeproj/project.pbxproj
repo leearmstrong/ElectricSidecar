@@ -282,7 +282,6 @@
 			children = (
 				660E7608297E593A00EEF434 /* ChargeView.swift */,
 				668B861729865BE900C60DE8 /* RadialProgressView.swift */,
-				6651ED032986FB71001337A3 /* BatteryStyle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -379,6 +378,7 @@
 			children = (
 				66C17ACB297655CC00F5F281 /* Logger */,
 				66EB7705296C0A9A008BFC27 /* PorscheConnect+Extensions */,
+				6651ED0729870863001337A3 /* Theming */,
 				661C3F4C29725D2800A4CC90 /* UIModel */,
 				660E7607297E593A00EEF434 /* Views */,
 				66108D78296B572F00791A7A /* AppGroup.swift */,
@@ -443,6 +443,14 @@
 				661C3F562972770800A4CC90 /* Vehicle+Position.swift */,
 			);
 			path = UIModel;
+			sourceTree = "<group>";
+		};
+		6651ED0729870863001337A3 /* Theming */ = {
+			isa = PBXGroup;
+			children = (
+				6651ED032986FB71001337A3 /* BatteryStyle.swift */,
+			);
+			path = Theming;
 			sourceTree = "<group>";
 		};
 		665EDD5D2972979C0012CD3A /* VehicleCharge */ = {
