@@ -1,21 +1,6 @@
 import Foundation
 import SwiftUI
 
-private struct ChargeCircleView: View {
-  let scale: Double
-  let color: Color
-  let lineWidth: Double
-  private let orientation: Angle = .degrees(135)
-  private let fillRatio: Double = 0.75
-
-  var body: some View {
-    Circle()
-      .trim(from: 0, to: fillRatio * scale)
-      .stroke(color, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
-      .rotationEffect(orientation)
-  }
-}
-
 struct ChargeView: View {
   @Environment(\.widgetRenderingMode) var renderingMode
 
@@ -49,14 +34,14 @@ struct ChargeView: View {
     ZStack {
       if let batteryLevel, let batteryLevelFormatted, let isCharging, let chargeColor {
         // Gutter
-        ChargeCircleView(
+        RadialProgressView(
           scale: 1,
           color: chargeColor.opacity(0.2),
           lineWidth: lineWidth
         )
 
         // Fill
-        ChargeCircleView(
+        RadialProgressView(
           scale: batteryLevel * 0.01,
           color: pulseIsOn ? chargeColor : chargeColor.opacity(0.5),
           lineWidth: lineWidth
@@ -78,7 +63,7 @@ struct ChargeView: View {
             .font(.footnote)
         }
       } else {
-        ChargeCircleView(
+        RadialProgressView(
           scale: 1,
           color: .gray,
           lineWidth: lineWidth

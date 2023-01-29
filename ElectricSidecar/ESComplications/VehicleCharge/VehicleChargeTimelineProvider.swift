@@ -7,18 +7,18 @@ private final class Storage {
   var lastKnownChargingState: Bool?
 }
 
-struct ChargeRemainingTimelineEntry: TimelineEntry {
+struct VehicleChargeTimelineEntry: TimelineEntry {
   let date: Date
   let chargeRemaining: Double?
   let isCharging: Bool?
 }
 
-struct ChargeRemainingTimelineProvider: TimelineProvider {
-  typealias Entry = ChargeRemainingTimelineEntry
+struct VehicleChargeTimelineProvider: TimelineProvider {
+  typealias Entry = VehicleChargeTimelineEntry
 
   private let storage = Storage()
 
-  func placeholder(in context: Context) -> ChargeRemainingTimelineEntry {
+  func placeholder(in context: Context) -> Entry {
     Entry(
       date: Date(),
       chargeRemaining: storage.lastKnownCharge ?? 100,
@@ -28,15 +28,13 @@ struct ChargeRemainingTimelineProvider: TimelineProvider {
 
   func getSnapshot(in context: Context, completion: @escaping (Entry) -> ()) {
     if context.isPreview {
-      let entry = Entry(
+      completion(Entry(
         date: Date(),
         chargeRemaining: storage.lastKnownCharge ?? 100,
         isCharging: storage.lastKnownChargingState
-      )
-      completion(entry)
+      ))
     } else {
-      let entry = Entry(date: Date(), chargeRemaining: 100, isCharging: false)
-      completion(entry)
+      completion(Entry(date: Date(), chargeRemaining: 100, isCharging: false))
     }
   }
 

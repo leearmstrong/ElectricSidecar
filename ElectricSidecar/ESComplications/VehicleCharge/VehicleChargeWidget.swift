@@ -5,7 +5,7 @@ struct VehicleChargeWidget: Widget {
   var body: some WidgetConfiguration {
     StaticConfiguration(
       kind: "ESComplications.VehicleCharge",
-      provider: ChargeRemainingTimelineProvider()
+      provider: VehicleChargeTimelineProvider()
     ) { entry in
       WidgetView(entry: entry)
     }
@@ -19,7 +19,7 @@ private struct WidgetView : View {
   @Environment(\.widgetFamily) var family
   @Environment(\.widgetRenderingMode) var widgetRenderingMode
 
-  let entry: ChargeRemainingTimelineProvider.Entry
+  let entry: VehicleChargeTimelineProvider.Entry
 
   var body: some View {
 
@@ -103,7 +103,7 @@ private struct WidgetView : View {
 
 struct VehicleChargeWidget_Previews: PreviewProvider {
   static var previews: some View {
-    WidgetView(entry: ChargeRemainingTimelineEntry(
+    WidgetView(entry: VehicleChargeTimelineProvider.Entry(
       date: Date(),
       chargeRemaining: 100,
       isCharging: true

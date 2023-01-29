@@ -71,8 +71,9 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "66108D5C296B56AF00791A7A"
@@ -80,7 +81,7 @@
             BlueprintName = "ESComplicationsExtension"
             ReferencedContainer = "container:ElectricSidecar.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
