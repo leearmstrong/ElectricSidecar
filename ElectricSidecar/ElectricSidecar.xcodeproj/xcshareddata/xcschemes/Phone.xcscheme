@@ -29,24 +29,12 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "668B86702986F2A900C60DE8"
-               BuildableName = "ESConfiguratorUITests.xctest"
-               BlueprintName = "ESConfiguratorUITests"
-               ReferencedContainer = "container:ElectricSidecar.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "668B86662986F2A800C60DE8"
-               BuildableName = "ESConfiguratorTests.xctest"
-               BlueprintName = "ESConfiguratorTests"
+               BlueprintIdentifier = "66108D37296B569100791A7A"
+               BuildableName = "UnitTests.xctest"
+               BlueprintName = "UnitTests"
                ReferencedContainer = "container:ElectricSidecar.xcodeproj">
             </BuildableReference>
          </TestableReference>
