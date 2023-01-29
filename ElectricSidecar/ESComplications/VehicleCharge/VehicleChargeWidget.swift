@@ -82,18 +82,7 @@ private struct WidgetView : View {
   }
 
   var batteryColor: Color {
-    guard let chargeRemaining = entry.chargeRemaining else {
-      return .gray
-    }
-    if chargeRemaining >= 80 {
-      return .green
-    } else if chargeRemaining >= 50 {
-      return .yellow
-    } else if chargeRemaining > 20 {
-      return .orange
-    } else {
-      return .red
-    }
+    return BatteryStyle.batteryColor(for: entry.chargeRemaining)
   }
 
   static func formatted(chargeRemaining: Double) -> String {

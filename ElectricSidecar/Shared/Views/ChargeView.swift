@@ -1,6 +1,23 @@
 import Foundation
 import SwiftUI
 
+struct BatteryStyle {
+  static func batteryColor(for chargeRemaining: Double?) -> Color {
+    guard let chargeRemaining else {
+      return .gray
+    }
+    if chargeRemaining >= 75 {
+      return .green
+    } else if chargeRemaining >= 50 {
+      return .yellow
+    } else if chargeRemaining > 20 {
+      return .orange
+    } else {
+      return .red
+    }
+  }
+}
+
 struct ChargeView: View {
   @Environment(\.widgetRenderingMode) var renderingMode
 
@@ -14,25 +31,9 @@ struct ChargeView: View {
   private let orientation: Angle = .degrees(135)
   private let fillRatio: Double = 0.75
 
-  var chargeColor: Color? {
-    guard let batteryLevel else {
-      return nil
-    }
-    if batteryLevel <= 15 {
-      return .red
-    }
-    if batteryLevel <= 30 {
-      return .orange
-    }
-    if batteryLevel <= 50 {
-      return .yellow
-    }
-    return .green
-  }
-
   var body: some View {
     ZStack {
-      if let batteryLevel, let batteryLevelFormatted, let isCharging, let chargeColor {
+      if let batteryLevel, let batteryLevelFormatted, let isCharging, let chargeColor = BatteryStyle.batteryColor(for: batteryLevel) {
         // Gutter
         RadialProgressView(
           scale: 1,

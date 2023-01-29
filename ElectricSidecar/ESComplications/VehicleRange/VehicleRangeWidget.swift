@@ -21,11 +21,16 @@ private struct WidgetView : View {
 
   let entry: VehicleRangeTimelineProvider.Entry
 
+  var batteryColor: Color {
+    return BatteryStyle.batteryColor(for: entry.chargeRemaining)
+  }
+
   var body: some View {
     ZStack {
       RadialProgressView(scale: 1, color: batteryColor.opacity(0.2), lineWidth: 4)
       if let chargeRemaining = entry.chargeRemaining {
         RadialProgressView(scale: chargeRemaining * 0.01, color: batteryColor, lineWidth: 5)
+          .widgetAccentable(true)
       }
       if let rangeRemaining = entry.rangeRemaining {
         VStack(spacing: 0) {
@@ -41,22 +46,6 @@ private struct WidgetView : View {
     }
     .padding(2.5)
   }
-
-  var batteryColor: Color {
-    guard let chargeRemaining = entry.chargeRemaining else {
-      return .gray
-    }
-    if chargeRemaining >= 80 {
-      return .green
-    } else if chargeRemaining >= 50 {
-      return .yellow
-    } else if chargeRemaining > 20 {
-      return .orange
-    } else {
-      return .red
-    }
-  }
-
 }
 
 struct VehicleRangeWidget_Previews: PreviewProvider {
