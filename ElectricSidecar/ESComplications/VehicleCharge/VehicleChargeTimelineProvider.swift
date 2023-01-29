@@ -36,26 +36,26 @@ struct ChargeRemainingTimelineProvider: TimelineProvider {
 
   func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
     Task {
-      var entries: [Entry] = []
+      do {
+        let vehicleList = try await store.vehicleList()
 
-      let vehicleList = try await store.vehicleList()
+        // TODO: Let the user pick this somehow?
+        let firstVehicle = vehicleList[0]
 
-      // TODO: Let the user pick this somehow?
-      let firstVehicle = vehicleList[0]
+        let emobility = try await store.emobility(for: firstVehicle.vin)
 
-      let emobility = try await store.emobility(for: firstVehicle.vin)
+        storage.lastKnownCharge = emobility.batteryChargeStatus.stateOfChargeInPercentage
+        storage.lastKnownChargingState = emobility.isCharging
+      } catch {
+        logger.error("Failed to update complication with error: \(error.localizedDescription)")
+      }
 
-      storage.lastKnownCharge = emobility.batteryChargeStatus.stateOfChargeInPercentage
-      storage.lastKnownChargingState = emobility.isCharging
-
-      let entry = Entry(
+      // Always provide a timeline, even if the update request failed.
+      let timeline = Timeline(entries: [Entry(
         date: Date(),
-        chargeRemaining: emobility.batteryChargeStatus.stateOfChargeInPercentage,
-        isCharging: emobility.isCharging
-      )
-      entries.append(entry)
-
-      let timeline = Timeline(entries: entries, policy: .atEnd)
+        chargeRemaining: storage.lastKnownCharge,
+        isCharging: storage.lastKnownChargingState
+      )], policy: .after(.now.addingTimeInterval(60 * 30)))
       completion(timeline)
     }
   }
@@ -63,7 +63,7 @@ struct ChargeRemainingTimelineProvider: TimelineProvider {
 
 struct ChargeRemainingTimelineEntry: TimelineEntry {
   let date: Date
-  let chargeRemaining: Double
+  let chargeRemaining: Double?
   let isCharging: Bool?
 }
 
@@ -84,24 +84,32 @@ struct VehicleChargeEntryView : View {
       )
       .padding(2)
     case .accessoryCorner:
-      HStack(spacing: 0) {
-        Image(entry.isCharging == true ? "taycan.charge" : "taycan")
-          .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 23 : 26))
-          .fontWeight(.regular)
-      }
-      .widgetLabel {
-        Gauge(value: entry.chargeRemaining, in: 0...100.0) {
-          Text("")
-        } currentValueLabel: {
-          Text("")
-        } minimumValueLabel: {
-          Text("")
-        } maximumValueLabel: {
-          Text(entry.chargeRemaining < 100 ? Self.formatted(chargeRemaining: entry.chargeRemaining) : "100")
-            .foregroundColor(batteryColor)
+      if let chargeRemaining = entry.chargeRemaining {
+        HStack(spacing: 0) {
+          Image(entry.isCharging == true ? "taycan.charge" : "taycan")
+            .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 23 : 26))
+            .fontWeight(.regular)
         }
-        .tint(batteryColor)
-        .gaugeStyle(LinearGaugeStyle(tint: Gradient(colors: [.red, .orange, .yellow, .green])))
+        .widgetLabel {
+          Gauge(value: chargeRemaining, in: 0...100.0) {
+            Text("")
+          } currentValueLabel: {
+            Text("")
+          } minimumValueLabel: {
+            Text("")
+          } maximumValueLabel: {
+            Text(chargeRemaining < 100 ? Self.formatted(chargeRemaining: chargeRemaining) : "100")
+              .foregroundColor(batteryColor)
+          }
+          .tint(batteryColor)
+          .gaugeStyle(LinearGaugeStyle(tint: Gradient(colors: [.red, .orange, .yellow, .green])))
+        }
+      } else {
+        HStack(spacing: 0) {
+          Image(entry.isCharging == true ? "taycan.charge" : "taycan")
+            .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 23 : 26))
+            .fontWeight(.regular)
+        }
       }
     case .accessoryInline:
       // Note: inline accessories only support one Text and/or Image element. Any additional
@@ -116,7 +124,9 @@ struct VehicleChargeEntryView : View {
           // an alternate glyph instead.
           Image(systemName: entry.isCharging == true ? "bolt.car" : "car")
         }
-        Text(Self.formatted(chargeRemaining: entry.chargeRemaining))
+        if let chargeRemaining = entry.chargeRemaining {
+          Text(Self.formatted(chargeRemaining: chargeRemaining))
+        }
       }
     default:
       Text("Unsupported")
@@ -124,11 +134,14 @@ struct VehicleChargeEntryView : View {
   }
 
   var batteryColor: Color {
-    if entry.chargeRemaining >= 80 {
+    guard let chargeRemaining = entry.chargeRemaining else {
+      return .gray
+    }
+    if chargeRemaining >= 80 {
       return .green
-    } else if entry.chargeRemaining >= 50 {
+    } else if chargeRemaining >= 50 {
       return .yellow
-    } else if entry.chargeRemaining > 20 {
+    } else if chargeRemaining > 20 {
       return .orange
     } else {
       return .red
