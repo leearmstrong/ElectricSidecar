@@ -29,6 +29,8 @@ struct VehiclePhotosView: View {
         .listRowBackground(Color.clear)
       }
     }
+#if os(watchOS)
     .listStyle(.carousel)
+#endif
   }
 }

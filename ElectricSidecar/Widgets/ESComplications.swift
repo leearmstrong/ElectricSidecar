@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import WatchConnectivity
 
 var store: ModelStore!
 
@@ -10,7 +11,14 @@ struct ESComplications: WidgetBundle {
   @AppStorage("password", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
   var password: String = ""
 
+  private lazy var watchConnectivityDelegate: WCSessionDelegate = {
+    return WatchConnectivityObserver(email: email, password: password)
+  }()
+
   init() {
+    WCSession.default.delegate = watchConnectivityDelegate
+    WCSession.default.activate()
+
     store = ModelStore(username: email, password: password)
   }
 

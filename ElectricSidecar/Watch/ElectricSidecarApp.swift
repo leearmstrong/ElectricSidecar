@@ -1,8 +1,5 @@
 import SwiftUI
-
-extension URLCache {
-  static let imageCache = URLCache(memoryCapacity: 20*1024*1024, diskCapacity: 128*1024*1024)
-}
+import WatchConnectivity
 
 @main
 struct ElectricSidecar: App {
@@ -17,6 +14,15 @@ struct ElectricSidecar: App {
     case authenticated(store: ModelStore)
   }
   @State var authState: AuthState = .launching
+
+  private lazy var watchConnectivityDelegate: WCSessionDelegate = {
+    return WatchConnectivityObserver(email: email, password: password)
+  }()
+
+  init() {
+    WCSession.default.delegate = watchConnectivityDelegate
+    WCSession.default.activate()
+  }
 
   var body: some Scene {
     WindowGroup {

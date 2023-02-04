@@ -2,6 +2,10 @@ import PorscheConnect
 import OSLog
 import SwiftUI
 
+extension URLCache {
+  static let imageCache = URLCache(memoryCapacity: 20*1024*1024, diskCapacity: 128*1024*1024)
+}
+
 struct GarageView: View {
   @StateObject var store: ModelStore
   let authFailure: (Error) -> Void

@@ -7,6 +7,13 @@ extension Notification.Name {
 }
 
 final class WatchConnectivityObserver: NSObject, WCSessionDelegate {
+  init(email: String, password: String) {
+    self.email = email
+    self.password = password
+  }
+
+  var email: String
+  var password: String
 
   // MARK: - Connectivity state observation
 
@@ -25,30 +32,38 @@ final class WatchConnectivityObserver: NSObject, WCSessionDelegate {
 
   func sessionReachabilityDidChange(_ session: WCSession) {
     Logging.watchConnectivity.info("sessionReachabilityDidChange() reachable: \(session.isReachable)")
+
+    postNotificationOnMainQueueAsync(name: .reachabilityDidChange)
   }
 
 #if os(iOS)
+  func sessionWatchStateDidChange(_ session: WCSession) {
+    Logging.watchConnectivity.info("sessionWatchStateDidChange \(session)")
+  }
+
   func sessionDidBecomeInactive(_ session: WCSession) {
     Logging.watchConnectivity.info("sessionDidBecomeInactive \(session)")
   }
 
   func sessionDidDeactivate(_ session: WCSession) {
     Logging.watchConnectivity.info("sessionDidDeactivate \(session)")
+    session.activate()
   }
 #endif
 
   // MARK: - Message handling
 
-  func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-    Logging.watchConnectivity.info("session(_: didReceiveMessage: \(message))")
-  }
+  func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -> Void) {
+    if message["request"] as? String == "auth-credentials" {
+      replyHandler([
+        "email": email,
+        "password": password,
+      ])
+      return
+    }
 
-  func session(_ session: WCSession, didFinish userInfoTransfer: WCSessionUserInfoTransfer, error: Error?) {
-    Logging.watchConnectivity.info("session(_: didFinish: \(userInfoTransfer) - \(userInfoTransfer.userInfo), error: \(error)")
-  }
-
-  func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-    Logging.watchConnectivity.info("session(_: didReceiveUserInfo: \(userInfo))")
+    // Default case
+    replyHandler([:])
   }
 }
 
