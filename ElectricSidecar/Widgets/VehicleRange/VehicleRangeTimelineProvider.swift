@@ -67,7 +67,7 @@ struct VehicleRangeTimelineProvider: TimelineProvider {
           storage.lastKnownRangeRemaining = nil
         }
       } catch {
-        logger.error("Failed to update complication with error: \(error.localizedDescription)")
+        Logging.network.error("Failed to update complication with error: \(error.localizedDescription)")
       }
 
       // Always provide a timeline, even if the update request failed.

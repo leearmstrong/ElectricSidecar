@@ -183,7 +183,7 @@ struct VehicleView: View {
   @MainActor
   private func unlock() {
     Task {
-      logger.info("Unlocking \(vehicle.vin, privacy: .private)")
+      Logging.network.info("Unlocking \(vehicle.vin, privacy: .private)")
       isChangingLockState = true
       defer {
         Task {
@@ -199,7 +199,7 @@ struct VehicleView: View {
   @MainActor
   private func lock() {
     Task {
-      logger.info("Locking \(vehicle.vin, privacy: .private)")
+      Logging.network.info("Locking \(vehicle.vin, privacy: .private)")
       isChangingLockState = true
       defer {
         Task {
@@ -229,7 +229,7 @@ struct VehicleView: View {
               positionRefreshing = false
               isRefreshing = false
             }
-            logger.info("Refreshing all widget timelines")
+            Logging.network.info("Refreshing all widget timelines")
             WidgetCenter.shared.reloadAllTimelines()
           }
         }

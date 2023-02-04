@@ -55,6 +55,9 @@
 		6651ED042986FB71001337A3 /* BatteryStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6651ED032986FB71001337A3 /* BatteryStyle.swift */; };
 		6651ED052986FB71001337A3 /* BatteryStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6651ED032986FB71001337A3 /* BatteryStyle.swift */; };
 		6651ED062986FB71001337A3 /* BatteryStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6651ED032986FB71001337A3 /* BatteryStyle.swift */; };
+		665C3F26298E0985002BAD30 /* WatchConnectivityObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665C3F25298E0985002BAD30 /* WatchConnectivityObserver.swift */; };
+		665C3F27298E0985002BAD30 /* WatchConnectivityObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665C3F25298E0985002BAD30 /* WatchConnectivityObserver.swift */; };
+		665C3F28298E09F9002BAD30 /* LoggerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668EB9582979119B00304EA5 /* LoggerContext.swift */; };
 		665EDD5A297289C40012CD3A /* RefreshStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD59297289C40012CD3A /* RefreshStatusView.swift */; };
 		665EDD5C2972973F0012CD3A /* ESComplications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD5B2972973F0012CD3A /* ESComplications.swift */; };
 		668B8607297F925400C60DE8 /* VehicleErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B8606297F925400C60DE8 /* VehicleErrorView.swift */; };
@@ -198,6 +201,7 @@
 		661C3F53297270FC00A4CC90 /* Vehicle+Emobility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Emobility.swift"; sourceTree = "<group>"; };
 		661C3F562972770800A4CC90 /* Vehicle+Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Position.swift"; sourceTree = "<group>"; };
 		6651ED032986FB71001337A3 /* BatteryStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryStyle.swift; sourceTree = "<group>"; };
+		665C3F25298E0985002BAD30 /* WatchConnectivityObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityObserver.swift; sourceTree = "<group>"; };
 		665EDD59297289C40012CD3A /* RefreshStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshStatusView.swift; sourceTree = "<group>"; };
 		665EDD5B2972973F0012CD3A /* ESComplications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESComplications.swift; sourceTree = "<group>"; };
 		668B8606297F925400C60DE8 /* VehicleErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleErrorView.swift; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 				6651ED0729870863001337A3 /* Theming */,
 				661C3F4C29725D2800A4CC90 /* UIModel */,
 				660E7607297E593A00EEF434 /* Views */,
+				665C3F24298E0973002BAD30 /* WatchConnectivity */,
 				66108D78296B572F00791A7A /* AppGroup.swift */,
 				66108D77296B572F00791A7A /* ModelStore.swift */,
 				6618E351296FDE5900F370BB /* CodableCacheCoordinator.swift */,
@@ -451,6 +456,14 @@
 				6651ED032986FB71001337A3 /* BatteryStyle.swift */,
 			);
 			path = Theming;
+			sourceTree = "<group>";
+		};
+		665C3F24298E0973002BAD30 /* WatchConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				665C3F25298E0985002BAD30 /* WatchConnectivityObserver.swift */,
+			);
+			path = WatchConnectivity;
 			sourceTree = "<group>";
 		};
 		665EDD5D2972979C0012CD3A /* VehicleCharge */ = {
@@ -824,6 +837,7 @@
 			files = (
 				6618E352296FDE5900F370BB /* CodableCacheCoordinator.swift in Sources */,
 				668EB957297910E200304EA5 /* LogsView.swift in Sources */,
+				665C3F27298E0985002BAD30 /* WatchConnectivityObserver.swift in Sources */,
 				668EB95C29792E8100304EA5 /* VehiclePhotosView.swift in Sources */,
 				66108DA6296B58EE00791A7A /* Vehicle+SwiftUI.swift in Sources */,
 				66108DB0296B58F700791A7A /* VehicleView.swift in Sources */,
@@ -922,6 +936,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				665C3F28298E09F9002BAD30 /* LoggerContext.swift in Sources */,
+				665C3F26298E0985002BAD30 /* WatchConnectivityObserver.swift in Sources */,
 				668B86592986F2A700C60DE8 /* ViewController.swift in Sources */,
 				668B86552986F2A700C60DE8 /* AppDelegate.swift in Sources */,
 				668B86572986F2A700C60DE8 /* SceneDelegate.swift in Sources */,

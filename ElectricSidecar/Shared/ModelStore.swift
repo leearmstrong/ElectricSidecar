@@ -3,7 +3,6 @@ import CryptoKit
 import Foundation
 import MapKit
 import PorscheConnect
-import os
 
 private let fm = FileManager.default
 
@@ -14,8 +13,6 @@ extension FileManager {
     )!
   }
 }
-
-public let logger = Logger(subsystem: LOGGER_SUBSYSTEM, category: "network")
 
 final class ModelStore: ObservableObject {
   private let porscheConnect: PorscheConnect
@@ -62,16 +59,16 @@ final class ModelStore: ObservableObject {
   // MARK: - Combine-based cache warming
 
   func load() async throws {
-    logger.info("Initial load")
+    Logging.network.info("Initial load")
     let vehicles: [Vehicle]
     do {
       vehicles = try await vehicleList()
     } catch {
-      logger.error("Failed initial load with error: \(error, privacy: .public)")
+      Logging.network.error("Failed initial load with error: \(error, privacy: .public)")
       throw error
     }
 
-    logger.debug("Loaded \(vehicles.count, privacy: .public) vehicles")
+    Logging.network.debug("Loaded \(vehicles.count, privacy: .public) vehicles")
     let vehicleModels = vehicles.map { vehicle in
       return UIModel.Vehicle(
         vin: vehicle.vin,
@@ -85,14 +82,14 @@ final class ModelStore: ObservableObject {
     }
 
     await MainActor.run {
-      logger.log(level: .debug, "Vehicles provided to model")
+      Logging.network.log(level: .debug, "Vehicles provided to model")
       self.vehicles = vehicleModels
     }
   }
 
   func refreshStatus(for vin: String, ignoreCache: Bool = false) async {
     do {
-      logger.info("Refreshing status for \(vin, privacy: .private(mask: .hash))")
+      Logging.network.info("Refreshing status for \(vin, privacy: .private(mask: .hash))")
       let status = try await self.status(for: vin, ignoreCache: ignoreCache)
       let distanceFormatter = DistanceFormatter()
       let electricalRange: String?
@@ -115,16 +112,16 @@ final class ModelStore: ObservableObject {
           overallLockStatus: status.doors.overallLockStatus.uiModel
         )
       )))
-      logger.info("Finished refreshing status for \(vin, privacy: .private(mask: .hash))")
+      Logging.network.info("Finished refreshing status for \(vin, privacy: .private(mask: .hash))")
     } catch {
-      logger.error("Status failed \(error, privacy: .public)")
+      Logging.network.error("Status failed \(error, privacy: .public)")
       self.statusSubjects[vin]?.send(.error(error))
     }
   }
 
   private var refreshState: [String: Bool] = [:]
   func refresh(vin: String, ignoreCache: Bool = false) async throws {
-    logger.info("Refresh state attempt for \(vin, privacy: .private(mask: .hash))")
+    Logging.network.info("Refresh state attempt for \(vin, privacy: .private(mask: .hash))")
     if refreshState[vin] == true {
       return  // Already refreshing.
     }
@@ -133,7 +130,7 @@ final class ModelStore: ObservableObject {
       refreshState[vin] = false
     }
 
-    logger.info("Starting refresh task group for \(vin, privacy: .private(mask: .hash))")
+    Logging.network.info("Starting refresh task group for \(vin, privacy: .private(mask: .hash))")
 
     // TODO: Keep an in-memory cache of the last-known status.
     await withTaskGroup(of: Void.self, body: { taskGroup in
@@ -142,20 +139,20 @@ final class ModelStore: ObservableObject {
       }
       taskGroup.addTask {
         do {
-          logger.info("Refreshing emobility for \(vin, privacy: .private(mask: .hash))")
+          Logging.network.info("Refreshing emobility for \(vin, privacy: .private(mask: .hash))")
           let emobility = try await self.emobility(for: vin, ignoreCache: ignoreCache)
           self.emobilitySubject(for: vin).send(.loaded(UIModel.Vehicle.Emobility(
             isCharging: emobility.isCharging == true
           )))
-          logger.info("Finished refreshing emobility for \(vin, privacy: .private(mask: .hash))")
+          Logging.network.info("Finished refreshing emobility for \(vin, privacy: .private(mask: .hash))")
         } catch {
-          logger.error("Status failed \(error, privacy: .public)")
+          Logging.network.error("Status failed \(error, privacy: .public)")
           self.emobilitySubjects[vin]?.send(.error(error))
         }
       }
       taskGroup.addTask {
         do {
-          logger.info("Refreshing position for \(vin, privacy: .private(mask: .hash))")
+          Logging.network.info("Refreshing position for \(vin, privacy: .private(mask: .hash))")
           let position = try await self.position(for: vin, ignoreCache: ignoreCache)
           let coordinateRegion = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: position.carCoordinate.latitude,
@@ -166,14 +163,14 @@ final class ModelStore: ObservableObject {
           self.positionSubject(for: vin).send(.loaded(UIModel.Vehicle.Position(
             coordinateRegion: coordinateRegion
           )))
-          logger.info("Finished refreshing position for \(vin, privacy: .private(mask: .hash))")
+          Logging.network.info("Finished refreshing position for \(vin, privacy: .private(mask: .hash))")
         } catch {
-          logger.error("Status failed \(error, privacy: .public)")
+          Logging.network.error("Status failed \(error, privacy: .public)")
           self.positionSubjects[vin]?.send(.error(error))
         }
       }
     })
-    logger.info("Finished refreshing \(vin, privacy: .private(mask: .hash))")
+    Logging.network.info("Finished refreshing \(vin, privacy: .private(mask: .hash))")
   }
 
   private var statusSubjects: [String: any Subject<UIModel.Refreshable<UIModel.Vehicle.Status>, Never>] = [:]
@@ -339,7 +336,7 @@ final class ModelStore: ObservableObject {
   func lock(vin: String) async throws -> RemoteCommandAccepted? {
     let response = try await porscheConnect.lock(vin: vin)
     guard response.response.statusCode < 300 else {
-      logger.error("Failed to lock the car: \(response.response)")
+      Logging.network.error("Failed to lock the car: \(response.response)")
       // TODO: Throw an error here.
       return nil
     }
@@ -349,7 +346,7 @@ final class ModelStore: ObservableObject {
   func checkStatus(vin: String, remoteCommand: RemoteCommandAccepted) async throws -> RemoteCommandStatus? {
     let response = try await porscheConnect.checkStatus(vin: vin, remoteCommand: remoteCommand)
     guard response.response!.statusCode < 300 else {
-      logger.error("Failed to lock the car: \(response.response)")
+      Logging.network.error("Failed to lock the car: \(response.response)")
       // TODO: Throw an error here.
       return nil
     }
