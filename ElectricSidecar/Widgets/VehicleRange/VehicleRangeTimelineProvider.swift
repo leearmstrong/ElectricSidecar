@@ -39,6 +39,14 @@ struct VehicleRangeTimelineProvider: TimelineProvider {
   }
 
   func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    guard let store = singletonModel.store else {
+      completion(Timeline(entries: [Entry(
+        date: Date(),
+        chargeRemaining: storage.lastKnownCharge,
+        rangeRemaining: storage.lastKnownRangeRemaining
+      )], policy: .after(.now.addingTimeInterval(60 * 30))))
+      return
+    }
     Task {
       do {
         let vehicleList = try await store.vehicleList()

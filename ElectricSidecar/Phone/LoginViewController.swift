@@ -75,8 +75,17 @@ final class LoginViewController: UIViewController {
 
     if isReachable {
       WCSession.default.sendMessage(["request": "auth-credentials"]) { response in
-        self.model.email = response["email"] as? String ?? ""
-        self.model.password = response["password"] as? String ?? ""
+        DispatchQueue.main.async {
+          if let email = response["email"] as? String,
+             let password = response["password"] as? String {
+            if !email.isEmpty {
+              self.model.email = email
+            }
+            if !password.isEmpty {
+              self.model.password = password
+            }
+          }
+        }
       }
     }
   }

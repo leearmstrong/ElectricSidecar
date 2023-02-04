@@ -2,26 +2,29 @@ import Foundation
 import SwiftUI
 import WatchConnectivity
 
-var store: ModelStore!
-
-@main
-struct ElectricSidecarWidgets: WidgetBundle {
+final class SingletonModel {
   @AppStorage("email", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
   var email: String = ""
   @AppStorage("password", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
   var password: String = ""
 
-  private lazy var watchConnectivityDelegate: WCSessionDelegate = {
-    return WatchConnectivityObserver(email: email, password: password)
-  }()
-
-  init() {
-    WCSession.default.delegate = watchConnectivityDelegate
-    WCSession.default.activate()
-
-    store = ModelStore(username: email, password: password)
+  var store: ModelStore? {
+    if email.isEmpty || password.isEmpty {
+      return nil
+    }
+    if let store = _store {
+      return store
+    }
+    _store = ModelStore(username: email, password: password)
+    return _store
   }
+  private var _store: ModelStore?
+}
 
+let singletonModel = SingletonModel()
+
+@main
+struct ElectricSidecarWidgets: WidgetBundle {
   @WidgetBundleBuilder
   var body: some Widget {
     VehicleChargeWidget()

@@ -15,11 +15,12 @@ struct ElectricSidecar: App {
   }
   @State var authState: AuthState = .launching
 
-  private lazy var watchConnectivityDelegate: WCSessionDelegate = {
-    return WatchConnectivityObserver(email: email, password: password)
-  }()
+  private let watchConnectivityDelegate: WatchConnectivityObserver
 
   init() {
+    watchConnectivityDelegate = WatchConnectivityObserver()
+    watchConnectivityDelegate.email = email
+    watchConnectivityDelegate.password = password
     WCSession.default.delegate = watchConnectivityDelegate
     WCSession.default.activate()
   }
@@ -54,6 +55,8 @@ struct ElectricSidecar: App {
               guard !email.isEmpty && !password.isEmpty else {
                 return
               }
+              watchConnectivityDelegate.email = email
+              watchConnectivityDelegate.password = password
               let store = ModelStore(username: email, password: password)
               Task {
                 try await store.load()

@@ -7,13 +7,13 @@ extension Notification.Name {
 }
 
 final class WatchConnectivityObserver: NSObject, WCSessionDelegate {
-  init(email: String, password: String) {
+  init(email: String = "", password: String = "") {
     self.email = email
     self.password = password
   }
 
-  var email: String
-  var password: String
+  public var email: String
+  public var password: String
 
   // MARK: - Connectivity state observation
 
