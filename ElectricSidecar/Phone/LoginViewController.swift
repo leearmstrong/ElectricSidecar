@@ -8,8 +8,8 @@ private final class ViewModel: ObservableObject {
     self.password = password
   }
 
-  @State var email: String
-  @State var password: String
+  @Published var email: String
+  @Published var password: String
   @Published var watchIsReachable: Bool = false
 }
 
@@ -64,10 +64,6 @@ final class LoginViewController: UIViewController {
     ])
   }
 
-  private func login() {
-    print("Logging in")
-  }
-
   @objc func reachabilityDidChange(_ notification: Notification) {
     Logging.watchConnectivity.info("Reachability state: \(WCSession.default.isReachable)")
 
@@ -117,12 +113,12 @@ struct LoginView: View {
 
   var body: some View {
     VStack {
-      TextField("Email", text: model.$email)
+      TextField("Email", text: $model.email)
         .textContentType(.emailAddress)
         .textInputAutocapitalization(.never)
         .multilineTextAlignment(.leading)
         .font(.body)
-      SecureField("Password", text: model.$password)
+      SecureField("Password", text: $model.password)
         .textContentType(.password)
         .multilineTextAlignment(.leading)
       Button("Log in", action: didLogin)
