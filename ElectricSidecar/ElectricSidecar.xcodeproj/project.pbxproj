@@ -296,7 +296,7 @@
 		668B8613298659D400C60DE8 /* VehicleRangeTimelineProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleRangeTimelineProvider.swift; sourceTree = "<group>"; };
 		668B8614298659D400C60DE8 /* VehicleRangeWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleRangeWidget.swift; sourceTree = "<group>"; };
 		668B861729865BE900C60DE8 /* RadialProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialProgressView.swift; sourceTree = "<group>"; };
-		668B86522986F2A700C60DE8 /* Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		668B86522986F2A700C60DE8 /* ElectricSidecar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectricSidecar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		668B86542986F2A700C60DE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		668B86562986F2A700C60DE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		668B86582986F2A700C60DE8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 				66108D38296B569100791A7A /* UnitTests.xctest */,
 				66108D42296B569100791A7A /* WatchUITests.xctest */,
 				66108D5D296B56AF00791A7A /* WatchWidgets.appex */,
-				668B86522986F2A700C60DE8 /* Phone.app */,
+				668B86522986F2A700C60DE8 /* ElectricSidecar.app */,
 				668B86712986F2A900C60DE8 /* PhoneUITests.xctest */,
 				66743FFA298E32CD002A799F /* PhoneWidgets.appex */,
 			);
@@ -823,9 +823,9 @@
 			productReference = 66743FFA298E32CD002A799F /* PhoneWidgets.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		668B86512986F2A600C60DE8 /* Phone */ = {
+		668B86512986F2A600C60DE8 /* ElectricSidecar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 668B867F2986F2AA00C60DE8 /* Build configuration list for PBXNativeTarget "Phone" */;
+			buildConfigurationList = 668B867F2986F2AA00C60DE8 /* Build configuration list for PBXNativeTarget "ElectricSidecar" */;
 			buildPhases = (
 				668B864E2986F2A600C60DE8 /* Sources */,
 				668B864F2986F2A600C60DE8 /* Frameworks */,
@@ -841,13 +841,13 @@
 				668B86832986F32200C60DE8 /* PBXTargetDependency */,
 				6674400A298E32CE002A799F /* PBXTargetDependency */,
 			);
-			name = Phone;
+			name = ElectricSidecar;
 			packageProductDependencies = (
 				66743FDF298E2E1A002A799F /* PorscheConnect */,
 				66743FED298E2F3C002A799F /* CachedAsyncImage */,
 			);
 			productName = ESConfigurator;
-			productReference = 668B86522986F2A700C60DE8 /* Phone.app */;
+			productReference = 668B86522986F2A700C60DE8 /* ElectricSidecar.app */;
 			productType = "com.apple.product-type.application";
 		};
 		668B86702986F2A900C60DE8 /* PhoneUITests */ = {
@@ -921,7 +921,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				668B86512986F2A600C60DE8 /* Phone */,
+				668B86512986F2A600C60DE8 /* ElectricSidecar */,
 				66743FF9298E32CD002A799F /* PhoneWidgets */,
 				66108D25296B569000791A7A /* Watch */,
 				66108D5C296B56AF00791A7A /* WatchWidgets */,
@@ -1222,7 +1222,7 @@
 		};
 		668B86732986F2AA00C60DE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 668B86512986F2A600C60DE8 /* Phone */;
+			target = 668B86512986F2A600C60DE8 /* ElectricSidecar */;
 			targetProxy = 668B86722986F2AA00C60DE8 /* PBXContainerItemProxy */;
 		};
 		668B86832986F32200C60DE8 /* PBXTargetDependency */ = {
@@ -1804,7 +1804,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		668B867F2986F2AA00C60DE8 /* Build configuration list for PBXNativeTarget "Phone" */ = {
+		668B867F2986F2AA00C60DE8 /* Build configuration list for PBXNativeTarget "ElectricSidecar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				668B86792986F2AA00C60DE8 /* Debug */,
