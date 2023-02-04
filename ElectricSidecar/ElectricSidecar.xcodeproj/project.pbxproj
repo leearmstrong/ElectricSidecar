@@ -94,7 +94,6 @@
 		66743FFC298E32CD002A799F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66743FFB298E32CD002A799F /* WidgetKit.framework */; };
 		66743FFE298E32CD002A799F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66743FFD298E32CD002A799F /* SwiftUI.framework */; };
 		66744003298E32CD002A799F /* ChargingLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66744002298E32CD002A799F /* ChargingLiveActivity.swift */; };
-		66744007298E32CE002A799F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66744006298E32CE002A799F /* Assets.xcassets */; };
 		6674400C298E32CE002A799F /* PhoneWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 66743FFA298E32CD002A799F /* PhoneWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		66744010298E334A002A799F /* ElectricSidecarWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665EDD5B2972973F0012CD3A /* ElectricSidecarWidgets.swift */; };
 		66744011298E3360002A799F /* VehicleChargeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D64296B56AF00791A7A /* VehicleChargeWidget.swift */; };
@@ -123,6 +122,7 @@
 		6674402C298E357F002A799F /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6611979F29750EE800D92637 /* Shared.xcassets */; };
 		66744031298E37F9002A799F /* ChargingActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6674402F298E3781002A799F /* ChargingActivityAttributes.swift */; };
 		66744035298E3BFC002A799F /* ChargingActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6674402F298E3781002A799F /* ChargingActivityAttributes.swift */; };
+		66744036298E3EE9002A799F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D66296B56B000791A7A /* Assets.xcassets */; };
 		668B8607297F925400C60DE8 /* VehicleErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B8606297F925400C60DE8 /* VehicleErrorView.swift */; };
 		668B8609297F951C00C60DE8 /* Vehicle+Doors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B8608297F951C00C60DE8 /* Vehicle+Doors.swift */; };
 		668B860A297F96D800C60DE8 /* Vehicle+Doors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B8608297F951C00C60DE8 /* Vehicle+Doors.swift */; };
@@ -264,7 +264,7 @@
 		66108D88296B57CB00791A7A /* VehicleChargeTimelineProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleChargeTimelineProvider.swift; sourceTree = "<group>"; };
 		66108D8E296B57F800791A7A /* PorscheConnect */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PorscheConnect; path = ../third_party/PorscheConnect; sourceTree = "<group>"; };
 		66108D8F296B584E00791A7A /* ElectricSidecar.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ElectricSidecar.entitlements; sourceTree = "<group>"; };
-		66108D90296B585800791A7A /* ESComplicationsExtension.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ESComplicationsExtension.entitlements; sourceTree = "<group>"; };
+		66108D90296B585800791A7A /* Widgets.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Widgets.entitlements; sourceTree = "<group>"; };
 		66108D9F296B58EE00791A7A /* Status+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Status+Helpers.swift"; sourceTree = "<group>"; };
 		66108DA0296B58EE00791A7A /* Vehicle+SwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vehicle+SwiftUI.swift"; sourceTree = "<group>"; };
 		66108DA1296B58EE00791A7A /* Vehicle+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vehicle+Helpers.swift"; sourceTree = "<group>"; };
@@ -289,9 +289,6 @@
 		66743FFB298E32CD002A799F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		66743FFD298E32CD002A799F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		66744002298E32CD002A799F /* ChargingLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingLiveActivity.swift; sourceTree = "<group>"; };
-		66744006298E32CE002A799F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		66744008298E32CE002A799F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6674402B298E34FA002A799F /* PhoneWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PhoneWidgets.entitlements; sourceTree = "<group>"; };
 		6674402F298E3781002A799F /* ChargingActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingActivityAttributes.swift; sourceTree = "<group>"; };
 		668B8606297F925400C60DE8 /* VehicleErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleErrorView.swift; sourceTree = "<group>"; };
 		668B8608297F951C00C60DE8 /* Vehicle+Doors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Doors.swift"; sourceTree = "<group>"; };
@@ -399,7 +396,6 @@
 				668B86532986F2A700C60DE8 /* Phone */,
 				66108D2A296B569000791A7A /* Watch */,
 				66108D63296B56AF00791A7A /* Widgets */,
-				66743FFF298E32CD002A799F /* PhoneWidgets */,
 				66108D76296B570C00791A7A /* Shared */,
 				668B86862986F38400C60DE8 /* Tests */,
 				66108D85296B579800791A7A /* Playgrounds */,
@@ -581,16 +577,6 @@
 			path = VehicleCharge;
 			sourceTree = "<group>";
 		};
-		66743FFF298E32CD002A799F /* PhoneWidgets */ = {
-			isa = PBXGroup;
-			children = (
-				6674402B298E34FA002A799F /* PhoneWidgets.entitlements */,
-				66744006298E32CE002A799F /* Assets.xcassets */,
-				66744008298E32CE002A799F /* Info.plist */,
-			);
-			path = PhoneWidgets;
-			sourceTree = "<group>";
-		};
 		66744033298E3826002A799F /* LiveActivities */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,7 +689,7 @@
 		669BFB5D296BFE59004621D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				66108D90296B585800791A7A /* ESComplicationsExtension.entitlements */,
+				66108D90296B585800791A7A /* Widgets.entitlements */,
 				66108D66296B56B000791A7A /* Assets.xcassets */,
 				66108D68296B56B000791A7A /* Info.plist */,
 			);
@@ -984,8 +970,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66744036298E3EE9002A799F /* Assets.xcassets in Resources */,
 				6674402C298E357F002A799F /* Shared.xcassets in Resources */,
-				66744007298E32CE002A799F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1538,7 +1524,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/ESComplicationsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/Widgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
@@ -1568,7 +1554,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/ESComplicationsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/Widgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
@@ -1599,12 +1585,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = PhoneWidgets/PhoneWidgets.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/Widgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PhoneWidgets/Info.plist;
+				INFOPLIST_FILE = Widgets/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PhoneWidgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -1629,12 +1615,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = PhoneWidgets/PhoneWidgets.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/Widgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZGWD8QJUPK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PhoneWidgets/Info.plist;
+				INFOPLIST_FILE = Widgets/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PhoneWidgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
