@@ -1,3 +1,6 @@
+#if !os(watchOS)
+import ActivityKit
+#endif
 import CachedAsyncImage
 import ClockKit
 import Combine
@@ -153,6 +156,8 @@ struct VehicleView: View {
       if result.value != nil || result.error != nil {
         statusRefreshing = false
       }
+
+//      checkChargeStatus()
     }
     .onReceive(emobilityPublisher.receive(on: RunLoop.main)) { result in
       emobility = result.value
@@ -161,6 +166,8 @@ struct VehicleView: View {
       if result.value != nil || result.error != nil {
         emobilityRefreshing = false
       }
+
+//      checkChargeStatus()
     }
     .onReceive(positionPublisher.receive(on: RunLoop.main)) { result in
       position = result.value
@@ -170,6 +177,32 @@ struct VehicleView: View {
         positionRefreshing = false
       }
     }
+  }
+
+  @MainActor
+  private func checkChargeStatus() {
+    guard let status, let emobility else {
+      return
+    }
+#if !os(watchOS)
+    if #available(iOS 16.2, *) {
+      if ActivityAuthorizationInfo().areActivitiesEnabled, emobility.isCharging {
+        let initialContentState = ChargingActivityAttributes.ContentState(batteryPercent: status.batteryLevel)
+        let activityAttributes = ChargingActivityAttributes()
+
+        let activityContent = ActivityContent(
+          state: initialContentState,
+          staleDate: Calendar.current.date(byAdding: .minute, value: 30, to: .now)!)
+
+        do {
+          let activity = try Activity.request(attributes: activityAttributes, content: activityContent)
+          print("Requested a charging Live Activity \(String(describing: activity.id)).")
+        } catch (let error) {
+          print("Error requesting charging Live Activity \(error.localizedDescription).")
+        }
+      }
+    }
+#endif
   }
 
   static func formatted(chargeRemaining: Double) -> String {

@@ -11,7 +11,18 @@ struct VehicleChargeWidget: Widget {
     }
     .configurationDisplayName("Charge")
     .description("Show the remaining charge on your vehicle")
-    .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryInline])
+#if os(watchOS)
+    .supportedFamilies([
+      .accessoryCircular,
+      .accessoryCorner,
+      .accessoryInline
+    ])
+#else
+    .supportedFamilies([
+      .accessoryCircular,
+      .accessoryInline
+    ])
+#endif
   }
 }
 
@@ -35,7 +46,9 @@ private struct WidgetView : View {
       if let chargeRemaining = entry.chargeRemaining {
         HStack(spacing: 0) {
           Image(entry.isCharging == true ? "taycan.charge" : "taycan")
+#if os(watchOS)
             .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 23 : 26))
+#endif
             .fontWeight(.regular)
         }
         .widgetLabel {
@@ -50,12 +63,16 @@ private struct WidgetView : View {
               .foregroundColor(batteryColor)
           }
           .tint(batteryColor)
+#if os(watchOS)
           .gaugeStyle(LinearGaugeStyle(tint: Gradient(colors: [.red, .orange, .yellow, .green])))
+#endif
         }
       } else {
         HStack(spacing: 0) {
           Image(entry.isCharging == true ? "taycan.charge" : "taycan")
+#if os(watchOS)
             .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 23 : 26))
+#endif
             .fontWeight(.regular)
         }
       }

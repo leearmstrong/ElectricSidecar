@@ -5,7 +5,7 @@ import WatchConnectivity
 var store: ModelStore!
 
 @main
-struct ESComplications: WidgetBundle {
+struct ElectricSidecarWidgets: WidgetBundle {
   @AppStorage("email", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
   var email: String = ""
   @AppStorage("password", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
@@ -26,5 +26,8 @@ struct ESComplications: WidgetBundle {
   var body: some Widget {
     VehicleChargeWidget()
     VehicleRangeWidget()
+#if !os(watchOS)
+    ChargingLiveActivity()
+#endif
   }
 }

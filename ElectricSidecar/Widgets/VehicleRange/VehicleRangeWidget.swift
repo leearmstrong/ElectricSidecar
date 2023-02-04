@@ -35,10 +35,14 @@ private struct WidgetView : View {
       if let rangeRemaining = entry.rangeRemaining {
         VStack(spacing: 0) {
           Text(String(format: "%.0f", rangeRemaining))
+#if os(watchOS)
             .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 18 : 20))
+#endif
             .bold()
           Text(Locale.current.measurementSystem == .metric ? "km" : "mi")
+#if os(watchOS)
             .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 12 : 14))
+#endif
             .padding(.top, -2)
             .padding(.bottom, -14)
         }
