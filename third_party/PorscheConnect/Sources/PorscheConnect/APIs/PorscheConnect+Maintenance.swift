@@ -1,11 +1,25 @@
 import Foundation
 
+extension PorscheConnect {
+  
+  public func maintenance(vin: String) async throws -> (maintenance: Maintenance?, response: HTTPURLResponse) {
+    let headers = try await performAuthFor(application: .api)
+    
+    let result = try await networkClient.get(
+      Maintenance.self, url: networkRoutes.vehicleMaintenanceURL(vin: vin), headers: headers,
+      jsonKeyDecodingStrategy: .useDefaultKeys)
+    return (maintenance: result.data, response: result.response)
+  }
+}
+
+// MARK: - Response types
+
 public struct Maintenance: Codable {
   
   // MARK: Properties
   
-  let serviceAccess: ServiceAccess
-  let items: [MaintenanceItem]
+  public let serviceAccess: ServiceAccess
+  public let items: [MaintenanceItem]
   
   // MARK: Mappings
   
