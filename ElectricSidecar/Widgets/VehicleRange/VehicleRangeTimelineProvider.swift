@@ -39,7 +39,7 @@ struct VehicleRangeTimelineProvider: TimelineProvider {
   }
 
   func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-    guard let store = singletonModel.store else {
+    guard let store = AUTH_MODEL.store else {
       completion(Timeline(entries: [Entry(
         date: Date(),
         chargeRemaining: storage.lastKnownCharge,

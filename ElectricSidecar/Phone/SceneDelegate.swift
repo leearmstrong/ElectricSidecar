@@ -2,11 +2,6 @@ import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-  @AppStorage("email", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
-  var email: String = ""
-  @AppStorage("password", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
-  var password: String = ""
-
   var window: UIWindow?
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -17,8 +12,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let window = UIWindow(windowScene: windowScene)
     self.window = window
 
-    if email.isEmpty || password.isEmpty {
-      let loginViewController = LoginViewController(email: email, password: password)
+    if AUTH_MODEL.email.isEmpty || AUTH_MODEL.password.isEmpty {
+      let loginViewController = LoginViewController(email: AUTH_MODEL.email, password: AUTH_MODEL.password)
       loginViewController.delegate = self
       let navigation = UINavigationController(rootViewController: loginViewController)
       window.rootViewController = navigation
@@ -32,7 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate: LoginViewControllerDelegate {
   func login() {
-    let store = ModelStore(username: email, password: password)
+    guard let store = AUTH_MODEL.store else {
+      return
+    }
     Task {
       try await store.load()
     }
@@ -44,8 +41,8 @@ extension SceneDelegate: LoginViewControllerDelegate {
   }
 
   func loginViewController(_ loginViewController: LoginViewController, didLoginWithEmail email: String, password: String) {
-    self.email = email
-    self.password = password
+    AUTH_MODEL.email = email
+    AUTH_MODEL.password = password
 
     login()
   }

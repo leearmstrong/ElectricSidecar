@@ -7,14 +7,6 @@ extension Notification.Name {
 }
 
 final class WatchConnectivityObserver: NSObject, WCSessionDelegate {
-  init(email: String = "", password: String = "") {
-    self.email = email
-    self.password = password
-  }
-
-  public var email: String
-  public var password: String
-
   // MARK: - Connectivity state observation
 
   func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
@@ -56,8 +48,8 @@ final class WatchConnectivityObserver: NSObject, WCSessionDelegate {
   func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -> Void) {
     if message["request"] as? String == "auth-credentials" {
       replyHandler([
-        "email": email,
-        "password": password,
+        "email": AUTH_MODEL.email,
+        "password": AUTH_MODEL.password,
       ])
       return
     }

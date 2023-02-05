@@ -4,7 +4,7 @@ import WatchConnectivity
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
   private lazy var watchConnectivityDelegate: WCSessionDelegate = {
-    return WatchConnectivityObserver(email: "", password: "")
+    return WatchConnectivityObserver()
   }()
 
   func application(_ application: UIApplication,

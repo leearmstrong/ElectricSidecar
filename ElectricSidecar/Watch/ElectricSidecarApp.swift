@@ -1,13 +1,9 @@
+import Combine
 import SwiftUI
 import WatchConnectivity
 
 @main
 struct ElectricSidecar: App {
-  @AppStorage("email", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
-  var email: String = ""
-  @AppStorage("password", store: UserDefaults(suiteName: APP_GROUP_IDENTIFIER))
-  var password: String = ""
-
   enum AuthState {
     case launching
     case loggedOut(error: Error?)
@@ -15,12 +11,9 @@ struct ElectricSidecar: App {
   }
   @State var authState: AuthState = .launching
 
-  private let watchConnectivityDelegate: WatchConnectivityObserver
+  private let watchConnectivityDelegate = WatchConnectivityObserver()
 
   init() {
-    watchConnectivityDelegate = WatchConnectivityObserver()
-    watchConnectivityDelegate.email = email
-    watchConnectivityDelegate.password = password
     WCSession.default.delegate = watchConnectivityDelegate
     WCSession.default.activate()
   }
@@ -31,10 +24,10 @@ struct ElectricSidecar: App {
       case .launching:
         ProgressView()
           .task {
-            if email.isEmpty || password.isEmpty {
+            if AUTH_MODEL.email.isEmpty || AUTH_MODEL.password.isEmpty {
               authState = .loggedOut(error: nil)
             } else {
-              let store = ModelStore(username: email, password: password)
+              let store = ModelStore(username: AUTH_MODEL.email, password: AUTH_MODEL.password)
               Task {
                 try await store.load()
               }
@@ -51,13 +44,15 @@ struct ElectricSidecar: App {
             if let error = error {
               Text(error.localizedDescription)
             }
-            LoginView(email: $email, password: $password) {
+            LoginView(email: AUTH_MODEL.email, password: AUTH_MODEL.password) { email, password in
               guard !email.isEmpty && !password.isEmpty else {
                 return
               }
-              watchConnectivityDelegate.email = email
-              watchConnectivityDelegate.password = password
-              let store = ModelStore(username: email, password: password)
+              AUTH_MODEL.email = email
+              AUTH_MODEL.password = password
+              guard let store = AUTH_MODEL.store else {
+                return
+              }
               Task {
                 try await store.load()
               }
