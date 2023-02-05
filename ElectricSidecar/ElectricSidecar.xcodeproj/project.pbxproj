@@ -12,8 +12,6 @@
 		66108D2C296B569000791A7A /* ElectricSidecarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D2B296B569000791A7A /* ElectricSidecarApp.swift */; };
 		66108D30296B569100791A7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D2F296B569100791A7A /* Assets.xcassets */; };
 		66108D33296B569100791A7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D32296B569100791A7A /* Preview Assets.xcassets */; };
-		66108D60296B56AF00791A7A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66108D5F296B56AF00791A7A /* WidgetKit.framework */; };
-		66108D62296B56AF00791A7A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66108D61296B56AF00791A7A /* SwiftUI.framework */; };
 		66108D65296B56AF00791A7A /* VehicleChargeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66108D64296B56AF00791A7A /* VehicleChargeWidget.swift */; };
 		66108D67296B56B000791A7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66108D66296B56B000791A7A /* Assets.xcassets */; };
 		66108D6B296B56B000791A7A /* WatchWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 66108D5D296B56AF00791A7A /* WatchWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -250,8 +248,6 @@
 		66108D38296B569100791A7A /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66108D42296B569100791A7A /* WatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66108D5D296B56AF00791A7A /* WatchWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WatchWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		66108D5F296B56AF00791A7A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		66108D61296B56AF00791A7A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		66108D64296B56AF00791A7A /* VehicleChargeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleChargeWidget.swift; sourceTree = "<group>"; };
 		66108D66296B56B000791A7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66108D68296B56B000791A7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -345,9 +341,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66108D62296B56AF00791A7A /* SwiftUI.framework in Frameworks */,
 				66108D99296B58AE00791A7A /* PorscheConnect in Frameworks */,
-				66108D60296B56AF00791A7A /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,15 +452,6 @@
 			path = WatchUITests;
 			sourceTree = "<group>";
 		};
-		66108D5E296B56AF00791A7A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				66108D5F296B56AF00791A7A /* WidgetKit.framework */,
-				66108D61296B56AF00791A7A /* SwiftUI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		66108D63296B56AF00791A7A /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,7 +492,6 @@
 		66108D8D296B57F800791A7A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				66108D5E296B56AF00791A7A /* Frameworks */,
 				66108D8E296B57F800791A7A /* PorscheConnect */,
 			);
 			name = Packages;
