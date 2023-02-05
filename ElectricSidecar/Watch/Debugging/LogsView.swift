@@ -51,10 +51,6 @@ struct LogsView: View {
   }
 
   private func refresh() {
-    let startTime = Date(timeIntervalSinceNow: -60 * 60)
-    let logStore = try! OSLogStore(scope: .currentProcessIdentifier)
-    let predicate = NSPredicate(format: "subsystem == %@", argumentArray: [LOGGER_SUBSYSTEM])
-    let position = logStore.position(date: startTime)
-    entries = Array(try! logStore.getEntries(at: position, matching: predicate))
+    entries = Logging.latestEntries()
   }
 }
