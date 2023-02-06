@@ -36,6 +36,14 @@ private struct WidgetView : View {
 
     switch family {
     case .accessoryCircular:
+#if os(watchOS)
+      ChargeView(
+        batteryLevel: entry.chargeRemaining,
+        isCharging: entry.isCharging == true,
+        lineWidth: 5
+      )
+      .padding(2.5)
+#else
       ChargeView(
         batteryLevel: entry.chargeRemaining,
         isCharging: entry.isCharging == true,
@@ -45,6 +53,7 @@ private struct WidgetView : View {
         lineWidth: 5
       )
       .padding(2.5)
+#endif
     case .accessoryCorner:
       if let chargeRemaining = entry.chargeRemaining {
         HStack(spacing: 0) {
