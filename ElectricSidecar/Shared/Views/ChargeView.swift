@@ -41,7 +41,7 @@ struct ChargeView: View {
 
         VStack {
           Image(isCharging == true ? "taycan.charge" : "taycan")
-            .font(.title2)
+            .font(.system(size: 24))
             .padding(.top, 10)
           Text(batteryLevelFormatted)
             .font(.footnote)
