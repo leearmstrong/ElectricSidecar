@@ -7,6 +7,10 @@ struct ChargeView: View {
   var batteryLevel: Double?
   var isCharging: Bool?
 
+  var iconOffset: Double = 0
+  var iconFontSize: Double = 22
+  var labelFontSize: Double = 12
+
   var allowsAnimation = false
   @State var pulseIsOn = true
 
@@ -41,10 +45,10 @@ struct ChargeView: View {
 
         VStack {
           Image(isCharging == true ? "taycan.charge" : "taycan")
-            .font(.system(size: 24))
-            .padding(.top, 10)
+            .font(.system(size: iconFontSize))
+            .padding(.top, 10 + iconOffset)
           Text(batteryLevelFormatted)
-            .font(.footnote)
+            .font(.system(size: labelFontSize))
         }
       } else {
         RadialProgressView(
@@ -54,10 +58,10 @@ struct ChargeView: View {
         )
         Image("taycan")
           .foregroundColor(.gray)
-          .font(.title2)
+          .font(.system(size: iconFontSize))
           .padding(.top, -4)
       }
-    }.frame(width: 50, height: 50)
+    }
   }
 
   var batteryLevelFormatted: String? {

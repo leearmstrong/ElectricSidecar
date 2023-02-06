@@ -39,6 +39,9 @@ private struct WidgetView : View {
       ChargeView(
         batteryLevel: entry.chargeRemaining,
         isCharging: entry.isCharging == true,
+        iconOffset: 2,
+        iconFontSize: 26,
+        labelFontSize: 14,
         lineWidth: 5
       )
       .padding(2.5)
@@ -48,6 +51,8 @@ private struct WidgetView : View {
           Image(entry.isCharging == true ? "taycan.charge" : "taycan")
 #if os(watchOS)
             .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 23 : 26))
+#else
+            .font(.system(size: 26))
 #endif
             .fontWeight(.regular)
         }

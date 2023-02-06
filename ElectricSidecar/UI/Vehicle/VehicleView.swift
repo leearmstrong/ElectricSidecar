@@ -75,8 +75,12 @@ struct VehicleView: View {
                 ChargeView(
                   batteryLevel: status?.batteryLevel,
                   isCharging: emobility?.isCharging,
+                  iconOffset: 2,
+                  iconFontSize: 26,
+                  labelFontSize: 14,
                   allowsAnimation: true
                 )
+                .frame(width: 54, height: 54)
                 .padding(.top, 8)
               }
               Spacer()
@@ -98,12 +102,15 @@ struct VehicleView: View {
           }
           if let electricalRange = status?.electricalRange {
             Text(electricalRange)
-              .font(.footnote)
+              .font(.system(size: 14))
               .padding(.top, -8)
           }
           VehicleClosedStatusView(doors: status?.doors)
-            .padding(.vertical)
+            .padding(.top, 8)
+            .padding(.bottom, 8)
         }
+        // Reset the section header styling that causes header text to be uppercased
+        .textCase(.none)
       }
       
       Section {

@@ -37,14 +37,20 @@ private struct WidgetView : View {
           Text(String(format: "%.0f", rangeRemaining))
 #if os(watchOS)
             .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 18 : 20))
+#else
+            .font(.system(size: 22))
 #endif
             .bold()
           Text(Locale.current.measurementSystem == .metric ? "km" : "mi")
 #if os(watchOS)
             .font(.system(size: WKInterfaceDevice.current().screenBounds.width < 195 ? 12 : 14))
-#endif
             .padding(.top, -2)
             .padding(.bottom, -14)
+#else
+            .font(.system(size: 16))
+            .padding(.top, -2)
+            .padding(.bottom, -16)
+#endif
         }
       }
     }
