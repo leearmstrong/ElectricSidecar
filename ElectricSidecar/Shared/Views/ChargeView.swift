@@ -57,7 +57,7 @@ struct ChargeView: View {
           .font(.title2)
           .padding(.top, -4)
       }
-    }
+    }.frame(width: 50, height: 50)
   }
 
   var batteryLevelFormatted: String? {
@@ -89,11 +89,13 @@ struct ChargeView_Previews: PreviewProvider {
   static var previews: some View {
     HStack {
       Spacer()
+        .frame(maxWidth: .infinity)
       ChargeView(
         batteryLevel: 20,
         isCharging: true
       )
       Spacer()
+        .frame(maxWidth: .infinity)
     }
     .previewDevice("Apple Watch Series 8 (45mm)")
   }

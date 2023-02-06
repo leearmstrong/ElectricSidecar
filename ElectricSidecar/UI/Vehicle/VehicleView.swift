@@ -40,99 +40,106 @@ struct VehicleView: View {
 
   var body: some View {
     List {
-      VStack {
-        HStack {
-          Spacer()
-            .frame(maxWidth: .infinity)
-          //          ZStack {
-          //            if !isChangingLockState {
-          //              Button { unlock() } label: { Image(systemName: "lock.open") }
-          //                .font(.title3)
-          //            } else {
-          //              ProgressView()
-          //            }
-          //          }
-          //          .padding(.trailing)
-
-          VStack {
-            ChargeView(
-              batteryLevel: status?.batteryLevel,
-              isCharging: emobility?.isCharging,
-              allowsAnimation: true
-            )
-            .padding(.top, 8)
-            if let electricalRange = status?.electricalRange {
-              Text(electricalRange)
-                .font(.footnote)
-                .padding(.top, -10)
+      Section {
+        if isRefreshing {
+          RefreshStatusView(
+            statusRefreshing: $statusRefreshing,
+            emobilityRefreshing: $emobilityRefreshing,
+            positionRefreshing: $positionRefreshing
+          )
+          .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+        } else {
+          Button("Refresh") {
+            Task {
+              try await refresh(ignoreCache: true)
             }
           }
-
+        }
+      } header: {
+        VStack(alignment: .center) {
           ZStack {
-            if !isChangingLockState {
-              Button { lock() } label: { Image(systemName: "lock") }
-                .font(.title3)
-            } else {
-              ProgressView()
+            //          ZStack {
+            //            if !isChangingLockState {
+            //              Button { unlock() } label: { Image(systemName: "lock.open") }
+            //                .font(.title3)
+            //            } else {
+            //              ProgressView()
+            //            }
+            //          }
+            //          .padding(.trailing)
+
+            HStack {
+              Spacer()
+                .frame(maxWidth: .infinity)
+              VStack {
+                ChargeView(
+                  batteryLevel: status?.batteryLevel,
+                  isCharging: emobility?.isCharging,
+                  allowsAnimation: true
+                )
+                .padding(.top, 8)
+              }
+              Spacer()
+                .frame(maxWidth: .infinity)
+            }
+
+            HStack(spacing: 0) {
+              Spacer()
+                .frame(maxWidth: .infinity)
+              if !isChangingLockState {
+                Button { lock() } label: { Image(systemName: "lock") }
+                  .font(.title3)
+                  .offset(x: 8)
+                  .frame(width: 48, height: 48)
+              } else {
+                ProgressView()
+              }
             }
           }
-          .padding(.leading)
-        }
-
-        Spacer(minLength: 8)
-
-        VehicleClosedStatusView(doors: status?.doors)
-
-        Spacer(minLength: 32)
-      }
-
-      if isRefreshing {
-        RefreshStatusView(
-          statusRefreshing: $statusRefreshing,
-          emobilityRefreshing: $emobilityRefreshing,
-          positionRefreshing: $positionRefreshing
-        )
-        .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
-      } else {
-        Button("Refresh") {
-          Task {
-            try await refresh(ignoreCache: true)
+          if let electricalRange = status?.electricalRange {
+            Text(electricalRange)
+              .font(.footnote)
+              .padding(.top, -8)
           }
+          VehicleClosedStatusView(doors: status?.doors)
+            .padding(.vertical)
         }
       }
-
-      NavigationLink {
-        VehicleLocationView(
-          vehicleName: vehicle.licensePlate ?? vehicle.modelDescription,
-          position: $position
-        )
-        .navigationTitle("Location")
-      } label: {
-        NavigationLinkContentView(imageSystemName: "location", title: "Location")
-      }
-      NavigationLink {
-        VehicleDetailsView(
-          status: $status,
-          modelDescription: vehicle.modelDescription,
-          modelYear: vehicle.modelYear,
-          vin: vehicle.vin
-        )
-        .navigationTitle("Details")
-      } label: {
-        NavigationLinkContentView(imageSystemName: "info.circle", title: "More details")
-      }
-      NavigationLink {
-        VehiclePhotosView(vehicle: vehicle)
-          .navigationTitle("Photos")
-      } label: {
-        NavigationLinkContentView(imageSystemName: "photo.on.rectangle.angled", title: "Photos")
-      }
-
-      if statusError != nil || emobilityError != nil || positionError != nil {
+      
+      Section {
         NavigationLink {
-          VehicleErrorView(statusError: $statusError, emobilityError: $emobilityError, positionError: $positionError)
+          VehicleLocationView(
+            vehicleName: vehicle.licensePlate ?? vehicle.modelDescription,
+            position: $position
+          )
+          .navigationTitle("Location")
         } label: {
-          NavigationLinkContentView(imageSystemName: "exclamationmark.triangle", title: "Errors")
+          NavigationLinkContentView(imageSystemName: "location", title: "Location")
+        }
+        NavigationLink {
+          VehicleDetailsView(
+            status: $status,
+            modelDescription: vehicle.modelDescription,
+            modelYear: vehicle.modelYear,
+            vin: vehicle.vin
+          )
+          .navigationTitle("Details")
+        } label: {
+          NavigationLinkContentView(imageSystemName: "info.circle", title: "More details")
+        }
+        NavigationLink {
+          VehiclePhotosView(vehicle: vehicle)
+            .navigationTitle("Photos")
+        } label: {
+          NavigationLinkContentView(imageSystemName: "photo.on.rectangle.angled", title: "Photos")
+        }
+        
+        if statusError != nil || emobilityError != nil || positionError != nil {
+          NavigationLink {
+            VehicleErrorView(statusError: $statusError, emobilityError: $emobilityError, positionError: $positionError)
+          } label: {
+            NavigationLinkContentView(imageSystemName: "exclamationmark.triangle", title: "Errors")
+          }
         }
       }
     }

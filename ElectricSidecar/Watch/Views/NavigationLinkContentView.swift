@@ -12,7 +12,9 @@ struct NavigationLinkContentView: View {
       Text(title)
         .frame(maxWidth: .infinity, alignment: .leading)
       Spacer()
+#if os(watchOS)
       Image(systemName: "chevron.forward")
+#endif
     }
   }
 }
